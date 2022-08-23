@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_gragh"
+    app:startDestination="@id/peopleFragment"
+    >
+    <fragment
+        android:id="@+id/peopleFragment"
+        android:name="com.kguard.indiary.PeopleFragment"
+        android:label="fragment_people"
+        tools:layout="@layout/fragment_people" >
+        <action
+            android:id="@+id/action_peopleFragment_to_addPeopleFragment"
+            app:destination="@id/addPeopleFragment" />
+        <action
+            android:id="@+id/action_peopleFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/memoryFragment"
+        android:name="com.kguard.indiary.MemoryFragment"
+        android:label="fragment_memory"
+        tools:layout="@layout/fragment_memory" >
+        <action
+            android:id="@+id/action_memoryFragment_to_addMemoryFragment"
+            app:destination="@id/addMemoryFragment" />
+        <action
+            android:id="@+id/action_memoryFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.kguard.indiary.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_detailFragment_to_detailPeopleFragment"
+            app:destination="@id/detailPeopleFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_detailMemoryFragment"
+            app:destination="@id/detailMemoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPeopleFragment"
+        android:name="com.kguard.indiary.DetailPeopleFragment"
+        android:label="fragment_detail_people"
+        tools:layout="@layout/fragment_detail_people" >
+        <action
+            android:id="@+id/action_detailPeopleFragment_to_updatePeopleFragment"
+            app:destination="@id/updatePeopleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailMemoryFragment"
+        android:name="com.kguard.indiary.DetailMemoryFragment"
+        android:label="fragment_detail_memory"
+        tools:layout="@layout/fragment_detail_memory" >
+        <action
+            android:id="@+id/action_detailMemoryFragment_to_detailMemory2Fragment"
+            app:destination="@id/detailMemory2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPeopleFragment"
+        android:name="com.kguard.indiary.AddPeopleFragment"
+        android:label="fragment_add_people"
+        tools:layout="@layout/fragment_add_people" />
+    <fragment
+        android:id="@+id/addMemoryFragment"
+        android:name="com.kguard.indiary.AddMemoryFragment"
+        android:label="fragment_add_memory"
+        tools:layout="@layout/fragment_add_memory" />
+    <fragment
+        android:id="@+id/detailMemory2Fragment"
+        android:name="com.kguard.indiary.DetailMemory2Fragment"
+        android:label="fragment_detail_memory2"
+        tools:layout="@layout/fragment_detail_memory2" >
+        <action
+            android:id="@+id/action_detailMemory2Fragment_to_updateMemoryFragment"
+            app:destination="@id/updateMemoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updatePeopleFragment"
+        android:name="com.kguard.indiary.UpdatePeopleFragment"
+        android:label="fragment_update_people"
+        tools:layout="@layout/fragment_update_people" />
+    <fragment
+        android:id="@+id/updateMemoryFragment"
+        android:name="com.kguard.indiary.UpdateMemoryFragment"
+        android:label="fragment_update_memory"
+        tools:layout="@layout/fragment_update_memory" />
+</navigation>
