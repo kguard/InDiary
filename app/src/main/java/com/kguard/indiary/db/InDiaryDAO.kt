@@ -3,41 +3,62 @@ package com.kguard.indiary.db
 import androidx.room.*
 
 @Dao
-interface PersonDAO {
-    @Query("SELECT * FROM Person")
-    fun getAll(): List<Person>
+interface PersonTagDAO {
+    @Transaction
+    @Query("SELECT * FROM PERSON")
+    fun getPersonTag(): List<PersonTag>
 
     @Query("SELECT * FROM Person WHERE person_id LIKE:person_id ")
-    fun getPerson(person_id:Int):Person
+    fun getPersonTag(person_id:Int):PersonTag
 
     @Update
-    fun updatePerson(vararg person: Person)
+    fun updatePersonTag(vararg personTag: PersonTag)
 
     @Insert
-    fun insertPerson(vararg person: Person)
+    fun insertPersonTag(vararg personTag: PersonTag)
 
     @Delete
-    fun deletePerson(vararg person: Person)
+    fun deletePersonTag(vararg personTag: PersonTag)
 }
+@Dao
+interface PersonCharacterDAO{
+    @Transaction
+    @Query("SELECT * FROM Person")
+    fun getPersonCharacter(): List<PersonCharacter>
+
+    @Query("SELECT * FROM Person WHERE person_id LIKE:person_id ")
+    fun getPersonCharacter(person_id:Int):PersonCharacter
+
+    @Update
+    fun updatePersonCharacter(vararg personCharacter: PersonCharacter)
+
+    @Insert
+    fun insertPersonCharacter(vararg personCharacter: PersonCharacter)
+
+    @Delete
+    fun deletePersonCharacter(vararg personCharacter: PersonCharacter)
+}
+
 
 @Dao
 interface MemoryDAO {
+    @Transaction
     @Query("SELECT * FROM Memory")
-    fun getAll(): List<Memory>
+    fun getMemory(): List<MemoryWith>
 
     @Query("SELECT * FROM Memory WHERE memory_id LIKE :memory_id")
-    fun getMemory(memory_id:Int):Memory
+    fun getMemory(memory_id:Int):MemoryWith
 
     @Update
-    fun updateMemory(vararg memory: Memory)
+    fun updateMemoryWith(vararg memoryWith: MemoryWith)
 
     @Insert
-    fun insertMemory(vararg memory: Memory)
+    fun insertMemoryWith(vararg memoryWith: MemoryWith)
 
     @Delete
-    fun deleteMemory(vararg memory: Memory)
+    fun deleteMemoryWith(vararg memoryWith: MemoryWith)
 }
-
+/*
 @Dao
 interface CharacterDAO {
     @Query("SELECT * FROM Character")
@@ -72,23 +93,7 @@ interface TagDAO {
 
     @Delete
     fun deleteTag(vararg tag: Tag)
-}
+}*/
 
-@Dao
-interface ImageDAO {
-    @Query("SELECT * FROM Image")
-    fun getAll(): List<Image>
 
-    @Query("SELECT * FROM Image WHERE image_id LIKE :image_id")
-    fun getImage(image_id:Int):Image
-
-    @Update
-    fun updateImage(vararg image: Image)
-
-    @Insert
-    fun insertImage(vararg image: Image)
-
-    @Delete
-    fun deleteImage(vararg image: Image)
-}
 

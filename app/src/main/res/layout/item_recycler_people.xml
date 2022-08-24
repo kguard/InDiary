@@ -1,97 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white">
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/yellow"
-        app:cardBackgroundColor="@color/yellow"
-        app:cardCornerRadius="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.258">
+        android:background="@color/white">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="3sp"
-            android:layout_marginTop="3sp"
-            android:layout_marginEnd="3sp"
-            android:layout_marginBottom="3sp"
-            app:cardBackgroundColor="@color/brown_main"
-            app:cardCornerRadius="10sp">
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/yellow"
+            app:cardBackgroundColor="@color/yellow"
+            app:cardCornerRadius="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.448"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.258">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="3sp"
+                android:layout_marginTop="3sp"
+                android:layout_marginEnd="3sp"
+                android:layout_marginBottom="3sp"
+                app:cardBackgroundColor="@color/brown_main"
+                app:cardCornerRadius="10sp">
 
-                <TextView
-                    android:id="@+id/tv_memory_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="15dp"
-                    android:text="TextView"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ib_favorite" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_people_tags"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_memory_date"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_memory_date"
-                    app:layout_constraintStart_toStartOf="@+id/tv_people_name"
-                    app:layout_constraintTop_toTopOf="@+id/tv_memory_date" />
+                    <TextView
+                        android:id="@+id/tv_memory_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:text="TextView"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ib_favorite" />
 
-                <ImageButton
-                    android:id="@+id/ib_favorite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#00FFFFFF"
-                    android:contentDescription="즐겨찾기"
-                    android:minWidth="30dp"
-                    android:minHeight="30dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_people_name"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_memory_date"
-                    app:layout_constraintTop_toTopOf="@+id/tv_people_name"
-                    app:srcCompat="@drawable/ic_favorite_off"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_people_tags"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_memory_date"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_memory_date"
+                        app:layout_constraintStart_toStartOf="@+id/tv_people_name"
+                        app:layout_constraintTop_toTopOf="@+id/tv_memory_date" />
 
-                <TextView
-                    android:id="@+id/tv_people_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:text="TextView"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <ImageButton
+                        android:id="@+id/ib_favorite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#00FFFFFF"
+                        android:contentDescription="즐겨찾기"
+                        android:minWidth="30dp"
+                        android:minHeight="30dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_people_name"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_memory_date"
+                        app:layout_constraintTop_toTopOf="@+id/tv_people_name"
+                        app:srcCompat="@drawable/ic_favorite_off"
+                        tools:ignore="TouchTargetSizeCheck" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/tv_people_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="TextView"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
         </androidx.cardview.widget.CardView>
-    </androidx.cardview.widget.CardView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

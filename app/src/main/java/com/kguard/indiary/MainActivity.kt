@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         //super.onBackPressed()
         when (navController.currentDestination)
         {
+
             else -> super.onBackPressed()
         }
     }
