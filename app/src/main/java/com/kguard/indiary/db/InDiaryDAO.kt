@@ -6,37 +6,37 @@ import androidx.room.*
 interface PersonTagDAO {
     @Transaction
     @Query("SELECT * FROM PERSON")
-    fun getPersonTag(): List<PersonTag>
+    suspend fun getPersonTag(): List<PersonTag>
 
     @Query("SELECT * FROM Person WHERE person_id LIKE:person_id ")
-    fun getPersonTag(person_id:Int):PersonTag
+    suspend fun getPersonTag(person_id:Int):PersonTag
 
     @Update
-    fun updatePersonTag(vararg personTag: PersonTag)
+    suspend fun updatePersonTag(vararg personTag: PersonTag)
 
     @Insert
-    fun insertPersonTag(vararg personTag: PersonTag)
+    suspend fun insertPersonTag(vararg personTag: PersonTag)
 
     @Delete
-    fun deletePersonTag(vararg personTag: PersonTag)
+    suspend fun deletePersonTag(vararg personTag: PersonTag)
 }
 @Dao
 interface PersonCharacterDAO{
     @Transaction
     @Query("SELECT * FROM Person")
-    fun getPersonCharacter(): List<PersonCharacter>
+    suspend fun getPersonCharacter(): List<PersonCharacter>
 
     @Query("SELECT * FROM Person WHERE person_id LIKE:person_id ")
-    fun getPersonCharacter(person_id:Int):PersonCharacter
+    suspend fun getPersonCharacter(person_id:Int):PersonCharacter
 
     @Update
-    fun updatePersonCharacter(vararg personCharacter: PersonCharacter)
+    suspend fun updatePersonCharacter(vararg personCharacter: PersonCharacter)
 
     @Insert
-    fun insertPersonCharacter(vararg personCharacter: PersonCharacter)
+    suspend fun insertPersonCharacter(vararg personCharacter: PersonCharacter)
 
     @Delete
-    fun deletePersonCharacter(vararg personCharacter: PersonCharacter)
+    suspend fun deletePersonCharacter(vararg personCharacter: PersonCharacter)
 }
 
 
@@ -44,19 +44,19 @@ interface PersonCharacterDAO{
 interface MemoryDAO {
     @Transaction
     @Query("SELECT * FROM Memory")
-    fun getMemory(): List<MemoryWith>
+    suspend fun getMemory(): List<MemoryWith>
 
     @Query("SELECT * FROM Memory WHERE memory_id LIKE :memory_id")
-    fun getMemory(memory_id:Int):MemoryWith
+    suspend fun getMemory(memory_id:Int):MemoryWith
 
     @Update
-    fun updateMemoryWith(vararg memoryWith: MemoryWith)
+    suspend fun updateMemoryWith(vararg memoryWith: MemoryWith)
 
     @Insert
-    fun insertMemoryWith(vararg memoryWith: MemoryWith)
+    suspend fun insertMemoryWith(vararg memoryWith: MemoryWith)
 
     @Delete
-    fun deleteMemoryWith(vararg memoryWith: MemoryWith)
+    suspend fun deleteMemoryWith(vararg memoryWith: MemoryWith)
 }
 /*
 @Dao

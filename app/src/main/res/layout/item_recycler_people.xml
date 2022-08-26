@@ -68,7 +68,7 @@
                         android:id="@+id/ib_favorite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="#00FFFFFF"
+                        android:background="#00911D1D"
                         android:contentDescription="즐겨찾기"
                         android:minWidth="30dp"
                         android:minHeight="30dp"

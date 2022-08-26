@@ -11,8 +11,8 @@ data class Person(
     val gender: Int,
     val memo: String?,
 
-    val make: LocalDate,
-    val favorite: Boolean,
+    val make: String,
+    var favorite: Boolean,
     val color: String
 
     )
@@ -71,7 +71,7 @@ data class PersonCharacter(
     @Embedded val person: Person,
     @Relation(
         parentColumn = "person_id",
-        entityColumn = "person_character_id"
+        entityColumn = "character_id"
     )
     val characters: List<Character>
 )
@@ -81,7 +81,7 @@ data class PersonTag(
     @Embedded val person: Person,
     @Relation(
         parentColumn = "person_id",
-        entityColumn = "person_tag_id"
+        entityColumn = "tag_id"
     )
     val tags: List<Tag>
 )
