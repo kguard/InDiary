@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kguard.indiary.R
 import com.kguard.indiary.databinding.ItemRecyclerPeopleBinding
-import com.kguard.indiary.db.PersonTag
+import com.kguard.indiary.db.Person
 
 
 class PeopleAdapter():RecyclerView.Adapter<PeopleAdapter.ViewHolder>() {
-    private val personTag :List<PersonTag> =ArrayList()
+    private val person :List<Person> =ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding= ItemRecyclerPeopleBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ViewHolder(binding)
@@ -21,22 +21,22 @@ class PeopleAdapter():RecyclerView.Adapter<PeopleAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return personTag.size
+        return person.size
     }
     inner class ViewHolder(private val binding: ItemRecyclerPeopleBinding) :RecyclerView.ViewHolder(binding.root) {
-        fun setItem(personTag: PersonTag){
-            binding.tvPeopleName.text= personTag.person.name
-            binding.rvPeopleTags.adapter= TagAdapter(personTag)
-            binding.tvMemoryDate.text=personTag.person.make
+        fun setItem(person: Person){
+            binding.tvPeopleName.text= person.name
+            binding.rvPeopleTags.adapter= TagAdapter(person.Tag)
+            binding.tvMemoryDate.text=person.make
             binding.ibFavorite.setOnClickListener {
-                if(personTag.person.favorite==true)
+                if(person.favorite==true)
                 {
-                    personTag.person.favorite=false
+                    person.favorite=false
                     binding.ibFavorite.setImageResource(R.drawable.ic_favorite_off)
                 }
-                else if (personTag.person.favorite==false)
+                else if (person.favorite==false)
                 {
-                    personTag.person.favorite=true
+                    person.favorite=true
                     binding.ibFavorite.setImageResource(R.drawable.ic_favorite_on)
                 }
             }

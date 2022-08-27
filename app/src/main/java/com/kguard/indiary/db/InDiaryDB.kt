@@ -4,12 +4,18 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 
 @Database(entities = [Person::class,Memory::class,Character::class,Tag::class,With::class], version = 1, exportSchema = false)
+@TypeConverters(InDiaryTypeConverters::class)
 abstract class InDiaryDB:RoomDatabase() {
-    abstract fun personTagDao(): PersonTagDAO
-    abstract fun personCharacterDao():PersonCharacterDAO
-    abstract fun memoryWithDao():MemoryDAO
+    abstract fun personDao(): PersonDAO
+    /*abstract fun personCharacterDao():PersonCharacterDAO
+    abstract fun personTagDao():PersonTagDAO*/
+    abstract fun memoryDao():MemoryDAO
+    abstract fun characterDao():CharacterDAO
+    abstract fun tagDao():TagDAO
+    abstract fun withDao():WithDAO
     companion object{
         private var instance: InDiaryDB? =null
         @Synchronized
@@ -20,7 +26,7 @@ abstract class InDiaryDB:RoomDatabase() {
                         context.applicationContext,
                         InDiaryDB::class.java,
                         "InDiary-db"
-                    ).build()
+                    ).addTypeConverter(InDiaryTypeConverters()).build()
                 }
             }
             return instance
