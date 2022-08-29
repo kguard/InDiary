@@ -3,6 +3,11 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.kguard.indiary.viewmodel.PersonViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -13,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
-            android:text="인(人) 다이어리"
+            android:text="@string/AppNamePage"
             android:textColor="#000000"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -22,14 +27,14 @@
 
         <Button
             android:id="@+id/bt_clear"
-            android:layout_width="50dp"
-            android:layout_height="35dp"
+            android:layout_width="65dp"
+            android:layout_height="40dp"
             android:layout_marginTop="8dp"
             android:gravity="center"
             android:paddingHorizontal="0dp"
             android:paddingVertical="0dp"
-            android:text="초기화"
-            android:textSize="14sp"
+            android:text="@string/clear"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/tv_diary"
             app:layout_constraintTop_toBottomOf="@+id/tv_diary"
@@ -67,7 +72,7 @@
             android:id="@+id/rv_content"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="15dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/bt_add"

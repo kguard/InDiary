@@ -1,14 +1,16 @@
 package com.kguard.indiary.db
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 
 @Dao
 interface PersonDAO {
     @Query("SELECT * FROM Person")
-    suspend fun getPersons(): List<Person>
+    fun getPersons(): LiveData<List<Person>>
 
     @Query("SELECT * FROM Person WHERE person_id LIKE:person_id ")
-    suspend fun getPerson(person_id:Int):Person
+    fun getPerson(person_id:Int):LiveData<Person>
 
     @Update
     suspend fun updatePerson(vararg Person: Person)
@@ -22,10 +24,10 @@ interface PersonDAO {
 @Dao
 interface MemoryDAO {
     @Query("SELECT * FROM Memory")
-    suspend fun getMemories(): List<Memory>
+    fun getMemories(): LiveData<List<Memory>>
 
     @Query("SELECT * FROM Memory WHERE memory_id LIKE:memory_id ")
-    suspend fun getMemory(memory_id:Int):Memory
+    fun getMemory(memory_id:Int):LiveData<Memory>
 
     @Update
     suspend fun updateMemory(vararg Memory: Memory)
@@ -40,10 +42,10 @@ interface MemoryDAO {
 @Dao
 interface CharacterDAO {
     @Query("SELECT * FROM Character")
-    suspend fun getCharacters(): List<Character>
+    fun getCharacters(): LiveData<List<Character>>
 
     @Query("SELECT * FROM Character WHERE character_id LIKE:character_id ")
-    suspend fun getCharacter(character_id:Int):Character
+    fun getCharacter(character_id:Int):LiveData<Character>
 
     @Update
     suspend fun updateCharacter(vararg Character: Character)
@@ -58,10 +60,10 @@ interface CharacterDAO {
 @Dao
 interface TagDAO {
     @Query("SELECT * FROM Tag")
-    suspend fun getTags(): List<Tag>
+    fun getTags(): LiveData<List<Tag>>
 
     @Query("SELECT * FROM Tag WHERE tag_id LIKE:tag_id ")
-    suspend fun getTag(tag_id:Int):Tag
+    fun getTag(tag_id:Int):LiveData<Tag>
 
     @Update
     suspend fun updateTag(vararg Tag: Tag)
@@ -76,10 +78,10 @@ interface TagDAO {
 @Dao
 interface WithDAO {
     @Query("SELECT * FROM 'With'")
-    suspend fun getWiths(): List<With>
+    fun getWiths(): LiveData<List<With>>
 
     @Query("SELECT * FROM 'With' WHERE with_id LIKE:with_id ")
-    suspend fun getWith(with_id:Int):With
+    fun getWith(with_id:Int):LiveData<With>
 
     @Update
     suspend fun updateWith(vararg With: With)

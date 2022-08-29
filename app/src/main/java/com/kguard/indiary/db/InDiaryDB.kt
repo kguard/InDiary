@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [Person::class,Memory::class,Character::class,Tag::class,With::class], version = 1, exportSchema = false)
+@Database(entities = [Person::class, Memory::class, Character::class, Tag::class, With::class], version = 1, exportSchema = false)
 @TypeConverters(InDiaryTypeConverters::class)
 abstract class InDiaryDB:RoomDatabase() {
     abstract fun personDao(): PersonDAO

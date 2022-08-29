@@ -9,6 +9,13 @@
         android:layout_height="match_parent"
         android:background="@color/beige_main">
 
+        <include
+            android:id="@+id/include"
+            layout="@layout/toolbar_all"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedScrollView"
@@ -21,7 +28,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/include">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,7 +50,7 @@
                         android:layout_marginBottom="16dp"
                         android:gravity="center_vertical"
                         android:includeFontPadding="false"
-                        android:text="이름:"
+                        android:text="@string/NameTitle"
                         android:textColor="#000000"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -62,7 +69,7 @@
                         android:background="@color/beige_sub"
                         android:ems="10"
                         android:gravity="center_vertical"
-                        android:hint="이름"
+                        android:hint="@string/Name"
                         android:inputType="textPersonName"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_name"
@@ -86,7 +93,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
-                        android:text="생년월일:"
+                        android:text="@string/BirthTitle"
                         android:textColor="#000000"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -103,7 +110,7 @@
                         android:layout_marginEnd="8dp"
                         android:background="@color/beige_sub"
                         android:ems="10"
-                        android:hint="생년월일"
+                        android:hint="@string/Birth"
                         android:inputType="number"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_birth"
                         app:layout_constraintEnd_toStartOf="@+id/tv_age_title"
@@ -117,7 +124,7 @@
                         android:layout_height="0dp"
                         android:layout_marginEnd="8dp"
                         android:inputType="number"
-                        android:text="나이(만):"
+                        android:text="@string/AgeTitle"
                         android:textColor="#000000"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -159,7 +166,7 @@
                         android:layout_marginBottom="16dp"
                         android:gravity="center_vertical"
                         android:includeFontPadding="false"
-                        android:text="성별:"
+                        android:text="@string/GenderTitle"
                         android:textColor="#000000"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -198,7 +205,7 @@
                         android:layout_marginBottom="16dp"
                         android:gravity="center_vertical"
                         android:includeFontPadding="false"
-                        android:text="태그:"
+                        android:text="@string/TagTitle"
                         android:textColor="#000000"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -244,7 +251,7 @@
                         android:layout_marginBottom="16dp"
                         android:gravity="center_vertical"
                         android:includeFontPadding="false"
-                        android:text="메모:"
+                        android:text="@string/MemoTitle"
                         android:textColor="#000000"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -265,7 +272,7 @@
                         android:background="@color/beige_sub"
                         android:ems="10"
                         android:gravity="start|top"
-                        android:hint="메모"
+                        android:hint="@string/Memo"
                         android:inputType="textMultiLine"
                         android:maxLength="100"
                         android:maxLines="7"
@@ -287,7 +294,7 @@
                 <Button
                     android:id="@+id/tv_plus"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:backgroundTint="@color/brown_main"
@@ -303,7 +310,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:backgroundTint="@color/brown_main"
-            android:text="완료"
+            android:text="@string/Complete"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

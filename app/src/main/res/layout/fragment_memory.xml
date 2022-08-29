@@ -15,7 +15,7 @@
             android:layout_marginTop="30dp"
             android:text="인(人) 다이어리"
             android:textColor="#000000"
-            android:textSize="32sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:background="#00FFFFFF"
-            android:minHeight="48dp"
+            android:minHeight="30dp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_diary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_diary"
@@ -35,12 +35,15 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
-            android:layout_height="656dp"
+            android:layout_height="0dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/bt_add_memory"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/tv_diary"
-            app:layout_constraintTop_toBottomOf="@+id/tv_diary" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_diary"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
