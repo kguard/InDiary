@@ -14,7 +14,11 @@ class PersonViewModel(application: Application) :AndroidViewModel(application){
     init {
         val personDao= InDiaryDB.getInstance(application)?.personDao()
         repository=PersonRepository(personDao)
-        personAll=repository.person
+        personAll = repository.person
+    }
+    fun getPerson(person_id:Int): LiveData<Person>?
+    {
+        return repository.getPerson(person_id)
     }
     fun insertPerson(person: Person)
     {

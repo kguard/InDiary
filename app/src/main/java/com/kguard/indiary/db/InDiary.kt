@@ -9,83 +9,83 @@ import java.time.LocalDate
 data class Person(
     @PrimaryKey(autoGenerate = true) val person_id : Int=0,
     @ColumnInfo(name="PersonName")
-    val name : String,
+    var name : String,
     @ColumnInfo(name="PersonBirth")
-    val birth: String?,
+    var birth: String?,
     @ColumnInfo(name="PersonGender")
-    val gender: Int,
+    var gender: Int,
     @ColumnInfo(name="PersonMemo")
-    val memo: String?,
+    var memo: String?,
     @ColumnInfo(name="PersonMake")
-    val make: String,
+    var make: String,
     @ColumnInfo(name="PersonFavorite")
     var favorite: Boolean,
-    val Tag: List<Tag>?,
-    val Character: List<Character>?,
-    )/*{
+    var Tag: List<Tag>?,
+    var Character: List<Character>?,
+    ){
     constructor():this(0,"",null,0,null,"",false,null,null)
-}*/
+}
 
 
 @Entity
 data class Memory(
     @PrimaryKey(autoGenerate = true) val memory_id : Int=0,
     @ColumnInfo(name="MemoryTitle")
-    val title : String,
+    var title : String,
     @ColumnInfo(name="MemoryDate")
-    val date : String,
+    var date : String,
     @ColumnInfo(name="MemoryContent")
-    val content: String?,
+    var content: String?,
     @ColumnInfo(name="MemoryImage1")
-    val image1: String?,
+    var image1: String?,
     @ColumnInfo(name="MemoryImage2")
-    val image2: String?,
+    var image2: String?,
     @ColumnInfo(name="MemoryImage3")
-    val image3: String?,
+    var image3: String?,
     @ColumnInfo(name="MemoryImage4")
-    val image4: String?,
+    var image4: String?,
     @ColumnInfo(name="MemoryImage5")
-    val image5: String?,
-    val With: List<With>?
-)/*{
+    var image5: String?,
+    var With: List<With>?
+){
     constructor():this(0,"","",null,null,null,null,null,null, null)
-}*/
+}
 
 @Entity
 data class Character(
     @PrimaryKey(autoGenerate = true) val character_id : Int=0,
     @ColumnInfo(name="CharacterTitle")
-    val title : String="",
+    var title : String="",
     @ColumnInfo(name="CharacterContent")
-    val content: String="",
+    var content: String="",
 
     @ColumnInfo(name="CharacterImage1")
-    val image1: String?=null,
+    var image1: String?=null,
     @ColumnInfo(name="CharacterImage2")
-    val image2: String?=null,
+    var image2: String?=null,
     @ColumnInfo(name="CharacterImage3")
-    val image3: String?=null,
+    var image3: String?=null,
     @ColumnInfo(name="CharacterImage4")
-    val image4: String?=null,
+    var image4: String?=null,
     @ColumnInfo(name="CharacterImage5")
-    val image5: String?=null
+    var image5: String?=null
 )
 
 @Entity
 data class Tag(
     @PrimaryKey(autoGenerate = true) val tag_id : Int,
     @ColumnInfo(name="TagName")
-    val name: String="",
+    var name: String="",
     @ColumnInfo(name="TagColor")
-    val color: String=""
+    var color: String=""
 )
 @Entity
 data class With(
     @PrimaryKey(autoGenerate = true) val with_id : Int,
     @ColumnInfo(name="WithName")
-    val name: String="",
+    var name: String="",
     @ColumnInfo(name="WithColor")
-    val color: String=""
+    var color: String=""
 )
 
 

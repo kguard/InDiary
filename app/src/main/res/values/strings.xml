@@ -2,13 +2,13 @@
     <string name="app_name">InDiary</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="People">사람</string>
+    <string name="Person">사람</string>
     <string name="Memory">추억</string>
     <string name="Character">특징</string>
 
     <string name="Update">수정</string>
     <string name="Delete">삭제</string>
-    <string name="AddPeople">사람 추가</string>
+    <string name="AddPerson">사람 추가</string>
     <string name="AddMemory">추억 추가</string>
     
     <string name="NameTitle">이름:</string>
@@ -29,9 +29,14 @@
     <string name="CharacterPhotoTitle">특징 사진:</string>
 
     <string name="Name">이름</string>
-    <string name="Birth">생년월일</string>
+    <string name="Birth">생년월일(8자리)</string>
     <string name="Age">나이(만)</string>
     <string name="Gender">성별</string>
+    <string-array name="GenderDetail">
+        <item>남</item>
+        <item>여</item>
+        <item>표기 안함</item>
+    </string-array>
     <string name="Tag">태그</string>
     <string name="Memo">메모</string>
 
@@ -46,7 +51,7 @@
     <string name="CharacterPhoto">특징 사진</string>
 
     <string name="AppNamePage">인(人) 다이어리</string>
-    <string name="AddPeoplePage">사람 추가하기</string>
+    <string name="AddPersonPage">사람 추가하기</string>
     <string name="AddMemoryPage">추억 추가하기</string>
     <string name="UpdatePage">수정 페이지</string>
     <string name="DetailPage">상세 페이지</string>

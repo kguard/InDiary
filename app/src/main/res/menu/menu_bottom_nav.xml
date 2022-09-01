@@ -4,9 +4,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/peopleFragment"
-        android:icon="@drawable/ic_people"
-        android:title="@string/People" />
+        android:id="@+id/personFragment"
+        android:icon="@drawable/ic_person"
+        android:title="@string/Person" />
     <item
         android:title="@string/Memory"
         android:icon="@drawable/ic_memory"

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.kguard.indiary.databinding.FragmentMemoryBinding
-import com.kguard.indiary.databinding.FragmentPeopleBinding
+import com.kguard.indiary.databinding.FragmentPersonBinding
 
 class MemoryFragment : Fragment() {
     private val binding by lazy { FragmentMemoryBinding.inflate(layoutInflater) }

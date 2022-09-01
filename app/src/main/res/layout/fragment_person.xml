@@ -65,7 +65,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/rv_tag"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/rv_tag"
-            app:srcCompat="@drawable/ic_people_add"
+            app:srcCompat="@drawable/ic_person_add"
             tools:ignore="TouchTargetSizeCheck" />
 
         <androidx.recyclerview.widget.RecyclerView
