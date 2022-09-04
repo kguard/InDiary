@@ -5,13 +5,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 
 import androidx.recyclerview.widget.RecyclerView
+import com.kguard.data.local.entity.Person
+import com.kguard.domain.domain.DomainPerson
 import com.kguard.indiary.R
 import com.kguard.indiary.databinding.ItemRecyclerPersonBinding
-import com.kguard.indiary.db.Person
+import com.kguard.indiary.viewmodel.PersonViewModel
 
 
 class PersonAdapter(val onClick: (Int) -> Unit):RecyclerView.Adapter<PersonAdapter.ViewHolder>(){
-    private var person:List<Person> = ArrayList()
+    private var person:List<DomainPerson> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding= ItemRecyclerPersonBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ViewHolder(binding)
@@ -30,15 +32,15 @@ class PersonAdapter(val onClick: (Int) -> Unit):RecyclerView.Adapter<PersonAdapt
         return person.size
     }
     inner class ViewHolder(private val binding: ItemRecyclerPersonBinding) :RecyclerView.ViewHolder(binding.root) {
-        fun setItem(person1: Person){
+        fun setItem(person1: DomainPerson){
+
             binding.tvPeopleName.text= person1.name
-            binding.rvPeopleTags.adapter= person1.Tag?.let { InnerTageAdapter(it) }
             binding.tvMemoryDate.text=person1.make
-            if(person1.favorite==true)
+            if(person1.favorite)
             {
                 binding.ibFavorite.setImageResource(R.drawable.ic_favorite_on)
             }
-            else if(person1.favorite==false){
+            else if(!person1.favorite){
                 binding.ibFavorite.setImageResource(R.drawable.ic_favorite_off)
             }
 
@@ -58,7 +60,7 @@ class PersonAdapter(val onClick: (Int) -> Unit):RecyclerView.Adapter<PersonAdapt
 
     }
 
-    fun setData(person: List<Person>)
+    fun setData(person: List<DomainPerson>)
     {
         this.person=person
         notifyDataSetChanged()

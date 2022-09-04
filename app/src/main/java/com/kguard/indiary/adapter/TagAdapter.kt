@@ -3,9 +3,9 @@ package com.kguard.indiary.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.kguard.data.local.entity.Tag
 import com.kguard.indiary.databinding.ItemTagCardviewBinding
-import com.kguard.indiary.db.Person
-import com.kguard.indiary.db.Tag
+
 
 class TagAdapter():RecyclerView.Adapter<TagAdapter.ViewHolder>() {
     var tag: List<Tag> = ArrayList()

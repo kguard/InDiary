@@ -8,23 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.viewModels
+
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.PopUpToBuilder
+
 import androidx.navigation.fragment.findNavController
+import com.kguard.domain.domain.DomainPerson
 import com.kguard.indiary.databinding.FragmentAddPersonBinding
-import com.kguard.indiary.databinding.FragmentPersonBinding
-import com.kguard.indiary.db.Person
-import com.kguard.indiary.db.Tag
-import com.kguard.indiary.viewmodel.PersonViewModel
+import com.kguard.indiary.viewmodel.AddPersonViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
-import java.util.Objects.toString
 
-
+@AndroidEntryPoint
 class AddPersonFragment : Fragment() {
     private val binding by lazy { FragmentAddPersonBinding.inflate(layoutInflater) }
-    private val viewModel by lazy {ViewModelProvider(this).get(PersonViewModel::class.java)}
+    private val viewModel : AddPersonViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -42,20 +40,18 @@ class AddPersonFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.include.tvToolbarName.text=getString(R.string.AddPersonPage)
         val items=resources.getStringArray(R.array.GenderDetail)
+
         val spinnerAdapter =
             context?.let { ArrayAdapter(it,android.R.layout.simple_spinner_dropdown_item,items) }
         binding.spinner.adapter=spinnerAdapter
+
         binding.tvAddPersonComplete.setOnClickListener {
-            var person1: Person =Person(0,"김경호","",0,"연습",LocalDate.now().toString(),false,
-                emptyList(), emptyList())
-            var person: Person =Person()
+            var person: DomainPerson =DomainPerson(0,"김경호","",0,"연습",LocalDate.now().toString(),false)
 
             person.name=binding.etAddPersonName.text.toString()
             person.birth =binding.etAddPersonBirth.text.toString()
             person.memo=binding.etAddPersonMemo.text.toString()
-            person.make=LocalDate.now().toString()
-            person.Tag= emptyList()
-            person.Character= emptyList()
+
             binding.spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
                 override fun onItemSelected(
                     parent: AdapterView<*>?,

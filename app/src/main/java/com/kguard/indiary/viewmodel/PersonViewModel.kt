@@ -1,41 +1,23 @@
 package com.kguard.indiary.viewmodel
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.*
-import com.kguard.indiary.db.InDiaryDB
-import com.kguard.indiary.db.Person
-import com.kguard.indiary.repository.PersonRepository
+import com.kguard.domain.domain.DomainPerson
+import com.kguard.indiary.usecase.PersonUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PersonViewModel(application: Application) :AndroidViewModel(application){
-    val personAll:LiveData<List<Person>>?
-    val repository:PersonRepository
-    init {
-        val personDao= InDiaryDB.getInstance(application)?.personDao()
-        repository=PersonRepository(personDao)
-        personAll = repository.person
-    }
-    fun getPerson(person_id:Int): LiveData<Person>?
-    {
-        return repository.getPerson(person_id)
-    }
-    fun insertPerson(person: Person)
-    {
+@HiltViewModel
+class PersonViewModel @Inject constructor(
+    private val useCase: PersonUseCase
+):ViewModel(){
+    private var _persons: MutableLiveData<List<DomainPerson>> = MutableLiveData<List<DomainPerson>>()
+    val persons: MutableLiveData<List<DomainPerson>>
+    get() = _persons
+    init{
         viewModelScope.launch {
-            repository.insertPerson(person)
-        }
-    }
-    fun updatePerson(person: Person)
-    {
-        viewModelScope.launch {
-            repository.updatePerson(person)
-        }
-    }
-    fun deletePerson(person:Person)
-    {
-        viewModelScope.launch {
-            repository.deletePerson(person)
+            _persons.value=useCase.getPersons()
         }
     }
 }

@@ -3,8 +3,8 @@ package com.kguard.indiary.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.kguard.data.local.entity.Tag
 import com.kguard.indiary.databinding.ItemTagCardviewBinding
-import com.kguard.indiary.db.Tag
 
 class InnerTageAdapter(var tag: List<Tag>):RecyclerView.Adapter<InnerTageAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -1,8 +1,12 @@
-package com.kguard.indiary.db
+package com.kguard.data.local.database
 
 import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
 import com.google.gson.Gson
+import com.kguard.data.local.entity.Tag
+import com.kguard.data.local.entity.With
+
+/*
 @ProvidedTypeConverter
 class InDiaryTypeConverters {
     @TypeConverter
@@ -30,5 +34,4 @@ class InDiaryTypeConverters {
     @TypeConverter
     fun StringToWith(value:String):List<With>{
         return Gson().fromJson(value, Array<With>::class.java).toList()
-    }
-}
+    }*/
