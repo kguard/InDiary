@@ -26,8 +26,13 @@ class AddCharacterAdapter():RecyclerView.Adapter<AddCharacterAdapter.AddCharacte
         fun setItem(customCharacter: CustomCharacter){
             binding.tvAddCharacterName.text=customCharacter.title
             binding.etAddPersonName.editText?.setText(customCharacter.contents)
+            binding.etAddPersonName.editText?.hint = customCharacter.title
         }
 
+    }
+    fun getList():List<CustomCharacter>
+    {
+        return this.character
     }
     @SuppressLint("NotifyDataSetChanged")
     fun addData(character: CustomCharacter){

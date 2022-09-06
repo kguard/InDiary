@@ -20,7 +20,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,15 +48,24 @@
 
                     <TextView
                         android:id="@+id/tv_detail_person_name"
+                        style="@style/TV_20sp_normal_black"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="@string/Name"
-                        style="@style/TV_20sp_normal_black"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_detail_people_name"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/tv_detail_people_name"
                         app:layout_constraintTop_toTopOf="@+id/tv_detail_people_name" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_detail_person_name"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -88,12 +98,12 @@
 
                     <TextView
                         android:id="@+id/tv_detail_person_birth"
+                        style="@style/TV_20sp_normal_black"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:text="@string/Birth"
-                        style="@style/TV_20sp_normal_black"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_detail_people_birth"
                         app:layout_constraintEnd_toStartOf="@+id/tv_detail_people_age"
                         app:layout_constraintStart_toEndOf="@+id/tv_detail_people_birth"
@@ -101,22 +111,22 @@
 
                     <TextView
                         android:id="@+id/tv_detail_people_age"
+                        style="@style/TV_20sp_normal_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:text="@string/AgeTitle"
-                        style="@style/TV_20sp_normal_black"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_detail_person_birth"
                         app:layout_constraintEnd_toStartOf="@+id/tv_detail_person_age"
                         app:layout_constraintTop_toTopOf="@+id/tv_detail_person_birth" />
 
                     <TextView
                         android:id="@+id/tv_detail_person_age"
+                        style="@style/TV_20sp_normal_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:text="@string/Age"
-                        style="@style/TV_20sp_normal_black"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_detail_people_age"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/tv_detail_people_age" />
@@ -154,12 +164,12 @@
 
                     <TextView
                         android:id="@+id/tv_detail_person_gender"
+                        style="@style/TV_20sp_normal_black"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="16dp"
                         android:text="@string/Gender"
-                        style="@style/TV_20sp_normal_black"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_detail_people_gender"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/tv_detail_people_gender"
@@ -180,7 +190,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp">
+                    android:layout_marginVertical="10dp"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/tv_detail_people_tag"
@@ -217,7 +228,8 @@
                     android:layout_marginEnd="16dp"
                     android:background="#80FEFEFE"
                     android:backgroundTint="@color/brown_main"
-                    android:foregroundGravity="center" />
+                    android:foregroundGravity="center"
+                    android:visibility="gone" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -265,11 +277,44 @@
                     android:backgroundTint="@color/brown_main"
                     android:foregroundGravity="center" />
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fb_delete"
+                        style="@style/Widget.App.ExtendedFloatingActionButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginBottom="30dp"
+                        android:clickable="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:srcCompat="@android:drawable/ic_menu_delete"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fb_update"
+                        style="@style/Widget.App.ExtendedFloatingActionButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginBottom="30dp"
+                        android:clickable="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/fb_delete"
+                        app:srcCompat="@android:drawable/ic_menu_edit"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_detail_person_character"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/beige_main" />
+                    android:background="@color/beige_main"
+                    android:visibility="gone" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

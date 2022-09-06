@@ -21,7 +21,7 @@ class PersonAdapter(val onClick: (Int) -> Unit):RecyclerView.Adapter<PersonAdapt
     override fun onBindViewHolder(holder: PersonViewHolder, position: Int) {
         holder.setItem(person[position])
         holder.itemView.setOnClickListener{
-            onClick(person[position].person_id)
+            person[position].person_id?.let { it1 -> onClick(it1) }
         }
         //person[position].favorite=holder.setItem(person[position]).favorite
         //person[position] = holder.setItem(person[position])

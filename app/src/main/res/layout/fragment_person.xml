@@ -25,6 +25,7 @@
 
         <Button
             android:id="@+id/bt_clear"
+            style="@style/TV_16sp_normal_white"
             android:layout_width="65dp"
             android:layout_height="40dp"
             android:layout_marginTop="8dp"
@@ -32,7 +33,7 @@
             android:paddingHorizontal="0dp"
             android:paddingVertical="0dp"
             android:text="@string/clear"
-            style="@style/TV_16sp_normal_white"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="@+id/tv_diary"
             app:layout_constraintTop_toBottomOf="@+id/tv_diary"
             tools:ignore="TouchTargetSizeCheck" />
@@ -44,6 +45,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:orientation="horizontal"
+            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="@+id/bt_clear"
             app:layout_constraintEnd_toStartOf="@+id/bt_add"
@@ -59,9 +61,9 @@
             android:contentDescription="@string/AddPerson"
             android:minWidth="30dp"
             android:minHeight="30dp"
-            app:layout_constraintBottom_toBottomOf="@+id/rv_tag"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_diary"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/rv_tag"
+            app:layout_constraintTop_toTopOf="@+id/tv_diary"
             app:srcCompat="@drawable/ic_person_add"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -69,6 +71,7 @@
             android:id="@+id/rv_content"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="15dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"

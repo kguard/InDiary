@@ -49,6 +49,9 @@
         <argument
             android:name="person_id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_detailFragment_to_updatePersonFragment"
+            app:destination="@id/updatePersonFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailPersonFragment"
@@ -95,7 +98,14 @@
         android:id="@+id/updatePersonFragment"
         android:name="com.kguard.indiary.UpdatePersonFragment"
         android:label="fragment_update_person"
-        tools:layout="@layout/fragment_update_person" />
+        tools:layout="@layout/fragment_update_person" >
+        <action
+            android:id="@+id/action_updatePersonFragment_to_addCharacterDialog"
+            app:destination="@id/addCharacterDialog" />
+        <argument
+            android:name="person_id"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/updateMemoryFragment"
         android:name="com.kguard.indiary.UpdateMemoryFragment"

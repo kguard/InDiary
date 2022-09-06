@@ -16,11 +16,11 @@ class MainViewModel @Inject constructor(
     private val tagUseCase: TagUseCase,
     private val withUseCase: WithUseCase
 ):ViewModel(){
-    private val _customCharacter= MutableLiveData<CustomCharacter>()
-    val customCharacter: LiveData<CustomCharacter>
-    get() = _customCharacter
-    fun setCustomCharacter(customCharacter: CustomCharacter){
-        _customCharacter.value=customCharacter
-    }
+//    private val _customCharacter= MutableLiveData<CustomCharacter>()
+//    val customCharacter: LiveData<CustomCharacter>
+//    get() = _customCharacter
+//    fun setCustomCharacter(customCharacter: CustomCharacter){
+//        _customCharacter.value=customCharacter
+//    }
 
 }

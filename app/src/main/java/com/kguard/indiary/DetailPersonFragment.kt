@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.kguard.indiary.databinding.FragmentDetailPersonBinding
 import com.kguard.indiary.viewmodel.DetailPersonViewModel
 import com.kguard.indiary.viewmodel.PersonViewModel
@@ -34,8 +35,9 @@ class DetailPersonFragment(personId: Int) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val person= viewModel.getPerson(personId)
+        viewModel.getPerson(personId)
         viewModel.person.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            binding.textView.text= it.person_id.toString()
             binding.tvDetailPersonName.text=it.name
             binding.tvDetailPersonBirth.text=it.birth
             binding.tvDetailPersonAge.text=viewModel.getAge(it.birth.toString()).toString()
@@ -46,6 +48,14 @@ class DetailPersonFragment(personId: Int) : Fragment() {
                 2->binding.tvDetailPersonGender.text="표기 안함"
             }
             binding.tvDetailPersonMemo.text=it.memo
+            val person=it
+            binding.fbDelete.setOnClickListener{
+                viewModel.deletePerson(person)
+                findNavController().popBackStack()
+            }
+            binding.fbUpdate.setOnClickListener {
+                findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToUpdatePersonFragment(personId))
+            }
         })
     }
 

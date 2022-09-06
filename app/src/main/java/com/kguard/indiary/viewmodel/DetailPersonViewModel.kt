@@ -1,5 +1,6 @@
 package com.kguard.indiary.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,12 +17,18 @@ class DetailPersonViewModel @Inject constructor(
     private val useCase: PersonUseCase
 ):ViewModel() {
     private var _person: MutableLiveData<DomainPerson> = MutableLiveData<DomainPerson>()
-    val person: MutableLiveData<DomainPerson>
+    val person: LiveData<DomainPerson>
         get() = _person
     fun getPerson(person_id:Int)
     {
         viewModelScope.launch {
             _person.postValue(useCase.getPerson(person_id))
+        }
+    }
+    fun deletePerson(person: DomainPerson)
+    {
+        viewModelScope.launch {
+            useCase.deletePerson(person)
         }
     }
     fun getAge(string:String): Int {
