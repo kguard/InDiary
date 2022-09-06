@@ -6,7 +6,8 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.kguard.domain.domain.DomainTag
 
-@Entity(foreignKeys = [
+@Entity(tableName = "Tag",
+    foreignKeys = [
     ForeignKey(
         entity = Person::class,
         parentColumns = ["person_id"],
@@ -19,7 +20,7 @@ data class Tag(
     val name: String,
     @ColumnInfo(name="TagColor")
     val color: String,
-    @ColumnInfo(name="PersonId")
+    @ColumnInfo(name="person_id")
     val person_id:Int
 
 )

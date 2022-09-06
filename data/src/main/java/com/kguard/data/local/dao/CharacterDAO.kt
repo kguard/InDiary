@@ -13,7 +13,7 @@ interface CharacterDAO {
     @Query("SELECT * FROM Character WHERE character_id = :character_id ")
     suspend fun getCharacter(character_id:Int): Character
 
-    @Query("SELECT * FROM Character WHERE PersonId = :person_id ")
+    @Query("SELECT * FROM Character WHERE person_id = :person_id ")
     suspend fun getPersonCharacters(person_id:Int): List<Character>
 
     @Update

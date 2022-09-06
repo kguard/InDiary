@@ -1,25 +1,24 @@
 package com.kguard.indiary.adapter
 
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
 import androidx.recyclerview.widget.RecyclerView
-import com.kguard.data.local.entity.Person
 import com.kguard.domain.domain.DomainPerson
 import com.kguard.indiary.R
 import com.kguard.indiary.databinding.ItemRecyclerPersonBinding
-import com.kguard.indiary.viewmodel.PersonViewModel
 
 
-class PersonAdapter(val onClick: (Int) -> Unit):RecyclerView.Adapter<PersonAdapter.ViewHolder>(){
+class PersonAdapter(val onClick: (Int) -> Unit):RecyclerView.Adapter<PersonAdapter.PersonViewHolder>(){
     private var person:List<DomainPerson> = ArrayList()
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonViewHolder {
         val binding= ItemRecyclerPersonBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return ViewHolder(binding)
+        return PersonViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PersonViewHolder, position: Int) {
         holder.setItem(person[position])
         holder.itemView.setOnClickListener{
             onClick(person[position].person_id)
@@ -31,7 +30,7 @@ class PersonAdapter(val onClick: (Int) -> Unit):RecyclerView.Adapter<PersonAdapt
     override fun getItemCount(): Int {
         return person.size
     }
-    inner class ViewHolder(private val binding: ItemRecyclerPersonBinding) :RecyclerView.ViewHolder(binding.root) {
+    inner class PersonViewHolder(private val binding: ItemRecyclerPersonBinding) :RecyclerView.ViewHolder(binding.root) {
         fun setItem(person1: DomainPerson){
 
             binding.tvPeopleName.text= person1.name
@@ -60,6 +59,7 @@ class PersonAdapter(val onClick: (Int) -> Unit):RecyclerView.Adapter<PersonAdapt
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(person: List<DomainPerson>)
     {
         this.person=person

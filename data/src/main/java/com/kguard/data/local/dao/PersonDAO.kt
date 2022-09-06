@@ -6,11 +6,9 @@ import com.kguard.data.local.entity.Person
 
 @Dao
 interface PersonDAO {
-    @Transaction
     @Query("SELECT * FROM Person")
     suspend fun getPersons(): List<Person>
 
-    @Transaction
     @Query("SELECT * FROM Person WHERE person_id =:person_id ")
     suspend fun getPerson(person_id:Int): Person
 

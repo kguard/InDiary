@@ -6,7 +6,7 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.kguard.domain.domain.DomainCharacter
 
-@Entity(
+@Entity( tableName = "Character",
     foreignKeys = [
     ForeignKey(
         entity = Person::class,
@@ -20,19 +20,10 @@ data class Character(
     var title : String,
     @ColumnInfo(name="CharacterContent")
     var content: String,
-    @ColumnInfo(name="PersonId")
-    val person_id:Int,
-    @ColumnInfo(name="CharacterImage1")
-    var image1: String?,
-    @ColumnInfo(name="CharacterImage2")
-    var image2: String?,
-    @ColumnInfo(name="CharacterImage3")
-    var image3: String?,
-    @ColumnInfo(name="CharacterImage4")
-    var image4: String?,
-    @ColumnInfo(name="CharacterImage5")
-    var image5: String?
+    @ColumnInfo(name="person_id")
+    val person_id:Int
 )
+
 fun Character.toDomainCharacter(): DomainCharacter = DomainCharacter(
-    character_id, title, content, person_id, image1, image2, image3, image4, image5
+    character_id, title, content, person_id
 )

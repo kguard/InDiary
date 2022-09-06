@@ -72,7 +72,11 @@
         android:id="@+id/addPersonFragment"
         android:name="com.kguard.indiary.AddPersonFragment"
         android:label="fragment_add_person"
-        tools:layout="@layout/fragment_add_person" />
+        tools:layout="@layout/fragment_add_person" >
+        <action
+            android:id="@+id/action_addPersonFragment_to_addCharacterDialog"
+            app:destination="@id/addCharacterDialog" />
+    </fragment>
     <fragment
         android:id="@+id/addMemoryFragment"
         android:name="com.kguard.indiary.AddMemoryFragment"
@@ -97,4 +101,8 @@
         android:name="com.kguard.indiary.UpdateMemoryFragment"
         android:label="fragment_update_memory"
         tools:layout="@layout/fragment_update_memory" />
+    <dialog
+        android:id="@+id/addCharacterDialog"
+        android:name="com.kguard.indiary.AddCharacterDialog"
+        android:label="AddCharacterDialog" />
 </navigation>

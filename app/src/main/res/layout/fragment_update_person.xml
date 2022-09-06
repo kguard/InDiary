@@ -23,7 +23,7 @@
             android:background="@color/beige_main"
             android:contentDescription="@string/Update"
             android:fillViewport="true"
-            app:layout_constraintBottom_toTopOf="@+id/tv_update_person_complete"
+            app:layout_constraintBottom_toTopOf="@+id/tv_add_person_complete"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,43 +41,36 @@
 
                     <TextView
                         android:id="@+id/tv_update_person_name"
+                        style="@style/TV_20sp_normal_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:gravity="center_vertical"
                         android:includeFontPadding="false"
                         android:text="@string/NameTitle"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/et_update_person_name"
+                        style="@style/EV_material_margin"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="16dp"
-                        android:background="@color/beige_sub"
-                        android:ems="10"
-                        android:gravity="center_vertical"
+                        android:layout_height="wrap_content"
                         android:hint="@string/Name"
-                        android:inputType="textPersonName"
-                        android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_update_person_name"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/tv_update_person_name"
-                        app:layout_constraintTop_toTopOf="@+id/tv_update_person_name"
-                        app:layout_constraintVertical_bias="0.333"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        app:layout_constraintTop_toTopOf="@+id/tv_update_person_name">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -87,36 +80,34 @@
 
                     <TextView
                         android:id="@+id/tv_update_person_birth"
+                        style="@style/TV_20sp_normal_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/BirthTitle"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="1.0" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/et_update_person_birth"
+                        style="@style/EV_material_margin"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="16dp"
-                        android:background="@color/beige_sub"
-                        android:ems="10"
+                        android:layout_height="wrap_content"
                         android:hint="@string/Birth"
-                        android:inputType="number"
-
                         app:layout_constraintBottom_toBottomOf="@+id/tv_update_person_birth"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/tv_update_person_birth"
-                        app:layout_constraintTop_toTopOf="@+id/tv_update_person_birth"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        app:layout_constraintTop_toTopOf="@+id/tv_update_person_birth">>
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:textSize="14sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -127,36 +118,34 @@
 
                     <TextView
                         android:id="@+id/tv_update_person_gender"
+                        style="@style/TV_20sp_normal_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center_vertical"
-                        android:includeFontPadding="false"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/GenderTitle"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <Spinner
-                        android:id="@+id/spinner"
-                        android:layout_width="150dp"
-                        android:layout_height="0dp"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/bg_spinner"
-                        android:backgroundTintMode="src_in"
-                        android:contentDescription="gender"
-                        android:popupBackground="@color/beige_sub"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/SpinnerMenu2"
+                        style="@style/DM_material_margin"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/Gender"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_update_person_gender"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/tv_update_person_gender"
-                        app:layout_constraintTop_toTopOf="@+id/tv_update_person_gender"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        app:layout_constraintTop_toTopOf="@+id/tv_update_person_gender">>
+
+                        <AutoCompleteTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                            android:textSize="14sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -167,33 +156,25 @@
 
                     <TextView
                         android:id="@+id/tv_update_person_tag"
+                        style="@style/TV_20sp_normal_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center_vertical"
-                        android:includeFontPadding="false"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/TagTitle"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
                         android:id="@+id/et_update_person_tag"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="16dp"
                         android:background="@color/beige_sub"
                         android:ems="10"
-                        android:gravity="center_vertical"
                         android:hint="태그(교체)"
                         android:inputType="textPersonName"
                         android:textSize="20sp"
@@ -202,7 +183,6 @@
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/tv_update_person_tag"
                         app:layout_constraintTop_toTopOf="@+id/tv_update_person_tag"
-                        app:layout_constraintVertical_bias="0.333"
                         tools:ignore="TouchTargetSizeCheck" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -213,43 +193,33 @@
 
                     <TextView
                         android:id="@+id/tv_update_person_memo"
+                        style="@style/TV_20sp_normal_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center_vertical"
-                        android:includeFontPadding="false"
+                        android:layout_marginTop="10dp"
                         android:text="@string/MemoTitle"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
                         android:id="@+id/et_update_person_memo"
+                        style="@style/EV_20sp_normal_black"
                         android:layout_width="0dp"
                         android:layout_height="160sp"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
                         android:background="@color/beige_sub"
                         android:ems="10"
-                        android:gravity="start|top"
                         android:hint="@string/Memo"
                         android:inputType="textMultiLine"
                         android:lines="7"
                         android:maxLength="100"
                         android:maxLines="7"
-                        android:textSize="20sp"
+
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/tv_update_person_memo"
                         app:layout_constraintTop_toTopOf="@+id/tv_update_person_memo"
                         tools:ignore="TouchTargetSizeCheck" />
@@ -263,23 +233,25 @@
 
                 <Button
                     android:id="@+id/tv_update_person_plus"
+                    style="@style/BT_marterial_icon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:backgroundTint="@color/brown_main"
-                    android:text="+" />
+                    android:backgroundTint="@color/brown_sub"
+                    android:text="@string/AddCharacter" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
         <Button
-            android:id="@+id/tv_update_person_complete"
+            android:id="@+id/tv_add_person_complete"
+            style="@style/BT_marterial_icon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/brown_main"
+            android:backgroundTint="@color/brown_sub"
             android:text="@string/Complete"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

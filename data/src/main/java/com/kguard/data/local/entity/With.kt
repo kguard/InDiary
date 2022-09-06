@@ -6,7 +6,7 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.kguard.domain.domain.DomainWith
 
-@Entity(
+@Entity(tableName = "With",
     foreignKeys =[
         ForeignKey(
             entity = Memory::class,
@@ -21,7 +21,7 @@ data class With(
     var name: String,
     @ColumnInfo(name="WithColor")
     var color: String,
-    @ColumnInfo(name="MemoryId")
+    @ColumnInfo(name="memory_id")
     val memory_id: Int
 )
 fun With.toDomainWith():DomainWith= DomainWith(

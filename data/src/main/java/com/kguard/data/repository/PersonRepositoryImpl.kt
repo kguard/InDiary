@@ -25,7 +25,7 @@ class PersonRepositoryImpl @Inject constructor(
         dao.updatePerson(personEntity)
     }
 
-    override suspend fun insetPerson(person: DomainPerson) {
+    override suspend fun insertPerson(person: DomainPerson) {
         val personEntity = Person(person.person_id,person.name,person.birth,person.gender,person.memo,person.make,person.favorite)
         dao.insertPerson(personEntity)
     }

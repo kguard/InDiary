@@ -1,5 +1,6 @@
 package com.kguard.indiary.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +25,7 @@ class InnerTageAdapter(var tag: List<Tag>):RecyclerView.Adapter<InnerTageAdapter
             binding.tvTagCard.text=tag.name
         }
     }
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(tag: List<Tag>)
     {
         this.tag=tag

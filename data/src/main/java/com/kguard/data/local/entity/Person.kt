@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.kguard.domain.domain.DomainPerson
 
-@Entity
+@Entity(tableName = "Person")
 data class Person(
     @PrimaryKey(autoGenerate = true) val person_id : Int=0,
     @ColumnInfo(name="PersonName")
@@ -19,7 +19,7 @@ data class Person(
     @ColumnInfo(name="PersonMake")
     var make: String,
     @ColumnInfo(name="PersonFavorite")
-    var favorite: Boolean,
+    var favorite: Boolean
 )
 fun Person.toDomainPerson() : DomainPerson = DomainPerson(
     person_id, name, birth, gender, memo, make, favorite

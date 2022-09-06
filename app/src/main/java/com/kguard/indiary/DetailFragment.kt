@@ -10,8 +10,9 @@ import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.kguard.indiary.databinding.FragmentDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
     private val binding by lazy { FragmentDetailBinding.inflate(layoutInflater) }
     private val args by navArgs<DetailFragmentArgs>()

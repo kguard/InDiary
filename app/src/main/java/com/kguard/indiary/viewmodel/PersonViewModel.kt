@@ -15,9 +15,16 @@ class PersonViewModel @Inject constructor(
     private var _persons: MutableLiveData<List<DomainPerson>> = MutableLiveData<List<DomainPerson>>()
     val persons: MutableLiveData<List<DomainPerson>>
     get() = _persons
-    init{
+//    init{
+//        getPersons()
+//    }
+
+    /**
+     * Room 에 저당 돼 있는 모든 데이터 호출.
+     */
+    fun getPersons(){
         viewModelScope.launch {
-            _persons.value=useCase.getPersons()
+            _persons.postValue(useCase.getPersons())
         }
     }
 }

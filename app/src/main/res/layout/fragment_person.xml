@@ -19,9 +19,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
             android:text="@string/AppNamePage"
-            android:textColor="#000000"
-            android:textSize="22sp"
-            android:textStyle="bold"
+            style="@style/TV_22sp_bold_black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,8 +32,7 @@
             android:paddingHorizontal="0dp"
             android:paddingVertical="0dp"
             android:text="@string/clear"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            style="@style/TV_16sp_normal_white"
             app:layout_constraintStart_toStartOf="@+id/tv_diary"
             app:layout_constraintTop_toBottomOf="@+id/tv_diary"
             tools:ignore="TouchTargetSizeCheck" />
@@ -59,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:background="#00E1E1E1"
-            android:contentDescription="추가버튼"
+            android:contentDescription="@string/AddPerson"
             android:minWidth="30dp"
             android:minHeight="30dp"
             app:layout_constraintBottom_toBottomOf="@+id/rv_tag"
@@ -76,7 +73,9 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/bt_add"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/bt_clear"
-            app:layout_constraintTop_toBottomOf="@+id/bt_clear" />
+            app:layout_constraintTop_toBottomOf="@+id/bt_clear"
+            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

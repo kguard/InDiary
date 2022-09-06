@@ -34,22 +34,16 @@
 
                     <TextView
                         android:id="@+id/tv_detail_people_name"
+                        style="@style/TV_20sp_normal_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center_vertical"
-                        android:includeFontPadding="false"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/NameTitle"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_detail_person_name"
@@ -57,9 +51,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="@string/Name"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
+                        style="@style/TV_20sp_normal_black"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_detail_people_name"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/tv_detail_people_name"
@@ -70,7 +62,9 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@color/brown_main"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="#80FEFEFE"
                     android:backgroundTint="@color/brown_main"
                     android:foregroundGravity="center" />
 
@@ -81,19 +75,16 @@
 
                     <TextView
                         android:id="@+id/tv_detail_people_birth"
+                        style="@style/TV_20sp_normal_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/BirthTitle"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="1.0" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_detail_person_birth"
@@ -102,9 +93,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:text="@string/Birth"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
+                        style="@style/TV_20sp_normal_black"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_detail_people_birth"
                         app:layout_constraintEnd_toStartOf="@+id/tv_detail_people_age"
                         app:layout_constraintStart_toEndOf="@+id/tv_detail_people_birth"
@@ -116,9 +105,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:text="@string/AgeTitle"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
+                        style="@style/TV_20sp_normal_black"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_detail_person_birth"
                         app:layout_constraintEnd_toStartOf="@+id/tv_detail_person_age"
                         app:layout_constraintTop_toTopOf="@+id/tv_detail_person_birth" />
@@ -129,9 +116,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:text="@string/Age"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
+                        style="@style/TV_20sp_normal_black"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_detail_people_age"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/tv_detail_people_age" />
@@ -143,7 +128,9 @@
                     android:id="@+id/view"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@color/brown_main"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="#80FEFEFE"
                     android:backgroundTint="@color/brown_main"
                     android:foregroundGravity="center" />
 
@@ -153,23 +140,17 @@
                     android:layout_marginVertical="10dp">
 
                     <TextView
-                        android:id="@+id/tv__detail_people_gender"
+                        android:id="@+id/tv_detail_people_gender"
+                        style="@style/TV_20sp_normal_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center_vertical"
-                        android:includeFontPadding="false"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/GenderTitle"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_detail_person_gender"
@@ -178,13 +159,11 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="16dp"
                         android:text="@string/Gender"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv__detail_people_gender"
+                        style="@style/TV_20sp_normal_black"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_detail_people_gender"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/tv__detail_people_gender"
-                        app:layout_constraintTop_toTopOf="@+id/tv__detail_people_gender" />
+                        app:layout_constraintStart_toEndOf="@+id/tv_detail_people_gender"
+                        app:layout_constraintTop_toTopOf="@+id/tv_detail_people_gender" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -192,7 +171,9 @@
                     android:id="@+id/view2"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@color/brown_main"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="#80FEFEFE"
                     android:backgroundTint="@color/brown_main"
                     android:foregroundGravity="center" />
 
@@ -203,22 +184,16 @@
 
                     <TextView
                         android:id="@+id/tv_detail_people_tag"
+                        style="@style/TV_20sp_normal_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center_vertical"
-                        android:includeFontPadding="false"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/TagTitle"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_detail_person_tag"
@@ -238,7 +213,9 @@
                     android:id="@+id/view3"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@color/brown_main"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="#80FEFEFE"
                     android:backgroundTint="@color/brown_main"
                     android:foregroundGravity="center" />
 
@@ -249,42 +226,32 @@
 
                     <TextView
                         android:id="@+id/tv_detail_people_memo"
+                        style="@style/TV_20sp_normal_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center_vertical"
-                        android:includeFontPadding="false"
+                        android:layout_marginTop="10dp"
                         android:text="@string/MemoTitle"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_detail_person_memo"
+                        style="@style/EV_20sp_normal_black"
                         android:layout_width="0dp"
                         android:layout_height="160sp"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
-                        android:background="@color/beige_sub"
+                        android:background="@drawable/bg_memo"
                         android:lines="7"
                         android:maxLines="7"
                         android:text="@string/Memo"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/tv_detail_people_memo"
-                        app:layout_constraintTop_toTopOf="@+id/tv_detail_people_memo"
-                        app:layout_constraintVertical_bias="0.0" />
+                        app:layout_constraintTop_toTopOf="@+id/tv_detail_people_memo" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -292,7 +259,9 @@
                     android:id="@+id/view4"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@color/brown_main"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="#80FEFEFE"
                     android:backgroundTint="@color/brown_main"
                     android:foregroundGravity="center" />
 

@@ -18,10 +18,12 @@ import dagger.hilt.android.AndroidEntryPoint
 class PersonFragment : Fragment() {
     private val binding by lazy { FragmentPersonBinding.inflate(layoutInflater) }
     private val viewModel : PersonViewModel by viewModels()
+    private lateinit var adapter: PersonAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.viewmodel=viewModel
         binding.lifecycleOwner=this
+
 
     }
 
@@ -29,31 +31,15 @@ class PersonFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View{
-        /*lifecycleScope.launchWhenStarted {
-            viewModel.personAll?.observe(viewLifecycleOwner, Observer {
-                PeopleAdapter(it){
-                    person -> viewModel.updatePerson(person)
-                }.apply { setHasStableIds(true) }.also{adapter-> binding.rvContent.adapter=adapter }
-            })
-        }*/
-        /*PeopleAdapter{
-            person -> viewModel.updatePerson(person)
-        }.apply { setHasStableIds(true) }.also {
-            adapter -> binding.rvContent.adapter=adapter
-        }.also {
-            adapter ->
-            viewModel.personAll?.observe(viewLifecycleOwner, Observer {
-                    *//*person-> adapter.setData(person)*//*
-            })
-        }*/
-        val adapter=PersonAdapter{
-            it -> findNavController().navigate(PersonFragmentDirections.actionPersonFragmentToDetailFragment(it))
+        adapter=PersonAdapter{
+                it -> findNavController().navigate(PersonFragmentDirections.actionPersonFragmentToDetailFragment(it))
         }.apply { setHasStableIds(true) }
-            .also { adpater ->binding.rvContent.adapter=adpater }
-        viewModel.persons.observe(viewLifecycleOwner, Observer {
-                persons-> adapter.setData(persons)
-        })
+        binding.rvContent.adapter=adapter
 
+        viewModel.getPersons()
+        viewModel.persons.observe(viewLifecycleOwner, Observer {
+            adapter.setData(it)
+        })
 
         binding.rvTag.adapter=TagAdapter()
         return binding.root

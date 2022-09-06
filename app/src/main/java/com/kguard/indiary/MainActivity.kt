@@ -13,7 +13,9 @@ import androidx.room.Room
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kguard.indiary.databinding.ActivityMainBinding
 import com.kguard.indiary.databinding.FragmentMemoryBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding :ActivityMainBinding
     private lateinit var navController: NavController

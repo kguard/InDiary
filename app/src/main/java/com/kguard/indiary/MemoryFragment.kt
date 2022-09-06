@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.kguard.indiary.databinding.FragmentMemoryBinding
 import com.kguard.indiary.databinding.FragmentPersonBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MemoryFragment : Fragment() {
     private val binding by lazy { FragmentMemoryBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {

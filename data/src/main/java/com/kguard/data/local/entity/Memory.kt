@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.kguard.domain.domain.DomainMemory
 
-@Entity
+@Entity(tableName = "Memory")
 data class Memory(
     @PrimaryKey(autoGenerate = true) val memory_id : Int=0,
     @ColumnInfo(name="MemoryTitle")

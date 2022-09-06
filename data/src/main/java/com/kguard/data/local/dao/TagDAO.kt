@@ -14,7 +14,7 @@ interface TagDAO {
     @Query("SELECT * FROM Tag WHERE tag_id =:tag_id ")
     suspend fun getTag(tag_id:Int): Tag
 
-    @Query("SELECT * FROM Tag WHERE PersonId =:person_id")
+    @Query("SELECT * FROM Tag WHERE person_id =:person_id")
     suspend fun getPersonTags(person_id:Int): List<Tag>
 
     @Update

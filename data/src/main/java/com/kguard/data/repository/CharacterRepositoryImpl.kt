@@ -24,17 +24,17 @@ class CharacterRepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateCharacter(character: DomainCharacter) {
-        val characterEntity=Character(character.character_id,character.title,character.content,character.person_id,character.image1,character.image2,character.image3,character.image4,character.image5)
+        val characterEntity=Character(character.character_id,character.title,character.content,character.person_id)
         dao.updateCharacter(characterEntity)
     }
 
     override suspend fun insertCharacter(character: DomainCharacter) {
-        val characterEntity=Character(character.character_id,character.title,character.content,character.person_id,character.image1,character.image2,character.image3,character.image4,character.image5)
+        val characterEntity=Character(character.character_id,character.title,character.content,character.person_id)
         dao.insertCharacter(characterEntity)
     }
 
     override suspend fun deleteCharacter(character: DomainCharacter) {
-        val characterEntity=Character(character.character_id,character.title,character.content,character.person_id,character.image1,character.image2,character.image3,character.image4,character.image5)
+        val characterEntity=Character(character.character_id,character.title,character.content,character.person_id)
         dao.deleteCharacter(characterEntity)
     }
 }
