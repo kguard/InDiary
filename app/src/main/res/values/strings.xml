@@ -47,6 +47,7 @@
     <string name="Title">제목</string>
     <string name="With">With</string>
     <string name="Date">날짜</string>
+    <string name="SetDate">날짜 설정</string>
     <string name="Photo">사진</string>
     <string name="Content">내용</string>
 

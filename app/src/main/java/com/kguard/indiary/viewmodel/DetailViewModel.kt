@@ -18,7 +18,7 @@ class DetailViewModel @Inject constructor(
     fun getPerson(person_id:Int)
     {
         viewModelScope.launch {
-            _person.value=useCase.getPerson(person_id)
+            _person.postValue(useCase.getPerson(person_id))
         }
     }
     fun deletePerson(person: DomainPerson)

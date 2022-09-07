@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import com.esafirm.imagepicker.features.*
-import com.kguard.indiary.data.CustomCharacter
 import com.kguard.indiary.databinding.DialogAddCharacterBinding
+import com.kguard.indiary.util.Utils
 import com.kguard.indiary.viewmodel.MainViewModel
 
 class AddCharacterDialog:DialogFragment() {
@@ -18,7 +17,7 @@ class AddCharacterDialog:DialogFragment() {
     override fun onStart() {
         super.onStart()
         if(dialog != null && activity !=null && isAdded){
-            val fullWidth=Utils.getScreenWidth(requireActivity()) * .9
+            val fullWidth= Utils.getScreenWidth(requireActivity()) * .9
             dialog?.window?.setLayout(fullWidth.toInt(),ViewGroup.LayoutParams.WRAP_CONTENT)
             //dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }

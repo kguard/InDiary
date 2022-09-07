@@ -28,8 +28,8 @@ import java.time.LocalDate
 class AddPersonFragment : Fragment() {
     private val binding by lazy { FragmentAddPersonBinding.inflate(layoutInflater) }
     private val viewModel : AddPersonViewModel by viewModels()
-    private val mainViewModel: MainViewModel by activityViewModels()
-    private lateinit var adapter: AddCharacterAdapter
+//    private val mainViewModel: MainViewModel by activityViewModels()
+//    private lateinit var adapter: AddCharacterAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -61,8 +61,8 @@ class AddPersonFragment : Fragment() {
 //            Log.d(javaClass.simpleName, "onViewCreated: $it")
 //        }
 
-        binding.tvAddPersonComplete.setOnClickListener {
-            var person: DomainPerson =DomainPerson(0,"김경호","",0,"연습",LocalDate.now().toString(),false)
+        binding.btAddPersonComplete.setOnClickListener {
+            var person: DomainPerson =DomainPerson(-1,"김경호","",0,"연습",LocalDate.now().toString(),false)
             person.name=binding.etAddPersonName.editText?.text.toString()
             person.birth =binding.etAddPersonBirth.editText?.text.toString()
             person.memo=binding.etAddPersonMemo.text.toString()

@@ -58,15 +58,6 @@
                         app:layout_constraintStart_toEndOf="@+id/tv_detail_people_name"
                         app:layout_constraintTop_toTopOf="@+id/tv_detail_people_name" />
 
-                    <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="TextView"
-                        app:layout_constraintEnd_toEndOf="@+id/tv_detail_person_name"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <View
@@ -283,7 +274,7 @@
                     android:layout_height="match_parent">
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/fb_delete"
+                        android:id="@+id/fb_delete_person"
                         style="@style/Widget.App.ExtendedFloatingActionButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -296,7 +287,7 @@
                         tools:ignore="SpeakableTextPresentCheck" />
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/fb_update"
+                        android:id="@+id/fb_update_person"
                         style="@style/Widget.App.ExtendedFloatingActionButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -304,7 +295,7 @@
                         android:layout_marginBottom="30dp"
                         android:clickable="true"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/fb_delete"
+                        app:layout_constraintEnd_toStartOf="@+id/fb_delete_person"
                         app:srcCompat="@android:drawable/ic_menu_edit"
                         tools:ignore="SpeakableTextPresentCheck" />
                 </androidx.constraintlayout.widget.ConstraintLayout>

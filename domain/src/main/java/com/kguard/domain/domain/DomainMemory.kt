@@ -10,4 +10,5 @@ data class DomainMemory (
     var image3:String?,
     var image4:String?,
     var image5:String?,
+    var with:String?
         )

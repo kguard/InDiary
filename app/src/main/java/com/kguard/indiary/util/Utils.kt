@@ -1,4 +1,4 @@
-package com.kguard.indiary
+package com.kguard.indiary.util
 
 import android.app.Activity
 import android.content.Context

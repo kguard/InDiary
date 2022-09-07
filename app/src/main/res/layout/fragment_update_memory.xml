@@ -1,14 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".UpdateMemoryFragment">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".UpdateMemoryFragment">
 
-</FrameLayout>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/beige_main"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_update_memory_title"
+                        style="@style/TV_20sp_normal_black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/TitleTitle"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/et_update_memory_title"
+                        style="@style/EV_material_margin"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/Title"
+                        app:errorEnabled="false"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_update_memory_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tv_update_memory_title"
+                        app:layout_constraintTop_toTopOf="@+id/tv_update_memory_title">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:textColorHint="#757575"
+                            android:textSize="14sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_update_memory_with"
+                        style="@style/TV_20sp_normal_black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/WithTitle"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/et_update_memory_with"
+                        style="@style/EV_material_margin"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/With"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_update_memory_with"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tv_update_memory_with"
+                        app:layout_constraintTop_toTopOf="@+id/tv_update_memory_with">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColorHint="#757575"
+                            android:textSize="14sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_update_memory_date"
+                        style="@style/TV_20sp_normal_black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/DateTitle"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/bt_update_memory_date"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@android:drawable/ic_menu_today"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_update_memory_date"
+                        app:layout_constraintStart_toEndOf="@+id/tv_update_memory_date"
+                        app:layout_constraintTop_toTopOf="@+id/tv_update_memory_date" />
+
+                    <TextView
+                        android:id="@+id/tv_update_date"
+                        style="@style/TV_20sp_normal_black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/SetDate"
+                        app:layout_constraintBottom_toBottomOf="@+id/bt_update_memory_date"
+                        app:layout_constraintStart_toEndOf="@+id/bt_update_memory_date"
+                        app:layout_constraintTop_toTopOf="@+id/bt_update_memory_date" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_update_memory_photo"
+                        style="@style/TV_20sp_normal_black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/PhotoTitle"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_update_memory_photo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_update_memory_photo"
+                        app:layout_constraintStart_toEndOf="@+id/tv_update_memory_photo"
+                        app:layout_constraintTop_toTopOf="@+id/tv_update_memory_photo" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/bt_update_memory_photo"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_add_photo2"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_update_memory_photo"
+                        app:layout_constraintStart_toEndOf="@+id/rv_update_memory_photo"
+                        app:layout_constraintTop_toTopOf="@+id/tv_update_memory_photo"
+                        app:layout_constraintVertical_bias="0.508"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_update_memory_content"
+                        style="@style/TV_20sp_normal_black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/ContentTitle"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/et_update_memory_content"
+                        style="@style/EV_20sp_normal_black"
+                        android:layout_width="0dp"
+                        android:layout_height="160sp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/bg_memo"
+                        android:ems="10"
+                        android:hint="@string/Content"
+                        android:inputType="textMultiLine"
+                        android:lines="7"
+                        android:maxLength="100"
+                        android:maxLines="7"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/tv_update_memory_content"
+                        app:layout_constraintTop_toTopOf="@+id/tv_update_memory_content"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/bt_update_memory_complete"
+            style="@style/BT_material_icon"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/brown_sub"
+            android:text="@string/Complete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

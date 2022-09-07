@@ -4,68 +4,98 @@ package com.kguard.indiary.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.kguard.domain.domain.DomainPerson
 import com.kguard.indiary.R
 import com.kguard.indiary.databinding.ItemRecyclerPersonBinding
+import com.kguard.indiary.util.PersonItemHelperInterface
 
 
-class PersonAdapter(val onClick: (Int) -> Unit):RecyclerView.Adapter<PersonAdapter.PersonViewHolder>(){
-    private var person:List<DomainPerson> = ArrayList()
+class PersonAdapter(  val onClick: (Int) -> Unit):ListAdapter<DomainPerson, PersonAdapter.PersonViewHolder>(diffUtil),PersonItemHelperInterface{
+//    val personOut:(DomainPerson)->Unit,
+
+    companion object {
+        val diffUtil = object: DiffUtil.ItemCallback<DomainPerson>() {
+            override fun areItemsTheSame(
+                oldItem: DomainPerson,
+                newItem: DomainPerson
+            ): Boolean  = oldItem == newItem
+
+            override fun areContentsTheSame(
+                oldItem: DomainPerson,
+                newItem: DomainPerson
+            ): Boolean = oldItem.person_id == newItem.person_id
+
+        }
+    }
+   // private var person:List<DomainPerson> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonViewHolder {
         val binding= ItemRecyclerPersonBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return PersonViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: PersonViewHolder, position: Int) {
-        holder.setItem(person[position])
+        holder.setItem(getItem(position))
         holder.itemView.setOnClickListener{
-            person[position].person_id?.let { it1 -> onClick(it1) }
+
+            onClick(getItem(position).person_id)
         }
         //person[position].favorite=holder.setItem(person[position]).favorite
         //person[position] = holder.setItem(person[position])
     }
-
-    override fun getItemCount(): Int {
-        return person.size
-    }
+//
+//    override fun getItemCount(): Int {
+//        return person.size
+//    }
     inner class PersonViewHolder(private val binding: ItemRecyclerPersonBinding) :RecyclerView.ViewHolder(binding.root) {
-        fun setItem(person1: DomainPerson){
+        fun setItem(domainPerson: DomainPerson){
 
-            binding.tvPeopleName.text= person1.name
-            binding.tvMemoryDate.text=person1.make
-            if(person1.favorite)
+            binding.tvPeopleName.text= domainPerson.name
+            binding.tvMemoryDate.text=domainPerson.make
+            if(domainPerson.favorite)
             {
                 binding.ibFavorite.setImageResource(R.drawable.ic_favorite_on)
             }
-            else if(!person1.favorite){
+            else if(!domainPerson.favorite){
                 binding.ibFavorite.setImageResource(R.drawable.ic_favorite_off)
             }
 
             binding.ibFavorite.setOnClickListener {
-                if(person1.favorite)
+                if(domainPerson.favorite)
                 {
-                    person1.favorite=false
+                    domainPerson.favorite=false
                     binding.ibFavorite.setImageResource(R.drawable.ic_favorite_off)
                 }
-                else if (!person1.favorite)
+                else if (!domainPerson.favorite)
                 {
-                    person1.favorite=true
+                    domainPerson.favorite=true
                     binding.ibFavorite.setImageResource(R.drawable.ic_favorite_on)
                 }
             }
         }
 
     }
+//
+//    @SuppressLint("NotifyDataSetChanged")
+//    fun setData(person: List<DomainPerson>)
+//    {
+//        this.person=person
+//        notifyDataSetChanged()
+//    }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setData(person: List<DomainPerson>)
-    {
-        this.person=person
-        notifyDataSetChanged()
+    override fun onItemMove(from_position: Int, to_position: Int): Boolean {
+        return true
     }
 
+    override fun onItemSwipe(position: Int) {
+        val list=currentList.toMutableList()
+        //personOut(getItem(position))
+        list.removeAt(position)
+        submitList(list)
+    }
 
 
 }

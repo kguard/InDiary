@@ -63,6 +63,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="text"
                             android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -230,7 +231,7 @@
 
                 <Button
                     android:id="@+id/tv_update_person_plus"
-                    style="@style/BT_marterial_icon"
+                    style="@style/BT_material_icon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -244,7 +245,7 @@
 
         <Button
             android:id="@+id/tv_update_person_complete"
-            style="@style/BT_marterial_icon"
+            style="@style/BT_material_icon"
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_marginStart="16dp"

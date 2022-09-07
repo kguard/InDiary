@@ -37,7 +37,6 @@ class DetailPersonFragment(personId: Int) : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getPerson(personId)
         viewModel.person.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            binding.textView.text= it.person_id.toString()
             binding.tvDetailPersonName.text=it.name
             binding.tvDetailPersonBirth.text=it.birth
             binding.tvDetailPersonAge.text=viewModel.getAge(it.birth.toString()).toString()
@@ -49,11 +48,11 @@ class DetailPersonFragment(personId: Int) : Fragment() {
             }
             binding.tvDetailPersonMemo.text=it.memo
             val person=it
-            binding.fbDelete.setOnClickListener{
+            binding.fbDeletePerson.setOnClickListener{
                 viewModel.deletePerson(person)
                 findNavController().popBackStack()
             }
-            binding.fbUpdate.setOnClickListener {
+            binding.fbUpdatePerson.setOnClickListener {
                 findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToUpdatePersonFragment(personId))
             }
         })

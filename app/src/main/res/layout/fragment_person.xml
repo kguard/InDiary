@@ -68,7 +68,7 @@
             tools:ignore="TouchTargetSizeCheck" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_content"
+            android:id="@+id/rv_person_content"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"

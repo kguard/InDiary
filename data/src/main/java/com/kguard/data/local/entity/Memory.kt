@@ -24,7 +24,9 @@ data class Memory(
     var image4: String?,
     @ColumnInfo(name="MemoryImage5")
     var image5: String?,
+    @ColumnInfo(name="With")
+    var with: String?
 )
 fun Memory.toDomainMemory(): DomainMemory = DomainMemory(
-    memory_id, title, date, content, image1, image2, image3, image4, image5
+    memory_id, title, date, content, image1, image2, image3, image4, image5, with
 )

@@ -1,14 +1,15 @@
-package com.kguard.indiary.adapter
+package com.kguard.indiary.util
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class PersonItemHelper():ItemTouchHelper.Callback() {
+class PersonItemHelperImpl(private val listener:PersonItemHelperInterface):ItemTouchHelper.Callback() {
     override fun getMovementFlags(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder
     ): Int {
-        TODO("Not yet implemented")
+        val swipeFlags = ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        return makeMovementFlags(0,swipeFlags)
     }
 
     override fun onMove(
@@ -16,11 +17,11 @@ class PersonItemHelper():ItemTouchHelper.Callback() {
         viewHolder: RecyclerView.ViewHolder,
         target: RecyclerView.ViewHolder
     ): Boolean {
-        return false
+        return listener.onItemMove(viewHolder.absoluteAdapterPosition,target.absoluteAdapterPosition)
     }
 
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-        TODO("Not yet implemented")
+        listener.onItemSwipe(viewHolder.bindingAdapterPosition)
     }
 }

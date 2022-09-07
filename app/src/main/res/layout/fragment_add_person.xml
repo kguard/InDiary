@@ -17,7 +17,7 @@
             android:background="@color/beige_main"
             android:contentDescription="add"
             android:fillViewport="true"
-            app:layout_constraintBottom_toTopOf="@+id/tv_add_person_complete"
+            app:layout_constraintBottom_toTopOf="@+id/bt_add_person_complete"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -60,6 +60,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="text"
                             android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -270,7 +271,7 @@
 
                 <Button
                     android:id="@+id/bt_add_person_plus"
-                    style="@style/BT_marterial_icon"
+                    style="@style/BT_material_icon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -283,8 +284,8 @@
         </androidx.core.widget.NestedScrollView>
 
         <Button
-            android:id="@+id/tv_add_person_complete"
-            style="@style/BT_marterial_icon"
+            android:id="@+id/bt_add_person_complete"
+            style="@style/BT_material_icon"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
