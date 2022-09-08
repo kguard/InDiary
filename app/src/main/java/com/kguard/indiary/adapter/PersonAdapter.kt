@@ -14,7 +14,10 @@ import com.kguard.indiary.databinding.ItemRecyclerPersonBinding
 import com.kguard.indiary.util.PersonItemHelperInterface
 
 
-class PersonAdapter(  val onClick: (Int) -> Unit):ListAdapter<DomainPerson, PersonAdapter.PersonViewHolder>(diffUtil),PersonItemHelperInterface{
+class PersonAdapter(
+    val onClick: (Int) -> Unit,
+    val onDelete: (DomainPerson) -> Unit
+):ListAdapter<DomainPerson, PersonAdapter.PersonViewHolder>(diffUtil),PersonItemHelperInterface{
 //    val personOut:(DomainPerson)->Unit,
 
     companion object {
@@ -92,6 +95,7 @@ class PersonAdapter(  val onClick: (Int) -> Unit):ListAdapter<DomainPerson, Pers
 
     override fun onItemSwipe(position: Int) {
         val list=currentList.toMutableList()
+        onDelete(getItem(position))
         //personOut(getItem(position))
         list.removeAt(position)
         submitList(list)

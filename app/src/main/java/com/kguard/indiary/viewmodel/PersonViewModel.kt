@@ -17,9 +17,6 @@ class PersonViewModel @Inject constructor(
     private var _persons = MutableStateFlow<List<DomainPerson>>(emptyList())
     val persons: StateFlow<List<DomainPerson>>
     get() = _persons
-    init{
-        getPersons()
-    }
 
     /**
      * Room 에 저당 돼 있는 모든 데이터 호출.

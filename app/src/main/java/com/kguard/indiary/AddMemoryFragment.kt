@@ -59,6 +59,9 @@ class AddMemoryFragment : Fragment() {
                 binding.tvAddDate.text=memory.date
             }
         }
+        binding.btAddMemoryPhoto.setOnClickListener {
+//            val impath= getCachDir()
+        }
         binding.btAddMemoryComplete.setOnClickListener {
             memory.title=binding.etAddMemoryTitle.editText?.text.toString()
             memory.content=binding.etAddMemoryContent.text.toString()

@@ -62,7 +62,7 @@ class AddPersonFragment : Fragment() {
 //        }
 
         binding.btAddPersonComplete.setOnClickListener {
-            var person: DomainPerson =DomainPerson(-1,"김경호","",0,"연습",LocalDate.now().toString(),false)
+            var person: DomainPerson =DomainPerson(0,"김경호","",0,"연습",LocalDate.now().toString(),false)
             person.name=binding.etAddPersonName.editText?.text.toString()
             person.birth =binding.etAddPersonBirth.editText?.text.toString()
             person.memo=binding.etAddPersonMemo.text.toString()
