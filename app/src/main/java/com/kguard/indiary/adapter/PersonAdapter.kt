@@ -1,7 +1,6 @@
 package com.kguard.indiary.adapter
 
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -11,14 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kguard.domain.domain.DomainPerson
 import com.kguard.indiary.R
 import com.kguard.indiary.databinding.ItemRecyclerPersonBinding
-import com.kguard.indiary.util.PersonItemHelperInterface
+import com.kguard.indiary.util.ItemHelperInterface
 
 
 class PersonAdapter(
     val onClick: (Int) -> Unit,
     val onDelete: (DomainPerson) -> Unit
-):ListAdapter<DomainPerson, PersonAdapter.PersonViewHolder>(diffUtil),PersonItemHelperInterface{
-//    val personOut:(DomainPerson)->Unit,
+):ListAdapter<DomainPerson, PersonAdapter.PersonViewHolder>(diffUtil),ItemHelperInterface{
 
     companion object {
         val diffUtil = object: DiffUtil.ItemCallback<DomainPerson>() {
@@ -46,13 +44,8 @@ class PersonAdapter(
 
             onClick(getItem(position).person_id)
         }
-        //person[position].favorite=holder.setItem(person[position]).favorite
-        //person[position] = holder.setItem(person[position])
     }
-//
-//    override fun getItemCount(): Int {
-//        return person.size
-//    }
+
     inner class PersonViewHolder(private val binding: ItemRecyclerPersonBinding) :RecyclerView.ViewHolder(binding.root) {
         fun setItem(domainPerson: DomainPerson){
 
@@ -81,13 +74,6 @@ class PersonAdapter(
         }
 
     }
-//
-//    @SuppressLint("NotifyDataSetChanged")
-//    fun setData(person: List<DomainPerson>)
-//    {
-//        this.person=person
-//        notifyDataSetChanged()
-//    }
 
     override fun onItemMove(from_position: Int, to_position: Int): Boolean {
         return true

@@ -11,6 +11,14 @@ class PersonUseCase @Inject constructor(
     {
         return repository.getPersons()
     }
+    suspend fun getPersonId(name:String):Int
+    {
+        return repository.getPersonId(name)
+    }
+    suspend fun getPersonsName():List<String>
+    {
+        return repository.getPersonsName()
+    }
     suspend fun getPerson(person_id:Int): DomainPerson
     {
         return repository.getPerson(person_id)

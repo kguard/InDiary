@@ -14,7 +14,7 @@ import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.kguard.indiary.adapter.PersonAdapter
 import com.kguard.indiary.adapter.TagAdapter
 import com.kguard.indiary.databinding.FragmentPersonBinding
-import com.kguard.indiary.util.PersonItemHelperImpl
+import com.kguard.indiary.util.ItemHelperImpl
 import com.kguard.indiary.viewmodel.PersonViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -47,7 +47,7 @@ class PersonFragment : Fragment() {
               viewModel.deletePerson(it)
             }).apply { setHasStableIds(true) }
         binding.rvPersonContent.adapter = adapter
-        PersonItemHelperImpl(adapter).also {
+        ItemHelperImpl(adapter).also {
             ItemTouchHelper(it).apply {
                 this.attachToRecyclerView(binding.rvPersonContent)
             }

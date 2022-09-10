@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailMemory2Fragment : Fragment() {
     private val args by navArgs<DetailMemory2FragmentArgs>()
     private val binding by lazy { FragmentDetailMemory2Binding.inflate(layoutInflater) }
-    private val viewModel:DetailMemory2ViewModel by viewModels()
+    private val viewModel: DetailMemory2ViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,18 +34,25 @@ class DetailMemory2Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getMemory(args.memoryId)
-        viewModel.memory.observe(viewLifecycleOwner, Observer {
-            binding.tvDetailMemory2Title.text=it.title
-            binding.tvDetailMemory2With.text=it.with
-            binding.tvDetailMemory2Date.text=it.date
-            binding.tvDetailMemory2Content.text=it.content
-            val memory=it
-            binding.fbDeleteMemory.setOnClickListener{
+        viewModel.memory.observe(viewLifecycleOwner, Observer { it ->
+            binding.tvDetailMemory2Title.text = it.title
+            binding.tvDetailMemory2Date.text = it.date
+            binding.tvDetailMemory2Content.text = it.content
+            viewModel.getPerson(it.person_id)
+            viewModel.person.observe(viewLifecycleOwner, Observer {
+                binding.tvDetailMemory2With.text = it.name
+            })
+            val memory = it
+            binding.fbDeleteMemory.setOnClickListener {
                 viewModel.deleteMemory(memory)
                 findNavController().popBackStack()
             }
             binding.fbUpdateMemory.setOnClickListener {
-                findNavController().navigate(DetailMemory2FragmentDirections.actionDetailMemory2FragmentToUpdateMemoryFragment(args.memoryId))
+                findNavController().navigate(
+                    DetailMemory2FragmentDirections.actionDetailMemory2FragmentToUpdateMemoryFragment(
+                        args.memoryId
+                    )
+                )
             }
         })
     }

@@ -11,6 +11,10 @@ class MemoryUseCase @Inject constructor(
     {
         return repository.getMemories()
     }
+    suspend fun getPersonMemories(person_id:Int):List<DomainMemory>
+    {
+        return repository.getPersonMemories(person_id)
+    }
     suspend fun getMemory(memory_id:Int): DomainMemory
     {
         return repository.getMemory(memory_id)
@@ -21,7 +25,7 @@ class MemoryUseCase @Inject constructor(
     }
     suspend fun insertMemory(memory: DomainMemory)
     {
-        return repository.insetMemory(memory)
+        return repository.insertMemory(memory)
     }
     suspend fun deleteMemory(memory: DomainMemory)
     {

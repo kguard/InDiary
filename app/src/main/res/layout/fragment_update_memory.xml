@@ -79,25 +79,29 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/et_update_memory_with"
-                        style="@style/EV_material_margin"
-                        android:layout_width="0dp"
+                    <Button
+                        android:id="@+id/bt_update_with"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="@string/With"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_update_memory_with"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginStart="8dp"
+                        style="@style/TV_12sp_normal_white"
+                        android:text="With 추가"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/tv_update_memory_with"
-                        app:layout_constraintTop_toTopOf="@+id/tv_update_memory_with">
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColorHint="#757575"
-                            android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_with_show2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/With"
+                        style="@style/TV_20sp_normal_black"
+                        app:layout_constraintBottom_toBottomOf="@+id/bt_update_with"
+                        app:layout_constraintStart_toEndOf="@+id/bt_update_with"
+                        app:layout_constraintTop_toTopOf="@+id/bt_update_with"
+                        />
 
-                    </com.google.android.material.textfield.TextInputLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -126,7 +130,8 @@
                         android:background="@android:drawable/ic_menu_today"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_update_memory_date"
                         app:layout_constraintStart_toEndOf="@+id/tv_update_memory_date"
-                        app:layout_constraintTop_toTopOf="@+id/tv_update_memory_date" />
+                        app:layout_constraintTop_toTopOf="@+id/tv_update_memory_date"
+                        tools:ignore="SpeakableTextPresentCheck" />
 
                     <TextView
                         android:id="@+id/tv_update_date"

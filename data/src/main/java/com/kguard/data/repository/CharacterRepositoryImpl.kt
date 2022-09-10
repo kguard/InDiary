@@ -7,7 +7,7 @@ import com.kguard.domain.domain.DomainCharacter
 import com.kguard.domain.repository.CharacterRepository
 import javax.inject.Inject
 
-class CharacterRepositoryImpl @Inject constructor(
+class  CharacterRepositoryImpl @Inject constructor(
     private val dao :CharacterDAO
 ): CharacterRepository
 {

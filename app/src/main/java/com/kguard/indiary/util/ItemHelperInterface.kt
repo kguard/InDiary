@@ -1,6 +1,6 @@
 package com.kguard.indiary.util
 
-interface PersonItemHelperInterface {
+interface ItemHelperInterface {
     fun onItemMove(from_position: Int, to_position:Int):Boolean
     fun onItemSwipe(position:Int)
 }

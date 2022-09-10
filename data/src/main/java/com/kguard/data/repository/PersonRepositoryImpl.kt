@@ -16,6 +16,14 @@ class PersonRepositoryImpl @Inject constructor(
         return dao.getPersons().map { it.toDomainPerson() }
     }
 
+    override suspend fun getPersonId(name: String): Int {
+        return dao.getPersonId(name)
+    }
+
+    override suspend fun getPersonsName(): List<String> {
+        return dao.getPersons().map{it.name}
+    }
+
     override suspend fun getPerson(person_id: Int): DomainPerson {
         return dao.getPerson(person_id).toDomainPerson()
     }

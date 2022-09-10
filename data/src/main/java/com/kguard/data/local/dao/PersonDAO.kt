@@ -12,6 +12,9 @@ interface PersonDAO {
     @Query("SELECT * FROM Person WHERE person_id =:person_id ")
     suspend fun getPerson(person_id:Int): Person
 
+    @Query("SELECT person_id FROM Person WHERE PersonName LIKE :PersonName ")
+    suspend fun getPersonId(PersonName:String): Int
+
     @Update
     suspend fun updatePerson(vararg Person: Person)
 

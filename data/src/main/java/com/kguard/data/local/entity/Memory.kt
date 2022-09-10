@@ -2,10 +2,18 @@ package com.kguard.data.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.kguard.domain.domain.DomainMemory
 
-@Entity(tableName = "Memory")
+@Entity(tableName = "Memory",
+    foreignKeys = [
+        ForeignKey(
+            entity = Person::class,
+            parentColumns = ["person_id"],
+            childColumns = ["person_id"]
+        )
+    ])
 data class Memory(
     @PrimaryKey(autoGenerate = true) val memory_id : Int=0,
     @ColumnInfo(name="MemoryTitle")
@@ -24,9 +32,9 @@ data class Memory(
     var image4: String?,
     @ColumnInfo(name="MemoryImage5")
     var image5: String?,
-    @ColumnInfo(name="With")
-    var with: String?
+    @ColumnInfo(name="person_id")
+    var person_id:Int
 )
 fun Memory.toDomainMemory(): DomainMemory = DomainMemory(
-    memory_id, title, date, content, image1, image2, image3, image4, image5, with
+    memory_id, title, date, content, image1, image2, image3, image4, image5,person_id
 )

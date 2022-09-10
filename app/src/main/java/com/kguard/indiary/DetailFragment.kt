@@ -60,7 +60,7 @@ class DetailFragment : Fragment() {
             return when(position)
             {
                 0->DetailPersonFragment(args.personId)
-                else->DetailMemoryFragment()
+                else->DetailMemoryFragment(args.personId)
             }
         }
     }

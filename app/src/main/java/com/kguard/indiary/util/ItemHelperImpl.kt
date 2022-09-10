@@ -3,7 +3,7 @@ package com.kguard.indiary.util
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class PersonItemHelperImpl(private val listener:PersonItemHelperInterface):ItemTouchHelper.Callback() {
+class ItemHelperImpl(private val listener:ItemHelperInterface):ItemTouchHelper.Callback() {
     override fun getMovementFlags(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder

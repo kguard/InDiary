@@ -8,14 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.kguard.indiary.adapter.MemoryAdapter
 
 import com.kguard.indiary.databinding.FragmentMemoryBinding
 import com.kguard.indiary.databinding.FragmentPersonBinding
+import com.kguard.indiary.util.ItemHelperImpl
 import com.kguard.indiary.viewmodel.MemoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class MemoryFragment : Fragment() {
@@ -31,14 +35,24 @@ class MemoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        adapter=MemoryAdapter{
+        adapter=MemoryAdapter({
             findNavController().navigate(MemoryFragmentDirections.actionMemoryFragmentToDetailMemory2Fragment(it))
-        }
+        },{
+            viewModel.deleteMemory(it)
+        }).apply { setHasStableIds(true) }
         binding.rvMemoryContent.adapter=adapter
+        ItemHelperImpl(adapter).also {
+            ItemTouchHelper(it).apply {
+                this.attachToRecyclerView(binding.rvMemoryContent)
+            }
+        }
         viewModel.getMemories()
-        viewModel.memory.observe(viewLifecycleOwner, Observer {
-            adapter.setData(it)
-        })
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            viewModel.memory.collectLatest {
+                adapter.submitList(it)
+            }
+        }
+
         return binding.root
     }
 

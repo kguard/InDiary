@@ -54,6 +54,7 @@ class AddPersonFragment : Fragment() {
 //        binding.btAddPersonPlus.setOnClickListener{
 //            findNavController().navigate(R.id.action_addPersonFragment_to_addCharacterDialog)
 //        }
+
 //        adapter=AddCharacterAdapter()
 //        binding.rvAddPerson.adapter=adapter
 //        mainViewModel.customCharacter.observe(viewLifecycleOwner){

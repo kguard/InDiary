@@ -14,22 +14,26 @@ class MemoryRepositoryImpl @Inject constructor(
         return dao.getMemories().map { it.toDomainMemory() }
     }
 
+    override suspend fun getPersonMemories(person_id :Int): List<DomainMemory> {
+        return dao.getPersonMemories(person_id).map { it.toDomainMemory() }
+    }
+
     override suspend fun getMemory(memory_id: Int): DomainMemory {
         return dao.getMemory(memory_id).toDomainMemory()
     }
 
     override suspend fun updateMemory(memory: DomainMemory) {
-        val memoryEntity = Memory(memory.memory_id,memory.title,memory.date,memory.content,memory.image1,memory.image2,memory.image3,memory.image4,memory.image5,memory.with)
+        val memoryEntity = Memory(memory.memory_id,memory.title,memory.date,memory.content,memory.image1,memory.image2,memory.image3,memory.image4,memory.image5,memory.person_id)
         dao.updateMemory(memoryEntity)
     }
 
-    override suspend fun insetMemory(memory: DomainMemory) {
-        val memoryEntity = Memory(memory.memory_id,memory.title,memory.date,memory.content,memory.image1,memory.image2,memory.image3,memory.image4,memory.image5,memory.with)
+    override suspend fun insertMemory(memory: DomainMemory) {
+        val memoryEntity = Memory(memory.memory_id,memory.title,memory.date,memory.content,memory.image1,memory.image2,memory.image3,memory.image4,memory.image5,memory.person_id)
         dao.insertMemory(memoryEntity)
     }
 
     override suspend fun deleteMemory(memory: DomainMemory) {
-        val memoryEntity = Memory(memory.memory_id,memory.title,memory.date,memory.content,memory.image1,memory.image2,memory.image3,memory.image4,memory.image5,memory.with)
+        val memoryEntity = Memory(memory.memory_id,memory.title,memory.date,memory.content,memory.image1,memory.image2,memory.image3,memory.image4,memory.image5,memory.person_id)
         dao.deleteMemory(memoryEntity)
     }
 }

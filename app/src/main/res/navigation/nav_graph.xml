@@ -40,18 +40,15 @@
         android:name="com.kguard.indiary.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
-        <action
-            android:id="@+id/action_detailFragment_to_detailPersonFragment"
-            app:destination="@id/detailPersonFragment" />
-        <action
-            android:id="@+id/action_detailFragment_to_detailMemoryFragment"
-            app:destination="@id/detailMemoryFragment" />
         <argument
             android:name="person_id"
             app:argType="integer" />
         <action
             android:id="@+id/action_detailFragment_to_updatePersonFragment"
             app:destination="@id/updatePersonFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_detailMemory2Fragment"
+            app:destination="@id/detailMemory2Fragment" />
     </fragment>
     <fragment
         android:id="@+id/detailPersonFragment"
@@ -84,7 +81,11 @@
         android:id="@+id/addMemoryFragment"
         android:name="com.kguard.indiary.AddMemoryFragment"
         android:label="fragment_add_memory"
-        tools:layout="@layout/fragment_add_memory" />
+        tools:layout="@layout/fragment_add_memory" >
+        <action
+            android:id="@+id/action_addMemoryFragment_to_memoryDialog"
+            app:destination="@id/memoryDialog" />
+    </fragment>
     <fragment
         android:id="@+id/detailMemory2Fragment"
         android:name="com.kguard.indiary.DetailMemory2Fragment"
@@ -116,9 +117,17 @@
         <argument
             android:name="memory_id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_updateMemoryFragment_to_memoryDialog"
+            app:destination="@id/memoryDialog" />
     </fragment>
     <dialog
         android:id="@+id/addCharacterDialog"
         android:name="com.kguard.indiary.AddCharacterDialog"
         android:label="AddCharacterDialog" />
+    <dialog
+        android:id="@+id/memoryDialog"
+        android:name="com.kguard.indiary.MemoryDialog"
+        android:label="dialog_memory"
+        tools:layout="@layout/dialog_memory" />
 </navigation>
