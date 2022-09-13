@@ -9,7 +9,7 @@ class PersonUseCase @Inject constructor(
 ) {
     suspend fun getPersons():List<DomainPerson>
     {
-        return repository.getPersons()
+        return repository.getPersons().sortedWith(compareByDescending<DomainPerson> { (it.favorite)  }.thenBy({it.name}))
     }
     suspend fun getPersonId(name:String):Int
     {

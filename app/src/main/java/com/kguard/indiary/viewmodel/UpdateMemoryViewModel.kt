@@ -8,6 +8,7 @@ import com.kguard.domain.domain.DomainMemory
 import com.kguard.domain.domain.DomainPerson
 import com.kguard.indiary.usecase.MemoryUseCase
 import com.kguard.indiary.usecase.PersonUseCase
+import com.kguard.indiary.util.ListLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,25 +26,23 @@ class UpdateMemoryViewModel @Inject constructor(
     val person: LiveData<DomainPerson>
         get() = _person
 
-    private var _personId = MutableLiveData<Int>()
-    val personId: LiveData<Int>
-        get() = _personId
 
-    private var _personName = MutableLiveData<List<String>>()
-    val personName: LiveData<List<String>>
-        get() = _personName
+    private var _photos = ListLiveData<String>()
+    val photos: LiveData<ArrayList<String>>
+        get() = _photos
 
 
 
-    init {
-        getPersonsName()
+    fun setPhoto(uri: String)
+    {
+        _photos.add(uri)
     }
 
-    fun getPersonsName() {
-        viewModelScope.launch {
-            _personName.value = PersonUseCase.getPersonsName()
-        }
+    fun removePhotoByPosition(position: Int) {
+        _photos.removeAt(position)
     }
+
+
 
     fun getMemory(memory_id: Int) {
         viewModelScope.launch {
@@ -57,11 +56,7 @@ class UpdateMemoryViewModel @Inject constructor(
         }
     }
 
-    fun getPersonId(name: String) {
-        viewModelScope.launch {
-            _personId.value = PersonUseCase.getPersonId(name)
-        }
-    }
+
 
     fun getPerson(person_id: Int) {
         viewModelScope.launch {

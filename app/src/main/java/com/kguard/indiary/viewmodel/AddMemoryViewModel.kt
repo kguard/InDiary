@@ -1,5 +1,7 @@
 package com.kguard.indiary.viewmodel
 
+import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +12,7 @@ import com.kguard.domain.domain.DomainPerson
 import com.kguard.indiary.usecase.CharacterUseCase
 import com.kguard.indiary.usecase.MemoryUseCase
 import com.kguard.indiary.usecase.PersonUseCase
+import com.kguard.indiary.util.ListLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,21 +22,23 @@ class AddMemoryViewModel @Inject constructor(
     private val MemoryUseCase: MemoryUseCase,
     private val PersonUseCase: PersonUseCase
 ) : ViewModel() {
-    private var _personName = MutableLiveData<List<String>>()
-    val personName: LiveData<List<String>>
-        get() = _personName
-
-    private var _persons= MutableLiveData<List<DomainPerson>>()
-    val persons: LiveData<List<DomainPerson>>
-        get() = _persons
 
     private var _person = MutableLiveData<Int>()
     val person: LiveData<Int>
         get() = _person
 
-    init {
-        getPersonsName()
-        getPersons()
+    private var _photos = ListLiveData<String>()
+    val photos: LiveData<ArrayList<String>>
+    get() = _photos
+
+
+    fun setPhoto(uri: String)
+    {
+       _photos.add(uri)
+    }
+
+    fun removePhotoByPosition(position: Int) {
+        _photos.removeAt(position)
     }
 
     fun insertMemory(memory: DomainMemory) {
@@ -42,20 +47,6 @@ class AddMemoryViewModel @Inject constructor(
         }
     }
 
-    fun getPersons(){
-        viewModelScope.launch {
-            _persons.value=PersonUseCase.getPersons()
-        }
-    }
-    fun getPersonsName() {
-        viewModelScope.launch {
-            _personName.value = PersonUseCase.getPersonsName()
-        }
-    }
 
-    fun getPersonId(name: String) {
-        viewModelScope.launch {
-            _person.value=PersonUseCase.getPersonId(name)
-        }
-    }
+
 }

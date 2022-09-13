@@ -30,6 +30,14 @@ class PersonViewModel @Inject constructor(
     {
         viewModelScope.launch() {
             useCase.deletePerson(person)
+            getPersons()
+        }
+    }
+    fun updatePerson(person: DomainPerson)
+    {
+        viewModelScope.launch {
+            useCase.updatePerson(person)
+            getPersons()
         }
     }
 }

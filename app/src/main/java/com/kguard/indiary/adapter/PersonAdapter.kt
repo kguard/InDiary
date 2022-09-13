@@ -15,7 +15,8 @@ import com.kguard.indiary.util.ItemHelperInterface
 
 class PersonAdapter(
     val onClick: (Int) -> Unit,
-    val onDelete: (DomainPerson) -> Unit
+    val onDelete: (DomainPerson) -> Unit,
+    val onFavorite:(DomainPerson) -> Unit
 ):ListAdapter<DomainPerson, PersonAdapter.PersonViewHolder>(diffUtil),ItemHelperInterface{
 
     companion object {
@@ -41,14 +42,12 @@ class PersonAdapter(
     override fun onBindViewHolder(holder: PersonViewHolder, position: Int) {
         holder.setItem(getItem(position))
         holder.itemView.setOnClickListener{
-
             onClick(getItem(position).person_id)
         }
     }
 
-    inner class PersonViewHolder(private val binding: ItemRecyclerPersonBinding) :RecyclerView.ViewHolder(binding.root) {
+    inner class PersonViewHolder(private val binding: ItemRecyclerPersonBinding) :RecyclerView.ViewHolder(binding.root), ItemHelperInterface {
         fun setItem(domainPerson: DomainPerson){
-
             binding.tvPeopleName.text= domainPerson.name
             binding.tvMemoryDate.text=domainPerson.make
             if(domainPerson.favorite)
@@ -63,14 +62,27 @@ class PersonAdapter(
                 if(domainPerson.favorite)
                 {
                     domainPerson.favorite=false
+                    onFavorite(domainPerson)
                     binding.ibFavorite.setImageResource(R.drawable.ic_favorite_off)
                 }
                 else if (!domainPerson.favorite)
                 {
                     domainPerson.favorite=true
+                    onFavorite(domainPerson)
                     binding.ibFavorite.setImageResource(R.drawable.ic_favorite_on)
                 }
             }
+        }
+
+        override fun onItemMove(from_position: Int, to_position: Int): Boolean {
+            return true
+        }
+
+        override fun onItemSwipe(position: Int) {
+            val list=currentList.toMutableList()
+            onDelete(getItem(layoutPosition))
+            list.removeAt(layoutPosition)
+            submitList(list)
         }
 
     }
@@ -81,9 +93,9 @@ class PersonAdapter(
 
     override fun onItemSwipe(position: Int) {
         val list=currentList.toMutableList()
-        onDelete(getItem(position))
         //personOut(getItem(position))
         list.removeAt(position)
+        onDelete(getItem(position))
         submitList(list)
     }
 

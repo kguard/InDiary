@@ -1,11 +1,15 @@
 package com.kguard.indiary.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.kguard.domain.domain.DomainMemory
 import com.kguard.domain.domain.DomainPerson
 import com.kguard.indiary.databinding.ItemRecyclerMemoryBinding
@@ -38,6 +42,7 @@ class MemoryAdapter(
 
     override fun onBindViewHolder(holder: MemoryViewHolder, position: Int) {
         holder.setItem(getItem(position))
+
         holder.itemView.setOnClickListener {
             onClick(getItem(position).memory_id)
         }
@@ -48,11 +53,34 @@ class MemoryAdapter(
         fun setItem(domainMemory: DomainMemory){
             binding.tvMemoryTitle.text=domainMemory.title
             binding.tvMemoryDate.text=domainMemory.date
-//            if (domainMemory.image1 != null) { binding.ivMemory1.setImageResource()}
-//            if (domainMemory.image2 != null) { binding.ivMemory2.setImageResource()}
-//            if (domainMemory.image3 != null) { binding.ivMemory3.setImageResource()}
-//            if (domainMemory.image4 != null) { binding.ivMemory4.setImageResource()}
-//            if (domainMemory.image5 != null) { binding.ivMemory5.setImageResource()}
+            if(domainMemory.imageList[0] == null)
+            {
+                binding.ivMemory1.visibility= View.GONE
+                binding.ivMemory2.visibility= View.GONE
+                binding.ivMemory3.visibility= View.GONE
+                binding.ivMemory4.visibility= View.GONE
+                binding.ivMemory5.visibility= View.GONE
+            }
+            Glide.with(binding.ivMemory1)
+                .load(domainMemory.imageList[0]?.toUri())
+                .into(binding.ivMemory1)
+
+            Glide.with(binding.ivMemory2)
+                .load(domainMemory.imageList[1]?.toUri())
+                .into(binding.ivMemory2)
+
+            Glide.with(binding.ivMemory3)
+                .load(domainMemory.imageList[2]?.toUri())
+                .into(binding.ivMemory3)
+
+            Glide.with(binding.ivMemory4)
+                .load(domainMemory.imageList[3]?.toUri())
+                .into(binding.ivMemory4)
+
+            Glide.with(binding.ivMemory5)
+                .load(domainMemory.imageList[4]?.toUri())
+                .into(binding.ivMemory5)
+
         }
     }
 //    @SuppressLint("NotifyDataSetChanged")

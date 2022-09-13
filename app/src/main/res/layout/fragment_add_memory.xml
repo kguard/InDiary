@@ -126,8 +126,8 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/bt_add_memory_date"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
                         android:layout_marginStart="8dp"
                         android:background="@android:drawable/ic_menu_today"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_add_memory_date"
@@ -166,28 +166,51 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:orientation="horizontal"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_add_memory_photo"
+                    <HorizontalScrollView
+                        android:layout_width="0dp"
+                        android:layout_height="80dp"
+                        android:fillViewport="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/tv_add_memory_photo"
-                        app:layout_constraintTop_toTopOf="@+id/tv_add_memory_photo" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="SpeakableTextPresentCheck">
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/bt_add_memory_photo"
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
-                        android:background="@drawable/bg_add_photo2"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_add_memory_photo"
-                        app:layout_constraintStart_toEndOf="@+id/recyclerView2"
-                        app:layout_constraintTop_toTopOf="@+id/tv_add_memory_photo"
-                        app:layout_constraintVertical_bias="0.508"
-                        tools:ignore="SpeakableTextPresentCheck" />
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/bt_add_memory_photo"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+
+                                    android:background="@drawable/bg_add_photo2"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toEndOf="@+id/rv_add_photo"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:ignore="SpeakableTextPresentCheck" />
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/rv_add_photo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                </androidx.recyclerview.widget.RecyclerView>
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </LinearLayout>
+                    </HorizontalScrollView>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

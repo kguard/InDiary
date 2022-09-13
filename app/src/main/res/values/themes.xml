@@ -139,4 +139,10 @@
         <item name="colorOnSecondary">@color/brown_main</item>
         <item name="colorOnSurface">@color/black</item>
     </style>
+
+    <style name="ImagePickerTheme" parent="ef_BaseTheme">
+        <item name="colorPrimary">@color/brown_sub</item>
+        <item name="colorPrimaryDark">@color/brown_main</item>
+        <item name="colorAccent">@color/ef_colorAccent</item>
+    </style>
 </resources>

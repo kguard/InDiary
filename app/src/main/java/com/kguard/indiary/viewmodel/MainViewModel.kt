@@ -25,14 +25,18 @@ class MainViewModel @Inject constructor(
 //    fun setCustomCharacter(customCharacter: CustomCharacter){
 //        _customCharacter.value=customCharacter
 //    }
-    private val _person=MutableLiveData<DomainPerson>()
-    val person : LiveData<DomainPerson>
+    private val _person=MutableLiveData<DomainPerson?>()
+    val person : MutableLiveData<DomainPerson?>
     get() = _person
 
     private val _persons=MutableLiveData<List<DomainPerson>>()
     val persons : LiveData<List<DomainPerson>>
         get() = _persons
 
+    fun clearPerson()
+    {
+        _person.value=null
+    }
     fun setPerson(person: DomainPerson)
     {
         _person.value=person

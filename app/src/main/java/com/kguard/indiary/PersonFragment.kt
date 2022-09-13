@@ -45,6 +45,9 @@ class PersonFragment : Fragment() {
         },
             {
               viewModel.deletePerson(it)
+            },
+            {
+                viewModel.updatePerson(it)
             }).apply { setHasStableIds(true) }
         binding.rvPersonContent.adapter = adapter
         ItemHelperImpl(adapter).also {
@@ -55,6 +58,7 @@ class PersonFragment : Fragment() {
         viewModel.getPersons()
 
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            viewModel.getPersons()
             viewModel.persons.collectLatest {
                 adapter.submitList(it)
             }

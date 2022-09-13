@@ -33,8 +33,8 @@ data class Memory(
     @ColumnInfo(name="MemoryImage5")
     var image5: String?,
     @ColumnInfo(name="person_id")
-    var person_id:Int
+    var person_id:Int?
 )
 fun Memory.toDomainMemory(): DomainMemory = DomainMemory(
-    memory_id, title, date, content, image1, image2, image3, image4, image5,person_id
+    memory_id, title, date, content, arrayListOf(image1,image2,image3,image4,image5), person_id
 )
