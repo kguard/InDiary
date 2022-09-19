@@ -17,10 +17,8 @@
             app:cardCornerRadius="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.448"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.258">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -54,12 +52,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/tv_memory_date"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@+id/tv_memory_title"
                         app:layout_constraintTop_toBottomOf="@+id/tv_memory_title"
-                        app:layout_constraintVertical_bias="0.099" />
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
                         android:id="@+id/tv_memory_date"
@@ -77,48 +77,57 @@
                         android:layout_width="60dp"
                         android:layout_height="80dp"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:foregroundGravity="center"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/rv_memory_tags"
+                        app:layout_constraintTop_toTopOf="@+id/iv_memory2"
+                        app:layout_constraintVertical_bias="0.0"
                         tools:srcCompat="@tools:sample/avatars" />
 
                     <ImageView
                         android:id="@+id/iv_memory2"
                         android:layout_width="60dp"
                         android:layout_height="80dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="10dp"
                         android:foregroundGravity="center"
-                        app:layout_constraintBottom_toBottomOf="@+id/iv_memory1"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/iv_memory3"
                         app:layout_constraintStart_toEndOf="@+id/iv_memory1"
-                        app:layout_constraintTop_toTopOf="@+id/iv_memory1"
-                        app:layout_constraintVertical_bias="0.0"
+                        app:layout_constraintTop_toTopOf="@+id/iv_memory3"
                         tools:srcCompat="@tools:sample/avatars" />
 
                     <ImageView
                         android:id="@+id/iv_memory3"
                         android:layout_width="60dp"
                         android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:foregroundGravity="center"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/iv_memory5"
+                        app:layout_constraintHorizontal_bias="0.498"
                         app:layout_constraintStart_toStartOf="@+id/iv_memory1"
-                        app:layout_constraintTop_toBottomOf="@+id/rv_memory_tags"
-                        app:layout_constraintVertical_bias="0.523"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_memory_title"
+                        app:layout_constraintVertical_bias="1.0"
                         tools:srcCompat="@tools:sample/avatars" />
 
                     <ImageView
                         android:id="@+id/iv_memory4"
                         android:layout_width="60dp"
                         android:layout_height="80dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="10dp"
                         android:foregroundGravity="center"
-                        app:layout_constraintBottom_toBottomOf="@+id/iv_memory3"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/iv_memory5"
                         app:layout_constraintStart_toEndOf="@+id/iv_memory3"
                         app:layout_constraintTop_toTopOf="@+id/iv_memory3"
-                        app:layout_constraintVertical_bias="0.0"
                         tools:srcCompat="@tools:sample/avatars" />
 
                     <ImageView
@@ -126,11 +135,11 @@
                         android:layout_width="60dp"
                         android:layout_height="80dp"
                         android:layout_marginEnd="10dp"
-                        android:foregroundGravity="center"
-                        app:layout_constraintBottom_toBottomOf="@+id/iv_memory4"
+                        android:layout_marginBottom="10dp"
+                        android:foregroundGravity="center_vertical|center|center_horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/iv_memory4"
-                        app:layout_constraintVertical_bias="0.0"
                         tools:srcCompat="@tools:sample/avatars" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

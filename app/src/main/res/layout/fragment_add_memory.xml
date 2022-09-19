@@ -170,6 +170,7 @@
                         android:layout_width="0dp"
                         android:layout_height="80dp"
                         android:fillViewport="true"
+                        android:scrollbars="none"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/tv_add_memory_photo"

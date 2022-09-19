@@ -4,6 +4,9 @@ import com.kguard.domain.domain.DomainTag
 import com.kguard.domain.repository.TagRepository
 import javax.inject.Inject
 
+/**
+ * todo tag
+ */
 class TagUseCase @Inject constructor(
     private val repository: TagRepository
 ) {

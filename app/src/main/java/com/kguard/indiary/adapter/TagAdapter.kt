@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kguard.data.local.entity.Tag
 import com.kguard.indiary.databinding.ItemTagCardviewBinding
 
-
+/**
+ * todo tag
+ */
 class TagAdapter():RecyclerView.Adapter<TagAdapter.ViewHolder>() {
     var tag: List<Tag> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

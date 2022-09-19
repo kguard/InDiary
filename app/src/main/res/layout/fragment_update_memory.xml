@@ -164,10 +164,11 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.core.widget.NestedScrollView
+                    <HorizontalScrollView
                         android:layout_width="0dp"
                         android:layout_height="80dp"
                         android:fillViewport="true"
+                        android:scrollbars="none"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/tv_update_memory_photo"
@@ -208,7 +209,7 @@
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                         </LinearLayout>
-                    </androidx.core.widget.NestedScrollView>
+                    </HorizontalScrollView>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -18,9 +18,6 @@ class PersonViewModel @Inject constructor(
     val persons: StateFlow<List<DomainPerson>>
     get() = _persons
 
-    /**
-     * Room 에 저당 돼 있는 모든 데이터 호출.
-     */
     fun getPersons(){
         viewModelScope.launch {
             _persons.value=useCase.getPersons()
@@ -29,7 +26,7 @@ class PersonViewModel @Inject constructor(
     fun deletePerson(person: DomainPerson)
     {
         viewModelScope.launch() {
-            useCase.deletePerson(person)
+            launch{useCase.deletePerson(person)}.join()
             getPersons()
         }
     }

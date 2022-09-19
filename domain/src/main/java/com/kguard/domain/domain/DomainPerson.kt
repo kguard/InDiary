@@ -9,3 +9,4 @@ data class DomainPerson (
     var make: String ="",
     var favorite: Boolean=false
         )
+class InvalidPersonException(message: String): Exception(message)

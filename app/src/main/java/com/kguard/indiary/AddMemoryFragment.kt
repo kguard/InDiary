@@ -114,6 +114,10 @@ class AddMemoryFragment : Fragment() {
             if (photos.size >= 5) {
                 binding.btAddMemoryPhoto.visibility = View.INVISIBLE
             }
+            else if(photos.size < 5)
+            {
+                binding.btAddMemoryPhoto.visibility = View.VISIBLE
+            }
         }
 
         binding.btAddMemoryComplete.setOnClickListener {

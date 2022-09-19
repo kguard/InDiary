@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kguard.indiary.data.CustomCharacter
 import com.kguard.indiary.databinding.ItemCustomCharacterBinding
 
+/**
+ *  todo character
+ */
 class AddCharacterAdapter():RecyclerView.Adapter<AddCharacterAdapter.AddCharacterViewHolder>() {
     private var character = arrayListOf<CustomCharacter>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddCharacterViewHolder {

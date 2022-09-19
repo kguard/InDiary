@@ -17,11 +17,11 @@ class ItemHelperImpl(private val listener:ItemHelperInterface):ItemTouchHelper.C
         viewHolder: RecyclerView.ViewHolder,
         target: RecyclerView.ViewHolder
     ): Boolean {
-        return listener.onItemMove(viewHolder.absoluteAdapterPosition,target.absoluteAdapterPosition)
+        return listener.onItemMove(viewHolder.layoutPosition,target.layoutPosition)
     }
 
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-        listener.onItemSwipe(viewHolder.bindingAdapterPosition)
+        listener.onItemSwipe(viewHolder.layoutPosition)
     }
 }

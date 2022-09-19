@@ -11,6 +11,9 @@ import com.kguard.indiary.databinding.DialogAddCharacterBinding
 import com.kguard.indiary.util.Utils
 import com.kguard.indiary.viewmodel.MainViewModel
 
+/**
+ * todo character
+ */
 class AddCharacterDialog:DialogFragment() {
     private lateinit var binding: DialogAddCharacterBinding
     private val mainViewModel: MainViewModel by activityViewModels()

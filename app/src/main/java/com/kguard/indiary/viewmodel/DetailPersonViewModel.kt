@@ -16,13 +16,13 @@ import javax.inject.Inject
 class DetailPersonViewModel @Inject constructor(
     private val useCase: PersonUseCase
 ):ViewModel() {
-    private var _person: MutableLiveData<DomainPerson> = MutableLiveData<DomainPerson>()
+    private var _person = MutableLiveData<DomainPerson>()
     val person: LiveData<DomainPerson>
         get() = _person
     fun getPerson(person_id:Int)
     {
         viewModelScope.launch {
-            _person.postValue(useCase.getPerson(person_id))
+            _person.value=useCase.getPerson(person_id)
         }
     }
     fun deletePerson(person: DomainPerson)
@@ -31,13 +31,21 @@ class DetailPersonViewModel @Inject constructor(
             useCase.deletePerson(person)
         }
     }
-    fun getAge(string:String): Int {
-        val now= LocalDate.now()
-        val parsedBirthDate = LocalDate.parse(string, DateTimeFormatter.ofPattern("yyyyMMdd"))
-        var age=now.minusYears(parsedBirthDate.year.toLong()).year
-        if(parsedBirthDate.plusYears(age.toLong()).isAfter(now)){
-            age -= 1
+    fun getAge(string:String?): String {
+        var result="?"
+        if(string != null) {
+            val now = LocalDate.now()
+            val parsedBirthDate = LocalDate.parse(string, DateTimeFormatter.ofPattern("yyyyMMdd"))
+            var age = now.minusYears(parsedBirthDate.year.toLong()).year
+            if (parsedBirthDate.plusYears(age.toLong()).isAfter(now)) {
+                age -= 1
+            }
+            result=age.toString()
         }
-        return age
+        else if (string == null)
+        {
+            result="?"
+        }
+        return result
     }
 }

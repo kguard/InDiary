@@ -64,4 +64,5 @@
 
     <string name="clear">초기화</string>
     <string name="Complete">완료</string>
+    <string name="favorite">즐겨찾기</string>
 </resources>

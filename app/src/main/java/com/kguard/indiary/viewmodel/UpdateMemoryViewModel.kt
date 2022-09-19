@@ -31,8 +31,6 @@ class UpdateMemoryViewModel @Inject constructor(
     val photos: LiveData<ArrayList<String>>
         get() = _photos
 
-
-
     fun setPhoto(uri: String)
     {
         _photos.add(uri)

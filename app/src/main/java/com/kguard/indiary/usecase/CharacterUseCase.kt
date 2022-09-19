@@ -4,6 +4,9 @@ import com.kguard.domain.domain.DomainCharacter
 import com.kguard.domain.repository.CharacterRepository
 import javax.inject.Inject
 
+/**
+ * todo character
+ */
 class CharacterUseCase @Inject constructor(
     private val repository: CharacterRepository
 ) {

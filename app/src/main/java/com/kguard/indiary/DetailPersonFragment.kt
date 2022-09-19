@@ -22,9 +22,7 @@ class DetailPersonFragment(personId: Int) : Fragment() {
     private val personId=personId
     private val binding by lazy { FragmentDetailPersonBinding.inflate(layoutInflater) }
     private val viewModel:DetailPersonViewModel by viewModels()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +34,7 @@ class DetailPersonFragment(personId: Int) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getPerson(personId)
-        viewModel.person.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+        viewModel.person.observe(viewLifecycleOwner){
             binding.tvDetailPersonName.text=it.name
             binding.tvDetailPersonBirth.text=it.birth
             binding.tvDetailPersonAge.text=viewModel.getAge(it.birth.toString()).toString()
@@ -55,7 +53,7 @@ class DetailPersonFragment(personId: Int) : Fragment() {
             binding.fbUpdatePerson.setOnClickListener {
                 findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToUpdatePersonFragment(personId))
             }
-        })
+        }
     }
 
 }

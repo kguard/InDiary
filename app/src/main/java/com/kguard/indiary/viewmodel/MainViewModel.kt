@@ -13,11 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val personUseCase: PersonUseCase,
-    private val memoryUseCase: MemoryUseCase,
-    private val characterUseCase: CharacterUseCase,
-    private val tagUseCase: TagUseCase,
-    private val withUseCase: WithUseCase
+    private val personUseCase: PersonUseCase
 ):ViewModel(){
 //    private val _customCharacter= MutableLiveData<CustomCharacter>()
 //    val customCharacter: LiveData<CustomCharacter>

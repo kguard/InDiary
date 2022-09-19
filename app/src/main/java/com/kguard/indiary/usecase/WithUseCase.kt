@@ -4,6 +4,9 @@ import com.kguard.domain.domain.DomainWith
 import com.kguard.domain.repository.WithRepository
 import javax.inject.Inject
 
+/**
+ * todo with
+ */
 class WithUseCase @Inject constructor(
     private val repository: WithRepository
 ) {

@@ -8,3 +8,4 @@ data class DomainMemory(
     var imageList: ArrayList<String?> = arrayListOf(),
     var person_id:Int? = null
         )
+class InvalidMemoryException(message: String): Exception(message)

@@ -30,9 +30,16 @@ class DetailMemory2ViewModel @Inject constructor(
     val photos: LiveData<ArrayList<String>>
         get() = _photos
 
+    init {
+        clearPhoto()
+    }
     fun setPhoto(uri: String)
     {
         _photos.add(uri)
+    }
+    fun clearPhoto()
+    {
+        _photos.clear()
     }
 
     fun getMemory(memory_id: Int) {

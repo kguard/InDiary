@@ -68,13 +68,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#00911D1D"
-                        android:contentDescription="즐겨찾기"
+                        android:contentDescription="@string/favorite"
                         android:minWidth="30dp"
                         android:minHeight="30dp"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_people_name"
                         app:layout_constraintEnd_toEndOf="@+id/tv_memory_date"
                         app:layout_constraintTop_toTopOf="@+id/tv_people_name"
-                        app:srcCompat="@drawable/ic_favorite_off"
+                        app:srcCompat="@drawable/ic_favorite_button"
                         tools:ignore="TouchTargetSizeCheck" />
 
                     <TextView

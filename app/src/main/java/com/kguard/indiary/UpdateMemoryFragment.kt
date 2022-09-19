@@ -86,16 +86,18 @@ class UpdateMemoryFragment() : Fragment() {
                 ).build()
 
         viewModel.photos.observe(viewLifecycleOwner) { photos ->
-            Log.d("==", "onViewCreated: ${photos} ")
-            //adapter.submitList(photos)
+            Log.d("===Update", "onViewCreated: ${photos} ")
             adapter.updatePhoto(photos)
             if (photos.size >= 5) {
                 binding.btUpdateMemoryPhoto.visibility = View.INVISIBLE
+            }else if(photos.size < 5)
+            {
+                binding.btUpdateMemoryPhoto.visibility = View.VISIBLE
             }
         }
 
         binding.btUpdateWith.setOnClickListener {
-            findNavController().navigate(com.kguard.indiary.R.id.action_updateMemoryFragment_to_memoryDialog)
+            findNavController().navigate(R.id.action_updateMemoryFragment_to_memoryDialog)
         }
 
 

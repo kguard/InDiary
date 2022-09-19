@@ -24,12 +24,12 @@ class PersonAdapter(
             override fun areItemsTheSame(
                 oldItem: DomainPerson,
                 newItem: DomainPerson
-            ): Boolean  = oldItem == newItem
+            ): Boolean  = oldItem.person_id == newItem.person_id
 
             override fun areContentsTheSame(
                 oldItem: DomainPerson,
                 newItem: DomainPerson
-            ): Boolean = oldItem.person_id == newItem.person_id
+            ): Boolean = oldItem.favorite == newItem.favorite
 
         }
     }
@@ -41,12 +41,10 @@ class PersonAdapter(
 
     override fun onBindViewHolder(holder: PersonViewHolder, position: Int) {
         holder.setItem(getItem(position))
-        holder.itemView.setOnClickListener{
-            onClick(getItem(position).person_id)
-        }
+
     }
 
-    inner class PersonViewHolder(private val binding: ItemRecyclerPersonBinding) :RecyclerView.ViewHolder(binding.root), ItemHelperInterface {
+    inner class PersonViewHolder(private val binding: ItemRecyclerPersonBinding) :RecyclerView.ViewHolder(binding.root){
         fun setItem(domainPerson: DomainPerson){
             binding.tvPeopleName.text= domainPerson.name
             binding.tvMemoryDate.text=domainPerson.make
@@ -58,32 +56,27 @@ class PersonAdapter(
                 binding.ibFavorite.setImageResource(R.drawable.ic_favorite_off)
             }
 
+            binding.root.setOnClickListener {
+                onClick(domainPerson.person_id)
+            }
+
             binding.ibFavorite.setOnClickListener {
-                if(domainPerson.favorite)
-                {
-                    domainPerson.favorite=false
-                    onFavorite(domainPerson)
-                    binding.ibFavorite.setImageResource(R.drawable.ic_favorite_off)
-                }
-                else if (!domainPerson.favorite)
-                {
-                    domainPerson.favorite=true
-                    onFavorite(domainPerson)
-                    binding.ibFavorite.setImageResource(R.drawable.ic_favorite_on)
-                }
+//                if(domainPerson.favorite)
+//                {
+//                    domainPerson.favorite=false
+//                    onFavorite(domainPerson)
+//                    binding.ibFavorite.setImageResource(R.drawable.ic_favorite_off)
+//                }
+//                else if (!domainPerson.favorite)
+//                {
+//                    domainPerson.favorite=true
+//                    onFavorite(domainPerson)
+//                    binding.ibFavorite.setImageResource(R.drawable.ic_favorite_on)
+//                }
+                onFavorite(domainPerson)
             }
         }
 
-        override fun onItemMove(from_position: Int, to_position: Int): Boolean {
-            return true
-        }
-
-        override fun onItemSwipe(position: Int) {
-            val list=currentList.toMutableList()
-            onDelete(getItem(layoutPosition))
-            list.removeAt(layoutPosition)
-            submitList(list)
-        }
 
     }
 
@@ -92,11 +85,7 @@ class PersonAdapter(
     }
 
     override fun onItemSwipe(position: Int) {
-        val list=currentList.toMutableList()
-        //personOut(getItem(position))
-        list.removeAt(position)
-        onDelete(getItem(position))
-        submitList(list)
+        onDelete(currentList[position])
     }
 
 

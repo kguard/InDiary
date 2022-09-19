@@ -14,12 +14,12 @@
 
         <TextView
             android:id="@+id/tv_diary"
+            style="@style/TV_22sp_bold_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="30dp"
             android:text="@string/AppNamePage"
-            style="@style/TV_22sp_bold_black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,7 +56,7 @@
             android:id="@+id/bt_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="10dp"
             android:background="#00E1E1E1"
             android:contentDescription="@string/AddPerson"
             android:minWidth="30dp"

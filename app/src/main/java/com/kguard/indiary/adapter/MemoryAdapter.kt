@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.kguard.domain.domain.DomainMemory
 import com.kguard.domain.domain.DomainPerson
 import com.kguard.indiary.databinding.ItemRecyclerMemoryBinding
@@ -18,7 +20,7 @@ import com.kguard.indiary.util.ItemHelperInterface
 class MemoryAdapter(
     val onClick: (Int) -> Unit,
     val onDelete:(DomainMemory) ->Unit
-): ListAdapter<DomainMemory, MemoryAdapter.MemoryViewHolder>(MemoryAdapter.diffUtil),
+): ListAdapter<DomainMemory, MemoryAdapter.MemoryViewHolder>(diffUtil),
     ItemHelperInterface {
     companion object {
         val diffUtil = object: DiffUtil.ItemCallback<DomainMemory>() {
@@ -43,9 +45,6 @@ class MemoryAdapter(
     override fun onBindViewHolder(holder: MemoryViewHolder, position: Int) {
         holder.setItem(getItem(position))
 
-        holder.itemView.setOnClickListener {
-            onClick(getItem(position).memory_id)
-        }
     }
 
 
@@ -53,6 +52,7 @@ class MemoryAdapter(
         fun setItem(domainMemory: DomainMemory){
             binding.tvMemoryTitle.text=domainMemory.title
             binding.tvMemoryDate.text=domainMemory.date
+
             if(domainMemory.imageList[0] == null)
             {
                 binding.ivMemory1.visibility= View.GONE
@@ -63,41 +63,41 @@ class MemoryAdapter(
             }
             Glide.with(binding.ivMemory1)
                 .load(domainMemory.imageList[0]?.toUri())
+                .apply(RequestOptions.bitmapTransform(RoundedCorners(10)))
                 .into(binding.ivMemory1)
 
             Glide.with(binding.ivMemory2)
                 .load(domainMemory.imageList[1]?.toUri())
+                .apply(RequestOptions.bitmapTransform(RoundedCorners(10)))
                 .into(binding.ivMemory2)
 
             Glide.with(binding.ivMemory3)
                 .load(domainMemory.imageList[2]?.toUri())
+                .apply(RequestOptions.bitmapTransform(RoundedCorners(10)))
                 .into(binding.ivMemory3)
 
             Glide.with(binding.ivMemory4)
                 .load(domainMemory.imageList[3]?.toUri())
+                .apply(RequestOptions.bitmapTransform(RoundedCorners(10)))
                 .into(binding.ivMemory4)
 
             Glide.with(binding.ivMemory5)
                 .load(domainMemory.imageList[4]?.toUri())
+                .apply(RequestOptions.bitmapTransform(RoundedCorners(10)))
                 .into(binding.ivMemory5)
 
+            binding.root.setOnClickListener {
+                onClick(domainMemory.memory_id)
+            }
         }
     }
-//    @SuppressLint("NotifyDataSetChanged")
-//    fun setData(memory: List<DomainMemory>)
-//    {
-//        this.memory=memory
-//        notifyDataSetChanged()
-//    }
+
 override fun onItemMove(from_position: Int, to_position: Int): Boolean {
     return true
 }
 
     override fun onItemSwipe(position: Int) {
-        val list=currentList.toMutableList()
-        onDelete(getItem(position))
-        list.removeAt(position)
-        submitList(list)
+        onDelete(currentList[position])
     }
 
 }

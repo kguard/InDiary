@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kguard.data.local.entity.Tag
 import com.kguard.indiary.databinding.ItemTagCardviewBinding
 
+/**
+ * todo tag
+ */
 class InnerTageAdapter(var tag: List<Tag>):RecyclerView.Adapter<InnerTageAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding= ItemTagCardviewBinding.inflate(LayoutInflater.from(parent.context),parent,false)
