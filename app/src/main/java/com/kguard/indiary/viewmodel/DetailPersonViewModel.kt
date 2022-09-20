@@ -10,6 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.regex.Pattern
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,9 +32,10 @@ class DetailPersonViewModel @Inject constructor(
             useCase.deletePerson(person)
         }
     }
-    fun getAge(string:String?): String {
+    fun getAge(string:String): String {
         var result="?"
-        if(string != null) {
+        val pattern = Pattern.matches("^(19[0-9][0-9]|20\\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])\$", string)
+        if(pattern) {
             val now = LocalDate.now()
             val parsedBirthDate = LocalDate.parse(string, DateTimeFormatter.ofPattern("yyyyMMdd"))
             var age = now.minusYears(parsedBirthDate.year.toLong()).year
@@ -42,8 +44,7 @@ class DetailPersonViewModel @Inject constructor(
             }
             result=age.toString()
         }
-        else if (string == null)
-        {
+        else {
             result="?"
         }
         return result

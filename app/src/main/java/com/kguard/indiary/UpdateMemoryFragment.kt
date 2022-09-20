@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.util.Pair
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -29,7 +30,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class UpdateMemoryFragment() : Fragment() {
     private val args by navArgs<UpdateMemoryFragmentArgs>()
-    private val binding by lazy { FragmentUpdateMemoryBinding.inflate(layoutInflater) }
+    private lateinit var binding: FragmentUpdateMemoryBinding
     private val viewModel: UpdateMemoryViewModel by viewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
     private var adapter = PhotoAdapter {
@@ -40,16 +41,16 @@ class UpdateMemoryFragment() : Fragment() {
         val firstImage = it.firstOrNull() ?: return@registerImagePicker
         viewModel.setPhoto(firstImage.uri.toString())
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_update_memory, container, false)
         viewModel.getMemory(args.memoryId)
-        viewModel.memory.observe(viewLifecycleOwner, Observer { it ->
+        viewModel.memory.observe(viewLifecycleOwner) { it ->
             binding.etUpdateMemoryTitle.editText?.setText(it.title)
             binding.tvUpdateDate.text = it.date
             binding.etUpdateMemoryContent.setText(it.content)
@@ -60,21 +61,17 @@ class UpdateMemoryFragment() : Fragment() {
                 }
             }
             it.person_id?.let { it1 -> viewModel.getPerson(it1) }
-            viewModel.person.observe(viewLifecycleOwner, Observer {
-                binding.tvWithShow2.text=it.name
-            })
-        })
-        mainViewModel.person.observe(viewLifecycleOwner, Observer {
-            if (it != null) {
-                binding.tvWithShow2.text=it.name
+            viewModel.person.observe(viewLifecycleOwner) {
+                binding.tvWithShow2.text = it.name
             }
-        })
+        }
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val memory = DomainMemory( args.memoryId , "", "", null, ArrayList<String?>(), null)
         super.onViewCreated(view, savedInstanceState)
+        val memory = DomainMemory(memory_id = args.memoryId)
         val dateRangePicker =
             MaterialDatePicker.Builder.dateRangePicker()
                 .setTitleText("날짜를 설정해주세요")
@@ -86,19 +83,22 @@ class UpdateMemoryFragment() : Fragment() {
                 ).build()
 
         viewModel.photos.observe(viewLifecycleOwner) { photos ->
-            Log.d("===Update", "onViewCreated: ${photos} ")
             adapter.updatePhoto(photos)
             if (photos.size >= 5) {
                 binding.btUpdateMemoryPhoto.visibility = View.INVISIBLE
-            }else if(photos.size < 5)
-            {
+            } else if (photos.size < 5) {
                 binding.btUpdateMemoryPhoto.visibility = View.VISIBLE
             }
         }
 
         binding.btUpdateWith.setOnClickListener {
-            findNavController().navigate(R.id.action_updateMemoryFragment_to_memoryDialog)
+            findNavController().navigate(R.id.action_updateMemoryFragment_to_memoryWithDialog)
         }
+        mainViewModel.person.observe(viewLifecycleOwner, Observer {
+            if (it != null) {
+                binding.tvWithShow2.text = it.name
+            }
+        })
 
 
         binding.btUpdateMemoryDate.setOnClickListener {
@@ -133,25 +133,30 @@ class UpdateMemoryFragment() : Fragment() {
         }
 
         binding.btUpdateMemoryComplete.setOnClickListener {
-            memory.title = binding.etUpdateMemoryTitle.editText?.text.toString()
-            memory.content = binding.etUpdateMemoryContent.text.toString()
-            memory.date = binding.tvUpdateDate.text.toString()
-            mainViewModel.person.observe(viewLifecycleOwner, Observer {
-                if (it != null) {
-                    memory.person_id=it.person_id
+            if (binding.etUpdateMemoryTitle.editText?.text == null) {
+                binding.etUpdateMemoryTitle.error = getString(R.string.TitleEmptyError)
+            } else {
+                binding.etUpdateMemoryTitle.isErrorEnabled=false
+                memory.title = binding.etUpdateMemoryTitle.editText?.text.toString()
+                memory.content = binding.etUpdateMemoryContent.text.toString()
+                memory.date = binding.tvUpdateDate.text.toString()
+                mainViewModel.person.observe(viewLifecycleOwner, Observer {
+                    if (it != null) {
+                        memory.person_id = it.person_id
+                    }
+                })
+                viewModel.photos.value?.forEach {
+                    memory.imageList.add(it)
                 }
-            })
-            viewModel.photos.value?.forEach {
-                memory.imageList.add(it)
+                if (memory.imageList.size < 5) {
+                    for (i in 1..(5 - memory.imageList.size))
+                        memory.imageList.add(null)
+                }
+                viewModel.updateMemory(memory)
+                findNavController().popBackStack()
             }
-            if (memory.imageList.size < 5)
-            {
-                for(i in 1..(5 - memory.imageList.size))
-                    memory.imageList.add(null)
-            }
-            viewModel.updateMemory(memory)
-            findNavController().popBackStack()
         }
+        mainViewModel.person.value = null
     }
 
 

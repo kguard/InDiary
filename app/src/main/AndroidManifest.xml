@@ -17,13 +17,12 @@
         android:theme="@style/Theme.InDiary"
         tools:targetApi="31">
         <activity
-            android:name=".ColdStartActivity"
-            android:exported="false" />
-        <activity
             android:name=".SplashActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

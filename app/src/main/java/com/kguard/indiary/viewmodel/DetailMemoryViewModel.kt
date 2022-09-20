@@ -26,10 +26,11 @@ class DetailMemoryViewModel @Inject constructor(
             _memory.value = memoryUseCase.getPersonMemories(person_id)
         }
     }
-    fun deleteMemory(memory: DomainMemory)
+    fun deleteMemory(memory: DomainMemory,person_id: Int)
     {
         viewModelScope.launch {
             memoryUseCase.deleteMemory(memory)
+            getMemory(person_id)
         }
     }
 }

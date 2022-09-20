@@ -30,6 +30,7 @@ class MemoryViewModel @Inject constructor(
     {
         viewModelScope.launch {
             useCase.deleteMemory(memory)
+            getMemories()
         }
     }
 }

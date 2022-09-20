@@ -30,6 +30,7 @@
         <entry key="..\:/git/InDiary/app/src/main/res/layout/character_add_dialog.xml" value="0.5200553250345782" />
         <entry key="..\:/git/InDiary/app/src/main/res/layout/dialog_add_character.xml" value="0.29713552800342025" />
         <entry key="..\:/git/InDiary/app/src/main/res/layout/dialog_memory.xml" value="0.271484375" />
+        <entry key="..\:/git/InDiary/app/src/main/res/layout/dialog_memory_with.xml" value="0.14322359982898675" />
         <entry key="..\:/git/InDiary/app/src/main/res/layout/fragment_add_memory.xml" value="0.33" />
         <entry key="..\:/git/InDiary/app/src/main/res/layout/fragment_add_people.xml" value="0.41591861160981447" />
         <entry key="..\:/git/InDiary/app/src/main/res/layout/fragment_add_person.xml" value="0.33" />
@@ -37,14 +38,14 @@
         <entry key="..\:/git/InDiary/app/src/main/res/layout/fragment_detail_memory.xml" value="0.3591485507246377" />
         <entry key="..\:/git/InDiary/app/src/main/res/layout/fragment_detail_memory2.xml" value="0.33" />
         <entry key="..\:/git/InDiary/app/src/main/res/layout/fragment_detail_people.xml" value="0.29713552800342025" />
-        <entry key="..\:/git/InDiary/app/src/main/res/layout/fragment_detail_person.xml" value="0.33" />
+        <entry key="..\:/git/InDiary/app/src/main/res/layout/fragment_detail_person.xml" value="0.22" />
         <entry key="..\:/git/InDiary/app/src/main/res/layout/fragment_memory.xml" value="0.33" />
         <entry key="..\:/git/InDiary/app/src/main/res/layout/fragment_memory_add.xml" value="0.3591485507246377" />
         <entry key="..\:/git/InDiary/app/src/main/res/layout/fragment_people.xml" value="0.22" />
         <entry key="..\:/git/InDiary/app/src/main/res/layout/fragment_person.xml" value="0.33" />
-        <entry key="..\:/git/InDiary/app/src/main/res/layout/fragment_update_memory.xml" value="0.29463500439753737" />
+        <entry key="..\:/git/InDiary/app/src/main/res/layout/fragment_update_memory.xml" value="0.3175021987686895" />
         <entry key="..\:/git/InDiary/app/src/main/res/layout/fragment_update_people.xml" value="0.3591485507246377" />
-        <entry key="..\:/git/InDiary/app/src/main/res/layout/fragment_update_person.xml" value="0.6394557823129252" />
+        <entry key="..\:/git/InDiary/app/src/main/res/layout/fragment_update_person.xml" value="0.33" />
         <entry key="..\:/git/InDiary/app/src/main/res/layout/item_custom_character.xml" value="0.29713552800342025" />
         <entry key="..\:/git/InDiary/app/src/main/res/layout/item_recycler_memory.xml" value="0.6931818181818182" />
         <entry key="..\:/git/InDiary/app/src/main/res/layout/item_recycler_people.xml" value="0.25" />

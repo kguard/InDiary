@@ -10,29 +10,21 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-
 import androidx.navigation.fragment.findNavController
-import com.kguard.domain.domain.DomainCharacter
 import com.kguard.domain.domain.DomainPerson
-import com.kguard.indiary.adapter.AddCharacterAdapter
 import com.kguard.indiary.databinding.FragmentAddPersonBinding
 import com.kguard.indiary.viewmodel.AddPersonViewModel
-import com.kguard.indiary.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 import java.time.LocalDate
+import java.util.regex.Pattern
 
 @AndroidEntryPoint
 class AddPersonFragment : Fragment() {
-    private val binding by lazy { FragmentAddPersonBinding.inflate(layoutInflater) }
-    private val viewModel : AddPersonViewModel by viewModels()
-//    private val mainViewModel: MainViewModel by activityViewModels()
-//    private lateinit var adapter: AddCharacterAdapter
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var binding: FragmentAddPersonBinding
+    private val viewModel: AddPersonViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -40,15 +32,16 @@ class AddPersonFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_person, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val items=resources.getStringArray(R.array.GenderDetail)
+        val items = resources.getStringArray(R.array.GenderDetail)
 
         val spinnerAdapter =
-            context?.let { ArrayAdapter(it,android.R.layout.simple_spinner_dropdown_item,items) }
+            context?.let { ArrayAdapter(it, android.R.layout.simple_spinner_dropdown_item, items) }
         (binding.SpinnerMenu.editText as? AutoCompleteTextView)?.setAdapter(spinnerAdapter)
 
 //        binding.btAddPersonPlus.setOnClickListener{
@@ -63,12 +56,23 @@ class AddPersonFragment : Fragment() {
 //        }
 
         binding.btAddPersonComplete.setOnClickListener {
-            var person: DomainPerson =DomainPerson()
-            if(binding.etAddPersonBirth.editText?.text?.length != 8)
-            {
-                Toast.makeText(context, "생년월일을 8자로 써주세요", Toast.LENGTH_SHORT).show()
+            var person: DomainPerson = DomainPerson()
+            val pattern = binding.etAddPersonBirth.editText?.text?.let { it1 ->
+                Pattern.matches(
+                    "^(19[0-9][0-9]|20\\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])\$",
+                    it1
+                )
             }
-            else {
+            if (binding.etAddPersonName.editText?.text?.isEmpty() == true) {
+                binding.etAddPersonBirth.isErrorEnabled = false
+                binding.etAddPersonName.error = getString(R.string.NameEmptyError)
+            } else if (pattern == false && binding.etAddPersonBirth.editText?.text?.isNotEmpty() == true) {
+
+                binding.etAddPersonName.isErrorEnabled = false
+                binding.etAddPersonBirth.error = getString(R.string.BirthError)
+            } else {
+                binding.etAddPersonName.isErrorEnabled = false
+                binding.etAddPersonBirth.isErrorEnabled = false
                 person.name = binding.etAddPersonName.editText?.text.toString()
                 person.birth = binding.etAddPersonBirth.editText?.text.toString()
                 person.make = LocalDate.now().toString()

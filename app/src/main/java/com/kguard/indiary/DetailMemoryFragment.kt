@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -23,43 +24,44 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
-class DetailMemoryFragment(personId :Int) : Fragment() {
-    private val person_id=personId
-    private val binding by lazy { FragmentDetailMemoryBinding.inflate(layoutInflater) }
+class DetailMemoryFragment(personId: Int) : Fragment() {
+    private val person_id = personId
+    private lateinit var binding: FragmentDetailMemoryBinding
     private val viewModel: DetailMemoryViewModel by viewModels()
-    private lateinit var adapter: MemoryAdapter
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private val adapter = MemoryAdapter({
+        findNavController().navigate(
+            DetailFragmentDirections.actionDetailFragmentToDetailMemory2Fragment(
+                it
+            )
+        )
+    }, {
+        viewModel.deleteMemory(it,person_id)
+    })
 
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        adapter= MemoryAdapter({
-            findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToDetailMemory2Fragment(it))
-        },{
-            viewModel.deleteMemory(it)
-        }).apply { setHasStableIds(true) }
-        binding.rvDetailMemory.adapter=adapter
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_detail_memory, container, false)
+
+        binding.rvDetailMemory.adapter = adapter
         ItemHelperImpl(adapter).also {
             ItemTouchHelper(it).apply {
                 this.attachToRecyclerView(binding.rvDetailMemory)
             }
         }
         viewModel.getMemory(person_id)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            viewModel.memory.collectLatest {
-                adapter.submitList(it)
-            }
-        }
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            viewModel.memory.collectLatest {
+                adapter.submitList(it)
+            }
+        }
     }
 
 

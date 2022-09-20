@@ -1,5 +1,6 @@
 package com.kguard.indiary
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.util.Pair
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.*
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -26,7 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AddMemoryFragment : Fragment() {
-    private val binding by lazy { FragmentAddMemoryBinding.inflate(layoutInflater) }
+    private lateinit var binding: FragmentAddMemoryBinding
     private val viewModel: AddMemoryViewModel by viewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
     private var memory = DomainMemory()
@@ -37,17 +39,12 @@ class AddMemoryFragment : Fragment() {
         val firstImage = it.firstOrNull() ?: return@registerImagePicker
         viewModel.setPhoto(firstImage.uri.toString())
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_memory, container, false)
         binding.rvAddPhoto.adapter = adapter
         return binding.root
     }
@@ -57,7 +54,7 @@ class AddMemoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val dateRangePicker =
             MaterialDatePicker.Builder.dateRangePicker()
-                .setTitleText("날짜를 설정해주세요")
+                .setTitleText(getString(R.string.Date))
                 .setSelection(
                     Pair(
                         MaterialDatePicker.thisMonthInUtcMilliseconds(),
@@ -68,20 +65,17 @@ class AddMemoryFragment : Fragment() {
 
         mainViewModel.person.observe(viewLifecycleOwner, Observer {
             binding.tvWithShow.text = it?.name
-            if(it == null)
-            {
-                binding.tvWithShow.text = "With"
-            }
         })
 
         binding.btAddWith.setOnClickListener {
-            findNavController().navigate(R.id.action_addMemoryFragment_to_memoryDialog)
+            findNavController().navigate(R.id.action_addMemoryFragment_to_memoryWithDialog)
         }
 
         binding.btAddMemoryDate.setOnClickListener {
             dateRangePicker.show(childFragmentManager, "datePicker")
             dateRangePicker.addOnPositiveButtonClickListener {
                 memory.date = dateRangePicker.headerText
+                binding.tvAddDate.setTextColor(Color.BLACK)
                 binding.tvAddDate.text = memory.date
             }
         }
@@ -113,33 +107,43 @@ class AddMemoryFragment : Fragment() {
             adapter.updatePhoto(photos)
             if (photos.size >= 5) {
                 binding.btAddMemoryPhoto.visibility = View.INVISIBLE
-            }
-            else if(photos.size < 5)
-            {
+            } else if (photos.size < 5) {
                 binding.btAddMemoryPhoto.visibility = View.VISIBLE
             }
         }
 
         binding.btAddMemoryComplete.setOnClickListener {
-            memory.title = binding.etAddMemoryTitle.editText?.text.toString()
-            memory.content = binding.etAddMemoryContent.text.toString()
-            mainViewModel.person.observe(viewLifecycleOwner, Observer {
-                if (it != null) {
-                    memory.person_id = it.person_id
-                }
-            })
-            mainViewModel.person.value=null
-            viewModel.photos.value?.forEach {
-                memory.imageList.add(it)
+            if (binding.etAddMemoryTitle.editText?.text?.isEmpty() == true) {
+                binding.etAddMemoryTitle.error = getString(R.string.TitleEmptyError)
             }
-            if (memory.imageList.size < 5)
+            else if(binding.tvAddDate.text.isEmpty() || binding.tvAddDate.text==getString(R.string.DateError))
             {
-                for(i in 1..(5 - memory.imageList.size))
-                    memory.imageList.add(null)
+                binding.etAddMemoryTitle.isErrorEnabled=false
+                binding.tvAddDate.setTextColor(Color.RED)
+                binding.tvAddDate.text=getString(R.string.DateError)
             }
-            viewModel.insertMemory(memory)
-            findNavController().popBackStack()
+            else {
+                binding.etAddMemoryTitle.isErrorEnabled=false
+                binding.tvAddDate.setTextColor(Color.BLACK)
+                memory.title = binding.etAddMemoryTitle.editText?.text.toString()
+                memory.content = binding.etAddMemoryContent.text.toString()
+                mainViewModel.person.observe(viewLifecycleOwner, Observer {
+                    if (it != null) {
+                        memory.person_id = it.person_id
+                    }
+                })
+                viewModel.photos.value?.forEach {
+                    memory.imageList.add(it)
+                }
+                if (memory.imageList.size < 5) {
+                    for (i in 1..(5 - memory.imageList.size))
+                        memory.imageList.add(null)
+                }
+                viewModel.insertMemory(memory)
+                findNavController().popBackStack()
+            }
         }
+        mainViewModel.person.value = null
 
     }
 

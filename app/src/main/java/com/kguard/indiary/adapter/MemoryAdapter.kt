@@ -53,14 +53,6 @@ class MemoryAdapter(
             binding.tvMemoryTitle.text=domainMemory.title
             binding.tvMemoryDate.text=domainMemory.date
 
-            if(domainMemory.imageList[0] == null)
-            {
-                binding.ivMemory1.visibility= View.GONE
-                binding.ivMemory2.visibility= View.GONE
-                binding.ivMemory3.visibility= View.GONE
-                binding.ivMemory4.visibility= View.GONE
-                binding.ivMemory5.visibility= View.GONE
-            }
             Glide.with(binding.ivMemory1)
                 .load(domainMemory.imageList[0]?.toUri())
                 .apply(RequestOptions.bitmapTransform(RoundedCorners(10)))

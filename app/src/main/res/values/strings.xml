@@ -33,7 +33,8 @@
     <string name="CharacterPhotoTitle">특징 사진:</string>
 
     <string name="Name">이름</string>
-    <string name="Birth">생년월일(8자리)</string>
+    <string name="Birth">생년월일</string>
+    <string name="BirthHint">yyyymmdd</string>
     <string name="Age">나이(만)</string>
     <string name="Gender">성별</string>
     <string-array name="GenderDetail">
@@ -58,6 +59,8 @@
     <string name="AppNamePage">인(人) 다이어리</string>
     <string name="AddPersonPage">사람 추가하기</string>
     <string name="AddMemoryPage">추억 추가하기</string>
+    <string name="UpdatePersonPage">사람 수정하기</string>
+    <string name="UpdateMemoryPage">추억 수정하기</string>
     <string name="UpdatePage">수정 페이지</string>
     <string name="DetailPage">상세 페이지</string>
     <string name="AddCharacterPage">특징 추가하기</string>
@@ -65,4 +68,9 @@
     <string name="clear">초기화</string>
     <string name="Complete">완료</string>
     <string name="favorite">즐겨찾기</string>
+
+    <string name="NameEmptyError">이름을 입력해주세요.</string>
+    <string name="BirthError">생년월일을 8자로 입력해주세요.</string>
+    <string name="TitleEmptyError">제목을 입력해주세요.</string>
+    <string name="DateError">날짜를 선택해주세요.</string>
 </resources>

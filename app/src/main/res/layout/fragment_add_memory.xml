@@ -7,17 +7,30 @@
         android:id="@+id/cl_add_memory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/beige_main"
         tools:context=".AddMemoryFragment">
+
+        <TextView
+            android:id="@+id/tv_add_memory"
+            style="@style/TV_24sp_bold_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/AddMemoryPage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="16dp"
             android:background="@color/beige_main"
             android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/tv_add_memory">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -26,33 +39,21 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp">
-
-                    <TextView
-                        android:id="@+id/tv_add_memory_title"
-                        style="@style/TV_20sp_normal_black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="@string/TitleTitle"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/et_add_memory_title"
                         style="@style/EV_material_margin"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
                         android:hint="@string/Title"
-                        app:errorEnabled="false"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_add_memory_title"
+                        app:errorEnabled="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/tv_add_memory_title"
-                        app:layout_constraintTop_toTopOf="@+id/tv_add_memory_title">
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
@@ -68,41 +69,26 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp">
 
-                    <TextView
-                        android:id="@+id/tv_add_memory_with"
-                        style="@style/TV_20sp_normal_black"
+                    <Button
+                        android:id="@+id/bt_add_with"
+                        style="@style/TV_12sp_normal_white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="@string/WithTitle"
+                        android:text="With 추가"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <Button
-                        android:id="@+id/bt_add_with"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        style="@style/TV_12sp_normal_white"
-                        android:text="With 추가"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/tv_add_memory_with"
-                        app:layout_constraintTop_toTopOf="parent" />
-
                     <TextView
                         android:id="@+id/tv_with_show"
+                        style="@style/TV_20sp_normal_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:text="@string/With"
-                        style="@style/TV_20sp_normal_black"
                         app:layout_constraintBottom_toBottomOf="@+id/bt_add_with"
                         app:layout_constraintStart_toEndOf="@+id/bt_add_with"
-                        app:layout_constraintTop_toTopOf="@+id/bt_add_with"
-                         />
+                        app:layout_constraintTop_toTopOf="@+id/bt_add_with" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -111,38 +97,26 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp">
 
-                    <TextView
-                        android:id="@+id/tv_add_memory_date"
-                        style="@style/TV_20sp_normal_black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="@string/DateTitle"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/bt_add_memory_date"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:layout_marginStart="8dp"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="16dp"
                         android:background="@android:drawable/ic_menu_today"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_add_memory_date"
-                        app:layout_constraintStart_toEndOf="@+id/tv_add_memory_date"
-                        app:layout_constraintTop_toTopOf="@+id/tv_add_memory_date"
-                        tools:ignore="SpeakableTextPresentCheck" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                     <TextView
                         android:id="@+id/tv_add_date"
                         style="@style/TV_20sp_normal_black"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:text="@string/SetDate"
                         app:layout_constraintBottom_toBottomOf="@+id/bt_add_memory_date"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/bt_add_memory_date"
                         app:layout_constraintTop_toTopOf="@+id/bt_add_memory_date" />
 
@@ -153,27 +127,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp">
 
-                    <TextView
-                        android:id="@+id/tv_add_memory_photo"
-                        style="@style/TV_20sp_normal_black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="@string/PhotoTitle"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
                     <HorizontalScrollView
                         android:layout_width="0dp"
                         android:layout_height="80dp"
+                        android:layout_marginStart="16dp"
                         android:fillViewport="true"
                         android:scrollbars="none"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/tv_add_memory_photo"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="SpeakableTextPresentCheck">
 
@@ -220,23 +182,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp">
 
-                    <TextView
-                        android:id="@+id/tv_add_memory_content"
-                        style="@style/TV_20sp_normal_black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/ContentTitle"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
                     <EditText
                         android:id="@+id/et_add_memory_content"
                         style="@style/EV_20sp_normal_black"
                         android:layout_width="0dp"
                         android:layout_height="160sp"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
                         android:background="@drawable/bg_memo"
@@ -249,15 +201,14 @@
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/tv_add_memory_content"
-                        app:layout_constraintTop_toTopOf="@+id/tv_add_memory_content"
-                        app:layout_constraintVertical_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="TouchTargetSizeCheck" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
+
         <Button
             android:id="@+id/bt_add_memory_complete"
             style="@style/BT_material_icon"
@@ -270,5 +221,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

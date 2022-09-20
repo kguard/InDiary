@@ -83,8 +83,8 @@
         android:label="fragment_add_memory"
         tools:layout="@layout/fragment_add_memory" >
         <action
-            android:id="@+id/action_addMemoryFragment_to_memoryDialog"
-            app:destination="@id/memoryDialog" />
+            android:id="@+id/action_addMemoryFragment_to_memoryWithDialog"
+            app:destination="@id/memoryWithDialog" />
     </fragment>
     <fragment
         android:id="@+id/detailMemory2Fragment"
@@ -118,16 +118,16 @@
             android:name="memory_id"
             app:argType="integer" />
         <action
-            android:id="@+id/action_updateMemoryFragment_to_memoryDialog"
-            app:destination="@id/memoryDialog" />
+            android:id="@+id/action_updateMemoryFragment_to_memoryWithDialog"
+            app:destination="@id/memoryWithDialog" />
     </fragment>
     <dialog
         android:id="@+id/addCharacterDialog"
         android:name="com.kguard.indiary.AddCharacterDialog"
         android:label="AddCharacterDialog" />
     <dialog
-        android:id="@+id/memoryDialog"
-        android:name="com.kguard.indiary.MemoryDialog"
+        android:id="@+id/memoryWithDialog"
+        android:name="com.kguard.indiary.MemoryWithDialog"
         android:label="dialog_memory"
-        tools:layout="@layout/dialog_memory" />
+        tools:layout="@layout/dialog_memory_with" />
 </navigation>

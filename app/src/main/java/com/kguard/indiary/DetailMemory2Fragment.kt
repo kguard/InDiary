@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -20,19 +21,16 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetailMemory2Fragment : Fragment() {
     private val args by navArgs<DetailMemory2FragmentArgs>()
-    private val binding by lazy { FragmentDetailMemory2Binding.inflate(layoutInflater) }
+    private lateinit var binding :FragmentDetailMemory2Binding
     private val viewModel: DetailMemory2ViewModel by viewModels()
     private var adapter = PhotoAdapter {}.apply { setHasStableIds(true) }
     private var memory = DomainMemory()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_detail_memory2,container,false)
         return binding.root
     }
 

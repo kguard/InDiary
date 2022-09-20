@@ -37,7 +37,7 @@ class DetailPersonFragment(personId: Int) : Fragment() {
         viewModel.person.observe(viewLifecycleOwner){
             binding.tvDetailPersonName.text=it.name
             binding.tvDetailPersonBirth.text=it.birth
-            binding.tvDetailPersonAge.text=viewModel.getAge(it.birth.toString()).toString()
+            binding.tvDetailPersonAge.text=viewModel.getAge(it.birth.toString())+"세"
             when(it.gender)
             {
                 0->binding.tvDetailPersonGender.text="남"

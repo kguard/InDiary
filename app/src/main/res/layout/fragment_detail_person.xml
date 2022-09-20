@@ -52,7 +52,6 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:text="@string/Name"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_detail_people_name"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/tv_detail_people_name"
@@ -90,37 +89,38 @@
                     <TextView
                         android:id="@+id/tv_detail_person_birth"
                         style="@style/TV_20sp_normal_black"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:text="@string/Birth"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_detail_people_birth"
-                        app:layout_constraintEnd_toStartOf="@+id/tv_detail_people_age"
                         app:layout_constraintStart_toEndOf="@+id/tv_detail_people_birth"
-                        app:layout_constraintTop_toTopOf="@+id/tv_detail_people_birth" />
+                        app:layout_constraintTop_toTopOf="@+id/tv_detail_people_birth"
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
                         android:id="@+id/tv_detail_people_age"
                         style="@style/TV_20sp_normal_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="16dp"
                         android:text="@string/AgeTitle"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_detail_person_birth"
-                        app:layout_constraintEnd_toStartOf="@+id/tv_detail_person_age"
-                        app:layout_constraintTop_toTopOf="@+id/tv_detail_person_birth" />
+                        app:layout_constraintStart_toEndOf="@+id/tv_detail_person_birth"
+                        app:layout_constraintTop_toTopOf="@+id/tv_detail_person_birth"
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
                         android:id="@+id/tv_detail_person_age"
                         style="@style/TV_20sp_normal_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:text="@string/Age"
+                        android:layout_marginStart="8dp"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_detail_people_age"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/tv_detail_people_age" />
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/tv_detail_people_age"
+                        app:layout_constraintTop_toTopOf="@+id/tv_detail_people_age"
+                        app:layout_constraintVertical_bias="0.0" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -160,7 +160,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="16dp"
-                        android:text="@string/Gender"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_detail_people_gender"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/tv_detail_people_gender"
@@ -249,12 +248,12 @@
                         android:background="@drawable/bg_memo"
                         android:lines="7"
                         android:maxLines="7"
-                        android:text="@string/Memo"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/tv_detail_people_memo"
-                        app:layout_constraintTop_toTopOf="@+id/tv_detail_people_memo" />
+                        app:layout_constraintTop_toTopOf="@+id/tv_detail_people_memo"
+                        tools:ignore="SpeakableTextPresentCheck" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

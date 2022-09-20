@@ -19,10 +19,7 @@ class AddWithAdapter(val onclick : (DomainPerson) ->Unit, val dialog: DialogFrag
 
     override fun onBindViewHolder(holder: AddWithViewHolder, position: Int) {
         holder.setName(persons[position])
-        holder.itemView.setOnClickListener {
-            dialog.dismiss()
-            onclick(persons[position])
-        }
+
     }
 
     override fun getItemCount(): Int {
@@ -32,6 +29,10 @@ class AddWithAdapter(val onclick : (DomainPerson) ->Unit, val dialog: DialogFrag
     inner class AddWithViewHolder(val binding: ItemRecyclerWithBinding) : RecyclerView.ViewHolder(binding.root) {
         fun setName(person: DomainPerson)
         {
+            binding.root.setOnClickListener {
+                onclick(person)
+                dialog.dismiss()
+            }
             binding.tvWith.text=person.name
         }
     }
