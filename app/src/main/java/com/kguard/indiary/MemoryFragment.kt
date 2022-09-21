@@ -28,8 +28,16 @@ class MemoryFragment : Fragment() {
     private val viewModel: MemoryViewModel by viewModels()
     private val adapter = MemoryAdapter({
         findNavController().navigate(MemoryFragmentDirections.actionMemoryFragmentToDetailMemory2Fragment(it))
-    },{
-        viewModel.deleteMemory(it)
+    },{memory ->
+        DeleteMemoryDialogFragment(
+            memory,{
+                viewModel.deleteMemory(it)
+            },
+            {
+                viewModel.clearMemories()
+                viewModel.getMemories()
+            }
+        ).show(childFragmentManager,"delete")
     })
 
     override fun onCreateView(

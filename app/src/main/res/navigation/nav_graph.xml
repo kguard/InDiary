@@ -130,4 +130,17 @@
         android:name="com.kguard.indiary.MemoryWithDialog"
         android:label="dialog_memory"
         tools:layout="@layout/dialog_memory_with" />
+    <dialog
+        android:id="@+id/deletePersonDialogFragment"
+        android:name="com.kguard.indiary.DeletePersonDialogFragment"
+        android:label="fragment_delete_person_dialog"
+        tools:layout="@layout/fragment_delete_person_dialog">
+    </dialog>
+    <dialog
+        android:id="@+id/deleteMemoryDialogFragment"
+        android:name="com.kguard.indiary.DeleteMemoryDialogFragment"
+        android:label="fragment_delete_memory_dialog"
+        tools:layout="@layout/fragment_delete_memory_dialog" >
+
+    </dialog>
 </navigation>

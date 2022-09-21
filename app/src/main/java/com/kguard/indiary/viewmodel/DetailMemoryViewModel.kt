@@ -21,6 +21,12 @@ class DetailMemoryViewModel @Inject constructor(
     val memory: StateFlow<List<DomainMemory>>
         get() = _memory
 
+    fun clearMemories()
+    {
+        viewModelScope.launch{
+            _memory.value= emptyList()
+        }
+    }
     fun getMemory(person_id: Int) {
         viewModelScope.launch {
             _memory.value = memoryUseCase.getPersonMemories(person_id)

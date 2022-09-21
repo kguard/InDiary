@@ -18,6 +18,11 @@ class PersonViewModel @Inject constructor(
     val persons: StateFlow<List<DomainPerson>>
     get() = _persons
 
+    fun clearPerson(){
+        viewModelScope.launch {
+            _persons.value= emptyList()
+        }
+    }
     fun getPersons(){
         viewModelScope.launch {
             _persons.value=useCase.getPersons()

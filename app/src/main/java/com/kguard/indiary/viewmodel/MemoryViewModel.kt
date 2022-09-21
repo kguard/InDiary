@@ -21,6 +21,12 @@ class MemoryViewModel @Inject constructor(
     private var _memory = MutableStateFlow<List<DomainMemory>>(emptyList())
     val memory: StateFlow<List<DomainMemory>>
         get() = _memory
+
+    fun clearMemories(){
+        viewModelScope.launch {
+            _memory.value= emptyList()
+        }
+    }
     fun getMemories(){
         viewModelScope.launch() {
             _memory.value=useCase.getMemories()

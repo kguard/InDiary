@@ -73,4 +73,7 @@
     <string name="BirthError">생년월일을 8자로 입력해주세요.</string>
     <string name="TitleEmptyError">제목을 입력해주세요.</string>
     <string name="DateError">날짜를 선택해주세요.</string>
+
+    <string name="DeletePerson">정말로 이 사람을 삭제하시겠습니까?</string>
+    <string name="DeleteMemory">정말로 이 추억을 삭제하시겠습니까?</string>
 </resources>

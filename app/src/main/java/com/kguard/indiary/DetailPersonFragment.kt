@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.kguard.domain.domain.DomainPerson
 import com.kguard.indiary.databinding.FragmentDetailPersonBinding
 import com.kguard.indiary.viewmodel.DetailPersonViewModel
 import com.kguard.indiary.viewmodel.PersonViewModel
@@ -20,14 +22,14 @@ import java.util.*
 @AndroidEntryPoint
 class DetailPersonFragment(personId: Int) : Fragment() {
     private val personId=personId
-    private val binding by lazy { FragmentDetailPersonBinding.inflate(layoutInflater) }
+    private lateinit var binding : FragmentDetailPersonBinding
     private val viewModel:DetailPersonViewModel by viewModels()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_detail_person,container,false)
         return binding.root
     }
 
@@ -45,14 +47,19 @@ class DetailPersonFragment(personId: Int) : Fragment() {
                 2->binding.tvDetailPersonGender.text="표기 안함"
             }
             binding.tvDetailPersonMemo.text=it.memo
-            val person=it
-            binding.fbDeletePerson.setOnClickListener{
-                viewModel.deletePerson(person)
-                findNavController().popBackStack()
-            }
-            binding.fbUpdatePerson.setOnClickListener {
-                findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToUpdatePersonFragment(personId))
-            }
+
+        }
+        binding.fbDeletePerson.setOnClickListener{
+            DeletePersonDialogFragment(
+                viewModel.person.value?: DomainPerson(), {
+                    viewModel.deletePerson(it)
+                    findNavController().popBackStack()
+                },
+                {}
+            ).show(childFragmentManager,"delete")
+        }
+        binding.fbUpdatePerson.setOnClickListener {
+            findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToUpdatePersonFragment(personId))
         }
     }
 

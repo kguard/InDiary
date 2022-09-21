@@ -37,7 +37,7 @@ class DetailMemory2Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getMemory(args.memoryId)
-        viewModel.memory.observe(viewLifecycleOwner, Observer { it ->
+        viewModel.memory.observe(viewLifecycleOwner) { it ->
             viewModel.clearPhoto()
             Log.d("==============Detail2", "onViewCreated:Detail2 memory")
             binding.tvDetailMemory2Title.text = it.title
@@ -55,7 +55,7 @@ class DetailMemory2Fragment : Fragment() {
                 binding.tvDetailMemory2With.text = it.name
             })
             memory = it
-        })
+        }
 
         viewModel.photos.observe(viewLifecycleOwner) { photos ->
             Log.d("==Detail2", "onViewCreated: ${photos} ")
@@ -64,8 +64,13 @@ class DetailMemory2Fragment : Fragment() {
 
 
             binding.fbDeleteMemory.setOnClickListener {
-                viewModel.deleteMemory(memory)
-                findNavController().popBackStack()
+                DeleteMemoryDialogFragment(
+                    viewModel.memory.value?: DomainMemory(),{
+                        viewModel.deleteMemory(it)
+                        findNavController().popBackStack()
+                    },
+                    {}
+                ).show(childFragmentManager,"delete")
             }
 
             binding.fbUpdateMemory.setOnClickListener {

@@ -23,16 +23,28 @@ import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class PersonFragment : Fragment() {
-    private lateinit var binding :FragmentPersonBinding
+    private lateinit var binding: FragmentPersonBinding
     private val viewModel: PersonViewModel by viewModels()
-    private val adapter= PersonAdapter(
+    private val adapter = PersonAdapter(
         { id ->
-            findNavController().navigate(PersonFragmentDirections.actionPersonFragmentToDetailFragment(id))
+            findNavController().navigate(
+                PersonFragmentDirections.actionPersonFragmentToDetailFragment(
+                    id
+                )
+            )
         },
-        { person->
-            viewModel.deletePerson(person)
+        { person ->
+            DeletePersonDialogFragment(
+                person, {
+                    viewModel.deletePerson(it)
+                },
+                {
+                    viewModel.clearPerson()
+                    viewModel.getPersons()
+                }
+            ).show(childFragmentManager,"delete")
         },
-        { person->
+        { person ->
             viewModel.updatePerson(person.copy(favorite = !person.favorite))
         })
 
@@ -41,7 +53,7 @@ class PersonFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_person,container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_person, container, false)
 
         binding.rvPersonContent.adapter = this.adapter
         ItemHelperImpl(adapter).also {

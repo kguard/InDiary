@@ -34,8 +34,16 @@ class DetailMemoryFragment(personId: Int) : Fragment() {
                 it
             )
         )
-    }, {
-        viewModel.deleteMemory(it,person_id)
+    }, { memory ->
+        DeleteMemoryDialogFragment(
+            memory,{
+                viewModel.deleteMemory(it,person_id)
+            },
+            {
+                viewModel.clearMemories()
+                viewModel.getMemory(person_id)
+            }
+        ).show(childFragmentManager,"delete")
     })
 
     override fun onCreateView(
