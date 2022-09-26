@@ -1,8 +1,9 @@
 package com.kguard.indiary.viewmodel
 
-import android.app.Application
 import androidx.lifecycle.*
+import com.kguard.domain.domain.DomainMemory
 import com.kguard.domain.domain.DomainPerson
+import com.kguard.indiary.usecase.MemoryUseCase
 import com.kguard.indiary.usecase.PersonUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,11 +13,22 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PersonViewModel @Inject constructor(
-    private val useCase: PersonUseCase
+    private val personUseCase: PersonUseCase,
+    private val memoryUseCase: MemoryUseCase
 ):ViewModel(){
     private var _persons = MutableStateFlow<List<DomainPerson>>(emptyList())
     val persons: StateFlow<List<DomainPerson>>
     get() = _persons
+
+    private val _memories = MutableLiveData<List<DomainMemory>>()
+    val memories : LiveData<List<DomainMemory>>
+        get() = _memories
+
+    fun getMemoriesInPerson(){
+        viewModelScope.launch {
+            _memories.value=memoryUseCase.getMemories()
+        }
+    }
 
     fun clearPerson(){
         viewModelScope.launch {
@@ -25,20 +37,20 @@ class PersonViewModel @Inject constructor(
     }
     fun getPersons(){
         viewModelScope.launch {
-            _persons.value=useCase.getPersons()
+            _persons.value=personUseCase.getPersons()
         }
     }
     fun deletePerson(person: DomainPerson)
     {
         viewModelScope.launch() {
-            launch{useCase.deletePerson(person)}.join()
+            launch{personUseCase.deletePerson(person)}.join()
             getPersons()
         }
     }
     fun updatePerson(person: DomainPerson)
     {
         viewModelScope.launch {
-            useCase.updatePerson(person)
+            personUseCase.updatePerson(person)
             getPersons()
         }
     }

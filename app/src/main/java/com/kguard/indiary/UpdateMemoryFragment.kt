@@ -63,11 +63,14 @@ class UpdateMemoryFragment() : Fragment() {
             it.person_id?.let { it1 -> viewModel.getPerson(it1) }
             viewModel.person.observe(viewLifecycleOwner) {
                 binding.tvWithShow2.text = it.name
+                mainViewModel.setPerson(it)
             }
         }
 
         return binding.root
     }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -94,11 +97,11 @@ class UpdateMemoryFragment() : Fragment() {
         binding.btUpdateWith.setOnClickListener {
             findNavController().navigate(R.id.action_updateMemoryFragment_to_memoryWithDialog)
         }
-        mainViewModel.person.observe(viewLifecycleOwner, Observer {
+        mainViewModel.person.observe(viewLifecycleOwner){
             if (it != null) {
                 binding.tvWithShow2.text = it.name
             }
-        })
+        }
 
 
         binding.btUpdateMemoryDate.setOnClickListener {
@@ -140,11 +143,11 @@ class UpdateMemoryFragment() : Fragment() {
                 memory.title = binding.etUpdateMemoryTitle.editText?.text.toString()
                 memory.content = binding.etUpdateMemoryContent.text.toString()
                 memory.date = binding.tvUpdateDate.text.toString()
-                mainViewModel.person.observe(viewLifecycleOwner, Observer {
+                mainViewModel.person.observe(viewLifecycleOwner) {
                     if (it != null) {
                         memory.person_id = it.person_id
                     }
-                })
+                }
                 viewModel.photos.value?.forEach {
                     memory.imageList.add(it)
                 }

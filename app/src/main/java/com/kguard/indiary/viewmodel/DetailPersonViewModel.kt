@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kguard.domain.domain.DomainMemory
 import com.kguard.domain.domain.DomainPerson
+import com.kguard.indiary.usecase.MemoryUseCase
 import com.kguard.indiary.usecase.PersonUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,21 +17,33 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailPersonViewModel @Inject constructor(
-    private val useCase: PersonUseCase
+    private val personUseCase: PersonUseCase,
+    private val memoryUseCase: MemoryUseCase
 ):ViewModel() {
     private var _person = MutableLiveData<DomainPerson>()
     val person: LiveData<DomainPerson>
         get() = _person
+
+    private val _memories = MutableLiveData<List<DomainMemory>>()
+    val memories : LiveData<List<DomainMemory>>
+        get() = _memories
+
+    fun getMemoriesInPerson(){
+        viewModelScope.launch {
+            _memories.value=memoryUseCase.getMemories()
+        }
+    }
+
     fun getPerson(person_id:Int)
     {
         viewModelScope.launch {
-            _person.value=useCase.getPerson(person_id)
+            _person.value=personUseCase.getPerson(person_id)
         }
     }
     fun deletePerson(person: DomainPerson)
     {
         viewModelScope.launch {
-            useCase.deletePerson(person)
+            personUseCase.deletePerson(person)
         }
     }
     fun getAge(string:String): String {

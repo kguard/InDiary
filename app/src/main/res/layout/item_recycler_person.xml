@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
@@ -14,25 +13,25 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:background="@color/yellow"
+            android:elevation="10dp"
             app:cardBackgroundColor="@color/yellow"
-            app:cardCornerRadius="10sp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.448"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.258">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginStart="3sp"
                 android:layout_marginTop="3sp"
                 android:layout_marginEnd="3sp"
                 android:layout_marginBottom="3sp"
                 app:cardBackgroundColor="@color/brown_main"
-                app:cardCornerRadius="10sp">
+                app:cardCornerRadius="20dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -40,13 +39,13 @@
 
                     <TextView
                         android:id="@+id/tv_memory_date"
+                        style="@style/TV_12sp_normal_white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:layout_marginEnd="10dp"
+                        android:layout_marginEnd="16dp"
                         android:layout_marginBottom="15dp"
                         android:text="TextView"
-                        style="@style/TV_12sp_normal_white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/ib_favorite" />
@@ -57,6 +56,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_memory_date"
                         app:layout_constraintEnd_toStartOf="@+id/tv_memory_date"
@@ -79,12 +79,12 @@
 
                     <TextView
                         android:id="@+id/tv_people_name"
+                        style="@style/TV_20sp_normal_white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
                         android:text="TextView"
-                        style="@style/TV_20sp_normal_white"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 

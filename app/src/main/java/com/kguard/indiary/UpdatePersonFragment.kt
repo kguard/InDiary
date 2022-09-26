@@ -72,6 +72,9 @@ class UpdatePersonFragment() : Fragment() {
                 person.name = binding.etUpdatePersonName.editText?.text.toString()
                 person.birth = binding.etUpdatePersonBirth.editText?.text.toString()
                 person.memo = binding.etUpdatePersonMemo.text.toString()
+                viewModel.person.observe(viewLifecycleOwner){
+                    person.make=it.make
+                }
                 when (binding.SpinnerMenu2.editText?.text.toString()) {
                     "남" -> {
                         person.gender = 0

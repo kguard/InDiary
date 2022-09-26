@@ -25,9 +25,10 @@ import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class DetailMemoryFragment(personId: Int) : Fragment() {
-    private val person_id = personId
     private lateinit var binding: FragmentDetailMemoryBinding
+    private val args by navArgs<DetailFragmentArgs>()
     private val viewModel: DetailMemoryViewModel by viewModels()
+    private val person_id = personId
     private val adapter = MemoryAdapter({
         findNavController().navigate(
             DetailFragmentDirections.actionDetailFragmentToDetailMemory2Fragment(
@@ -50,8 +51,7 @@ class DetailMemoryFragment(personId: Int) : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_detail_memory, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail_memory, container, false)
 
         binding.rvDetailMemory.adapter = adapter
         ItemHelperImpl(adapter).also {

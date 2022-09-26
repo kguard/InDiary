@@ -61,18 +61,6 @@ class PersonAdapter(
             }
 
             binding.ibFavorite.setOnClickListener {
-//                if(domainPerson.favorite)
-//                {
-//                    domainPerson.favorite=false
-//                    onFavorite(domainPerson)
-//                    binding.ibFavorite.setImageResource(R.drawable.ic_favorite_off)
-//                }
-//                else if (!domainPerson.favorite)
-//                {
-//                    domainPerson.favorite=true
-//                    onFavorite(domainPerson)
-//                    binding.ibFavorite.setImageResource(R.drawable.ic_favorite_on)
-//                }
                 onFavorite(domainPerson)
             }
         }

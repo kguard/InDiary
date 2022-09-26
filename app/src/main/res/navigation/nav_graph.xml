@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_gragh"
+    android:id="@+id/nav_graph"
     app:startDestination="@id/personFragment"
     >
     <fragment
@@ -141,6 +141,5 @@
         android:name="com.kguard.indiary.DeleteMemoryDialogFragment"
         android:label="fragment_delete_memory_dialog"
         tools:layout="@layout/fragment_delete_memory_dialog" >
-
     </dialog>
 </navigation>

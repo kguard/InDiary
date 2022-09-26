@@ -2,10 +2,12 @@ package com.kguard.indiary
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -17,6 +19,7 @@ import com.kguard.indiary.adapter.PersonAdapter
 import com.kguard.indiary.adapter.TagAdapter
 import com.kguard.indiary.databinding.FragmentPersonBinding
 import com.kguard.indiary.util.ItemHelperImpl
+import com.kguard.indiary.viewmodel.MainViewModel
 import com.kguard.indiary.viewmodel.PersonViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -25,6 +28,7 @@ import kotlinx.coroutines.flow.collectLatest
 class PersonFragment : Fragment() {
     private lateinit var binding: FragmentPersonBinding
     private val viewModel: PersonViewModel by viewModels()
+//    private val mainViewModel: MainViewModel by activityViewModels()
     private val adapter = PersonAdapter(
         { id ->
             findNavController().navigate(
@@ -35,14 +39,27 @@ class PersonFragment : Fragment() {
         },
         { person ->
             DeletePersonDialogFragment(
-                person, {
-                    viewModel.deletePerson(it)
+                person, { delete ->
+                    viewModel.memories.observe(viewLifecycleOwner, Observer { memories ->
+                        Log.d("List", "ListDomainMemory: ${memories} ")
+                        Log.d("List", "ListDomainPerson:${delete} ")
+                        if (memories.find { it.person_id == delete.person_id } == null) {
+                            Toast.makeText(context, "삭제 되었습니다.", Toast.LENGTH_SHORT).show()
+                            viewModel.deletePerson(delete)
+                        }
+                        else{
+                            Toast.makeText(context, "삭제 할 수 없습니다.", Toast.LENGTH_SHORT).show()
+                            viewModel.clearPerson()
+                            viewModel.getPersons()
+                        }
+                    })
+
                 },
                 {
                     viewModel.clearPerson()
                     viewModel.getPersons()
                 }
-            ).show(childFragmentManager,"delete")
+            ).show(childFragmentManager, "delete")
         },
         { person ->
             viewModel.updatePerson(person.copy(favorite = !person.favorite))
@@ -54,6 +71,7 @@ class PersonFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_person, container, false)
+        viewModel.getMemoriesInPerson()
 
         binding.rvPersonContent.adapter = this.adapter
         ItemHelperImpl(adapter).also {

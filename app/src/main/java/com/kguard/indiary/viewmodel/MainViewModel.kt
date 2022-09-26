@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kguard.domain.domain.DomainMemory
 import com.kguard.domain.domain.DomainPerson
 import com.kguard.indiary.data.CustomCharacter
 import com.kguard.indiary.usecase.*
