@@ -61,6 +61,8 @@
     <string name="AddMemoryPage">추억 추가하기</string>
     <string name="UpdatePersonPage">사람 수정하기</string>
     <string name="UpdateMemoryPage">추억 수정하기</string>
+    <string name="PersonDetail">사람 상세</string>
+    <string name="MemoryDetail">추억 상세</string>
     <string name="UpdatePage">수정 페이지</string>
     <string name="DetailPage">상세 페이지</string>
     <string name="AddCharacterPage">특징 추가하기</string>

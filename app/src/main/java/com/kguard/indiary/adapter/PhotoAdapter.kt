@@ -1,13 +1,7 @@
 package com.kguard.indiary.adapter
 
-import android.content.Context
-import android.net.Uri
-import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.RoundedCorner
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -27,7 +21,6 @@ class PhotoAdapter(val onClick : (Int) -> Unit): ListAdapter<String, PhotoAdapte
         }
     }
 
-   // private var photos:ArrayList<String?> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
         val binding= ItemRecyclerPhotoBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return PhotoViewHolder(binding)
@@ -35,12 +28,6 @@ class PhotoAdapter(val onClick : (Int) -> Unit): ListAdapter<String, PhotoAdapte
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
         getItem(position)?.let { holder.setImage(it) }
-//        holder.itemView.setOnClickListener {
-//            onClick(position)
-//            //photos.removeAt(position)
-//
-//            Log.d("======================", "onBindViewHolder: ${position}")
-//        }
     }
 
     inner class PhotoViewHolder(val binding: ItemRecyclerPhotoBinding): RecyclerView.ViewHolder(binding.root) {

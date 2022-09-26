@@ -75,7 +75,14 @@ class AddMemoryFragment : Fragment() {
             dateRangePicker.show(childFragmentManager, "datePicker")
             dateRangePicker.addOnPositiveButtonClickListener {
                 memory.date = dateRangePicker.headerText
-                binding.tvAddDate.setTextColor(Color.BLACK)
+//                binding.tvAddDate.setTextColor(Color.BLACK)
+                binding.tvAddDate.text = memory.date
+            }
+        }
+        binding.tvAddDate.setOnClickListener {
+            dateRangePicker.show(childFragmentManager, "datePicker")
+            dateRangePicker.addOnPositiveButtonClickListener {
+                memory.date = dateRangePicker.headerText
                 binding.tvAddDate.text = memory.date
             }
         }

@@ -6,6 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/beige_main"
         tools:context=".DetailMemory2Fragment">
 
         <androidx.core.widget.NestedScrollView
@@ -16,7 +17,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout

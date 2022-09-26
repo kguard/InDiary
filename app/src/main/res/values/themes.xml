@@ -8,9 +8,9 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -73,6 +73,12 @@
         <item name="android:fontFamily">@font/nanum_gothic_extra_bold</item>
         <item name="android:textStyle">normal</item>
     </style>
+    <style name="TV_16sp_normal_black" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/nanum_gothic_extra_bold</item>
+        <item name="android:textStyle">normal</item>
+    </style>
 
     <style name="TV_20sp_bold_white" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">20sp</item>
@@ -125,9 +131,11 @@
         <item name="android:layout_marginEnd">8dp</item>
     </style>
 
-    <style name="BT_material_icon" parent="@style/Widget.MaterialComponents.Button.Icon">
-        <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/white</item>
+    <style name="BT_material_icon" parent="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon">
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:textColor">@color/brown_sub</item>
         <item name="android:fontFamily">@font/nanum_gothic_extra_bold</item>
         <item name="android:textStyle">normal</item>
     </style>
@@ -145,7 +153,7 @@
 
     <style name="ThemeOverlay.App.FloatingActionButton" parent="">
         <item name="colorSecondary">@color/brown_sub</item>
-        <item name="colorOnSecondary">@color/brown_main</item>
+        <item name="colorOnSecondary">@color/white</item>
         <item name="colorOnSurface">@color/black</item>
     </style>
 

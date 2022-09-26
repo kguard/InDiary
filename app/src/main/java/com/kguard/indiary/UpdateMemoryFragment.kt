@@ -112,6 +112,14 @@ class UpdateMemoryFragment() : Fragment() {
             }
         }
 
+        binding.tvUpdateDate.setOnClickListener {
+            dateRangePicker.show(childFragmentManager, "datePicker")
+            dateRangePicker.addOnPositiveButtonClickListener {
+                memory.date = dateRangePicker.headerText
+                binding.tvUpdateDate.text = memory.date
+            }
+        }
+
         binding.btUpdateMemoryPhoto.setOnClickListener {
             val permissionChecker: PermissionListener = object : PermissionListener {
                 override fun onPermissionGranted() {
