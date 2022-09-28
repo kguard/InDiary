@@ -24,6 +24,11 @@ import com.kguard.indiary.databinding.FragmentAddMemoryBinding
 import com.kguard.indiary.viewmodel.AddMemoryViewModel
 import com.kguard.indiary.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 @AndroidEntryPoint
@@ -39,6 +44,7 @@ class AddMemoryFragment : Fragment() {
         val firstImage = it.firstOrNull() ?: return@registerImagePicker
         viewModel.setPhoto(firstImage.uri.toString())
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -74,15 +80,30 @@ class AddMemoryFragment : Fragment() {
         binding.btAddMemoryDate.setOnClickListener {
             dateRangePicker.show(childFragmentManager, "datePicker")
             dateRangePicker.addOnPositiveButtonClickListener {
-                memory.date = dateRangePicker.headerText
-//                binding.tvAddDate.setTextColor(Color.BLACK)
+
+                memory.date = LocalDateTime.ofInstant(
+                    Instant.ofEpochMilli(it.first),
+                    TimeZone.getDefault().toZoneId()
+                ).format(DateTimeFormatter.ISO_DATE) + " ~ " + LocalDateTime.ofInstant(
+                    Instant.ofEpochMilli(
+                        it.second
+                    ), TimeZone.getDefault().toZoneId()
+                ).format(DateTimeFormatter.ISO_DATE)
+
                 binding.tvAddDate.text = memory.date
             }
         }
         binding.tvAddDate.setOnClickListener {
             dateRangePicker.show(childFragmentManager, "datePicker")
             dateRangePicker.addOnPositiveButtonClickListener {
-                memory.date = dateRangePicker.headerText
+                memory.date = LocalDateTime.ofInstant(
+                    Instant.ofEpochMilli(it.first),
+                    TimeZone.getDefault().toZoneId()
+                ).format(DateTimeFormatter.ISO_DATE) + " ~ " + LocalDateTime.ofInstant(
+                    Instant.ofEpochMilli(
+                        it.second
+                    ), TimeZone.getDefault().toZoneId()
+                ).format(DateTimeFormatter.ISO_DATE)
                 binding.tvAddDate.text = memory.date
             }
         }
@@ -122,15 +143,12 @@ class AddMemoryFragment : Fragment() {
         binding.btAddMemoryComplete.setOnClickListener {
             if (binding.etAddMemoryTitle.editText?.text?.isEmpty() == true) {
                 binding.etAddMemoryTitle.error = getString(R.string.TitleEmptyError)
-            }
-            else if(binding.tvAddDate.text.isEmpty() || binding.tvAddDate.text==getString(R.string.DateError))
-            {
-                binding.etAddMemoryTitle.isErrorEnabled=false
+            } else if (binding.tvAddDate.text.isEmpty() || binding.tvAddDate.text == getString(R.string.DateError)) {
+                binding.etAddMemoryTitle.isErrorEnabled = false
                 binding.tvAddDate.setTextColor(Color.RED)
-                binding.tvAddDate.text=getString(R.string.DateError)
-            }
-            else {
-                binding.etAddMemoryTitle.isErrorEnabled=false
+                binding.tvAddDate.text = getString(R.string.DateError)
+            } else {
+                binding.etAddMemoryTitle.isErrorEnabled = false
                 binding.tvAddDate.setTextColor(Color.BLACK)
                 memory.title = binding.etAddMemoryTitle.editText?.text.toString()
                 memory.content = binding.etAddMemoryContent.text.toString()

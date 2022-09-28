@@ -26,6 +26,10 @@ import com.kguard.indiary.databinding.FragmentUpdateMemoryBinding
 import com.kguard.indiary.viewmodel.MainViewModel
 import com.kguard.indiary.viewmodel.UpdateMemoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 @AndroidEntryPoint
 class UpdateMemoryFragment() : Fragment() {
@@ -107,7 +111,14 @@ class UpdateMemoryFragment() : Fragment() {
         binding.btUpdateMemoryDate.setOnClickListener {
             dateRangePicker.show(childFragmentManager, "datePicker")
             dateRangePicker.addOnPositiveButtonClickListener {
-                memory.date = dateRangePicker.headerText
+                memory.date = LocalDateTime.ofInstant(
+                    Instant.ofEpochMilli(it.first),
+                    TimeZone.getDefault().toZoneId()
+                ).format(DateTimeFormatter.ISO_DATE) + " ~ " + LocalDateTime.ofInstant(
+                    Instant.ofEpochMilli(
+                        it.second
+                    ), TimeZone.getDefault().toZoneId()
+                ).format(DateTimeFormatter.ISO_DATE)
                 binding.tvUpdateDate.text = memory.date
             }
         }
@@ -115,7 +126,14 @@ class UpdateMemoryFragment() : Fragment() {
         binding.tvUpdateDate.setOnClickListener {
             dateRangePicker.show(childFragmentManager, "datePicker")
             dateRangePicker.addOnPositiveButtonClickListener {
-                memory.date = dateRangePicker.headerText
+                memory.date = LocalDateTime.ofInstant(
+                    Instant.ofEpochMilli(it.first),
+                    TimeZone.getDefault().toZoneId()
+                ).format(DateTimeFormatter.ISO_DATE) + " ~ " + LocalDateTime.ofInstant(
+                    Instant.ofEpochMilli(
+                        it.second
+                    ), TimeZone.getDefault().toZoneId()
+                ).format(DateTimeFormatter.ISO_DATE)
                 binding.tvUpdateDate.text = memory.date
             }
         }
