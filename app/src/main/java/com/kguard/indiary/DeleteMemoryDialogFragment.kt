@@ -1,5 +1,7 @@
 package com.kguard.indiary
 
+import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,6 +19,11 @@ class DeleteMemoryDialogFragment(
     val onCancel: () -> Unit
 ) : DialogFragment() {
     private lateinit var binding: FragmentDeleteMemoryDialogBinding
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        return dialog
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +44,10 @@ class DeleteMemoryDialogFragment(
             dismiss()
         }
         return binding.root
+    }
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onCancel()
     }
 
 }

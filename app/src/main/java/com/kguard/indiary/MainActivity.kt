@@ -56,7 +56,8 @@ class MainActivity : AppCompatActivity() {
         //super.onBackPressed()
         when (navController.currentDestination?.id)
         {
-            R.id.memoryFragment -> finish()
+            R.id.personFragment -> QuitDialogFragment().show(supportFragmentManager,"Quit")
+            R.id.memoryFragment -> QuitDialogFragment().show(supportFragmentManager,"Quit")
             else -> super.onBackPressed()
         }
     }

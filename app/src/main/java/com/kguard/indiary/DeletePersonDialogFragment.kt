@@ -1,5 +1,7 @@
 package com.kguard.indiary
 
+import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +12,17 @@ import com.kguard.domain.domain.DomainPerson
 import com.kguard.indiary.databinding.FragmentDeletePersonDialogBinding
 
 
-
 class DeletePersonDialogFragment(
     val person: DomainPerson,
     val onDelete: (DomainPerson) -> Unit,
     val onCancel: () -> Unit
 ) : DialogFragment() {
     private lateinit var binding: FragmentDeletePersonDialogBinding
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        return dialog
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,6 +38,11 @@ class DeletePersonDialogFragment(
             dismiss()
         }
         return binding.root
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onCancel()
     }
 
 }
