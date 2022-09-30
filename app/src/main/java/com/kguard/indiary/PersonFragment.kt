@@ -41,8 +41,6 @@ class PersonFragment : Fragment() {
             DeletePersonDialogFragment(
                 person, { delete ->
                     viewModel.memories.observe(viewLifecycleOwner, Observer { memories ->
-                        Log.d("List", "ListDomainMemory: ${memories} ")
-                        Log.d("List", "ListDomainPerson:${delete} ")
                         if (memories.find { it.person_id == delete.person_id } == null) {
                             Toast.makeText(context, "삭제 되었습니다.", Toast.LENGTH_SHORT).show()
                             viewModel.deletePerson(delete)

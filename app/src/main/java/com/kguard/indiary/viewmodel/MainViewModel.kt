@@ -30,6 +30,10 @@ class MainViewModel @Inject constructor(
     val persons : LiveData<List<DomainPerson>>
         get() = _persons
 
+    private val _personId=MutableLiveData<Int>()
+    val personId : LiveData<Int>
+        get() = _personId
+
     fun clearPerson()
     {
         _person.value=null
@@ -42,6 +46,14 @@ class MainViewModel @Inject constructor(
     {
         viewModelScope.launch { _persons.value=personUseCase.getPersons()  }
 
+    }
+    fun setPersonId(personId :Int)
+    {
+        viewModelScope.launch { _personId.value=personId }
+    }
+    fun clearPersonId()
+    {
+        viewModelScope.launch{_personId.value = -1}
     }
 
 }

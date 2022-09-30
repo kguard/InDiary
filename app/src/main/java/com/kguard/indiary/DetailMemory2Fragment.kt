@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -21,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetailMemory2Fragment : Fragment() {
     private val args by navArgs<DetailMemory2FragmentArgs>()
-    private lateinit var binding :FragmentDetailMemory2Binding
+    private lateinit var binding: FragmentDetailMemory2Binding
     private val viewModel: DetailMemory2ViewModel by viewModels()
     private var adapter = PhotoAdapter {}.apply { setHasStableIds(true) }
     private var memory = DomainMemory()
@@ -30,7 +31,8 @@ class DetailMemory2Fragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_detail_memory2,container,false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_detail_memory2, container, false)
         return binding.root
     }
 
@@ -39,16 +41,15 @@ class DetailMemory2Fragment : Fragment() {
         viewModel.getMemory(args.memoryId)
         viewModel.memory.observe(viewLifecycleOwner) { it ->
             viewModel.clearPhoto()
-            Log.d("==============Detail2", "onViewCreated:Detail2 memory")
             binding.tvDetailMemory2Title.text = it.title
             binding.tvDetailMemory2Date.text = it.date
             binding.tvDetailMemory2Content.text = it.content
-            binding.rvDetailMemory2.adapter=adapter
-            Log.d("--Detail2", "onViewCreated: ${it.imageList}")
+            binding.rvDetailMemory2.adapter = adapter
             it.imageList.forEach {
-                if (it != null) { viewModel.setPhoto(it) }
+                if (it != null) {
+                    viewModel.setPhoto(it)
+                }
             }
-            Log.d("-!!!-Detail2", "onViewCreated: ${viewModel.photos.value}")
 
             it.person_id?.let { it1 -> viewModel.getPerson(it1) }
             viewModel.person.observe(viewLifecycleOwner, Observer {
@@ -58,27 +59,29 @@ class DetailMemory2Fragment : Fragment() {
         }
 
         viewModel.photos.observe(viewLifecycleOwner) { photos ->
-            Log.d("==Detail2", "onViewCreated: ${photos} ")
             adapter.updatePhoto(photos)
         }
 
 
-            binding.fbDeleteMemory.setOnClickListener {
-                DeleteMemoryDialogFragment(
-                    viewModel.memory.value?: DomainMemory(),{
-                        viewModel.deleteMemory(it)
-                        findNavController().popBackStack()
-                    },
-                    {}
-                ).show(childFragmentManager,"delete")
-            }
+        binding.fbDeleteMemory.setOnClickListener {
+            DeleteMemoryDialogFragment(
+                viewModel.memory.value ?: DomainMemory(), {
+                    viewModel.deleteMemory(it)
+                    Toast.makeText(context, "삭제 되었습니다.", Toast.LENGTH_SHORT).show()
+                    findNavController().popBackStack()
+                },
+                {}
+            ).show(childFragmentManager, "delete")
+        }
 
-            binding.fbUpdateMemory.setOnClickListener {
-                viewModel.clearPhoto()
-                findNavController().navigate(
-                    DetailMemory2FragmentDirections.actionDetailMemory2FragmentToUpdateMemoryFragment(args.memoryId)
+        binding.fbUpdateMemory.setOnClickListener {
+            viewModel.clearPhoto()
+            findNavController().navigate(
+                DetailMemory2FragmentDirections.actionDetailMemory2FragmentToUpdateMemoryFragment(
+                    args.memoryId
                 )
-            }
+            )
+        }
 
 
     }

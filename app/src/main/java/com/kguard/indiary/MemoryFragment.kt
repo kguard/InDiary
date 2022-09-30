@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -31,6 +32,7 @@ class MemoryFragment : Fragment() {
     },{memory ->
         DeleteMemoryDialogFragment(
             memory,{
+                Toast.makeText(context, "삭제 되었습니다.", Toast.LENGTH_SHORT).show()
                 viewModel.deleteMemory(it)
             },
             {
