@@ -5,30 +5,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.kguard.indiary.adapter.MemoryAdapter
-import com.kguard.indiary.databinding.FragmentDetailMemory2Binding
 import com.kguard.indiary.databinding.FragmentDetailMemoryBinding
-import com.kguard.indiary.databinding.FragmentMemoryBinding
 import com.kguard.indiary.util.ItemHelperImpl
 import com.kguard.indiary.viewmodel.DetailMemoryViewModel
-import com.kguard.indiary.viewmodel.MemoryViewModel
+import com.kguard.indiary.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlin.properties.Delegates
 
 @AndroidEntryPoint
-class DetailMemoryFragment(personId: Int) : Fragment() {
+class DetailMemoryFragment : Fragment() {
     private lateinit var binding: FragmentDetailMemoryBinding
-    private val args by navArgs<DetailFragmentArgs>()
     private val viewModel: DetailMemoryViewModel by viewModels()
-    private val person_id = personId
+    private val mainViewModel: MainViewModel by activityViewModels()
+    private var personId =0
     private val adapter = MemoryAdapter({
         findNavController().navigate(
             DetailFragmentDirections.actionDetailFragmentToDetailMemory2Fragment(
@@ -38,11 +37,12 @@ class DetailMemoryFragment(personId: Int) : Fragment() {
     }, { memory ->
         DeleteMemoryDialogFragment(
             memory,{
-                viewModel.deleteMemory(it,person_id)
+                Toast.makeText(context, "삭제 되었습니다.", Toast.LENGTH_SHORT).show()
+                viewModel.deleteMemory(it, this.personId)
             },
             {
                 viewModel.clearMemories()
-                viewModel.getMemory(person_id)
+                viewModel.getMemory(this.personId)
             }
         ).show(childFragmentManager,"delete")
     })
@@ -52,14 +52,20 @@ class DetailMemoryFragment(personId: Int) : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail_memory, container, false)
-
+        mainViewModel.personId.observe(viewLifecycleOwner)
+        {
+            if (it != null) {
+                personId = it
+                viewModel.getMemory(personId)
+            }
+        }
         binding.rvDetailMemory.adapter = adapter
         ItemHelperImpl(adapter).also {
             ItemTouchHelper(it).apply {
                 this.attachToRecyclerView(binding.rvDetailMemory)
             }
         }
-        viewModel.getMemory(person_id)
+
         return binding.root
     }
 
@@ -71,6 +77,5 @@ class DetailMemoryFragment(personId: Int) : Fragment() {
             }
         }
     }
-
 
 }

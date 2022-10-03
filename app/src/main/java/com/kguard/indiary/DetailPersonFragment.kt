@@ -8,25 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.kguard.domain.domain.DomainPerson
 import com.kguard.indiary.databinding.FragmentDetailPersonBinding
 import com.kguard.indiary.viewmodel.DetailPersonViewModel
-import com.kguard.indiary.viewmodel.PersonViewModel
+import com.kguard.indiary.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.*
+import kotlin.properties.Delegates
 
 @AndroidEntryPoint
-class DetailPersonFragment(personId: Int) : Fragment() {
+class DetailPersonFragment : Fragment() {
     private lateinit var binding : FragmentDetailPersonBinding
-    private val args by navArgs<DetailFragmentArgs>()
-    private val personId=personId
+    private val mainViewModel : MainViewModel by activityViewModels()
     private val viewModel:DetailPersonViewModel by viewModels()
+    private var personId =0
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,8 +36,15 @@ class DetailPersonFragment(personId: Int) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getPerson(personId)
-        viewModel.getMemoriesInPerson()
+        mainViewModel.personId.observe(viewLifecycleOwner)
+        {
+            if (it != null) {
+                personId = it
+                viewModel.getPerson(it)
+                viewModel.getMemoriesInPerson()
+            }
+        }
+
         viewModel.person.observe(viewLifecycleOwner){
             binding.tvDetailPersonName.text=it.name
             binding.tvDetailPersonBirth.text=it.birth
@@ -77,5 +82,6 @@ class DetailPersonFragment(personId: Int) : Fragment() {
             findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToUpdatePersonFragment(personId))
         }
     }
+
 
 }
