@@ -57,11 +57,10 @@
                     style="@style/TV_12sp_normal_white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
                     android:text="TextView"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_memory_title"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_memory_title" />
+                    app:layout_constraintStart_toStartOf="@+id/tv_memory_title"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_memory_title" />
 
                 <ImageView
                     android:id="@+id/iv_memory1"
@@ -73,7 +72,6 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_memory2"
-                    app:layout_constraintVertical_bias="0.0"
                     tools:srcCompat="@tools:sample/avatars" />
 
                 <ImageView
@@ -95,15 +93,11 @@
                     android:id="@+id/iv_memory3"
                     android:layout_width="60dp"
                     android:layout_height="80dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="16dp"
                     android:foregroundGravity="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/iv_memory5"
-                    app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="@+id/iv_memory1"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_memory_title"
-                    app:layout_constraintVertical_bias="1.0"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_memory_date"
                     tools:srcCompat="@tools:sample/avatars" />
 
                 <ImageView

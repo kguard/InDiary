@@ -27,6 +27,7 @@ import com.kguard.indiary.viewmodel.MainViewModel
 import com.kguard.indiary.viewmodel.UpdateMemoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.Instant
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -75,7 +76,6 @@ class UpdateMemoryFragment() : Fragment() {
     }
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val memory = DomainMemory(memory_id = args.memoryId)
@@ -101,7 +101,7 @@ class UpdateMemoryFragment() : Fragment() {
         binding.btUpdateWith.setOnClickListener {
             findNavController().navigate(R.id.action_updateMemoryFragment_to_memoryWithDialog)
         }
-        mainViewModel.person.observe(viewLifecycleOwner){
+        mainViewModel.person.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.tvWithShow2.text = it.name
             }
@@ -111,14 +111,23 @@ class UpdateMemoryFragment() : Fragment() {
         binding.btUpdateMemoryDate.setOnClickListener {
             dateRangePicker.show(childFragmentManager, "datePicker")
             dateRangePicker.addOnPositiveButtonClickListener {
-                memory.date = LocalDateTime.ofInstant(
+                val firstDay = LocalDateTime.ofInstant(
                     Instant.ofEpochMilli(it.first),
                     TimeZone.getDefault().toZoneId()
-                ).format(DateTimeFormatter.ISO_DATE) + " ~ " + LocalDateTime.ofInstant(
+                )
+                val secondDay = LocalDateTime.ofInstant(
                     Instant.ofEpochMilli(
                         it.second
                     ), TimeZone.getDefault().toZoneId()
-                ).format(DateTimeFormatter.ISO_DATE)
+                )
+                if (!LocalDate.now().plusDays(1).isAfter(secondDay.toLocalDate())) {
+                    Toast.makeText(context, "과거를 선택해주세요.", Toast.LENGTH_SHORT).show()
+                } else {
+                    memory.date =
+                        firstDay.format(DateTimeFormatter.ISO_DATE) + "~" + secondDay.format(
+                            DateTimeFormatter.ISO_DATE
+                        )
+                }
                 binding.tvUpdateDate.text = memory.date
             }
         }
@@ -126,14 +135,23 @@ class UpdateMemoryFragment() : Fragment() {
         binding.tvUpdateDate.setOnClickListener {
             dateRangePicker.show(childFragmentManager, "datePicker")
             dateRangePicker.addOnPositiveButtonClickListener {
-                memory.date = LocalDateTime.ofInstant(
+                val firstDay = LocalDateTime.ofInstant(
                     Instant.ofEpochMilli(it.first),
                     TimeZone.getDefault().toZoneId()
-                ).format(DateTimeFormatter.ISO_DATE) + " ~ " + LocalDateTime.ofInstant(
+                )
+                val secondDay = LocalDateTime.ofInstant(
                     Instant.ofEpochMilli(
                         it.second
                     ), TimeZone.getDefault().toZoneId()
-                ).format(DateTimeFormatter.ISO_DATE)
+                )
+                if (!LocalDate.now().plusDays(1).isAfter(secondDay.toLocalDate())) {
+                    Toast.makeText(context, "과거를 선택해주세요.", Toast.LENGTH_SHORT).show()
+                } else {
+                    memory.date =
+                        firstDay.format(DateTimeFormatter.ISO_DATE) + "~" + secondDay.format(
+                            DateTimeFormatter.ISO_DATE
+                        )
+                }
                 binding.tvUpdateDate.text = memory.date
             }
         }
@@ -165,7 +183,7 @@ class UpdateMemoryFragment() : Fragment() {
             if (binding.etUpdateMemoryTitle.editText?.text == null) {
                 binding.etUpdateMemoryTitle.error = getString(R.string.TitleEmptyError)
             } else {
-                binding.etUpdateMemoryTitle.isErrorEnabled=false
+                binding.etUpdateMemoryTitle.isErrorEnabled = false
                 memory.title = binding.etUpdateMemoryTitle.editText?.text.toString()
                 memory.content = binding.etUpdateMemoryContent.text.toString()
                 memory.date = binding.tvUpdateDate.text.toString()

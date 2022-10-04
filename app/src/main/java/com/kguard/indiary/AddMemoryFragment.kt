@@ -79,32 +79,51 @@ class AddMemoryFragment : Fragment() {
 
         binding.btAddMemoryDate.setOnClickListener {
             dateRangePicker.show(childFragmentManager, "datePicker")
-            dateRangePicker.addOnPositiveButtonClickListener {
 
-                memory.date = LocalDateTime.ofInstant(
+            dateRangePicker.addOnPositiveButtonClickListener {
+                val firstDay = LocalDateTime.ofInstant(
                     Instant.ofEpochMilli(it.first),
                     TimeZone.getDefault().toZoneId()
-                ).format(DateTimeFormatter.ISO_DATE) + " ~ " + LocalDateTime.ofInstant(
+                )
+                val secondDay = LocalDateTime.ofInstant(
                     Instant.ofEpochMilli(
                         it.second
                     ), TimeZone.getDefault().toZoneId()
-                ).format(DateTimeFormatter.ISO_DATE)
+                )
+                if (!LocalDate.now().plusDays(1).isAfter(secondDay.toLocalDate())) {
+                    Toast.makeText(context, "과거를 선택해주세요.", Toast.LENGTH_SHORT).show()
+                } else {
+                    memory.date =
+                        firstDay.format(DateTimeFormatter.ISO_DATE) + "~" + secondDay.format(
+                            DateTimeFormatter.ISO_DATE
+                        )
+                    binding.tvAddDate.text = memory.date
+                }
 
-                binding.tvAddDate.text = memory.date
+
             }
         }
         binding.tvAddDate.setOnClickListener {
             dateRangePicker.show(childFragmentManager, "datePicker")
             dateRangePicker.addOnPositiveButtonClickListener {
-                memory.date = LocalDateTime.ofInstant(
+                val firstDay = LocalDateTime.ofInstant(
                     Instant.ofEpochMilli(it.first),
                     TimeZone.getDefault().toZoneId()
-                ).format(DateTimeFormatter.ISO_DATE) + " ~ " + LocalDateTime.ofInstant(
+                )
+                val secondDay = LocalDateTime.ofInstant(
                     Instant.ofEpochMilli(
                         it.second
                     ), TimeZone.getDefault().toZoneId()
-                ).format(DateTimeFormatter.ISO_DATE)
-                binding.tvAddDate.text = memory.date
+                )
+                if (!LocalDate.now().plusDays(1).isAfter(secondDay.toLocalDate())) {
+                    Toast.makeText(context, "과거를 선택해주세요.", Toast.LENGTH_SHORT).show()
+                } else {
+                    memory.date =
+                        firstDay.format(DateTimeFormatter.ISO_DATE) + "~" + secondDay.format(
+                            DateTimeFormatter.ISO_DATE
+                        )
+                    binding.tvAddDate.text = memory.date
+                }
             }
         }
 
