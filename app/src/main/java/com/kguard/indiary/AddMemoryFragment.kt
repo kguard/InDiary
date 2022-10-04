@@ -91,7 +91,7 @@ class AddMemoryFragment : Fragment() {
                     ), TimeZone.getDefault().toZoneId()
                 )
                 if (!LocalDate.now().plusDays(1).isAfter(secondDay.toLocalDate())) {
-                    Toast.makeText(context, "이전 날짜를 선택해주세요.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "오늘 날짜보다 이후 날짜는 선택할 수 없습니다", Toast.LENGTH_SHORT).show()
                 } else {
                     memory.date =
                         firstDay.format(DateTimeFormatter.ISO_DATE) + "~" + secondDay.format(
@@ -116,7 +116,7 @@ class AddMemoryFragment : Fragment() {
                     ), TimeZone.getDefault().toZoneId()
                 )
                 if (!LocalDate.now().plusDays(1).isAfter(secondDay.toLocalDate())) {
-                    Toast.makeText(context, "이전 날짜를 선택해주세요.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "오늘 날짜보다 이후 날짜는 선택할 수 없습니다", Toast.LENGTH_SHORT).show()
                 } else {
                     memory.date =
                         firstDay.format(DateTimeFormatter.ISO_DATE) + "~" + secondDay.format(
