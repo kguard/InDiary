@@ -1,5 +1,6 @@
 package com.kguard.indiary
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -121,13 +122,14 @@ class UpdateMemoryFragment() : Fragment() {
                     ), TimeZone.getDefault().toZoneId()
                 )
                 if (!LocalDate.now().plusDays(1).isAfter(secondDay.toLocalDate())) {
-                    Toast.makeText(context, "과거를 선택해주세요.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "이전 날짜를 선택해주세요.", Toast.LENGTH_SHORT).show()
                 } else {
                     memory.date =
                         firstDay.format(DateTimeFormatter.ISO_DATE) + "~" + secondDay.format(
                             DateTimeFormatter.ISO_DATE
                         )
                 }
+                binding.tvUpdateDate.setTextColor(Color.BLACK)
                 binding.tvUpdateDate.text = memory.date
             }
         }
@@ -145,7 +147,7 @@ class UpdateMemoryFragment() : Fragment() {
                     ), TimeZone.getDefault().toZoneId()
                 )
                 if (!LocalDate.now().plusDays(1).isAfter(secondDay.toLocalDate())) {
-                    Toast.makeText(context, "과거를 선택해주세요.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "이전 날짜를 선택해주세요.", Toast.LENGTH_SHORT).show()
                 } else {
                     memory.date =
                         firstDay.format(DateTimeFormatter.ISO_DATE) + "~" + secondDay.format(

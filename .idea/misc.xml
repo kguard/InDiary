@@ -17,6 +17,7 @@
         <entry key="..\:/git/InDiary/app/src/main/res/drawable/ic_favorite_button.xml" value="0.3395" />
         <entry key="..\:/git/InDiary/app/src/main/res/drawable/ic_favorite_off.xml" value="0.3395" />
         <entry key="..\:/git/InDiary/app/src/main/res/drawable/ic_favorite_on.xml" value="0.3005" />
+        <entry key="..\:/git/InDiary/app/src/main/res/drawable/ic_indiary_background.xml" value="0.3425" />
         <entry key="..\:/git/InDiary/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3395" />
         <entry key="..\:/git/InDiary/app/src/main/res/drawable/ic_memory.xml" value="0.3005" />
         <entry key="..\:/git/InDiary/app/src/main/res/drawable/ic_memory_add.xml" value="0.3005" />
@@ -69,6 +70,7 @@
         <entry key="..\:/git/InDiary/app/src/main/res/menu/menu_bottom_nav.xml" value="0.3609375" />
         <entry key="..\:/git/InDiary/app/src/main/res/menu/menu_edit.xml" value="0.29713552800342025" />
         <entry key="..\:/git/InDiary/app/src/main/res/menu/menu_update.xml" value="0.29713552800342025" />
+        <entry key="..\:/git/InDiary/app/src/main/res/mipmap-anydpi-v26/ic_indiary.xml" value="0.3425" />
         <entry key="..\:/git/InDiary/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3015" />
         <entry key="..\:/git/InDiary/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.341" />
       </map>
