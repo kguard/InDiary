@@ -3,7 +3,7 @@ package com.kguard.data.repository
 import com.kguard.data.local.dao.WithDAO
 import com.kguard.data.local.entity.With
 import com.kguard.data.local.entity.toDomainWith
-import com.kguard.domain.domain.DomainWith
+import com.kguard.domain.model.DomainWith
 import com.kguard.domain.repository.WithRepository
 import javax.inject.Inject
 

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/personFragment"
+    >
+    <fragment
+        android:id="@+id/personFragment"
+        android:name="com.kguard.indiary.ui.fragment.PersonFragment"
+        android:label="fragment_people"
+        tools:layout="@layout/fragment_person" >
+        <action
+            android:id="@+id/action_personFragment_to_addPersonFragment"
+            app:destination="@id/addPersonFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/personFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_personFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/memoryFragment"
+        android:name="com.kguard.indiary.ui.fragment.MemoryFragment"
+        android:label="fragment_memory"
+        tools:layout="@layout/fragment_memory" >
+        <action
+            android:id="@+id/action_memoryFragment_to_addMemoryFragment"
+            app:destination="@id/addMemoryFragment" />
+        <action
+            android:id="@+id/action_memoryFragment_to_detailMemory2Fragment"
+            app:destination="@id/detailMemory2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.kguard.indiary.ui.fragment.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="person_id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_detailFragment_to_updatePersonFragment"
+            app:destination="@id/updatePersonFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_detailMemory2Fragment"
+            app:destination="@id/detailMemory2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPersonFragment"
+        android:name="com.kguard.indiary.ui.fragment.DetailPersonFragment"
+        android:label="fragment_detail_person"
+        tools:layout="@layout/fragment_detail_person" >
+        <action
+            android:id="@+id/action_detailPersonFragment_to_updatePersonFragment"
+            app:destination="@id/updatePersonFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailMemoryFragment"
+        android:name="com.kguard.indiary.ui.fragment.DetailMemoryFragment"
+        android:label="fragment_detail_memory"
+        tools:layout="@layout/fragment_detail_memory" >
+        <action
+            android:id="@+id/action_detailMemoryFragment_to_detailMemory2Fragment"
+            app:destination="@id/detailMemory2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPersonFragment"
+        android:name="com.kguard.indiary.ui.fragment.AddPersonFragment"
+        android:label="fragment_add_person"
+        tools:layout="@layout/fragment_add_person" >
+        <action
+            android:id="@+id/action_addPersonFragment_to_addCharacterDialog"
+            app:destination="@id/addCharacterDialog" />
+    </fragment>
+    <fragment
+        android:id="@+id/addMemoryFragment"
+        android:name="com.kguard.indiary.ui.fragment.AddMemoryFragment"
+        android:label="fragment_add_memory"
+        tools:layout="@layout/fragment_add_memory" >
+        <action
+            android:id="@+id/action_addMemoryFragment_to_memoryWithDialog"
+            app:destination="@id/memoryWithDialog" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailMemory2Fragment"
+        android:name="com.kguard.indiary.ui.fragment.DetailMemory2Fragment"
+        android:label="fragment_detail_memory2"
+        tools:layout="@layout/fragment_detail_memory2" >
+        <action
+            android:id="@+id/action_detailMemory2Fragment_to_updateMemoryFragment"
+            app:destination="@id/updateMemoryFragment" />
+        <argument android:name="memory_id"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/updatePersonFragment"
+        android:name="com.kguard.indiary.ui.fragment.UpdatePersonFragment"
+        android:label="fragment_update_person"
+        tools:layout="@layout/fragment_update_person" >
+        <action
+            android:id="@+id/action_updatePersonFragment_to_addCharacterDialog"
+            app:destination="@id/addCharacterDialog" />
+        <argument
+            android:name="person_id"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateMemoryFragment"
+        android:name="com.kguard.indiary.ui.fragment.UpdateMemoryFragment"
+        android:label="fragment_update_memory"
+        tools:layout="@layout/fragment_update_memory" >
+        <argument
+            android:name="memory_id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_updateMemoryFragment_to_memoryWithDialog"
+            app:destination="@id/memoryWithDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/addCharacterDialog"
+        android:name="com.kguard.indiary.ui.dialog.AddCharacterDialog"
+        android:label="AddCharacterDialog" />
+    <dialog
+        android:id="@+id/memoryWithDialog"
+        android:name="com.kguard.indiary.ui.dialog.MemoryWithDialog"
+        android:label="dialog_memory"
+        tools:layout="@layout/dialog_memory_with" />
+    <dialog
+        android:id="@+id/deletePersonDialogFragment"
+        android:name="com.kguard.indiary.ui.fragment.DeletePersonDialogFragment"
+        android:label="fragment_delete_person_dialog"
+        tools:layout="@layout/fragment_delete_person_dialog">
+    </dialog>
+    <dialog
+        android:id="@+id/deleteMemoryDialogFragment"
+        android:name="com.kguard.indiary.ui.fragment.DeleteMemoryDialogFragment"
+        android:label="fragment_delete_memory_dialog"
+        tools:layout="@layout/fragment_delete_memory_dialog" >
+    </dialog>
+</navigation>

@@ -3,7 +3,7 @@ package com.kguard.data.local.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.kguard.domain.domain.DomainPerson
+import com.kguard.domain.model.DomainPerson
 
 @Entity(tableName = "Person")
 data class Person(

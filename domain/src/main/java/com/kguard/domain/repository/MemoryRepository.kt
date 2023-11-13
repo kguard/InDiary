@@ -1,7 +1,6 @@
 package com.kguard.domain.repository
 
-import com.kguard.domain.domain.DomainMemory
-import com.kguard.domain.domain.DomainPerson
+import com.kguard.domain.model.DomainMemory
 
 interface MemoryRepository {
     suspend fun getMemories():List<DomainMemory>

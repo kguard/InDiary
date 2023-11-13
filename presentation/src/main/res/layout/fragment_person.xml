@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.kguard.indiary.presentation.viewmodel.PersonViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/beige_main">
+
+        <TextView
+            android:id="@+id/tv_diary"
+            style="@style/TV_24sp_bold_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/AppNamePage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/bt_clear"
+            style="@style/TV_16sp_normal_white"
+            android:layout_width="65dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:paddingHorizontal="0dp"
+            android:paddingVertical="0dp"
+            android:text="@string/clear"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/tv_diary"
+            app:layout_constraintTop_toBottomOf="@+id/tv_diary"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_tag"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="@+id/bt_clear"
+            app:layout_constraintEnd_toStartOf="@+id/bt_add"
+            app:layout_constraintStart_toEndOf="@+id/bt_clear"
+            app:layout_constraintTop_toTopOf="@+id/bt_clear" />
+
+        <ImageButton
+            android:id="@+id/bt_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="#00E1E1E1"
+            android:contentDescription="@string/AddPerson"
+            android:minWidth="30dp"
+            android:minHeight="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_diary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_diary"
+            app:srcCompat="@drawable/ic_person_add"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_person_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_clear"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

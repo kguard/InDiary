@@ -1,6 +1,6 @@
 package com.kguard.domain.repository
 
-import com.kguard.domain.domain.DomainWith
+import com.kguard.domain.model.DomainWith
 
 interface WithRepository {
     suspend fun getWiths(): List<DomainWith>

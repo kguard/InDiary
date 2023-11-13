@@ -3,11 +3,11 @@ package com.kguard.data.repository
 import com.kguard.data.local.dao.CharacterDAO
 import com.kguard.data.local.entity.Character
 import com.kguard.data.local.entity.toDomainCharacter
-import com.kguard.domain.domain.DomainCharacter
+import com.kguard.domain.model.DomainCharacter
 import com.kguard.domain.repository.CharacterRepository
 import javax.inject.Inject
 
-class  CharacterRepositoryImpl @Inject constructor(
+class CharacterRepositoryImpl @Inject constructor(
     private val dao :CharacterDAO
 ): CharacterRepository
 {

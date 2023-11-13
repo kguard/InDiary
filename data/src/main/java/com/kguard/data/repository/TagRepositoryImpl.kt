@@ -3,7 +3,7 @@ package com.kguard.data.repository
 import com.kguard.data.local.dao.TagDAO
 import com.kguard.data.local.entity.Tag
 import com.kguard.data.local.entity.toDomainTag
-import com.kguard.domain.domain.DomainTag
+import com.kguard.domain.model.DomainTag
 import com.kguard.domain.repository.TagRepository
 import javax.inject.Inject
 

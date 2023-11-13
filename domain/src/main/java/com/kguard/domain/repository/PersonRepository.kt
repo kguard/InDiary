@@ -1,6 +1,6 @@
 package com.kguard.domain.repository
 
-import com.kguard.domain.domain.DomainPerson
+import com.kguard.domain.model.DomainPerson
 
 interface PersonRepository {
     suspend fun getPersons():List<DomainPerson>

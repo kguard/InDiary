@@ -3,7 +3,7 @@ package com.kguard.data.repository
 import com.kguard.data.local.dao.MemoryDAO
 import com.kguard.data.local.entity.Memory
 import com.kguard.data.local.entity.toDomainMemory
-import com.kguard.domain.domain.DomainMemory
+import com.kguard.domain.model.DomainMemory
 import com.kguard.domain.repository.MemoryRepository
 import javax.inject.Inject
 

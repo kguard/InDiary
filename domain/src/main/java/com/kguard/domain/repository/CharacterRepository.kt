@@ -1,6 +1,6 @@
 package com.kguard.domain.repository
 
-import com.kguard.domain.domain.DomainCharacter
+import com.kguard.domain.model.DomainCharacter
 
 interface CharacterRepository {
     suspend fun getCharacters(): List<DomainCharacter>

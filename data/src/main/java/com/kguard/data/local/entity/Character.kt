@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import com.kguard.domain.domain.DomainCharacter
+import com.kguard.domain.model.DomainCharacter
 
 @Entity( tableName = "Character",
     foreignKeys = [

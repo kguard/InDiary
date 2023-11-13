@@ -1,6 +1,6 @@
 package com.kguard.domain.repository
 
-import com.kguard.domain.domain.DomainTag
+import com.kguard.domain.model.DomainTag
 
 interface TagRepository {
     suspend fun getTags(): List<DomainTag>
