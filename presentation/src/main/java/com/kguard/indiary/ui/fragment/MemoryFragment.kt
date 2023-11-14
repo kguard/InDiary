@@ -28,7 +28,7 @@ class MemoryFragment : Fragment() {
     private val viewModel: MemoryViewModel by viewModels()
     private val adapter = MemoryAdapter({
         findNavController().navigate(
-            com.kguard.indiary.MemoryFragmentDirections.actionMemoryFragmentToDetailMemory2Fragment(
+            MemoryFragmentDirections.actionMemoryFragmentToDetailMemory2Fragment(
                 it
             )
         )

@@ -80,7 +80,7 @@ class DetailPersonFragment : Fragment() {
         }
         binding.fbUpdatePerson.setOnClickListener {
             findNavController().navigate(
-                com.kguard.indiary.DetailFragmentDirections.actionDetailFragmentToUpdatePersonFragment(
+                DetailFragmentDirections.actionDetailFragmentToUpdatePersonFragment(
                     personId
                 )
             )

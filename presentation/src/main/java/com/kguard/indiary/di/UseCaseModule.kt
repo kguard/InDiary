@@ -6,7 +6,6 @@ import com.kguard.domain.usecase.MemoryUseCase
 import com.kguard.domain.usecase.PersonUseCase
 import com.kguard.domain.usecase.TagUseCase
 import com.kguard.domain.usecase.WithUseCase
-import com.kguard.indiary.usecase.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

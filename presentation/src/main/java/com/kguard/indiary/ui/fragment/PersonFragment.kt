@@ -29,7 +29,7 @@ class PersonFragment : Fragment() {
     private val adapter = PersonAdapter(
         { id ->
             findNavController().navigate(
-                com.kguard.indiary.PersonFragmentDirections.actionPersonFragmentToDetailFragment(
+                PersonFragmentDirections.actionPersonFragmentToDetailFragment(
                     id
                 )
             )

@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetailMemory2Fragment : Fragment() {
-    private val args by navArgs<com.kguard.indiary.DetailMemory2FragmentArgs>()
+    private val args by navArgs<DetailMemory2FragmentArgs>()
     private lateinit var binding: FragmentDetailMemory2Binding
     private val viewModel: DetailMemory2ViewModel by viewModels()
     private var adapter = PhotoAdapter {}.apply { setHasStableIds(true) }
@@ -76,7 +76,7 @@ class DetailMemory2Fragment : Fragment() {
         binding.fbUpdateMemory.setOnClickListener {
             viewModel.clearPhoto()
             findNavController().navigate(
-                com.kguard.indiary.DetailMemory2FragmentDirections.actionDetailMemory2FragmentToUpdateMemoryFragment(
+                DetailMemory2FragmentDirections.actionDetailMemory2FragmentToUpdateMemoryFragment(
                     args.memoryId
                 )
             )

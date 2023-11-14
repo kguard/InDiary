@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.kguard.indiary">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
@@ -17,7 +16,7 @@
         android:theme="@style/Theme.InDiary"
         tools:targetApi="31">
         <activity
-            android:name=".ui.acitivty.SplashActivity"
+            android:name="com.kguard.indiary.ui.acitivty.SplashActivity"
             android:screenOrientation="portrait"
             android:exported="true" >
             <intent-filter>
@@ -27,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.acitivty.MainActivity"
+            android:name="com.kguard.indiary.ui.acitivty.MainActivity"
             android:screenOrientation="portrait"
             android:exported="true"/>
 

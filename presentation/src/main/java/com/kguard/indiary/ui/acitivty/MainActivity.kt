@@ -8,14 +8,16 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.kguard.indiary.ui.fragment.QuitDialogFragment
+
 import com.kguard.indiary.R
 import com.kguard.indiary.databinding.ActivityMainBinding
+import com.kguard.indiary.ui.fragment.QuitDialogFragment
+
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding :ActivityMainBinding
+    private lateinit var binding : ActivityMainBinding
     private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

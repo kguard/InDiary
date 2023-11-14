@@ -19,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
-    private val args by navArgs<com.kguard.indiary.DetailFragmentArgs>()
+    private val args by navArgs<DetailFragmentArgs>()
     private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(

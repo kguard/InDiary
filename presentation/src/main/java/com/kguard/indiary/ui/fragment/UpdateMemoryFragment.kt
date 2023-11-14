@@ -34,7 +34,7 @@ import java.util.*
 
 @AndroidEntryPoint
 class UpdateMemoryFragment() : Fragment() {
-    private val args by navArgs<com.kguard.indiary.UpdateMemoryFragmentArgs>()
+    private val args by navArgs<UpdateMemoryFragmentArgs>()
     private lateinit var binding: FragmentUpdateMemoryBinding
     private val viewModel: UpdateMemoryViewModel by viewModels()
     private val mainViewModel: MainViewModel by activityViewModels()

@@ -20,7 +20,7 @@ import java.util.regex.Pattern
 
 @AndroidEntryPoint
 class UpdatePersonFragment() : Fragment() {
-    private val args by navArgs<com.kguard.indiary.UpdatePersonFragmentArgs>()
+    private val args by navArgs<UpdatePersonFragmentArgs>()
     private lateinit var binding: FragmentUpdatePersonBinding
     private val viewModel: UpdatePersonViewModel by viewModels()
     override fun onCreateView(
