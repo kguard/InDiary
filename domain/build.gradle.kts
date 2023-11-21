@@ -31,8 +31,9 @@ plugins {
 
 dependencies {
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation (libs.kotlinx.coroutines.android )
+//    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+//    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 //    implementation 'androidx.core:core-ktx:1.8.0'
 //    implementation 'androidx.appcompat:appcompat:1.5.0'
 //    implementation 'com.google.android.material:material:1.6.1'

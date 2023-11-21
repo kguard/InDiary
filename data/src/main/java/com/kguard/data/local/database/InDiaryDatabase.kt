@@ -9,8 +9,12 @@ import com.kguard.data.local.entity.Character
 import com.kguard.data.local.entity.Tag
 import com.kguard.data.local.entity.With
 
-@Database(entities = [Person::class, Memory::class, Character::class, Tag::class, With::class], version = 5, exportSchema = false)
-abstract class InDiaryDatabase: RoomDatabase() {
+@Database(
+    entities = [Person::class, Memory::class, Character::class, Tag::class, With::class],
+    version = 5,
+    exportSchema = false
+)
+abstract class InDiaryDatabase : RoomDatabase() {
     abstract val personDao: PersonDAO
     abstract val memoryDao: MemoryDAO
     abstract val characterDao: CharacterDAO
