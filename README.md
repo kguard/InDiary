@@ -51,5 +51,5 @@
 
 [InDiary - Google Play 앱](https://play.google.com/store/apps/details?id=com.kguard.indiary&hl=ko)
 
-## 🎨Figma# InDiary
-많은 사람들을 만나면서 모든 사람들을 기억 하지 못하기 때문에 사람을 기록 하는 앱
+## 🎨Figma
+[InDiary](https://www.figma.com/file/qM5xgKjgXeCAzbmvLEPa7W/%EC%9D%B8%EB%8B%A4%EC%9D%B4%EC%96%B4%EB%A6%AC?node-id=0-1&t=l9UBVUymKTc9aTp2-0)
