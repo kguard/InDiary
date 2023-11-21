@@ -1,6 +1,6 @@
 # InDiary(**人)**
 ### V1.0.0
-![image 2.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/cdf00977-9ab2-47e0-8ead-851e8681efb3/image_2.png)
+![image 2](https://github.com/kguard/InDiary/assets/107572964/b153ea8c-e274-41c0-a5c1-8468b372fc39)
 
 ## 🙂 설명
 
@@ -45,7 +45,7 @@
 
 ## 📺 스크린샷 (일부)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b84323b6-001f-47e1-91c0-dde6d33981fb/Untitled.png)
+![Untitled](https://github.com/kguard/InDiary/assets/107572964/87444af1-787c-40e9-9a4a-bc741613e384)
 
 ## 🏳️‍🌈 Google Play store
 
