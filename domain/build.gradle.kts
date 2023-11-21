@@ -1,6 +1,7 @@
 plugins {
     id ("kotlin-kapt")
     id ("org.jetbrains.kotlin.jvm")
+//    kotlin("jvm")
 }
 //
 //android {
