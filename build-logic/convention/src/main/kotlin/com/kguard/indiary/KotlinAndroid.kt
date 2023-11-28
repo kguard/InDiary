@@ -13,10 +13,11 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
  */
 internal fun Project.configureKotlinAndroid(
     commonExtension: CommonExtension<*, *, *, *, *>,
-){
+) {
     commonExtension.apply {
-        compileSdk =34
-        defaultConfig{
+        compileSdk = 34
+
+        defaultConfig {
             minSdk = 26
         }
         compileOptions {
@@ -33,11 +34,12 @@ internal fun Project.configureKotlinAndroid(
 //        add("coreLibraryDesugaring", libs.findLibrary("android.desugarJdkLibs").get())
 //    }
 }
+
 /**
  * JVM(Non-Android)에 대한 기본 Kotlin 옵션 구성
  */
-internal fun Project.configureKotlinJvm(){
-    extensions.configure<JavaPluginExtension>{
+internal fun Project.configureKotlinJvm() {
+    extensions.configure<JavaPluginExtension> {
 //      Android 스튜디오에는 앱의 최소 API 수준 없이도 여러 자바 11+ API를 사용할 수 있도록 지원하는 기능이 포함되어 있습니다.
 //      즉, Android 13(API 수준 33)에서 도입된 API를 사용해도 모든 이전 버전에서 코드가 작동합니다.
         sourceCompatibility = JavaVersion.VERSION_17
@@ -45,12 +47,13 @@ internal fun Project.configureKotlinJvm(){
     }
     configureKotlin()
 }
+
 /**
  * 기본 kotlin 옵션
  */
 private fun Project.configureKotlin() {
-    tasks.withType<KotlinCompile>().configureEach{
-        kotlinOptions{
+    tasks.withType<KotlinCompile>().configureEach {
+        kotlinOptions {
             jvmTarget = JavaVersion.VERSION_17.toString()
 
 //            모든 Kotlin 경고를 오류로 처리(기본적으로 비활성화)

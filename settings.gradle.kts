@@ -16,6 +16,12 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "InDiary"
-include (":presentation")
-include (":data")
-include (":domain")
+include(":app")
+include(":core:data")
+include(":core:domain")
+include(":core:common")
+include(":core:database")
+include(":core:model")
+include(":core:designsystem")
+include(":core:network")
+include(":core:ui")
