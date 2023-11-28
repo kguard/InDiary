@@ -20,6 +20,18 @@ dependencies {
 }
 gradlePlugin{
     plugins{
+        register("androidApplication"){
+            id = "kguard.android.application"
+            implementationClass = "AndroidApplicationConventionPlugin"
+        }
+        register("androidLibrary") {
+            id = "kguard.android.library"
+            implementationClass = "AndroidLibraryConventionPlugin"
+        }
+        register("jvmLibrary") {
+            id = "kguard.jvm.library"
+            implementationClass = "JvmLibraryConventionPlugin"
+        }
         register("androidHilt") {
             id = "kguard.android.hilt"
             implementationClass = "AndroidHiltConventionPlugin"

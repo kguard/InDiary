@@ -1,6 +1,7 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+//    id("com.android.application")
+//    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.kguard.android.application)
     id("androidx.navigation.safeargs")
     id("com.google.android.gms.oss-licenses-plugin")
     alias(libs.plugins.kguard.android.hilt)
@@ -10,12 +11,8 @@ plugins {
 
 android {
     namespace = "com.kguard.indiary"
-    compileSdk = 34
-
     defaultConfig {
         applicationId = "com.kguard.indiary"
-        minSdk = 26
-        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -40,16 +37,6 @@ android {
                 "proguard-rules.pro"
             )
         }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-    dataBinding{
-
     }
 }
 
