@@ -2,8 +2,8 @@ package com.kguard.indiary.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kguard.core.domain.model.DomainPerson
-import com.kguard.core.domain.usecase.PersonUseCase
+import com.kguard.core.domain.PersonUseCase
+import com.kguard.core.model.DomainPerson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MemoryDialogViewModel @Inject constructor(
     private val useCase: PersonUseCase
-): ViewModel() {
+) : ViewModel() {
     private var _persons = MutableStateFlow<List<DomainPerson>>(emptyList())
     val persons: StateFlow<List<DomainPerson>>
         get() = _persons

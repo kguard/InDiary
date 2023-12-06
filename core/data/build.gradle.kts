@@ -8,18 +8,16 @@ plugins {
 
 android {
     namespace = "com.kguard.core.data"
-
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
+    implementation(projects.core.database)
+    implementation(projects.core.model)
+
     implementation (libs.androidx.core.ktx)
-    implementation (libs.androidx.appcompat)
     testImplementation (libs.junit4)
     androidTestImplementation (libs.androidx.test.ext)
     androidTestImplementation (libs.androidx.test.espresso.core)
-
-    implementation(project (":core:domain"))
 
     implementation (libs.gson)
 

@@ -1,5 +1,5 @@
 [versions]
-androidGradlePlugin = "8.1.4"
+androidGradlePlugin = "8.2.0"
 kotlin = "1.9.0"
 navigationFragmentKtx = "2.7.5"
 navigationSafeargs = "2.6.0"

@@ -26,7 +26,7 @@ class DetailMemoryFragment : Fragment() {
     private lateinit var binding: FragmentDetailMemoryBinding
     private val viewModel: DetailMemoryViewModel by viewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
-    private var personId =0
+    private var personId = 0
     private val adapter = MemoryAdapter({
         findNavController().navigate(
             DetailFragmentDirections.actionDetailFragmentToDetailMemory2Fragment(
@@ -35,7 +35,7 @@ class DetailMemoryFragment : Fragment() {
         )
     }, { memory ->
         DeleteMemoryDialogFragment(
-            memory,{
+            memory, {
                 Toast.makeText(context, "삭제 되었습니다.", Toast.LENGTH_SHORT).show()
                 viewModel.deleteMemory(it, this.personId)
             },
@@ -43,15 +43,17 @@ class DetailMemoryFragment : Fragment() {
                 viewModel.clearMemories()
                 viewModel.getMemory(this.personId)
             }
-        ).show(childFragmentManager,"delete")
+        ).show(childFragmentManager, "delete")
     })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_detail_memory, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_detail_memory, container, false
+        )
         mainViewModel.personId.observe(viewLifecycleOwner)
         {
             if (it != null) {

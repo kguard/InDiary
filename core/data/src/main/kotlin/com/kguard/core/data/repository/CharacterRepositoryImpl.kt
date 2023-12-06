@@ -1,18 +1,17 @@
 package com.kguard.core.data.repository
 
-import com.kguard.core.data.local.dao.CharacterDAO
-import com.kguard.core.data.local.entity.Character
-import com.kguard.core.data.local.entity.toDomainCharacter
-import com.kguard.core.domain.model.DomainCharacter
+import com.kguard.core.database.dao.CharacterDAO
+import com.kguard.core.database.entity.toDomainCharacter
 import com.kguard.core.domain.repository.CharacterRepository
+import com.kguard.core.model.DomainCharacter
+import com.kguard.core.database.entity.Character
 import javax.inject.Inject
 
 class CharacterRepositoryImpl @Inject constructor(
-    private val dao :CharacterDAO
-): CharacterRepository
-{
+    private val dao: CharacterDAO
+) : CharacterRepository {
     override suspend fun getCharacters(): List<DomainCharacter> {
-        return dao.getCharacters().map {it.toDomainCharacter()}
+        return dao.getCharacters().map { it.toDomainCharacter() }
     }
 
     override suspend fun getCharacter(character_id: Int): DomainCharacter {
@@ -24,17 +23,32 @@ class CharacterRepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateCharacter(character: DomainCharacter) {
-        val characterEntity=Character(character.character_id,character.title,character.content,character.person_id)
+        val characterEntity = Character(
+            character.character_id,
+            character.title,
+            character.content,
+            character.person_id
+        )
         dao.updateCharacter(characterEntity)
     }
 
     override suspend fun insertCharacter(character: DomainCharacter) {
-        val characterEntity=Character(character.character_id,character.title,character.content,character.person_id)
+        val characterEntity = Character(
+            character.character_id,
+            character.title,
+            character.content,
+            character.person_id
+        )
         dao.insertCharacter(characterEntity)
     }
 
     override suspend fun deleteCharacter(character: DomainCharacter) {
-        val characterEntity=Character(character.character_id,character.title,character.content,character.person_id)
+        val characterEntity = Character(
+            character.character_id,
+            character.title,
+            character.content,
+            character.person_id
+        )
         dao.deleteCharacter(characterEntity)
     }
 }

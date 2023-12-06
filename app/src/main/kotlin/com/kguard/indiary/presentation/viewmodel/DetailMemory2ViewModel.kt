@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kguard.core.domain.model.DomainMemory
-import com.kguard.core.domain.model.DomainPerson
-import com.kguard.core.domain.usecase.MemoryUseCase
-import com.kguard.core.domain.usecase.PersonUseCase
+import com.kguard.core.domain.MemoryUseCase
+import com.kguard.core.domain.PersonUseCase
+import com.kguard.core.model.DomainMemory
+import com.kguard.core.model.DomainPerson
 import com.kguard.indiary.util.ListLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -33,12 +33,12 @@ class DetailMemory2ViewModel @Inject constructor(
     init {
         clearPhoto()
     }
-    fun setPhoto(uri: String)
-    {
+
+    fun setPhoto(uri: String) {
         _photos.add(uri)
     }
-    fun clearPhoto()
-    {
+
+    fun clearPhoto() {
         _photos.clear()
     }
 

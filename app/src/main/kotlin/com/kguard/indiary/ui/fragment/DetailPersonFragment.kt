@@ -11,7 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.kguard.core.domain.model.DomainPerson
+import com.kguard.core.model.DomainPerson
 import com.kguard.indiary.R
 import com.kguard.indiary.databinding.FragmentDetailPersonBinding
 import com.kguard.indiary.presentation.viewmodel.DetailPersonViewModel
@@ -20,17 +20,18 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetailPersonFragment : Fragment() {
-    private lateinit var binding : FragmentDetailPersonBinding
-    private val mainViewModel : MainViewModel by activityViewModels()
+    private lateinit var binding: FragmentDetailPersonBinding
+    private val mainViewModel: MainViewModel by activityViewModels()
     private val viewModel: DetailPersonViewModel by viewModels()
-    private var personId =0
+    private var personId = 0
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding=DataBindingUtil.inflate(inflater, R.layout.fragment_detail_person,container,false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_detail_person, container, false)
         return binding.root
     }
 
@@ -45,38 +46,34 @@ class DetailPersonFragment : Fragment() {
             }
         }
 
-        viewModel.person.observe(viewLifecycleOwner){
-            binding.tvDetailPersonName.text=it.name
-            binding.tvDetailPersonBirth.text=it.birth
-            binding.tvDetailPersonAge.text=viewModel.getAge(it.birth.toString())+"세"
-            when(it.gender)
-            {
-                0->binding.tvDetailPersonGender.text="남"
-                1->binding.tvDetailPersonGender.text="여"
-                2->binding.tvDetailPersonGender.text="표기 안함"
+        viewModel.person.observe(viewLifecycleOwner) {
+            binding.tvDetailPersonName.text = it.name
+            binding.tvDetailPersonBirth.text = it.birth
+            binding.tvDetailPersonAge.text = viewModel.getAge(it.birth.toString()) + "세"
+            when (it.gender) {
+                0 -> binding.tvDetailPersonGender.text = "남"
+                1 -> binding.tvDetailPersonGender.text = "여"
+                2 -> binding.tvDetailPersonGender.text = "표기 안함"
             }
-            binding.tvDetailPersonMemo.text=it.memo
+            binding.tvDetailPersonMemo.text = it.memo
 
         }
-        binding.fbDeletePerson.setOnClickListener{
+        binding.fbDeletePerson.setOnClickListener {
             DeletePersonDialogFragment(
-                viewModel.person.value?: DomainPerson(), { person ->
+                viewModel.person.value ?: DomainPerson(), { person ->
                     viewModel.memories.observe(viewLifecycleOwner)
                     { memories ->
-                        if (memories.find { it.person_id == person.person_id } == null)
-                        {
+                        if (memories.find { it.person_id == person.person_id } == null) {
                             Toast.makeText(context, "삭제 되었습니다.", Toast.LENGTH_SHORT).show()
                             viewModel.deletePerson(person)
                             findNavController().popBackStack()
-                        }
-                        else
-                        {
+                        } else {
                             Toast.makeText(context, "삭제 할 수 없습니다.", Toast.LENGTH_SHORT).show()
                         }
                     }
                 },
                 {}
-            ).show(childFragmentManager,"delete")
+            ).show(childFragmentManager, "delete")
         }
         binding.fbUpdatePerson.setOnClickListener {
             findNavController().navigate(

@@ -17,12 +17,13 @@ class QuitDialogFragment : DialogFragment() {
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         return dialog
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding=
-            DataBindingUtil.inflate(inflater, R.layout.fragment_quit_dialog,container,false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_quit_dialog, container, false)
         binding.tvQuitConfirm.setOnClickListener {
             activity?.finish()
         }

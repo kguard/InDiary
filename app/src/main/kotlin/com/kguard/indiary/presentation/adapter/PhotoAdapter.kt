@@ -11,20 +11,24 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.kguard.indiary.databinding.ItemRecyclerPhotoBinding
 
-class PhotoAdapter(val onClick : (Int) -> Unit): ListAdapter<String, PhotoAdapter.PhotoViewHolder>(
+class PhotoAdapter(val onClick: (Int) -> Unit) : ListAdapter<String, PhotoAdapter.PhotoViewHolder>(
     diffUtil
 ) {
 
     companion object {
-        val diffUtil = object: DiffUtil.ItemCallback<String>() {
-            override fun areItemsTheSame(oldItem: String, newItem: String): Boolean = oldItem.hashCode() == newItem.hashCode()
-            override fun areContentsTheSame(oldItem: String, newItem: String): Boolean = oldItem == newItem
+        val diffUtil = object : DiffUtil.ItemCallback<String>() {
+            override fun areItemsTheSame(oldItem: String, newItem: String): Boolean =
+                oldItem.hashCode() == newItem.hashCode()
+
+            override fun areContentsTheSame(oldItem: String, newItem: String): Boolean =
+                oldItem == newItem
 
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
-        val binding= ItemRecyclerPhotoBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding =
+            ItemRecyclerPhotoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PhotoViewHolder(binding)
     }
 
@@ -32,8 +36,9 @@ class PhotoAdapter(val onClick : (Int) -> Unit): ListAdapter<String, PhotoAdapte
         getItem(position)?.let { holder.setImage(it) }
     }
 
-    inner class PhotoViewHolder(val binding: ItemRecyclerPhotoBinding): RecyclerView.ViewHolder(binding.root) {
-        fun setImage(photo:String){
+    inner class PhotoViewHolder(val binding: ItemRecyclerPhotoBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun setImage(photo: String) {
             Glide.with(binding.ivPhoto)
                 .load(photo.toUri())
                 .apply(RequestOptions.bitmapTransform(RoundedCorners(10)))
@@ -44,9 +49,9 @@ class PhotoAdapter(val onClick : (Int) -> Unit): ListAdapter<String, PhotoAdapte
             }
         }
     }
-    fun updatePhoto(photos:List<String>)
-    {
-        val list=currentList.toMutableList()
+
+    fun updatePhoto(photos: List<String>) {
+        val list = currentList.toMutableList()
         list.clear()
         list.addAll(photos)
         submitList(list)

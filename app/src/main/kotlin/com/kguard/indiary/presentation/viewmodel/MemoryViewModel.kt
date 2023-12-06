@@ -2,8 +2,8 @@ package com.kguard.indiary.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kguard.core.domain.model.DomainMemory
-import com.kguard.core.domain.usecase.MemoryUseCase
+import com.kguard.core.domain.MemoryUseCase
+import com.kguard.core.model.DomainMemory
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,23 +13,24 @@ import javax.inject.Inject
 @HiltViewModel
 class MemoryViewModel @Inject constructor(
     private val useCase: MemoryUseCase
-):ViewModel() {
+) : ViewModel() {
     private var _memory = MutableStateFlow<List<DomainMemory>>(emptyList())
     val memory: StateFlow<List<DomainMemory>>
         get() = _memory
 
-    fun clearMemories(){
+    fun clearMemories() {
         viewModelScope.launch {
-            _memory.value= emptyList()
+            _memory.value = emptyList()
         }
     }
-    fun getMemories(){
+
+    fun getMemories() {
         viewModelScope.launch() {
-            _memory.value=useCase.getMemories()
+            _memory.value = useCase.getMemories()
         }
     }
-    fun deleteMemory(memory: DomainMemory)
-    {
+
+    fun deleteMemory(memory: DomainMemory) {
         viewModelScope.launch {
             useCase.deleteMemory(memory)
             getMemories()

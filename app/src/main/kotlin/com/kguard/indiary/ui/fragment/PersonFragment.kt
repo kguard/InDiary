@@ -25,7 +25,8 @@ import kotlinx.coroutines.flow.collectLatest
 class PersonFragment : Fragment() {
     private lateinit var binding: FragmentPersonBinding
     private val viewModel: PersonViewModel by viewModels()
-//    private val mainViewModel: MainViewModel by activityViewModels()
+
+    //    private val mainViewModel: MainViewModel by activityViewModels()
     private val adapter = PersonAdapter(
         { id ->
             findNavController().navigate(
@@ -41,8 +42,7 @@ class PersonFragment : Fragment() {
                         if (memories.find { it.person_id == delete.person_id } == null) {
                             Toast.makeText(context, "삭제 되었습니다.", Toast.LENGTH_SHORT).show()
                             viewModel.deletePerson(delete)
-                        }
-                        else{
+                        } else {
                             Toast.makeText(context, "삭제 할 수 없습니다.", Toast.LENGTH_SHORT).show()
                             viewModel.clearPerson()
                             viewModel.getPersons()

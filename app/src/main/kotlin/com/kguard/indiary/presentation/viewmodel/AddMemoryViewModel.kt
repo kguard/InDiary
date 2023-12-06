@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kguard.core.domain.model.DomainMemory
-import com.kguard.core.domain.usecase.MemoryUseCase
-import com.kguard.core.domain.usecase.PersonUseCase
+import com.kguard.core.domain.MemoryUseCase
+import com.kguard.core.domain.PersonUseCase
+import com.kguard.core.model.DomainMemory
 import com.kguard.indiary.util.ListLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -24,12 +24,11 @@ class AddMemoryViewModel @Inject constructor(
 
     private var _photos = ListLiveData<String>()
     val photos: LiveData<ArrayList<String>>
-    get() = _photos
+        get() = _photos
 
 
-    fun setPhoto(uri: String)
-    {
-       _photos.add(uri)
+    fun setPhoto(uri: String) {
+        _photos.add(uri)
     }
 
     fun removePhotoByPosition(position: Int) {
@@ -41,7 +40,6 @@ class AddMemoryViewModel @Inject constructor(
             MemoryUseCase.insertMemory(memory)
         }
     }
-
 
 
 }

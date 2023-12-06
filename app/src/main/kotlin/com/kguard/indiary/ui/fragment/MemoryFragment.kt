@@ -24,7 +24,7 @@ import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class MemoryFragment : Fragment() {
-    private lateinit var binding  : FragmentMemoryBinding
+    private lateinit var binding: FragmentMemoryBinding
     private val viewModel: MemoryViewModel by viewModels()
     private val adapter = MemoryAdapter({
         findNavController().navigate(
@@ -32,9 +32,9 @@ class MemoryFragment : Fragment() {
                 it
             )
         )
-    },{memory ->
+    }, { memory ->
         DeleteMemoryDialogFragment(
-            memory,{
+            memory, {
                 Toast.makeText(context, "삭제 되었습니다.", Toast.LENGTH_SHORT).show()
                 viewModel.deleteMemory(it)
             },
@@ -42,16 +42,16 @@ class MemoryFragment : Fragment() {
                 viewModel.clearMemories()
                 viewModel.getMemories()
             }
-        ).show(childFragmentManager,"delete")
+        ).show(childFragmentManager, "delete")
     })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding=DataBindingUtil.inflate(inflater, R.layout.fragment_memory,container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_memory, container, false)
 
-        binding.rvMemoryContent.adapter=adapter
+        binding.rvMemoryContent.adapter = adapter
 
         ItemHelperImpl(adapter).also {
             ItemTouchHelper(it).apply {

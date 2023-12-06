@@ -1,10 +1,10 @@
 package com.kguard.indiary.presentation.viewmodel
 
 import androidx.lifecycle.*
-import com.kguard.core.domain.model.DomainMemory
-import com.kguard.core.domain.model.DomainPerson
-import com.kguard.core.domain.usecase.MemoryUseCase
-import com.kguard.core.domain.usecase.PersonUseCase
+import com.kguard.core.domain.MemoryUseCase
+import com.kguard.core.domain.PersonUseCase
+import com.kguard.core.model.DomainMemory
+import com.kguard.core.model.DomainPerson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,40 +15,41 @@ import javax.inject.Inject
 class PersonViewModel @Inject constructor(
     private val personUseCase: PersonUseCase,
     private val memoryUseCase: MemoryUseCase
-):ViewModel(){
+) : ViewModel() {
     private var _persons = MutableStateFlow<List<DomainPerson>>(emptyList())
     val persons: StateFlow<List<DomainPerson>>
-    get() = _persons
+        get() = _persons
 
     private val _memories = MutableLiveData<List<DomainMemory>>()
-    val memories : LiveData<List<DomainMemory>>
+    val memories: LiveData<List<DomainMemory>>
         get() = _memories
 
-    fun getMemoriesInPerson(){
+    fun getMemoriesInPerson() {
         viewModelScope.launch {
-            _memories.value=memoryUseCase.getMemories()
+            _memories.value = memoryUseCase.getMemories()
         }
     }
 
-    fun clearPerson(){
+    fun clearPerson() {
         viewModelScope.launch {
-            _persons.value= emptyList()
+            _persons.value = emptyList()
         }
     }
-    fun getPersons(){
+
+    fun getPersons() {
         viewModelScope.launch {
-            _persons.value=personUseCase.getPersons()
+            _persons.value = personUseCase.getPersons()
         }
     }
-    fun deletePerson(person: DomainPerson)
-    {
+
+    fun deletePerson(person: DomainPerson) {
         viewModelScope.launch() {
-            launch{personUseCase.deletePerson(person)}.join()
+            launch { personUseCase.deletePerson(person) }.join()
             getPersons()
         }
     }
-    fun updatePerson(person: DomainPerson)
-    {
+
+    fun updatePerson(person: DomainPerson) {
         viewModelScope.launch {
             personUseCase.updatePerson(person)
             getPersons()

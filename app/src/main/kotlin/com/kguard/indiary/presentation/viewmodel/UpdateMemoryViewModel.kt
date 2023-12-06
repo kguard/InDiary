@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kguard.core.domain.model.DomainMemory
-import com.kguard.core.domain.model.DomainPerson
-import com.kguard.core.domain.usecase.MemoryUseCase
-import com.kguard.core.domain.usecase.PersonUseCase
+import com.kguard.core.domain.MemoryUseCase
+import com.kguard.core.domain.PersonUseCase
+import com.kguard.core.model.DomainMemory
+import com.kguard.core.model.DomainPerson
 import com.kguard.indiary.util.ListLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -31,15 +31,13 @@ class UpdateMemoryViewModel @Inject constructor(
     val photos: LiveData<ArrayList<String>>
         get() = _photos
 
-    fun setPhoto(uri: String)
-    {
+    fun setPhoto(uri: String) {
         _photos.add(uri)
     }
 
     fun removePhotoByPosition(position: Int) {
         _photos.removeAt(position)
     }
-
 
 
     fun getMemory(memory_id: Int) {
@@ -53,7 +51,6 @@ class UpdateMemoryViewModel @Inject constructor(
             memoryUseCase.updateMemory(memory)
         }
     }
-
 
 
     fun getPerson(person_id: Int) {

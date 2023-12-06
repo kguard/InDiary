@@ -2,12 +2,12 @@ package com.kguard.indiary.util
 
 import androidx.lifecycle.MutableLiveData
 
-class ListLiveData<T>: MutableLiveData<ArrayList<T>>(){
+class ListLiveData<T> : MutableLiveData<ArrayList<T>>() {
     init {
         value = arrayListOf()
     }
 
-    fun add(item: T){
+    fun add(item: T) {
         val items = value
         items?.add(item)
         value = items
@@ -25,13 +25,13 @@ class ListLiveData<T>: MutableLiveData<ArrayList<T>>(){
         value = items
     }
 
-    fun addAll(itemList: List<T>){
+    fun addAll(itemList: List<T>) {
         val items = value
         items?.addAll(itemList)
         value = items
     }
 
-    fun update(itemList: List<T>){
+    fun update(itemList: List<T>) {
         val items = value
         items?.clear()
         items?.addAll(itemList)

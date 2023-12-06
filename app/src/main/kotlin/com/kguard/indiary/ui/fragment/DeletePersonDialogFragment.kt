@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import com.kguard.core.domain.model.DomainPerson
+import com.kguard.core.model.DomainPerson
 import com.kguard.indiary.R
 import com.kguard.indiary.databinding.FragmentDeletePersonDialogBinding
 

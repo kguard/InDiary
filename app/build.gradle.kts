@@ -54,8 +54,12 @@ dependencies {
     androidTestImplementation (libs.androidx.test.espresso.core)
 
     //CA
-    implementation (project (":core:domain"))
-    implementation (project (":core:data"))
+//    implementation (project (":core:domain"))
+//    implementation (project (":core:data"))
+    implementation(projects.core.model)
+    implementation(projects.core.data)
+    implementation(projects.core.domain)
+    implementation(projects.core.database)
 
     //glide
     implementation (libs.glide.glide)

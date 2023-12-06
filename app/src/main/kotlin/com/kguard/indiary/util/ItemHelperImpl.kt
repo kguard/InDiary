@@ -3,13 +3,13 @@ package com.kguard.indiary.util
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class ItemHelperImpl(private val listener:ItemHelperInterface):ItemTouchHelper.Callback() {
+class ItemHelperImpl(private val listener: ItemHelperInterface) : ItemTouchHelper.Callback() {
     override fun getMovementFlags(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder
     ): Int {
         val swipeFlags = ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-        return makeMovementFlags(0,swipeFlags)
+        return makeMovementFlags(0, swipeFlags)
     }
 
     override fun onMove(
@@ -17,7 +17,7 @@ class ItemHelperImpl(private val listener:ItemHelperInterface):ItemTouchHelper.C
         viewHolder: RecyclerView.ViewHolder,
         target: RecyclerView.ViewHolder
     ): Boolean {
-        return listener.onItemMove(viewHolder.layoutPosition,target.layoutPosition)
+        return listener.onItemMove(viewHolder.layoutPosition, target.layoutPosition)
     }
 
 

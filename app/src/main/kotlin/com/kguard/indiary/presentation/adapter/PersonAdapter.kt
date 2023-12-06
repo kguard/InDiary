@@ -1,13 +1,11 @@
 package com.kguard.indiary.presentation.adapter
 
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-
 import androidx.recyclerview.widget.RecyclerView
-import com.kguard.core.domain.model.DomainPerson
+import com.kguard.core.model.DomainPerson
 import com.kguard.indiary.R
 import com.kguard.indiary.databinding.ItemRecyclerPersonBinding
 import com.kguard.indiary.util.ItemHelperInterface
@@ -16,15 +14,15 @@ import com.kguard.indiary.util.ItemHelperInterface
 class PersonAdapter(
     val onClick: (Int) -> Unit,
     val onDelete: (DomainPerson) -> Unit,
-    val onFavorite:(DomainPerson) -> Unit
-):ListAdapter<DomainPerson, PersonAdapter.PersonViewHolder>(diffUtil),ItemHelperInterface{
+    val onFavorite: (DomainPerson) -> Unit
+) : ListAdapter<DomainPerson, PersonAdapter.PersonViewHolder>(diffUtil), ItemHelperInterface {
 
     companion object {
-        val diffUtil = object: DiffUtil.ItemCallback<DomainPerson>() {
+        val diffUtil = object : DiffUtil.ItemCallback<DomainPerson>() {
             override fun areItemsTheSame(
                 oldItem: DomainPerson,
                 newItem: DomainPerson
-            ): Boolean  = oldItem.person_id == newItem.person_id
+            ): Boolean = oldItem.person_id == newItem.person_id
 
             override fun areContentsTheSame(
                 oldItem: DomainPerson,
@@ -33,9 +31,11 @@ class PersonAdapter(
 
         }
     }
-   // private var person:List<DomainPerson> = ArrayList()
+
+    // private var person:List<DomainPerson> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonViewHolder {
-        val binding= ItemRecyclerPersonBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding =
+            ItemRecyclerPersonBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PersonViewHolder(binding)
     }
 
@@ -44,15 +44,14 @@ class PersonAdapter(
 
     }
 
-    inner class PersonViewHolder(private val binding: ItemRecyclerPersonBinding) :RecyclerView.ViewHolder(binding.root){
-        fun setItem(domainPerson: DomainPerson){
-            binding.tvPeopleName.text= domainPerson.name
-            binding.tvMemoryDate.text=domainPerson.make
-            if(domainPerson.favorite)
-            {
+    inner class PersonViewHolder(private val binding: ItemRecyclerPersonBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun setItem(domainPerson: DomainPerson) {
+            binding.tvPeopleName.text = domainPerson.name
+            binding.tvMemoryDate.text = domainPerson.make
+            if (domainPerson.favorite) {
                 binding.ibFavorite.setImageResource(R.drawable.ic_favorite_on)
-            }
-            else if(!domainPerson.favorite){
+            } else if (!domainPerson.favorite) {
                 binding.ibFavorite.setImageResource(R.drawable.ic_favorite_off)
             }
 

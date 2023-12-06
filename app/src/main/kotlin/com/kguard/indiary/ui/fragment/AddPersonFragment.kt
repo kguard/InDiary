@@ -1,6 +1,5 @@
 package com.kguard.indiary.ui.fragment
 
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,7 +10,7 @@ import android.widget.AutoCompleteTextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.kguard.core.domain.model.DomainPerson
+import com.kguard.core.model.DomainPerson
 import com.kguard.indiary.R
 import com.kguard.indiary.databinding.FragmentAddPersonBinding
 import com.kguard.indiary.presentation.viewmodel.AddPersonViewModel

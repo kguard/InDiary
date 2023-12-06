@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import com.kguard.core.domain.model.DomainMemory
+import com.kguard.core.model.DomainMemory
 import com.kguard.indiary.R
 import com.kguard.indiary.databinding.FragmentDeleteMemoryDialogBinding
 
@@ -23,6 +23,7 @@ class DeleteMemoryDialogFragment(
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         return dialog
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,6 +45,7 @@ class DeleteMemoryDialogFragment(
         }
         return binding.root
     }
+
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
         onCancel()

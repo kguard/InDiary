@@ -9,21 +9,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.kguard.core.domain.model.DomainMemory
+import com.kguard.core.model.DomainMemory
 import com.kguard.indiary.databinding.ItemRecyclerMemoryBinding
 import com.kguard.indiary.util.ItemHelperInterface
 
 class MemoryAdapter(
     val onClick: (Int) -> Unit,
-    val onDelete:(DomainMemory) ->Unit
-): ListAdapter<DomainMemory, MemoryAdapter.MemoryViewHolder>(diffUtil),
+    val onDelete: (DomainMemory) -> Unit
+) : ListAdapter<DomainMemory, MemoryAdapter.MemoryViewHolder>(diffUtil),
     ItemHelperInterface {
     companion object {
-        val diffUtil = object: DiffUtil.ItemCallback<DomainMemory>() {
+        val diffUtil = object : DiffUtil.ItemCallback<DomainMemory>() {
             override fun areItemsTheSame(
                 oldItem: DomainMemory,
                 newItem: DomainMemory
-            ): Boolean  = oldItem == newItem
+            ): Boolean = oldItem == newItem
 
             override fun areContentsTheSame(
                 oldItem: DomainMemory,
@@ -32,9 +32,11 @@ class MemoryAdapter(
 
         }
     }
-   // private var memory:List<DomainMemory> = ArrayList()
+
+    // private var memory:List<DomainMemory> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemoryViewHolder {
-        val binding= ItemRecyclerMemoryBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding =
+            ItemRecyclerMemoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MemoryViewHolder(binding)
     }
 
@@ -44,10 +46,11 @@ class MemoryAdapter(
     }
 
 
-    inner class MemoryViewHolder(private val binding: ItemRecyclerMemoryBinding):RecyclerView.ViewHolder(binding.root) {
-        fun setItem(domainMemory: DomainMemory){
-            binding.tvMemoryTitle.text=domainMemory.title
-            binding.tvMemoryDate.text=domainMemory.date
+    inner class MemoryViewHolder(private val binding: ItemRecyclerMemoryBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun setItem(domainMemory: DomainMemory) {
+            binding.tvMemoryTitle.text = domainMemory.title
+            binding.tvMemoryDate.text = domainMemory.date
 
             Glide.with(binding.ivMemory1)
                 .load(domainMemory.imageList[0]?.toUri())
@@ -80,9 +83,9 @@ class MemoryAdapter(
         }
     }
 
-override fun onItemMove(from_position: Int, to_position: Int): Boolean {
-    return true
-}
+    override fun onItemMove(from_position: Int, to_position: Int): Boolean {
+        return true
+    }
 
     override fun onItemSwipe(position: Int) {
         onDelete(currentList[position])

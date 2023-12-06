@@ -4,26 +4,27 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kguard.core.domain.model.DomainPerson
-import com.kguard.core.domain.usecase.PersonUseCase
+import com.kguard.core.domain.PersonUseCase
+import com.kguard.core.model.DomainPerson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 @HiltViewModel
 class UpdatePersonViewModel @Inject constructor(
     private val useCase: PersonUseCase
-): ViewModel() {
+) : ViewModel() {
     private var _person = MutableLiveData<DomainPerson>()
     val person: LiveData<DomainPerson>
         get() = _person
-    fun getPerson(person_id:Int)
-    {
+
+    fun getPerson(person_id: Int) {
         viewModelScope.launch {
             _person.postValue(useCase.getPerson(person_id))
         }
     }
-    fun updatePerson(person: DomainPerson)
-    {
+
+    fun updatePerson(person: DomainPerson) {
         viewModelScope.launch {
             useCase.updatePerson(person)
         }

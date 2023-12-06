@@ -22,9 +22,9 @@ class MemoryWithDialog : DialogFragment() {
     private val mainViewModel: MainViewModel by activityViewModels()
     override fun onStart() {
         super.onStart()
-        if(dialog != null && activity !=null && isAdded){
-            val fullWidth= Utils.getScreenWidth(requireActivity()) * .9
-            dialog?.window?.setLayout(fullWidth.toInt(),ViewGroup.LayoutParams.WRAP_CONTENT)
+        if (dialog != null && activity != null && isAdded) {
+            val fullWidth = Utils.getScreenWidth(requireActivity()) * .9
+            dialog?.window?.setLayout(fullWidth.toInt(), ViewGroup.LayoutParams.WRAP_CONTENT)
             //dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
     }
@@ -34,14 +34,19 @@ class MemoryWithDialog : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding= DataBindingUtil.inflate(inflater, R.layout.dialog_memory_with,container,false)
-        val adapter= AddWithAdapter({mainViewModel.setPerson(it)},this)
-        binding.rvAddWith.adapter=adapter
+        binding = DataBindingUtil.inflate(inflater, R.layout.dialog_memory_with, container, false)
+        val adapter = AddWithAdapter({ mainViewModel.setPerson(it) }, this)
+        binding.rvAddWith.adapter = adapter
         mainViewModel.getPersons()
         mainViewModel.persons.observe(viewLifecycleOwner, Observer {
             adapter.setDate(it)
         })
-        binding.rvAddWith.addItemDecoration(DividerItemDecoration(context,LinearLayoutManager.VERTICAL))
+        binding.rvAddWith.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                LinearLayoutManager.VERTICAL
+            )
+        )
         binding.rvAddWith.itemAnimator
         return binding.root
     }
@@ -49,7 +54,6 @@ class MemoryWithDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
-
 
 
 }

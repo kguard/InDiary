@@ -1,4 +1,3 @@
-
 import com.kguard.indiary.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
