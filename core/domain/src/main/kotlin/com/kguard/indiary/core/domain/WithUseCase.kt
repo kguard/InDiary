@@ -2,11 +2,12 @@ package com.kguard.indiary.core.domain
 
 import com.kguard.indiary.core.data.repository.WithRepository
 import com.kguard.indiary.core.model.DomainWith
+import javax.inject.Inject
 
 /**
  * todo with
  */
-class WithUseCase(
+class WithUseCase @Inject constructor(
     private val repository: WithRepository
 ) {
     suspend fun getWiths(): List<DomainWith> {

@@ -2,8 +2,9 @@ package com.kguard.indiary.core.domain
 
 import com.kguard.indiary.core.data.repository.MemoryRepository
 import com.kguard.indiary.core.model.DomainMemory
+import javax.inject.Inject
 
-class MemoryUseCase(
+class MemoryUseCase @Inject constructor(
     private val repository: MemoryRepository
 ) {
     suspend fun getMemories(): List<DomainMemory> {

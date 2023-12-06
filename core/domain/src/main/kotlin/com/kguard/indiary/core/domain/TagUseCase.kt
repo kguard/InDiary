@@ -3,11 +3,12 @@ package com.kguard.indiary.core.domain
 
 import com.kguard.indiary.core.data.repository.TagRepository
 import com.kguard.indiary.core.model.DomainTag
+import javax.inject.Inject
 
 /**
  * todo tag
  */
-class TagUseCase(
+class TagUseCase @Inject constructor(
     private val repository: TagRepository
 ) {
     suspend fun getTags(): List<DomainTag> {

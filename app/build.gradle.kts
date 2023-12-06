@@ -2,10 +2,11 @@ plugins {
 //    id("com.android.application")
 //    id("org.jetbrains.kotlin.android")
     alias(libs.plugins.kguard.android.application)
-    id("androidx.navigation.safeargs")
-    id("com.google.android.gms.oss-licenses-plugin")
+    alias(libs.plugins.kguard.android.application.compose)
     alias(libs.plugins.kguard.android.hilt)
     alias(libs.plugins.kguard.android.room)
+    id("androidx.navigation.safeargs")
+    id("com.google.android.gms.oss-licenses-plugin")
     //    id("kotlin-kapt")
 }
 
@@ -23,12 +24,7 @@ android {
         //noinspection DataBindingWithoutKapt
         dataBinding = true
         buildConfig = true
-       // compose = true
     }
-//    composeOptions {
-//        kotlinCompilerExtensionVersion = "1.5.2"
-//    }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -88,5 +84,12 @@ dependencies {
     implementation (libs.gson)
 
     implementation (libs.android.image.picker)
+    //compose
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.lifecycle.runtimeCompose)
+    implementation(libs.androidx.compose.material3.windowSizeClass)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.navigation.compose)
 
 }

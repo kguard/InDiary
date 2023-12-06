@@ -1,5 +1,6 @@
 package com.kguard.indiary.ui.acitivty
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import com.kguard.indiary.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 
+@SuppressLint("CustomSplashScreen")
 @AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

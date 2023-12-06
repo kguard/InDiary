@@ -2,12 +2,13 @@ package com.kguard.indiary.core.domain
 
 import com.kguard.indiary.core.data.repository.CharacterRepository
 import com.kguard.indiary.core.model.DomainCharacter
+import javax.inject.Inject
 
 
 /**
  * todo character
  */
-class CharacterUseCase(
+class CharacterUseCase @Inject constructor(
     private val repository: CharacterRepository
 ) {
     suspend fun getCharacters(): List<DomainCharacter> {

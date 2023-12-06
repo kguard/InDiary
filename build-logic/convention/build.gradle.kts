@@ -44,5 +44,14 @@ gradlePlugin{
             id = "kguard.android.feature"
             implementationClass = "AndroidFeatureConventionPlugin"
         }
+        register("androidApplicationCompose") {
+            id = "kguard.android.application.compose"
+            implementationClass = "AndroidApplicationComposeConventionPlugin"
+        }
+        register("androidLibraryCompose") {
+            id = "kguard.android.library.compose"
+            implementationClass = "AndroidLibraryComposeConventionPlugin"
+        }
+
     }
 }
