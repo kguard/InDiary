@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.kguard.core.common"
+    namespace = "com.kguard.indiary.core.common"
 }
 
 dependencies {

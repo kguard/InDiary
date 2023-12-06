@@ -10,10 +10,11 @@ import android.widget.AutoCompleteTextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.kguard.core.model.DomainPerson
 import com.kguard.indiary.R
+import com.kguard.indiary.core.model.DomainPerson
 import com.kguard.indiary.databinding.FragmentAddPersonBinding
 import com.kguard.indiary.presentation.viewmodel.AddPersonViewModel
+
 import dagger.hilt.android.AndroidEntryPoint
 
 import java.time.LocalDate

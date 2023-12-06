@@ -2,9 +2,9 @@ package com.kguard.indiary.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kguard.core.domain.CharacterUseCase
-import com.kguard.core.domain.PersonUseCase
-import com.kguard.core.model.DomainPerson
+import com.kguard.indiary.core.domain.CharacterUseCase
+import com.kguard.indiary.core.domain.PersonUseCase
+import com.kguard.indiary.core.model.DomainPerson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

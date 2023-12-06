@@ -2,8 +2,8 @@ package com.kguard.indiary.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kguard.core.domain.PersonUseCase
-import com.kguard.core.model.DomainPerson
+import com.kguard.indiary.core.domain.PersonUseCase
+import com.kguard.indiary.core.model.DomainPerson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

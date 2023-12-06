@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.kguard.core.model.DomainMemory
+import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.databinding.ItemRecyclerMemoryBinding
 import com.kguard.indiary.util.ItemHelperInterface
 

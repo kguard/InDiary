@@ -92,6 +92,7 @@ kguard-android-library = { id = "kguard.android.library", version = "unspecified
 kguard-jvm-library = { id = "kguard.jvm.library", version = "unspecified" }
 kguard-android-hilt = { id = "kguard.android.hilt", version = "unspecified" }
 kguard-android-room = { id = "kguard.android.room", version = "unspecified" }
+kguard-android-feature = { id = "kguard.android.feature", version = "unspecified" }
 
 [bundles]
 

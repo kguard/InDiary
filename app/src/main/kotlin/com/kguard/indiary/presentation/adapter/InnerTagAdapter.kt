@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kguard.indiary.databinding.ItemTagCardviewBinding
-import com.kguard.core.database.entity.Tag
+import com.kguard.indiary.core.database.entity.Tag
 
 /**
  * todo tag

@@ -2,8 +2,8 @@ package com.kguard.indiary.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kguard.core.domain.MemoryUseCase
-import com.kguard.core.model.DomainMemory
+import com.kguard.indiary.core.domain.MemoryUseCase
+import com.kguard.indiary.core.model.DomainMemory
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.kguard.core.designsystem"
+    namespace = "com.kguard.indiary.core.designsystem"
 }
 
 dependencies {

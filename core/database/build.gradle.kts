@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.kguard.core.database"
+    namespace = "com.kguard.indiary.core.database"
 }
 
 dependencies {

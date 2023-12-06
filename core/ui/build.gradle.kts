@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.kguard.core.ui"
+    namespace = "com.kguard.indiary.core.ui"
 }
 
 dependencies {

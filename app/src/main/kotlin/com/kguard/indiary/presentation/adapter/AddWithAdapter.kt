@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.RecyclerView
-import com.kguard.core.model.DomainPerson
+import com.kguard.indiary.core.model.DomainPerson
 import com.kguard.indiary.databinding.ItemRecyclerWithBinding
 
 class AddWithAdapter(val onclick: (DomainPerson) -> Unit, val dialog: DialogFragment) :

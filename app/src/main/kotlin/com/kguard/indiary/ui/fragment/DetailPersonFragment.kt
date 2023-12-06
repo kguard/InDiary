@@ -11,8 +11,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.kguard.core.model.DomainPerson
 import com.kguard.indiary.R
+import com.kguard.indiary.core.model.DomainPerson
 import com.kguard.indiary.databinding.FragmentDetailPersonBinding
 import com.kguard.indiary.presentation.viewmodel.DetailPersonViewModel
 import com.kguard.indiary.presentation.viewmodel.MainViewModel

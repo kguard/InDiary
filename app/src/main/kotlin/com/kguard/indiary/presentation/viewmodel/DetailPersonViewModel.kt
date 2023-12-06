@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kguard.core.domain.MemoryUseCase
-import com.kguard.core.domain.PersonUseCase
-import com.kguard.core.model.DomainMemory
-import com.kguard.core.model.DomainPerson
+import com.kguard.indiary.core.domain.MemoryUseCase
+import com.kguard.indiary.core.domain.PersonUseCase
+import com.kguard.indiary.core.model.DomainMemory
+import com.kguard.indiary.core.model.DomainPerson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDate

@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.kguard.core.network"
+    namespace = "com.kguard.indiary.core.network"
     buildFeatures{
         buildConfig = true
     }

@@ -40,5 +40,9 @@ gradlePlugin{
             id = "kguard.android.room"
             implementationClass = "AndroidRoomConventionPlugin"
         }
+        register("androidFeature") {
+            id = "kguard.android.feature"
+            implementationClass = "AndroidFeatureConventionPlugin"
+        }
     }
 }

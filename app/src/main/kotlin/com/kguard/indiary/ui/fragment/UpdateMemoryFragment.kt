@@ -19,7 +19,7 @@ import com.esafirm.imagepicker.features.registerImagePicker
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
-import com.kguard.core.model.DomainMemory
+import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.R
 import com.kguard.indiary.presentation.adapter.PhotoAdapter
 import com.kguard.indiary.databinding.FragmentUpdateMemoryBinding

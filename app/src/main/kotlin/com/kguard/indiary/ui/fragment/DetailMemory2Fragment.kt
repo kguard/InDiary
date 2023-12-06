@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.kguard.core.model.DomainMemory
+import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.R
 import com.kguard.indiary.presentation.adapter.PhotoAdapter
 import com.kguard.indiary.databinding.FragmentDetailMemory2Binding

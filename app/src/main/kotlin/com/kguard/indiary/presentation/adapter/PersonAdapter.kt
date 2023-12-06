@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.kguard.core.model.DomainPerson
+import com.kguard.indiary.core.model.DomainPerson
 import com.kguard.indiary.R
 import com.kguard.indiary.databinding.ItemRecyclerPersonBinding
 import com.kguard.indiary.util.ItemHelperInterface
