@@ -2,7 +2,7 @@ package com.kguard.indiary.core.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 
-internal val yellow = Color(0xFFCFBA87)
+internal val yellow = Color(0xFFF0B825)
 internal val brown30Main = Color(0xFF5A413C)
 internal val brown20Sub = Color(0xFF977D71)
 internal val brown10Third = Color(0xFFE0D9CC)

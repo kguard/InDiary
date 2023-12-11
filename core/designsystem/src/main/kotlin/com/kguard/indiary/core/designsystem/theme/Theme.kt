@@ -27,6 +27,7 @@ private val LightColorScheme = lightColorScheme(
     onSurfaceVariant = gray,
     background = brown30Main,
     onBackground = brown20Sub,
+    outline = yellow
 )
 
 private val DarkColorScheme = darkColorScheme(
