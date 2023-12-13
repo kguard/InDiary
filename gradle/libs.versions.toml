@@ -33,7 +33,7 @@ androidxNavigation = "2.7.5"
 googleOss = "17.0.1"
 googleOssPlugin = "0.10.6"
 gson = "2.10"
-androidImagePicker = "3.0.0-beta5"
+androidImagePicker = "3.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore" }

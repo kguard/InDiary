@@ -33,25 +33,26 @@ fun PersonCard(
     modifier: Modifier = Modifier,
     name: String,
     date: String,
-    ){
+) {
     Card(
         onClick = onClick,
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.onSurface,
             contentColor = Color.White
         ),
-        modifier = Modifier
+        modifier = modifier
             .padding(8.dp)
-            .clip(RoundedCornerShape(20))
-            .border(3.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(20))
+            .border(3.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(20)),
+        shape = RoundedCornerShape(20),
+        elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
     ) {
         Column(
-            modifier = Modifier.padding(8.dp),
-            horizontalAlignment = Alignment.End
+            modifier = modifier.padding(6.dp),
+            horizontalAlignment = Alignment.End,
         ) {
 
             Row(
-                modifier = Modifier
+                modifier = modifier
                     .fillMaxWidth()
                     .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
@@ -75,11 +76,16 @@ fun PersonCard(
                     })
 
             }
-            Text(text = date, style = MaterialTheme.typography.bodyMedium, modifier= Modifier.padding(end =16.dp, bottom = 16.dp))
+            Text(
+                text = date,
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = modifier.padding(end = 16.dp, bottom = 16.dp)
+            )
 
         }
     }
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PersonCard2(
@@ -88,28 +94,36 @@ fun PersonCard2(
     modifier: Modifier = Modifier,
     name: String,
     date: String,
-){
+) {
     Card(
         onClick = onClick,
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.onSurface,
             contentColor = Color.White
         ),
-        modifier = Modifier
+        modifier = modifier
             .padding(8.dp)
-            .clip(RoundedCornerShape(20))
-            .border(3.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(20))
+            .border(3.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(20)),
+        shape = RoundedCornerShape(20),
+        elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
     ) {
         Row(
-            modifier = modifier.padding(8.dp)
-        ) {Text(text = name, style = MaterialTheme.typography.bodyLarge ,modifier= Modifier.weight(1f).padding(16.dp))
+            modifier = modifier.padding(6.dp)
+        ) {
+            Text(
+                text = name,
+                style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(16.dp)
+            )
             Column(
                 horizontalAlignment = Alignment.End,
-                modifier = Modifier.padding(16.dp),
+                modifier = modifier.padding(16.dp),
             ) {
 
                 IndiaryToggleButton(
-                    modifier =  Modifier.padding(bottom = 16.dp),
+                    modifier = modifier.padding(bottom = 16.dp),
                     checked = false,
                     onCheckedChange = onCheckedChange,
                     icon = {
@@ -131,14 +145,17 @@ fun PersonCard2(
         }
     }
 }
+
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun CardPrev() {
     IndiaryTheme {
         Column {
-            PersonCard(onClick = {}, name = "김경호", date = "2018-22-22", onCheckedChange = { !it
+            PersonCard(onClick = {}, name = "김경호", date = "2018-22-22", onCheckedChange = {
+                !it
             })
-            PersonCard2(onClick = {}, name = "김경호", date = "2018-22-22", onCheckedChange = { !it
+            PersonCard2(onClick = {}, name = "김경호", date = "2018-22-22", onCheckedChange = {
+                !it
             })
         }
     }

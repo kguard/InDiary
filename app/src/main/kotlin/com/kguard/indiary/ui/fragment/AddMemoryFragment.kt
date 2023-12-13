@@ -146,7 +146,7 @@ class AddMemoryFragment : Fragment() {
             TedPermission.create()
                 .setPermissionListener(permissionChecker)
                 .setDeniedMessage("권한 설정 해주세요")
-                .setPermissions(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                .setPermissions(android.Manifest.permission.READ_MEDIA_IMAGES)
                 .check()
 
         }

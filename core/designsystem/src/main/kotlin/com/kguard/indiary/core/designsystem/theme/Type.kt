@@ -37,7 +37,7 @@ internal val IndiaryTypography = Typography(
     ),
     //작성 하는 글자 및 표현 글자 크기
     bodyMedium = TextStyle(
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.SemiBold,
         fontSize = 14.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.25.sp,
