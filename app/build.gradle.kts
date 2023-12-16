@@ -37,6 +37,8 @@ android {
 }
 
 dependencies {
+    implementation(projects.feature.person)
+    implementation(projects.feature.memory)
 
     implementation(libs.androidx.core.ktx)
     implementation (libs.androidx.appcompat)

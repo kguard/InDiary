@@ -9,6 +9,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -21,7 +22,7 @@ import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun IndiaryTopAppBar(
+fun IndiarySubTopAppBar(
     @StringRes titleRes: Int,
     navigationIcon: ImageVector,
     navigationIconContentDescription: String?,
@@ -51,14 +52,50 @@ fun IndiaryTopAppBar(
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun IndiaryMainTopAppBar(
+    actionIcon: ImageVector,
+    actionIconContentDescription: String?,
+    modifier: Modifier = Modifier,
+    colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
+    onNavigationClick: () -> Unit = {},
+) {
+    TopAppBar(
+        title = {
+            Text(
+                text = stringResource(R.string.AppNamePage),
+                style = MaterialTheme.typography.titleMedium,
+            )
+        },
+        actions = {
+            IconButton(onClick = onNavigationClick) {
+                Icon(
+                    imageVector = actionIcon,
+                    contentDescription = actionIconContentDescription,
+                    tint = MaterialTheme.colorScheme.onSurface
+                )
+            }
+        },
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer
+        ),
+        modifier = modifier
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
 @ThemePreviews
 @Composable
 fun IndiaryTopAppBarPrev() {
     IndiaryTheme {
-        IndiaryTopAppBar(
+        IndiarySubTopAppBar(
             titleRes = R.string.AddPersonPage,
             navigationIcon = Icons.Rounded.ArrowBack,
             navigationIconContentDescription = "Back Button"
+        )
+        IndiaryMainTopAppBar(
+            actionIcon = Icons.Rounded.ArrowBack,
+            actionIconContentDescription = "Back Button"
         )
     }
 }

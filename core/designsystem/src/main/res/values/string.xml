@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="AddPersonPage">사람 추가하기</string>
+    <string name="AppNamePage">인(人) 다이어리</string>
 </resources>
