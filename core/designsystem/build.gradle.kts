@@ -10,7 +10,6 @@ android {
 dependencies {
     implementation (libs.androidx.appcompat)
     // icon 가져오기 위해서 일시적으로 사용
-    implementation(projects.app)
     api(libs.androidx.compose.foundation)
     api(libs.androidx.compose.foundation.layout)
     api(libs.androidx.compose.material.iconsExtended)
