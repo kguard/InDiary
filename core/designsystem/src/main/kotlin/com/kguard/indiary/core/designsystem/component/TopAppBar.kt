@@ -15,7 +15,9 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.kguard.indiary.core.designsystem.R
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 
@@ -24,8 +26,8 @@ import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 @Composable
 fun IndiarySubTopAppBar(
     @StringRes titleRes: Int,
-    navigationIcon: ImageVector,
-    navigationIconContentDescription: String?,
+    navigationIcon: Int,
+    navigationIconContentDescription: String? = null,
     modifier: Modifier = Modifier,
     colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
     onNavigationClick: () -> Unit = {},
@@ -40,7 +42,7 @@ fun IndiarySubTopAppBar(
         navigationIcon = {
             IconButton(onClick = onNavigationClick) {
                 Icon(
-                    imageVector = navigationIcon,
+                    painter = painterResource(id = navigationIcon),
                     contentDescription = navigationIconContentDescription,
                     tint = MaterialTheme.colorScheme.onSurface
                 )
@@ -54,8 +56,8 @@ fun IndiarySubTopAppBar(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun IndiaryMainTopAppBar(
-    actionIcon: ImageVector,
-    actionIconContentDescription: String?,
+    actionIcon: Int,
+    actionIconContentDescription: String? = null,
     modifier: Modifier = Modifier,
     colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
     onNavigationClick: () -> Unit = {},
@@ -70,7 +72,7 @@ fun IndiaryMainTopAppBar(
         actions = {
             IconButton(onClick = onNavigationClick) {
                 Icon(
-                    imageVector = actionIcon,
+                    painter = painterResource(id = actionIcon),
                     contentDescription = actionIconContentDescription,
                     tint = MaterialTheme.colorScheme.onSurface
                 )
@@ -84,18 +86,18 @@ fun IndiaryMainTopAppBar(
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-@ThemePreviews
+@Preview(showSystemUi = true)
 @Composable
 fun IndiaryTopAppBarPrev() {
     IndiaryTheme {
         IndiarySubTopAppBar(
             titleRes = R.string.AddPersonPage,
-            navigationIcon = Icons.Rounded.ArrowBack,
+            navigationIcon = R.drawable.ic_memory_2_line,
             navigationIconContentDescription = "Back Button"
         )
-        IndiaryMainTopAppBar(
-            actionIcon = Icons.Rounded.ArrowBack,
-            actionIconContentDescription = "Back Button"
-        )
+//        IndiaryMainTopAppBar(
+//            actionIcon = R.drawable.ic_star_fill,
+//            actionIconContentDescription = "Back Button"
+//        )
     }
 }

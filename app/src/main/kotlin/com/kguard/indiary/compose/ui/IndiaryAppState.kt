@@ -57,7 +57,7 @@ class IndiaryAppState(
     val shouldShowBottomBar: Boolean
         get() = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Compact
 
-    val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.values().asList()
+    val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.entries
 
     /**
      * 앱에서 최상위 목적지로 이동하기 위한 UI 로직. 최상위 목적지에는 백스택의 목적지 복사본이 하나만 있으며, 당신이 그것을 오갈 때마다 상태를 저장하고 복원합니다.

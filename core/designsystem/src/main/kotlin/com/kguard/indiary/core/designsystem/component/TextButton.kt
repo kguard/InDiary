@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -12,6 +13,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 
@@ -29,14 +33,14 @@ fun IndiaryButton(
         modifier = modifier,
         enabled = enabled,
         colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.background
+            containerColor = MaterialTheme.colorScheme.onSurface
         ),
         contentPadding = contentPadding,
         content = content
     )
 }
 
-// 텍스트 및 아이콘 콘텐츠 슬록으로 채워진 버튼
+// 텍스트 및 아이콘 콘텐츠 슬롯으로 채워진 버튼
 @Composable
 fun IndiaryButton(
     onClick: () -> Unit,
@@ -67,16 +71,20 @@ fun IndiaryTextButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    content: @Composable RowScope.() -> Unit
+    shape: Shape = ButtonDefaults.textShape,
+    content: @Composable RowScope.() -> Unit,
+
 ) {
     TextButton(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
         colors = ButtonDefaults.textButtonColors(
-            containerColor = MaterialTheme.colorScheme.background,
+            containerColor = MaterialTheme.colorScheme.onSurface,
+            contentColor = Color.White
         ),
-        content = content
+        content = content,
+        shape = shape
     )
 }
 
@@ -85,13 +93,15 @@ fun IndiaryTextButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    shape: Shape = ButtonDefaults.textShape,
     text: @Composable () -> Unit,
     leadingIcon: @Composable (() -> Unit)? = null,
 ) {
     IndiaryTextButton(
         onClick = onClick,
         modifier = modifier,
-        enabled = enabled
+        enabled = enabled,
+        shape = shape
     ) {
         IndiaryButtonContent(
             text = text,
@@ -126,7 +136,7 @@ private fun IndiaryButtonContent(
 
 
 @Composable
-@ThemePreviews
+@Preview
 fun IndiaryButtonPrev() {
     IndiaryTheme {
         IndiaryButton(onClick = {}, text = { Text(text = "TEST BUTTON") }) {
@@ -135,7 +145,7 @@ fun IndiaryButtonPrev() {
 }
 
 @Composable
-@ThemePreviews
+@Preview
 fun IndiaryTextButtonPrev() {
     IndiaryTheme {
         IndiaryTextButton(onClick = {}, text = { Text(text = "TEST BUTTON") }) {

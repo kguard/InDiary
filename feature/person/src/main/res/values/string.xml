@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="Person">사람</string>
+    <string name="AddPersonPage">사람 추가하기</string>
+    <string name="UpdatePersonPage">사람 수정하기</string>
 </resources>

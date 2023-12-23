@@ -113,6 +113,4 @@ object IndiaryNavigationDefaults {
     // 인디케이터 삭제를 위하여 surface 색상과 동일 하게 사용
     @Composable
     fun navigationIndicatorColor() = MaterialTheme.colorScheme.surface
-
-
 }

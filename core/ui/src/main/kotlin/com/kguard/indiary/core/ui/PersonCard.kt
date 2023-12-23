@@ -16,7 +16,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,18 +23,18 @@ import androidx.compose.ui.unit.dp
 import com.kguard.indiary.core.designsystem.R
 import com.kguard.indiary.core.designsystem.component.IndiaryToggleButton
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
+import com.kguard.indiary.core.model.DomainPerson
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PersonCard(
-    onClick: () -> Unit,
-    onCheckedChange: (Boolean) -> Unit,
+    person : DomainPerson,
+    onCardClick: (Int) -> Unit,
+    onCheckedChange: (DomainPerson) -> Unit,
     modifier: Modifier = Modifier,
-    name: String,
-    date: String,
 ) {
     Card(
-        onClick = onClick,
+        onClick = { onCardClick(person.person_id) },
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.onSurface,
             contentColor = Color.White
@@ -58,10 +57,10 @@ fun PersonCard(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(text = name, style = MaterialTheme.typography.bodyLarge)
+                Text(text = person.name, style = MaterialTheme.typography.bodyLarge)
                 IndiaryToggleButton(
                     checked = false,
-                    onCheckedChange = onCheckedChange,
+                    onCheckedChange = { onCheckedChange(person.copy(favorite = !person.favorite)) },
                     icon = {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_star_line),
@@ -77,7 +76,7 @@ fun PersonCard(
 
             }
             Text(
-                text = date,
+                text = person.make,
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = modifier.padding(end = 16.dp, bottom = 16.dp)
             )
@@ -151,12 +150,12 @@ fun PersonCard2(
 fun CardPrev() {
     IndiaryTheme {
         Column {
-            PersonCard(onClick = {}, name = "김경호", date = "2018-22-22", onCheckedChange = {
-                !it
-            })
-            PersonCard2(onClick = {}, name = "김경호", date = "2018-22-22", onCheckedChange = {
-                !it
-            })
+//            PersonCard(onClick = {}, name = "김경호", date = "2018-22-22", onCheckedChange = {
+//                !it
+//            })
+//            PersonCard2(onClick = {}, name = "김경호", date = "2018-22-22", onCheckedChange = {
+//                !it
+//            })
         }
     }
 }

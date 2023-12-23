@@ -29,7 +29,7 @@ fun IndiaryFloatingActionButton(
         onClick = onClick,
         modifier = modifier,
         shape = FloatingActionButtonDefaults.largeShape,
-        containerColor = MaterialTheme.colorScheme.background,
+        containerColor = MaterialTheme.colorScheme.onSurface,
         contentColor = MaterialTheme.colorScheme.onBackground,
         elevation = elevation,
         content = content
