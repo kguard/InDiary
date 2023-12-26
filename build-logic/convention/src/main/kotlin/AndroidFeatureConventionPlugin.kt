@@ -34,6 +34,9 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("coil.kt").get())
                 add("implementation", libs.findLibrary("coil.kt.compose").get())
 
+                add("implementation", libs.findLibrary("accompanist.pager").get())
+                add("implementation", libs.findLibrary("accompanist.pager.indicators").get())
+
                 add("implementation", libs.findLibrary("androidx.lifecycle.livedata.ktx").get())
                 add("implementation", libs.findLibrary("androidx.lifecycle.runtime.ktx").get())
                 add("implementation", libs.findLibrary("androidx.lifecycle.viewmodel.ktx").get())

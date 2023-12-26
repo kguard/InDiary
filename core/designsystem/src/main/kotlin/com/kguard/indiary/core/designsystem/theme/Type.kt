@@ -67,6 +67,26 @@ internal val IndiaryTypography = Typography(
         lineHeight = 16.sp,
         letterSpacing = 0.4.sp,
     ),
+    displayLarge = TextStyle(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 22.sp,
+        lineHeight = 28.sp,
+        letterSpacing = 0.sp
+    ),
+    // 페이지 제목
+    displayMedium = TextStyle(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 20.sp,
+        lineHeight = 24.sp,
+        letterSpacing = 0.sp
+    ),
+    //속성 제목
+    displaySmall = TextStyle(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 18.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.sp
+    ),
 
 
 )

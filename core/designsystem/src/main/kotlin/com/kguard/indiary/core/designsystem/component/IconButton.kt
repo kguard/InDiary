@@ -13,6 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.kguard.indiary.core.designsystem.R
@@ -23,7 +24,7 @@ fun IndiaryFloatingActionButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     elevation: FloatingActionButtonElevation = FloatingActionButtonDefaults.elevation(),
-    content: @Composable () -> Unit,
+    icon: ImageVector
 ) {
     FloatingActionButton(
         onClick = onClick,
@@ -32,8 +33,9 @@ fun IndiaryFloatingActionButton(
         containerColor = MaterialTheme.colorScheme.onSurface,
         contentColor = MaterialTheme.colorScheme.onBackground,
         elevation = elevation,
-        content = content
-    )
+    ){
+        Icon(imageVector = icon, contentDescription = null)
+    }
 }
 
 @Composable
@@ -63,11 +65,8 @@ fun IndiaryToggleButton(
 @Composable
 fun IndiaryFloatingActionButtonPrev() {
     IndiaryTheme {
-        IndiaryFloatingActionButton(onClick = {})
-        {
-//            Icon(painter = painterResource(id = R.drawable.ic_memory_2_line), contentDescription ="췍" )
-            Icon(imageVector = Icons.Rounded.Edit, contentDescription = null)
-        }
+        IndiaryFloatingActionButton(onClick = {}, icon = Icons.Rounded.Edit)
+
     }
 }
 

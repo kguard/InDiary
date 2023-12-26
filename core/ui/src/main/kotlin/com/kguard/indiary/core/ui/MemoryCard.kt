@@ -21,19 +21,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
+import com.kguard.indiary.core.model.DomainMemory
 
 //TODO: 사진 불러오기 안되면 고쳐야됨
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MemoryCard(
-    onClick: () -> Unit,
+    onCardClick: (Int) -> Unit,
+    memory: DomainMemory,
     modifier: Modifier = Modifier,
-    name: String,
-    date: String,
-    photos: Array<String>? = null
 ) {
     Card(
-        onClick = onClick,
+        onClick = {onCardClick(memory.memory_id)},
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.onSurface,
             contentColor = Color.White
@@ -49,13 +48,13 @@ fun MemoryCard(
                 .fillMaxWidth()
                 .padding(8.dp)
         ) {
-            Text(text = name, modifier.padding(top = 16.dp, start = 16.dp))
+            Text(text = memory.title, modifier.padding(top = 16.dp, start = 16.dp))
             Text(
-                text = date,
+                text = memory.date,
                 modifier.padding(start = 16.dp, top = 8.dp),
                 style = MaterialTheme.typography.bodyMedium
             )
-            if (photos != null) {
+            if (memory.imageList.isNotEmpty()) {
                 LazyRow(
                     modifier = modifier
                         .padding(
@@ -66,8 +65,10 @@ fun MemoryCard(
                         )
                         .align(Alignment.CenterHorizontally)
                 ) {
-                    items(items = photos) { photo ->
-                        MemoryPhoto(photo = photo)
+                    items(items = memory.imageList) { photo ->
+                        if (photo != null) {
+                            MemoryPhoto(photo = photo)
+                        }
                     }
                 }
             } else {
@@ -100,12 +101,10 @@ fun MemoryCardPrev() {
         Column {
             MemoryPhoto(photo = "https://cdn.gjdream.com/news/photo/202308/631816_233764_323.jpg")
             MemoryCard(
-                onClick = {},
-                name = "김경호",
-                date = "2018-22-22",
-                photos = arrayOf("1m", "2m", "1m", "2m", "1m", "2m", "1m", "2m")
+                onCardClick = {},
+                memory = DomainMemory(title = "rlarudgh", date = "2018-11-11", imageList = arrayListOf("1","2"))
             )
-            MemoryCard(onClick = {}, name = "김경호", date = "2018-22-22")
+            MemoryCard(onCardClick = {}, memory = DomainMemory(title = "rlarudgh", date = "2018-11-11", ))
         }
     }
 }

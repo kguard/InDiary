@@ -44,6 +44,9 @@
         <item>여</item>
         <item>표기 안함</item>
     </string-array>
+    <string name="Male">남자</string>
+    <string name="Female">여자</string>
+    <string name="NoneGender">표기 안함</string>
     <string name="Tag">태그</string>
     <string name="Memo">메모</string>
 

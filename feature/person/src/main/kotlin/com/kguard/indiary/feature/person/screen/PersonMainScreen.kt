@@ -1,7 +1,7 @@
 package com.kguard.indiary.feature.person.screen
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -32,6 +32,7 @@ internal fun PersonMainRoute(
     onCardClick: (Int) -> Unit,
     onAddClick: () -> Unit,
 ) {
+    viewModel.getPersons()
     val person by viewModel.persons.collectAsStateWithLifecycle()
     val memory by viewModel.memories.observeAsState()
     PersonMainScreen(
@@ -56,16 +57,22 @@ internal fun PersonMainScreen(
     memories: List<DomainMemory>? = null
 ) {
     Scaffold(
-    )
-    {
-        Column {
+        topBar = {
             IndiaryMainTopAppBar(
                 onNavigationClick = onAddClick,
                 actionIcon = R.drawable.ic_person_add,
                 actionIconContentDescription = "AddPerson"
             )
-
-            LazyColumn(modifier = Modifier.padding(8.dp))
+        }
+    )
+    {
+//        Column {
+//            IndiaryMainTopAppBar(
+//                onNavigationClick = onAddClick,
+//                actionIcon = R.drawable.ic_person_add,
+//                actionIconContentDescription = "AddPerson"
+//            )
+            LazyColumn(modifier = Modifier.fillMaxSize().padding(8.dp))
             {
                 items(items = persons) { person ->
                     val dismissState = rememberDismissState(
@@ -87,7 +94,7 @@ internal fun PersonMainScreen(
                         })
                 }
             }
-        }
+//        }
     }
 }
 

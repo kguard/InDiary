@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.kguard.android.feature)
+    alias(libs.plugins.kguard.android.library.compose)
 }
 
 android {
@@ -10,5 +11,6 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.android.material)
+    implementation(libs.androidx.activity.compose)
 
 }

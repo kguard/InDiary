@@ -12,6 +12,7 @@ androidxComposeCompiler = "1.5.3"
 androidxHiltNavigationCompose = "1.1.0"
 coil = "2.4.0"
 androidxMetrics = "1.0.0-alpha04"
+accompanistPager = "0.20.1"
 
 ksp = "1.9.10-1.0.13"
 androidTools = "31.2.0"
@@ -68,6 +69,9 @@ androidx-metrics = { group = "androidx.metrics", name = "metrics-performance", v
 coil-kt = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 coil-kt-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
+accompanist-pager = { group = "com.google.accompanist", name = "accompanist-pager", version.ref= "accompanistPager"}
+accompanist-pager-indicators = { group = "com.google.accompanist", name = "accompanist-pager-indicators", version.ref= "accompanistPager"}
+
 
 androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "androidxLifecycle" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }

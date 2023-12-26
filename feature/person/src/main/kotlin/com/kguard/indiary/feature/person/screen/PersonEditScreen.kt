@@ -62,6 +62,7 @@ internal fun PersonEditRoute(
         person = person
     )
 }
+
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -128,7 +129,9 @@ internal fun PersonEditScreen(
                         .padding(vertical = 4.dp, horizontal = 16.dp)
                         .fillMaxWidth(),
                     value = birth,
-                    onValueChange = { newValue -> if (birth.length < max) birth = newValue },
+                    onValueChange = { newValue ->
+                        birth = newValue
+                    },
                     labelId = R.string.Age,
                     isError = isEmptyBirth,
                     supportingText = {
