@@ -17,8 +17,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.kguard.indiary.core.designsystem.R
-import com.kguard.indiary.core.designsystem.component.IndiaryMainTopAppBar
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.core.ui.MemoryCard
@@ -35,7 +33,7 @@ internal fun MemoryMainRoute(
     MemoryMainScreen(
         memories = memories,
         onCardClick = onCardClick,
-        onAddClick = onAddClick,
+//        onAddClick = onAddClick,
         onCardSlide = viewModel::deleteMemory,
     )
 }
@@ -43,20 +41,20 @@ internal fun MemoryMainRoute(
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun MemoryMainScreen(
+fun MemoryMainScreen(
     onCardClick: (Int) -> Unit,
     onCardSlide: (DomainMemory) -> Unit,
-    onAddClick: () -> Unit,
+ //   onAddClick: () -> Unit,
     memories: List<DomainMemory>,
 ) {
     Scaffold(
-        topBar = {
-            IndiaryMainTopAppBar(
-                onNavigationClick = onAddClick,
-                actionIcon = R.drawable.ic_memory_add,
-                actionIconContentDescription = "AddMemory"
-            )
-        }
+//        topBar = {
+//            IndiaryMainTopAppBar(
+//                onNavigationClick = onAddClick,
+//                actionIcon = R.drawable.ic_memory_add,
+//                actionIconContentDescription = "AddMemory"
+//            )
+//        }
     )
     {
         LazyColumn(
@@ -90,7 +88,7 @@ fun MemoryMainScreenPrev() {
         MemoryMainScreen(
             onCardClick = {},
             onCardSlide = {},
-            onAddClick = { /*TODO*/ },
+//            onAddClick = { /*TODO*/ },
             memories = listOf(
                 DomainMemory(
                     title = "rlarudgh",

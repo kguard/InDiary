@@ -12,5 +12,6 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.android.material)
     implementation(libs.androidx.activity.compose)
+    implementation(projects.feature.memory)
 
 }

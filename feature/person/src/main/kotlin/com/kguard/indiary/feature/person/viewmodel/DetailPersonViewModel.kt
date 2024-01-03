@@ -28,9 +28,9 @@ class DetailPersonViewModel @Inject constructor(
     val memories: LiveData<List<DomainMemory>>
         get() = _memories
 
-    fun getMemoriesInPerson() {
+    fun getMemoriesInPerson(person_id: Int) {
         viewModelScope.launch {
-            _memories.value = memoryUseCase.getMemories()
+            _memories.value = memoryUseCase.getPersonMemories(person_id)
         }
     }
 
@@ -43,6 +43,12 @@ class DetailPersonViewModel @Inject constructor(
     fun deletePerson(person: DomainPerson) {
         viewModelScope.launch {
             personUseCase.deletePerson(person)
+        }
+    }
+
+    fun deleteMemory(memory: DomainMemory) {
+        viewModelScope.launch {
+            memoryUseCase.deleteMemory(memory)
         }
     }
 

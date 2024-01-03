@@ -89,6 +89,7 @@ internal val IndiaryTypography = Typography(
     ),
 
 
+
 )
 //<style name="TV_24sp_bold_black" parent="Widget.AppCompat.TextView">
 //<item name="android:textSize">24sp</item>

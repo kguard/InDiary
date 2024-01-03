@@ -24,11 +24,11 @@ import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.core.model.DomainPerson
 import com.kguard.indiary.core.ui.PersonCard
 import com.kguard.indiary.core.designsystem.R
-import com.kguard.indiary.feature.person.viewmodel.PersonViewModel
+import com.kguard.indiary.feature.person.viewmodel.PersonMainViewModel
 
 @Composable
 internal fun PersonMainRoute(
-    viewModel: PersonViewModel = viewModel(),
+    viewModel: PersonMainViewModel = viewModel(),
     onCardClick: (Int) -> Unit,
     onAddClick: () -> Unit,
 ) {
