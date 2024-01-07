@@ -20,17 +20,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.designsystem.R
+import com.kguard.indiary.core.model.DomainPerson
 
 @Composable
 fun PersonDeleteDialog(
-    personName: String,
+    person: DomainPerson,
     onConfirmation: () -> Unit,
     onDismissRequest: () -> Unit
 ) {
     AlertDialog(
         title = {
             Text(
-                text = personName,
+                text = person.name,
                 style = MaterialTheme.typography.displayLarge
             )
         },
@@ -60,7 +61,15 @@ fun PersonDeleteDialog(
 fun PersonDeletePrev() {
     IndiaryTheme {
         Column{
-           PersonDeleteDialog(personName = "김경호",onConfirmation = {}, onDismissRequest = {})
+           PersonDeleteDialog(DomainPerson(
+               person_id = 0,
+               name = "aaa",
+               favorite = true,
+               gender = 0,
+               make = "123",
+               birth = "123",
+               memo = "!231"
+           ),onConfirmation = {}, onDismissRequest = {})
         }
     }
 }

@@ -24,17 +24,17 @@ import com.kguard.indiary.feature.memory.viewmodel.MemoryViewModel
 
 @Composable
 internal fun MemoryMainRoute(
-    viewModel: MemoryViewModel = viewModel(),
+    memoryMainViewModel: MemoryViewModel = viewModel(),
     onCardClick: (Int) -> Unit,
     onAddClick: () -> Unit,
 ) {
-    viewModel.getMemories()
-    val memories by viewModel.memory.collectAsStateWithLifecycle()
+    memoryMainViewModel.getMemories()
+    val memories by memoryMainViewModel.memory.collectAsStateWithLifecycle()
     MemoryMainScreen(
         memories = memories,
         onCardClick = onCardClick,
 //        onAddClick = onAddClick,
-        onCardSlide = viewModel::deleteMemory,
+        onCardSlide = memoryMainViewModel::deleteMemory,
     )
 }
 

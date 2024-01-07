@@ -46,18 +46,18 @@ import java.util.regex.Pattern
 
 @Composable
 internal fun PersonEditRoute(
-    addViewModel: AddPersonViewModel = viewModel(),
-    updateViewModel: UpdatePersonViewModel = viewModel(),
+    personAddViewModel: AddPersonViewModel = viewModel(),
+    personUpdateViewModel: UpdatePersonViewModel = viewModel(),
     onCompleteClick: () -> Unit,
     personId: Int? = null
 ) {
     if (personId != null) {
-        updateViewModel.getPerson(personId)
+        personUpdateViewModel.getPerson(personId)
     }
-    val person by updateViewModel.person.observeAsState()
+    val person by personUpdateViewModel.person.observeAsState()
     PersonEditScreen(
-        onAddClick = addViewModel::insertPerson,
-        onUpdateClick = updateViewModel::updatePerson,
+        onAddClick = personAddViewModel::insertPerson,
+        onUpdateClick = personUpdateViewModel::updatePerson,
         onCompleteClick = onCompleteClick,
         person = person
     )
@@ -75,7 +75,7 @@ internal fun PersonEditScreen(
 ) {
     val focusManager = LocalFocusManager.current
 
-    var addType by remember { mutableStateOf(person == null) }
+    val addType by remember { mutableStateOf(person == null) }
 
     var name by remember { mutableStateOf(person?.name ?: "") }
     var isEmptyName by remember { mutableStateOf(false) }

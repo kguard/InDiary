@@ -9,17 +9,18 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.kguard.indiary.core.designsystem.R
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
+import com.kguard.indiary.core.model.DomainMemory
 
 @Composable
 fun MemoryDeleteDialog(
-    memoryName: String,
+    memory: DomainMemory,
     onConfirmation: () -> Unit,
     onDismissRequest: () -> Unit
 ) {
     AlertDialog(
         title = {
             Text(
-                text = memoryName,
+                text = memory.title,
                 style = MaterialTheme.typography.displayLarge
             )
         },
@@ -48,6 +49,10 @@ fun MemoryDeleteDialog(
 @Composable
 fun MemoryDeleteDialogPrv() {
     IndiaryTheme {
-        MemoryDeleteDialog(memoryName = "집에 가기", onConfirmation = {}, onDismissRequest = {})
+        MemoryDeleteDialog( memory = DomainMemory(
+            title = "rlarudgh",
+            date = "2018-11-11",
+            imageList = arrayListOf("1", "2")
+        ), onConfirmation = {}, onDismissRequest = {})
     }
 }

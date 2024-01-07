@@ -45,23 +45,23 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun PersonDetailRoute(
-    detailViewModel : DetailPersonViewModel = viewModel(),
+    personDetailViewModel : DetailPersonViewModel = viewModel(),
     onUpdateClick: (DomainPerson) -> Unit,
     onCardClick: (Int) -> Unit,
     personId: Int
 ) {
-    detailViewModel.getPerson(personId)
-    detailViewModel.getMemoriesInPerson(personId)
-    val person by detailViewModel.person.observeAsState(initial = DomainPerson())
-    val memories by detailViewModel.memories.observeAsState(initial = listOf(DomainMemory()))
+    personDetailViewModel.getPerson(personId)
+    personDetailViewModel.getMemoriesInPerson(personId)
+    val person by personDetailViewModel.person.observeAsState(initial = DomainPerson())
+    val memories by personDetailViewModel.memories.observeAsState(initial = listOf(DomainMemory()))
     PersonDetailScreen(
         person = person,
-        age = detailViewModel.getAge(person.birth.toString()),
+        age = personDetailViewModel.getAge(person.birth.toString()),
         memories = memories,
         onCardClick = onCardClick,
-        onCardSlide = detailViewModel::deleteMemory,
+        onCardSlide = personDetailViewModel::deleteMemory,
         onUpdateClick = onUpdateClick,
-        onDeleteClick = detailViewModel::deletePerson
+        onDeleteClick = personDetailViewModel::deletePerson
     )
 
 }

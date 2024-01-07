@@ -55,4 +55,8 @@ class PersonMainViewModel @Inject constructor(
             getPersons()
         }
     }
+    init {
+        getPersons()
+        getMemoriesInPerson()
+    }
 }
