@@ -41,8 +41,8 @@ fun IndiaryTextLine(
             )
         }
         Divider(
-            modifier = modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp),
-            color = MaterialTheme.colorScheme.onPrimaryContainer,
+            modifier = modifier.padding(start = 16.dp, end = 16.dp),
+            color = MaterialTheme.colorScheme.primary,
             thickness = 2.dp
         )
     }
@@ -105,8 +105,8 @@ fun IndiaryMultiTextLine(
 
         }
         Divider(
-            modifier = modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp),
-            color = MaterialTheme.colorScheme.onPrimaryContainer,
+            modifier = modifier.padding(start = 16.dp, end = 16.dp),
+            color = MaterialTheme.colorScheme.primary,
             thickness = 2.dp
         )
     }
@@ -142,7 +142,7 @@ fun IndiaryTextLinePrev() {
             )
             IndiaryMultiTextLine(
                 title = stringResource(id = R.string.NameTitle),
-                content = "김경호qwsasdasdadadasdasdasdasdasdasdasdasdadasdasdasdasdasdasd111122999987897546546413123121321321231321231321215616511651565165165156561561565156156156788798879878978",
+                content = "",
                 modifier = Modifier.fillMaxWidth()
             )
         }

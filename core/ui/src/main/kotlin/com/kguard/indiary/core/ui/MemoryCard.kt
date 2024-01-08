@@ -90,7 +90,7 @@ fun MemoryPhoto(photo: String, modifier: Modifier = Modifier) {
         model = photo,
         placeholder = painterResource(R.drawable.bg_memo),
         contentDescription = null,
-        modifier = modifier.padding(top = 8.dp, end = 8.dp)
+        modifier = modifier.padding(end = 8.dp)
     )
 }
 
