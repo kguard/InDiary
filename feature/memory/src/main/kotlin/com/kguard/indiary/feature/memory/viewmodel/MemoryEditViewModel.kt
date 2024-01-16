@@ -14,9 +14,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class UpdateMemoryViewModel @Inject constructor(
+class MemoryEditViewModel @Inject constructor(
     private val memoryUseCase: MemoryUseCase,
-    private val PersonUseCase: PersonUseCase
+    private val personUseCase: PersonUseCase
 ) : ViewModel() {
     private var _memory = MutableLiveData<DomainMemory>()
     val memory: LiveData<DomainMemory>
@@ -26,6 +26,9 @@ class UpdateMemoryViewModel @Inject constructor(
     val person: LiveData<DomainPerson>
         get() = _person
 
+    private val _persons = MutableLiveData<List<DomainPerson>>()
+    val persons: LiveData<List<DomainPerson>>
+        get() = _persons
 
     private var _photos = ListLiveData<String>()
     val photos: LiveData<ArrayList<String>>
@@ -40,9 +43,9 @@ class UpdateMemoryViewModel @Inject constructor(
     }
 
 
-    fun getMemory(memory_id: Int) {
+    fun getMemory(memoryId: Int) {
         viewModelScope.launch {
-            _memory.value = memoryUseCase.getMemory(memory_id)
+            _memory.value = memoryUseCase.getMemory(memoryId)
         }
     }
 
@@ -52,10 +55,21 @@ class UpdateMemoryViewModel @Inject constructor(
         }
     }
 
-
-    fun getPerson(person_id: Int) {
+    fun insertMemory(memory: DomainMemory) {
         viewModelScope.launch {
-            _person.value = PersonUseCase.getPerson(person_id)
+            memoryUseCase.insertMemory(memory)
+        }
+    }
+
+    fun getPerson(personId: Int) {
+        viewModelScope.launch {
+            _person.value = personUseCase.getPerson(personId)
+        }
+    }
+
+    fun getPersons() {
+        viewModelScope.launch {
+            _persons.value = personUseCase.getPersons()
         }
     }
 }

@@ -53,6 +53,7 @@ fun PersonDetailRoute(
     personDetailViewModel: DetailPersonViewModel = viewModel(),
     onUpdateClick: (DomainPerson) -> Unit,
     onCardClick: (Int) -> Unit,
+    onDeleteClick: () -> Unit,
     personId: Int
 ) {
     personDetailViewModel.getPerson(personId)
@@ -66,7 +67,10 @@ fun PersonDetailRoute(
         onCardClick = onCardClick,
         onCardSlide = personDetailViewModel::deleteMemory,
         onUpdateClick = onUpdateClick,
-        onDeleteClick = personDetailViewModel::deletePerson
+        onDeleteClick = {
+            personDetailViewModel.deletePerson(it)
+            onDeleteClick()
+        }
     )
 
 }
@@ -74,7 +78,7 @@ fun PersonDetailRoute(
 @OptIn(ExperimentalPagerApi::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun PersonDetailScreen(
+internal fun PersonDetailScreen(
     modifier: Modifier = Modifier,
     person: DomainPerson,
     age: String,
@@ -202,28 +206,26 @@ fun PersonFeatureScreen(
                 icon = Icons.Rounded.Delete
             )
         }
-        if (openDialog) {
-            PersonDeleteDialog(
-                person = person,
-                onConfirmation = {
-                    openDialog = false
-                    if (memories != null) {
-                        if (memories.find { it.person_id == person.person_id } == null)
-                            onDeleteClick(person)
-                        else
-                            Toast.makeText(contextForToast, "삭제 할 수 없습니다.", Toast.LENGTH_SHORT)
-                                .show()
-                    } else
-                        onDeleteClick(person)
-                },
-                onDismissRequest = {
-                    openDialog = false
-                },
-            )
-        }
     }
-
-
+    if (openDialog) {
+        PersonDeleteDialog(
+            person = person,
+            onConfirmation = {
+                openDialog = false
+                if (memories != null) {
+                    if (memories.find { it.person_id == person.person_id } == null)
+                        onDeleteClick(person)
+                    else
+                        Toast.makeText(contextForToast, "삭제 할 수 없습니다.", Toast.LENGTH_SHORT)
+                            .show()
+                } else
+                    onDeleteClick(person)
+            },
+            onDismissRequest = {
+                openDialog = false
+            },
+        )
+    }
 }
 
 @Preview(showSystemUi = true)

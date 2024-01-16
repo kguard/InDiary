@@ -18,6 +18,7 @@ import com.kguard.indiary.presentation.adapter.PersonAdapter
 import com.kguard.indiary.databinding.FragmentPersonBinding
 import com.kguard.indiary.util.ItemHelperImpl
 import com.kguard.indiary.presentation.viewmodel.PersonViewModel
+import com.kguard.indiary.ui.dialog.DeletePersonDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
@@ -36,7 +37,7 @@ class PersonFragment : Fragment() {
             )
         },
         { person ->
-            DeletePersonDialogFragment(
+            DeletePersonDialog(
                 person, { delete ->
                     viewModel.memories.observe(viewLifecycleOwner, Observer { memories ->
                         if (memories.find { it.person_id == delete.person_id } == null) {

@@ -16,6 +16,7 @@ import com.kguard.indiary.core.model.DomainPerson
 import com.kguard.indiary.databinding.FragmentDetailPersonBinding
 import com.kguard.indiary.presentation.viewmodel.DetailPersonViewModel
 import com.kguard.indiary.presentation.viewmodel.MainViewModel
+import com.kguard.indiary.ui.dialog.DeletePersonDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -59,7 +60,7 @@ class DetailPersonFragment : Fragment() {
 
         }
         binding.fbDeletePerson.setOnClickListener {
-            DeletePersonDialogFragment(
+            DeletePersonDialog(
                 viewModel.person.value ?: DomainPerson(), { person ->
                     viewModel.memories.observe(viewLifecycleOwner)
                     { memories ->

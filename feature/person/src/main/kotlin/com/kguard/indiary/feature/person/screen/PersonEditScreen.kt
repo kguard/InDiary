@@ -56,9 +56,14 @@ internal fun PersonEditRoute(
     }
     val person by personUpdateViewModel.person.observeAsState()
     PersonEditScreen(
-        onAddClick = personAddViewModel::insertPerson,
-        onUpdateClick = personUpdateViewModel::updatePerson,
-        onCompleteClick = onCompleteClick,
+        onAddClick = {
+            personAddViewModel.insertPerson(it)
+            onCompleteClick()
+        },
+        onUpdateClick = {
+            personUpdateViewModel.updatePerson(it)
+            onCompleteClick()
+        },
         person = person
     )
 }
@@ -71,7 +76,6 @@ internal fun PersonEditScreen(
     person: DomainPerson? = null,
     onAddClick: (DomainPerson) -> Unit,
     onUpdateClick: (DomainPerson) -> Unit,
-    onCompleteClick: () -> Unit
 ) {
     val focusManager = LocalFocusManager.current
 
@@ -86,7 +90,6 @@ internal fun PersonEditScreen(
     var gender by remember { mutableIntStateOf(person?.gender ?: -1) }
     var isExpanded by remember { mutableStateOf(false) }
     val menu = stringArrayResource(id = R.array.GenderDetail)
-    val max = 8
 
     var memo by remember { mutableStateOf(person?.memo ?: "") }
 
@@ -211,7 +214,6 @@ internal fun PersonEditScreen(
                                     make = LocalDate.now().toString()
                                 )
                             )
-                            onCompleteClick()
                         } else {
                             onUpdateClick(
                                 person?.copy(
@@ -221,7 +223,6 @@ internal fun PersonEditScreen(
                                     memo = memo
                                 )!!
                             )
-                            onCompleteClick()
                         }
                     }
                 },
@@ -244,6 +245,6 @@ internal fun PersonEditScreen(
 @Composable
 fun PersonEditScreenPrev() {
     IndiaryTheme {
-        PersonEditScreen(onAddClick = {}, onUpdateClick = {}, person = null, onCompleteClick = {})
+        PersonEditScreen(onAddClick = {}, onUpdateClick = {}, person = null,)
     }
 }

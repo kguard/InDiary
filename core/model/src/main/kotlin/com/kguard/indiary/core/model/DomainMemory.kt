@@ -5,7 +5,7 @@ data class DomainMemory(
     var title: String = "",
     var date: String = "",
     var content: String? = null,
-    var imageList: ArrayList<String?> = arrayListOf(),
+    var imageList: List<String?> = arrayListOf(),
     var person_id: Int? = null
 )
 

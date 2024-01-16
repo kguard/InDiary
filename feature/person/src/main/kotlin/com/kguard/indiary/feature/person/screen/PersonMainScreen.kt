@@ -35,10 +35,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.kguard.indiary.core.designsystem.component.IndiaryMainTopAppBar
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.core.model.DomainPerson
 import com.kguard.indiary.core.ui.PersonCard
+import com.kguard.indiary.feature.person.R
 import com.kguard.indiary.feature.person.viewmodel.PersonMainViewModel
 
 //Todo: lazyColumn, Dialog, SwipeToDismiss 관련 해결
@@ -77,6 +79,7 @@ internal fun PersonMainScreen(
     val contextForToast = LocalContext.current.applicationContext
     var openDialog by remember { mutableStateOf(false) }
     Scaffold(
+//        modifier = Modifier,
 //        topBar = {
 //            IndiaryMainTopAppBar(
 //                onNavigationClick = onAddClick,

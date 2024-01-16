@@ -3,6 +3,7 @@ package com.kguard.indiary.feature.person.screen
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -56,11 +57,11 @@ fun PersonDeleteDialog(
 
 }
 
-@Preview
+@Preview(showSystemUi = true)
 @Composable
 fun PersonDeletePrev() {
     IndiaryTheme {
-        Column{
+        Column(modifier = Modifier.fillMaxSize()){
            PersonDeleteDialog(DomainPerson(
                person_id = 0,
                name = "aaa",

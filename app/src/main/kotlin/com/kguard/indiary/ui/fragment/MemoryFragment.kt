@@ -19,6 +19,7 @@ import com.kguard.indiary.presentation.adapter.MemoryAdapter
 import com.kguard.indiary.databinding.FragmentMemoryBinding
 import com.kguard.indiary.util.ItemHelperImpl
 import com.kguard.indiary.presentation.viewmodel.MemoryViewModel
+import com.kguard.indiary.ui.dialog.DeleteMemoryDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
@@ -33,7 +34,7 @@ class MemoryFragment : Fragment() {
             )
         )
     }, { memory ->
-        DeleteMemoryDialogFragment(
+        DeleteMemoryDialog(
             memory, {
                 Toast.makeText(context, "삭제 되었습니다.", Toast.LENGTH_SHORT).show()
                 viewModel.deleteMemory(it)

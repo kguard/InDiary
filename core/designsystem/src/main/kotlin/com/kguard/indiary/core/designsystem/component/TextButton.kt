@@ -6,8 +6,11 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -33,7 +36,8 @@ fun IndiaryButton(
         modifier = modifier,
         enabled = enabled,
         colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.onSurface
+            containerColor = MaterialTheme.colorScheme.onSurface,
+            contentColor = Color.White
         ),
         contentPadding = contentPadding,
         content = content
@@ -71,7 +75,7 @@ fun IndiaryTextButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    shape: Shape = ButtonDefaults.textShape,
+    shape: Shape = ButtonDefaults.outlinedShape,
     content: @Composable RowScope.() -> Unit,
 
 ) {
@@ -136,11 +140,10 @@ private fun IndiaryButtonContent(
 
 
 @Composable
-@Preview
+@Preview(showSystemUi = true)
 fun IndiaryButtonPrev() {
     IndiaryTheme {
-        IndiaryButton(onClick = {}, text = { Text(text = "TEST BUTTON") }) {
-        }
+        IndiaryButton(onClick = {}, text = { Text(text = "TEST 2121") }, leadingIcon = { Icon(imageVector = Icons.Rounded.Add,contentDescription = null) })
     }
 }
 

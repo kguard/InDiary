@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_dialog"
-        tools:context=".ui.fragment.DeletePersonDialogFragment">
+        tools:context=".ui.dialog.DeletePersonDialog">
 
         <TextView
             android:id="@+id/tv_delete_person"

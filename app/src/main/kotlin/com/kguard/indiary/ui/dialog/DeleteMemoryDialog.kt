@@ -1,4 +1,4 @@
-package com.kguard.indiary.ui.fragment
+package com.kguard.indiary.ui.dialog
 
 import android.app.Dialog
 import android.content.DialogInterface
@@ -12,7 +12,7 @@ import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.R
 import com.kguard.indiary.databinding.FragmentDeleteMemoryDialogBinding
 
-class DeleteMemoryDialogFragment(
+class DeleteMemoryDialog(
     val memory: DomainMemory,
     val onDelete: (DomainMemory) -> Unit,
     val onCancel: () -> Unit

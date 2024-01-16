@@ -16,6 +16,7 @@ import com.kguard.indiary.R
 import com.kguard.indiary.presentation.adapter.PhotoAdapter
 import com.kguard.indiary.databinding.FragmentDetailMemory2Binding
 import com.kguard.indiary.presentation.viewmodel.DetailMemory2ViewModel
+import com.kguard.indiary.ui.dialog.DeleteMemoryDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -63,7 +64,7 @@ class DetailMemory2Fragment : Fragment() {
 
 
         binding.fbDeleteMemory.setOnClickListener {
-            DeleteMemoryDialogFragment(
+            DeleteMemoryDialog(
                 viewModel.memory.value ?: DomainMemory(), {
                     viewModel.deleteMemory(it)
                     Toast.makeText(context, "삭제 되었습니다.", Toast.LENGTH_SHORT).show()

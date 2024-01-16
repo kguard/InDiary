@@ -1,4 +1,4 @@
-package com.kguard.indiary.ui.fragment
+package com.kguard.indiary.ui.dialog
 
 import android.app.Dialog
 import android.content.DialogInterface
@@ -13,7 +13,7 @@ import com.kguard.indiary.core.model.DomainPerson
 import com.kguard.indiary.databinding.FragmentDeletePersonDialogBinding
 
 
-class DeletePersonDialogFragment(
+class DeletePersonDialog(
     val person: DomainPerson,
     val onDelete: (DomainPerson) -> Unit,
     val onCancel: () -> Unit
