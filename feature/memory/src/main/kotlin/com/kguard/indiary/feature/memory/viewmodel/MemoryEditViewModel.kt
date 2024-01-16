@@ -31,7 +31,7 @@ class MemoryEditViewModel @Inject constructor(
         get() = _persons
 
     private var _photos = ListLiveData<String>()
-    val photos: LiveData<ArrayList<String>>
+    val photos: ListLiveData<String>
         get() = _photos
 
     fun setPhoto(uri: String) {

@@ -27,7 +27,7 @@ class DetailMemory2ViewModel @Inject constructor(
         get() = _person
 
     private var _photos = ListLiveData<String>()
-    val photos: LiveData<ArrayList<String>>
+    val photos: ListLiveData<String>
         get() = _photos
 
     init {
