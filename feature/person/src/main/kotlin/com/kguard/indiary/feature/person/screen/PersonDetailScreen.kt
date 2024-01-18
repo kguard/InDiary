@@ -66,6 +66,7 @@ fun PersonDetailRoute(
         memories = memories,
         onCardClick = onCardClick,
         onCardSlide = personDetailViewModel::deleteMemory,
+        onRefresh = {personDetailViewModel.getMemoriesInPerson(personId)},
         onUpdateClick = onUpdateClick,
         onDeleteClick = {
             personDetailViewModel.deletePerson(it)
@@ -85,6 +86,7 @@ internal fun PersonDetailScreen(
     memories: List<DomainMemory>?,
     onCardClick: (Int) -> Unit,
     onCardSlide: (DomainMemory) -> Unit,
+    onRefresh: () -> Unit,
     onUpdateClick: (DomainPerson) -> Unit,
     onDeleteClick: (DomainPerson) -> Unit,
 
@@ -126,6 +128,7 @@ internal fun PersonDetailScreen(
                         MemoryMainScreen(
                             onCardClick = onCardClick,
                             onCardSlide = onCardSlide,
+                            onRefresh = onRefresh,
                             memories = it1
                         )
                     }
@@ -267,6 +270,7 @@ fun PersonDetailPrev() {
             onDeleteClick = {},
             onCardClick = {},
             onCardSlide = {},
+            onRefresh = {},
             memories = listOf(
                 DomainMemory(
                     title = "rlarudgh",

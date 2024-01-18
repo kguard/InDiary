@@ -92,7 +92,6 @@ fun MemoryCard(
 fun MemoryPhoto(photo: String, modifier: Modifier = Modifier) {
     AsyncImage(
         model = photo.toUri(),
-        placeholder = painterResource(R.drawable.bg_memo),
         contentDescription = null,
         modifier = modifier
             .padding(end = 8.dp)

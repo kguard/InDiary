@@ -21,6 +21,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SwipeToDismiss
 import androidx.compose.material3.rememberDismissState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateListOf
@@ -36,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kguard.indiary.core.designsystem.component.IndiaryMainTopAppBar
+import androidx.compose.material3.*
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.core.model.DomainPerson
@@ -78,6 +80,7 @@ internal fun PersonMainScreen(
 ) {
     val contextForToast = LocalContext.current.applicationContext
     var openDialog by remember { mutableStateOf(false) }
+    var deletePerson by remember { mutableStateOf(DomainPerson()) }
     Scaffold(
 //        modifier = Modifier,
 //        topBar = {
@@ -107,54 +110,45 @@ internal fun PersonMainScreen(
                     key = { person -> person.person_id }) { person ->
                     val dismissState = rememberDismissState(
                         positionalThreshold = { it * 0.5f },
-                        confirmValueChange = { dismissValue ->
-                            when (dismissValue) {
-                                DismissValue.Default -> {
-                                    false
-                                }
-
-                                DismissValue.DismissedToStart -> {
-                                    openDialog = true
-                                    // onCardSlide(person)
-                                    true
-                                }
-
-                                DismissValue.DismissedToEnd -> {
-                                    false
-                                }
-                            }
-
+                        confirmValueChange = {
+                            if (it == DismissValue.DismissedToStart) {
+                                openDialog = true
+                                deletePerson = person
+                                true
+                            } else
+                                false
                         }
                     )
-                    if (dismissState.isDismissed(DismissDirection.EndToStart)) {
-                        ///onCardSlide(person)
-                        //dismiss 안됨
-                        //openDialog = true
-                        // Todo: Dialog 해야함
-                        if (openDialog) {
-                            PersonDeleteDialog(
-                                person = person,
-                                onConfirmation = {
-                                    openDialog = false
-                                    if (memories != null) {
-                                        if (memories.find { it.person_id == person.person_id } == null)
-                                            onCardSlide(person)
-                                        else
-                                            Toast.makeText(
-                                                contextForToast,
-                                                "삭제 할 수 없습니다.",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-                                    } else
-                                        onCardSlide(person)
-                                },
-                                onDismissRequest = {
-                                    onRefresh()
-                                    openDialog = false
-                                },
-                            )
-                        }
-                    }
+
+//                    if (dismissState.isDismissed(DismissDirection.EndToStart)) {
+//                        ///onCardSlide(person)
+//                        //dismiss 안됨
+//                        //openDialog = true
+//                        // Todo: Dialog 해야함
+//                        if (openDialog) {
+//                            PersonDeleteDialog(
+//                                person = person,
+//                                onConfirmation = {
+//                                    openDialog = false
+//                                    if (memories != null) {
+//                                        if (memories.find { it.person_id == person.person_id } == null)
+//                                            onCardSlide(person)
+//                                        else
+//                                            Toast.makeText(
+//                                                contextForToast,
+//                                                "삭제 할 수 없습니다.",
+//                                                Toast.LENGTH_SHORT
+//                                            ).show()
+//                                    } else
+//                                        onCardSlide(person)
+//                                },
+//                                onDismissRequest = {
+//                                    onRefresh()
+//                                    openDialog = false
+//                                },
+//                            )
+//                        }
+//                    }
 //                if (openDialog) {
 //                    PersonDeleteDialog(
 //                        person = person,
@@ -207,6 +201,26 @@ internal fun PersonMainScreen(
                 }
             }
         }
+        if (openDialog) {
+            PersonDeleteDialog(
+                person = deletePerson,
+                onConfirmation = {
+                    openDialog = false
+                    if (memories != null) {
+                        if (memories.find { it.person_id == deletePerson.person_id } == null)
+                            onCardSlide(deletePerson)
+                        else
+                            Toast.makeText(contextForToast, "삭제 할 수 없습니다.", Toast.LENGTH_SHORT)
+                                .show()
+                    } else
+                        onCardSlide(deletePerson)
+                },
+                onDismissRequest = {
+                    onRefresh()
+                    openDialog = false
+                },
+            )
+        }
     }
 }
 
@@ -214,16 +228,15 @@ internal fun PersonMainScreen(
 @Preview(showSystemUi = true)
 @Composable
 fun PersonMainScreenPrev() {
-    var alist = mutableStateListOf(
-        DomainPerson(
-            person_id = 0,
-            name = "aaa",
-            favorite = true,
-            gender = 0,
-            make = "123",
-            birth = "123",
-            memo = "!231"
-        ),
+    var alist by remember{ mutableStateOf(listOf(DomainPerson(
+        person_id = 0,
+        name = "aaa",
+        favorite = true,
+        gender = 0,
+        make = "123",
+        birth = "123",
+        memo = "!231"
+    ),
         DomainPerson(
             person_id = 1,
             name = "bbb",
@@ -241,50 +254,17 @@ fun PersonMainScreenPrev() {
             make = "123",
             birth = "123",
             memo = "!231"
-        )
-    )
+        ))) }
+
+
     IndiaryTheme {
         PersonMainScreen(
             onCardClick = {},
             onAddClick = {},
             persons = alist,
-            onCardSlide = { alist.remove(it) },
+            onCardSlide = { alist = alist - it },
             onCheckedChange = {},
             onRefresh = {
-                alist.clear()
-                alist.add(
-                    DomainPerson(
-                        person_id = 0,
-                        name = "aaa",
-                        favorite = true,
-                        gender = 0,
-                        make = "123",
-                        birth = "123",
-                        memo = "!231"
-                    )
-                )
-                alist.add(
-                    DomainPerson(
-                        person_id = 1,
-                        name = "bbb",
-                        favorite = true,
-                        gender = 0,
-                        make = "123",
-                        birth = "123",
-                        memo = "!231"
-                    )
-                )
-                alist.add(
-                    DomainPerson(
-                        person_id = 2,
-                        name = "ccc",
-                        favorite = true,
-                        gender = 0,
-                        make = "123",
-                        birth = "123",
-                        memo = "!231"
-                    )
-                )
                 //alist = b
             }
         )

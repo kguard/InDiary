@@ -1,16 +1,30 @@
 package com.kguard.indiary.feature.memory.screen
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.DismissDirection
+import androidx.compose.material3.DismissValue
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SwipeToDismiss
 import androidx.compose.material3.rememberDismissState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -19,6 +33,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.model.DomainMemory
+import com.kguard.indiary.core.model.DomainPerson
 import com.kguard.indiary.core.ui.MemoryCard
 import com.kguard.indiary.feature.memory.viewmodel.MemoryViewModel
 
@@ -33,20 +48,24 @@ internal fun MemoryMainRoute(
     MemoryMainScreen(
         memories = memories,
         onCardClick = onCardClick,
+        onRefresh = {memoryMainViewModel.getMemories()},
 //        onAddClick = onAddClick,
         onCardSlide = memoryMainViewModel::deleteMemory,
     )
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun MemoryMainScreen(
     onCardClick: (Int) -> Unit,
     onCardSlide: (DomainMemory) -> Unit,
+    onRefresh : () -> Unit,
  //   onAddClick: () -> Unit,
     memories: List<DomainMemory>,
 ) {
+    var openDialog by remember { mutableStateOf(false) }
+    var deleteMemory by remember { mutableStateOf(DomainMemory()) }
     Scaffold(
 //        topBar = {
 //            IndiaryMainTopAppBar(
@@ -64,13 +83,38 @@ fun MemoryMainScreen(
         ) {
             items(items = memories) { memory ->
                 val dismissState = rememberDismissState(
+                    positionalThreshold = { it * 0.5f },
                     confirmValueChange = {
-                        onCardSlide(memory)
-                        true
+                        if (it == DismissValue.DismissedToStart) {
+                            openDialog = true
+                            deleteMemory = memory
+                            true
+                        } else
+                            false
                     }
                 )
                 SwipeToDismiss(
-                    state = dismissState, background = { Color.Transparent }, dismissContent = {
+                    modifier = Modifier.animateItemPlacement(),
+                    state = dismissState,
+                    directions = setOf(DismissDirection.EndToStart),
+                    background = {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(
+                                    color = Color.Transparent
+                                ),
+                            horizontalArrangement = Arrangement.End,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                modifier = Modifier.padding(end = 8.dp),
+                                imageVector = Icons.Default.Delete,
+                                tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                                contentDescription = null
+                            )
+                        }
+                    }, dismissContent = {
                         MemoryCard(
                             memory = memory,
                             onCardClick = onCardClick,
@@ -78,16 +122,28 @@ fun MemoryMainScreen(
                     })
             }
         }
+        if(openDialog)
+        {
+            MemoryDeleteDialog(
+                memory = deleteMemory,
+                onConfirmation = { onCardSlide(deleteMemory)},
+                onDismissRequest = {
+                    onRefresh()
+                    openDialog = false
+                }
+            )
+        }
     }
 }
 
-@Preview
+@Preview(showSystemUi = true)
 @Composable
 fun MemoryMainScreenPrev() {
     IndiaryTheme {
         MemoryMainScreen(
             onCardClick = {},
             onCardSlide = {},
+            onRefresh = {},
 //            onAddClick = { /*TODO*/ },
             memories = listOf(
                 DomainMemory(
