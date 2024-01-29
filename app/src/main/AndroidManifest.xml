@@ -18,19 +18,18 @@
         android:theme="@style/Theme.InDiary"
         tools:targetApi="34">
         <activity
-            android:name="com.kguard.indiary.ui.acitivty.SplashActivity"
-            android:screenOrientation="portrait"
+            android:name="com.kguard.indiary.compose.MainComposeActivity"
+            android:screenOrientation="fullSensor"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.kguard.indiary.ui.acitivty.MainActivity"
-            android:screenOrientation="portrait"
-            android:exported="true"/>
+<!--        <activity-->
+<!--            android:name="com.kguard.indiary.ui.acitivty.MainActivity"-->
+<!--            android:screenOrientation="fullSensor"-->
+<!--            android:exported="true"/>-->
 
     </application>
 

@@ -31,6 +31,7 @@ fun PersonCard(
     person : DomainPerson,
     onCardClick: (Int) -> Unit,
     onCheckedChange: (DomainPerson) -> Unit,
+    check : Boolean,
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -59,7 +60,7 @@ fun PersonCard(
             ) {
                 Text(text = person.name, style = MaterialTheme.typography.bodyLarge)
                 IndiaryToggleButton(
-                    checked = false,
+                    checked = check,
                     onCheckedChange = { onCheckedChange(person.copy(favorite = !person.favorite)) },
                     icon = {
                         Icon(

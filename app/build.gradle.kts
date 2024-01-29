@@ -52,12 +52,13 @@ dependencies {
     androidTestImplementation (libs.androidx.test.espresso.core)
 
     //CA
-//    implementation (project (":core:domain"))
-//    implementation (project (":core:data"))
     implementation(projects.core.model)
     implementation(projects.core.data)
     implementation(projects.core.domain)
     implementation(projects.core.database)
+    implementation(projects.core.designsystem)
+    implementation(projects.core.ui)
+    implementation(projects.core.common)
 
     //glide
     implementation (libs.glide.glide)
@@ -93,5 +94,6 @@ dependencies {
     implementation(libs.androidx.compose.material3.windowSizeClass)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.core.splash.screen)
 
 }

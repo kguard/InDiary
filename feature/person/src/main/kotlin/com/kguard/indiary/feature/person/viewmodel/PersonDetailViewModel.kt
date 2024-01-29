@@ -1,7 +1,9 @@
-package com.kguard.indiary.presentation.viewmodel
+package com.kguard.indiary.feature.person.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kguard.indiary.core.domain.MemoryUseCase
@@ -9,6 +11,8 @@ import com.kguard.indiary.core.domain.PersonUseCase
 import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.core.model.DomainPerson
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -16,33 +20,56 @@ import java.util.regex.Pattern
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailPersonViewModel @Inject constructor(
+class PersonDetailViewModel @Inject constructor(
     private val personUseCase: PersonUseCase,
-    private val memoryUseCase: MemoryUseCase
+    private val memoryUseCase: MemoryUseCase,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    private var _person = MutableLiveData<DomainPerson>()
-    val person: LiveData<DomainPerson>
+
+    private var _person = MutableStateFlow(DomainPerson())
+    val person: StateFlow<DomainPerson>
         get() = _person
 
-    private val _memories = MutableLiveData<List<DomainMemory>>()
-    val memories: LiveData<List<DomainMemory>>
+    private val _memories = MutableStateFlow<List<DomainMemory>>(emptyList())
+    val memories: StateFlow<List<DomainMemory>>
         get() = _memories
 
-    fun getMemoriesInPerson() {
-        viewModelScope.launch {
-            _memories.value = memoryUseCase.getMemories()
+    init {
+        val personId = savedStateHandle.get<Int>("personId")
+        if (personId != null) {
+            getPerson(personId)
+            getMemoriesInPerson(personId)
         }
     }
 
-    fun getPerson(person_id: Int) {
+    fun getMemoriesInPerson(personId: Int) {
         viewModelScope.launch {
-            _person.value = personUseCase.getPerson(person_id)
+            _memories.value = memoryUseCase.getPersonMemories(personId)
+        }
+    }
+
+    fun getPerson(personId: Int) {
+        viewModelScope.launch {
+            _person.value = personUseCase.getPerson(personId)
         }
     }
 
     fun deletePerson(person: DomainPerson) {
         viewModelScope.launch {
             personUseCase.deletePerson(person)
+        }
+    }
+
+    fun updatePerson(person: DomainPerson) {
+        viewModelScope.launch {
+            personUseCase.updatePerson(person)
+            getPerson(person.person_id)
+        }
+    }
+
+    fun deleteMemory(memory: DomainMemory) {
+        viewModelScope.launch {
+            memoryUseCase.deleteMemory(memory)
         }
     }
 

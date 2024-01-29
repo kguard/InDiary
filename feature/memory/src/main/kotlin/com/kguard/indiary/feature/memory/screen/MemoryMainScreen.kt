@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -16,7 +17,6 @@ import androidx.compose.material3.DismissValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SwipeToDismiss
 import androidx.compose.material3.rememberDismissState
 import androidx.compose.runtime.Composable
@@ -29,27 +29,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
+import com.kguard.indiary.core.designsystem.component.IndiaryMainTopAppBar
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.model.DomainMemory
-import com.kguard.indiary.core.model.DomainPerson
 import com.kguard.indiary.core.ui.MemoryCard
-import com.kguard.indiary.feature.memory.viewmodel.MemoryViewModel
+import com.kguard.indiary.core.designsystem.R
+import com.kguard.indiary.feature.memory.viewmodel.MemoryMainViewModel
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 internal fun MemoryMainRoute(
-    memoryMainViewModel: MemoryViewModel = viewModel(),
+    memoryMainViewModel: MemoryMainViewModel = hiltViewModel(),
     onCardClick: (Int) -> Unit,
-    onAddClick: () -> Unit,
 ) {
     memoryMainViewModel.getMemories()
     val memories by memoryMainViewModel.memory.collectAsStateWithLifecycle()
     MemoryMainScreen(
         memories = memories,
         onCardClick = onCardClick,
-        onRefresh = {memoryMainViewModel.getMemories()},
-//        onAddClick = onAddClick,
+        onRefresh = { memoryMainViewModel.getMemories() },
         onCardSlide = memoryMainViewModel::deleteMemory,
     )
 }
@@ -60,21 +60,12 @@ internal fun MemoryMainRoute(
 fun MemoryMainScreen(
     onCardClick: (Int) -> Unit,
     onCardSlide: (DomainMemory) -> Unit,
-    onRefresh : () -> Unit,
- //   onAddClick: () -> Unit,
+    onRefresh: () -> Unit,
     memories: List<DomainMemory>,
 ) {
     var openDialog by remember { mutableStateOf(false) }
     var deleteMemory by remember { mutableStateOf(DomainMemory()) }
-    Scaffold(
-//        topBar = {
-//            IndiaryMainTopAppBar(
-//                onNavigationClick = onAddClick,
-//                actionIcon = R.drawable.ic_memory_add,
-//                actionIconContentDescription = "AddMemory"
-//            )
-//        }
-    )
+    Column(modifier = Modifier.fillMaxSize())
     {
         LazyColumn(
             modifier = Modifier
@@ -122,11 +113,10 @@ fun MemoryMainScreen(
                     })
             }
         }
-        if(openDialog)
-        {
+        if (openDialog) {
             MemoryDeleteDialog(
                 memory = deleteMemory,
-                onConfirmation = { onCardSlide(deleteMemory)},
+                onConfirmation = { onCardSlide(deleteMemory) },
                 onDismissRequest = {
                     onRefresh()
                     openDialog = false

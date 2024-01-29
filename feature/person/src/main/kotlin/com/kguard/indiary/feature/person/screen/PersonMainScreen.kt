@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -38,6 +39,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kguard.indiary.core.designsystem.component.IndiaryMainTopAppBar
 import androidx.compose.material3.*
+import androidx.compose.runtime.SideEffect
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.core.model.DomainPerson
@@ -48,18 +51,17 @@ import com.kguard.indiary.feature.person.viewmodel.PersonMainViewModel
 //Todo: lazyColumn, Dialog, SwipeToDismiss 관련 해결
 @Composable
 internal fun PersonMainRoute(
-    personMainViewModel: PersonMainViewModel = viewModel(),
+    personMainViewModel: PersonMainViewModel = hiltViewModel(),
     onCardClick: (Int) -> Unit,
-    onAddClick: () -> Unit,
 ) {
     personMainViewModel.getPersons()
+    personMainViewModel.getMemories()
     val person by personMainViewModel.persons.collectAsStateWithLifecycle()
     val memory by personMainViewModel.memories.observeAsState()
     PersonMainScreen(
         onCardClick = onCardClick,
         onCardSlide = personMainViewModel::deletePerson,
         onCheckedChange = personMainViewModel::updatePerson,
-        onAddClick = onAddClick,
         onRefresh = { personMainViewModel.getPersons() },
         persons = person,
         memories = memory
@@ -73,7 +75,6 @@ internal fun PersonMainScreen(
     onCardClick: (Int) -> Unit,
     onCheckedChange: (DomainPerson) -> Unit,
     onCardSlide: (DomainPerson) -> Unit,
-    onAddClick: () -> Unit,
     onRefresh: () -> Unit,
     persons: List<DomainPerson>? = null,
     memories: List<DomainMemory>? = null
@@ -81,24 +82,8 @@ internal fun PersonMainScreen(
     val contextForToast = LocalContext.current.applicationContext
     var openDialog by remember { mutableStateOf(false) }
     var deletePerson by remember { mutableStateOf(DomainPerson()) }
-    Scaffold(
-//        modifier = Modifier,
-//        topBar = {
-//            IndiaryMainTopAppBar(
-//                onNavigationClick = onAddClick,
-//                actionIcon = R.drawable.ic_person_add,
-//                actionIconContentDescription = "AddPerson"
-//            )
-//        }
-    )
-    {
-//        Column {
-//            IndiaryMainTopAppBar(
-//                onNavigationClick = onAddClick,
-//                actionIcon = R.drawable.ic_person_add,
-//                actionIconContentDescription = "AddPerson"
-//            )
 
+    Column(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -194,6 +179,7 @@ internal fun PersonMainScreen(
                             PersonCard(
                                 person = person,
                                 onCardClick = onCardClick,
+                                check = person.favorite,
                                 onCheckedChange = onCheckedChange,
                             )
                         }
@@ -225,42 +211,47 @@ internal fun PersonMainScreen(
 }
 
 @SuppressLint("UnrememberedMutableState")
-@Preview(showSystemUi = true)
+@Preview
 @Composable
 fun PersonMainScreenPrev() {
-    var alist by remember{ mutableStateOf(listOf(DomainPerson(
-        person_id = 0,
-        name = "aaa",
-        favorite = true,
-        gender = 0,
-        make = "123",
-        birth = "123",
-        memo = "!231"
-    ),
-        DomainPerson(
-            person_id = 1,
-            name = "bbb",
-            favorite = true,
-            gender = 0,
-            make = "123",
-            birth = "123",
-            memo = "!231"
-        ),
-        DomainPerson(
-            person_id = 2,
-            name = "ccc",
-            favorite = true,
-            gender = 0,
-            make = "123",
-            birth = "123",
-            memo = "!231"
-        ))) }
+    var alist by remember {
+        mutableStateOf(
+            listOf(
+                DomainPerson(
+                    person_id = 0,
+                    name = "aaa",
+                    favorite = true,
+                    gender = 0,
+                    make = "123",
+                    birth = "123",
+                    memo = "!231"
+                ),
+                DomainPerson(
+                    person_id = 1,
+                    name = "bbb",
+                    favorite = true,
+                    gender = 0,
+                    make = "123",
+                    birth = "123",
+                    memo = "!231"
+                ),
+                DomainPerson(
+                    person_id = 2,
+                    name = "ccc",
+                    favorite = true,
+                    gender = 0,
+                    make = "123",
+                    birth = "123",
+                    memo = "!231"
+                )
+            )
+        )
+    }
 
 
     IndiaryTheme {
         PersonMainScreen(
             onCardClick = {},
-            onAddClick = {},
             persons = alist,
             onCardSlide = { alist = alist - it },
             onCheckedChange = {},

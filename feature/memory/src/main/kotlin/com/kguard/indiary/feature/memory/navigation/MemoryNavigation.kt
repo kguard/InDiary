@@ -2,27 +2,79 @@ package com.kguard.indiary.feature.memory.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
+import com.kguard.indiary.feature.memory.screen.MemoryAddRoute
+import com.kguard.indiary.feature.memory.screen.MemoryDetailRoute
+import com.kguard.indiary.feature.memory.screen.MemoryUpdateRoute
 import com.kguard.indiary.feature.memory.screen.MemoryMainRoute
 
+const val MEMORY_ID = "memoryID"
 const val memoryMainRoute = "memory_main_rout"
-const val memoryDetailRoute = "memory_detail_rout"
-const val personEditRoute = "person_edit_rout"
+const val memoryAddRoute = "memory_add_rout"
+const val memoryDetailRoute = "memory_detail_rout/{$MEMORY_ID}"
+const val memoryUpdateRoute = "memory_update_rout/{$MEMORY_ID}"
 
-fun NavController.navigateToMemoryMain(navOptions: NavOptions? = null) {
-    this.navigate(memoryMainRoute,navOptions)
+fun NavHostController.navigateToMemoryMain(navOptions: NavOptions? = null) {
+    this.navigate(memoryMainRoute, navOptions)
 }
-fun NavController.navigateToMemoryDetail(navOptions: NavOptions? = null) {
-    this.navigate(memoryDetailRoute,navOptions)
+fun NavHostController.navigateToMemoryAdd(navOptions: NavOptions? = null) {
+    this.navigate(memoryAddRoute, navOptions)
 }
-fun NavController.navigateToMemoryEdit(navOptions: NavOptions? = null) {
-    this.navigate(personEditRoute,navOptions)
+
+fun NavHostController.navigateToMemoryDetail(memoryId : Int, navOptions: NavOptions? = null) {
+    this.navigate("memory_detail_rout/$memoryId", navOptions)
 }
-fun NavGraphBuilder.memoryMainScreen(onCardClick: (Int) -> Unit, onAddClick: () -> Unit){
+
+fun NavHostController.navigateToMemoryUpdate(memoryId: Int,navOptions: NavOptions? = null) {
+    this.navigate("memory_update_rout/$memoryId", navOptions)
+}
+
+fun NavGraphBuilder.memoryMainScreen(onCardClick: (Int) -> Unit) {
     composable(
         route = memoryMainRoute
-    ){
-        MemoryMainRoute(onCardClick = onCardClick, onAddClick = onAddClick)
+    ) {
+        MemoryMainRoute(onCardClick = onCardClick)
+    }
+}
+
+fun NavGraphBuilder.memoryAddScreen(onCompleteClick: () -> Unit) {
+    composable(
+        route = memoryAddRoute
+    ) {
+        MemoryAddRoute(onCompleteClick = onCompleteClick,)
+    }
+}
+
+
+fun NavGraphBuilder.memoryDetailScreen(onUpdateClick: (Int) -> Unit, onDeleteClick: () -> Unit, onBackClick: () -> Unit) {
+    composable(
+        route = memoryDetailRoute,
+        arguments = listOf(navArgument(MEMORY_ID) { type = NavType.IntType })
+    ) { navBackStackEntry ->
+        val memoryId = navBackStackEntry.arguments?.getInt(MEMORY_ID)
+        MemoryDetailRoute(
+            onUpdateClick = onUpdateClick,
+            onDeleteClick = onDeleteClick,
+            onBackClick = onBackClick,
+            memoryId = memoryId!!
+        )
+    }
+}
+
+fun NavGraphBuilder.memoryUpdateScreen(onCompleteClick: () -> Unit) {
+    composable(
+        route = memoryUpdateRoute,
+        arguments = listOf(navArgument(MEMORY_ID) { type = NavType.IntType })
+    )
+    { navBackStackEntry ->
+        val memoryId = navBackStackEntry.arguments?.getInt(MEMORY_ID)
+        MemoryUpdateRoute(
+            onCompleteClick = onCompleteClick,
+            memoryId = memoryId!!
+        )
     }
 }

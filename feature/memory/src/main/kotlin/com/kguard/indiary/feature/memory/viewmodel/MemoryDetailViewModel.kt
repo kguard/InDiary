@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailMemory2ViewModel @Inject constructor(
+class MemoryDetailViewModel @Inject constructor(
     private val memoryUseCase: MemoryUseCase,
     private val personUseCase: PersonUseCase
 ) : ViewModel() {
@@ -25,22 +25,6 @@ class DetailMemory2ViewModel @Inject constructor(
     private var _person = MutableLiveData<DomainPerson>()
     val person: LiveData<DomainPerson>
         get() = _person
-
-    private var _photos = ListLiveData<String>()
-    val photos: ListLiveData<String>
-        get() = _photos
-
-    init {
-        clearPhoto()
-    }
-
-    fun setPhoto(uri: String) {
-        _photos.add(uri)
-    }
-
-    fun clearPhoto() {
-        _photos.clear()
-    }
 
     fun getMemory(memory_id: Int) {
         viewModelScope.launch {

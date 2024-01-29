@@ -13,6 +13,7 @@ androidxHiltNavigationCompose = "1.1.0"
 coil = "2.4.0"
 androidxMetrics = "1.0.0-alpha04"
 accompanistPager = "0.20.1"
+androidxCoreSplashScreen = "1.0.1"
 
 ksp = "1.9.10-1.0.13"
 androidTools = "31.2.0"
@@ -35,6 +36,7 @@ googleOss = "17.0.1"
 googleOssPlugin = "0.10.6"
 gson = "2.10"
 androidImagePicker = "3.0.0"
+material3 = "1.1.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore" }
@@ -46,6 +48,7 @@ androidx-navigation-fragment-ktx-2_6_0 = { module = "androidx.navigation:navigat
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspresso" }
 androidx-test-ext = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "androidxTestExt" }
+
 
 #Compose
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
@@ -71,6 +74,7 @@ coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "
 coil-kt-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
 accompanist-pager = { group = "com.google.accompanist", name = "accompanist-pager", version.ref= "accompanistPager"}
 accompanist-pager-indicators = { group = "com.google.accompanist", name = "accompanist-pager-indicators", version.ref= "accompanistPager"}
+androidx-core-splash-screen = {group = "androidx.core", name = "core-splashscreen", version.ref = "androidxCoreSplashScreen"}
 
 
 androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "androidxLifecycle" }
@@ -108,6 +112,7 @@ android-tools-common = { group = "com.android.tools", name = "common", version.r
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
 
 
 [plugins]

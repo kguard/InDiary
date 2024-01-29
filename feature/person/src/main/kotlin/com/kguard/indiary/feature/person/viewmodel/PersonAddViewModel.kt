@@ -10,9 +10,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AddPersonViewModel @Inject constructor(
+class PersonAddViewModel @Inject constructor(
     private val PersonUseCase: PersonUseCase,
-    private val CharacterUseCase: CharacterUseCase
 ) : ViewModel() {
     fun insertPerson(person: DomainPerson) {
         viewModelScope.launch() {

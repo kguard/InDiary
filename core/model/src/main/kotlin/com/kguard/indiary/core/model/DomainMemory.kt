@@ -1,7 +1,7 @@
 package com.kguard.indiary.core.model
 
 data class DomainMemory(
-    val memory_id: Int = 0,
+    val memory_id: Int = -1,
     var title: String = "",
     var date: String = "",
     var content: String? = null,

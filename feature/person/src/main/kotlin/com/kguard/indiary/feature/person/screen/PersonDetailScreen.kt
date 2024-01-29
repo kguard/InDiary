@@ -1,6 +1,7 @@
 package com.kguard.indiary.feature.person.screen
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -13,10 +14,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Delete
 import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -29,6 +31,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
@@ -43,40 +46,43 @@ import com.kguard.indiary.core.designsystem.component.IndiaryTabRow
 import com.kguard.indiary.core.designsystem.component.IndiaryText
 import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.feature.memory.screen.MemoryMainScreen
-import com.kguard.indiary.feature.person.viewmodel.DetailPersonViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
+import com.kguard.indiary.feature.person.viewmodel.PersonDetailViewModel
+import com.kguard.indiary.core.designsystem.component.IndiarySubTopAppBar
 import kotlinx.coroutines.launch
 
 
 @Composable
 fun PersonDetailRoute(
-    personDetailViewModel: DetailPersonViewModel = viewModel(),
-    onUpdateClick: (DomainPerson) -> Unit,
+    personDetailViewModel: PersonDetailViewModel = hiltViewModel(),
+    onUpdateClick: () -> Unit,
     onCardClick: (Int) -> Unit,
     onDeleteClick: () -> Unit,
+    onBackClick: () -> Unit,
     personId: Int
 ) {
-    personDetailViewModel.getPerson(personId)
-    personDetailViewModel.getMemoriesInPerson(personId)
-    val person by personDetailViewModel.person.observeAsState(initial = DomainPerson())
-    val memories by personDetailViewModel.memories.observeAsState(initial = listOf(DomainMemory()))
+//    personDetailViewModel.getPerson(personId)
+    val person by personDetailViewModel.person.collectAsState()
+    val memories by personDetailViewModel.memories.collectAsState()
+    Log.e("person", "PersonDetailRoutePerson: $person", )
+    Log.e("memory", "PersonDetailRouteMemory: $memories", )
     PersonDetailScreen(
         person = person,
         age = personDetailViewModel.getAge(person.birth.toString()),
         memories = memories,
         onCardClick = onCardClick,
         onCardSlide = personDetailViewModel::deleteMemory,
-        onRefresh = {personDetailViewModel.getMemoriesInPerson(personId)},
+        onRefresh = { personDetailViewModel.getMemoriesInPerson(personId) },
         onUpdateClick = onUpdateClick,
         onDeleteClick = {
             personDetailViewModel.deletePerson(it)
             onDeleteClick()
-        }
+        },
+        onBackClick = onBackClick
     )
 
 }
 
-@OptIn(ExperimentalPagerApi::class)
+@OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 internal fun PersonDetailScreen(
@@ -87,57 +93,59 @@ internal fun PersonDetailScreen(
     onCardClick: (Int) -> Unit,
     onCardSlide: (DomainMemory) -> Unit,
     onRefresh: () -> Unit,
-    onUpdateClick: (DomainPerson) -> Unit,
+    onUpdateClick: () -> Unit,
     onDeleteClick: (DomainPerson) -> Unit,
-
-    ) {
+    onBackClick: () -> Unit
+) {
     val title = listOf("특징", "추억")
     val pageState = rememberPagerState()
     val coroutineScope = rememberCoroutineScope()
-    Scaffold(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Column {
-            IndiaryTabRow(
-                selectedTabIndex = pageState.currentPage,
-            ) {
-                title.forEachIndexed { index, title ->
-                    IndiaryTab(
-                        selected = pageState.currentPage == index,
-                        onClick = {
-                            coroutineScope.launch {
-                                pageState.scrollToPage(index)
-                            }
-                        },
-                        text = { Text(text = title) },
+    Column(modifier = Modifier.fillMaxSize()) {
+        IndiarySubTopAppBar(
+            title = person.name,
+            navigationIcon = R.drawable.ic_back,
+            onNavigationClick = onBackClick
+        )
+        IndiaryTabRow(
+            selectedTabIndex = pageState.currentPage,
+        ) {
+            title.forEachIndexed { index, title ->
+                IndiaryTab(
+                    selected = pageState.currentPage == index,
+                    onClick = {
+                        coroutineScope.launch {
+                            pageState.scrollToPage(index)
+                        }
+                    },
+                    text = { Text(text = title) },
+                )
+            }
+
+        }
+        HorizontalPager(count = title.size, state = pageState) { page ->
+            when (page) {
+                0 -> PersonFeatureScreen(
+                    person = person,
+                    memories = memories,
+                    age = age,
+                    onUpdateClick = onUpdateClick,
+                    onDeleteClick = onDeleteClick,
+                )
+
+                1 -> memories?.let { it1 ->
+                    MemoryMainScreen(
+                        onCardClick = onCardClick,
+                        onCardSlide = onCardSlide,
+                        onRefresh = onRefresh,
+                        memories = it1
                     )
                 }
-
             }
-            HorizontalPager(count = title.size, state = pageState) { page ->
-                when (page) {
-                    0 -> PersonFeatureScreen(
-                        person = person,
-                        memories = memories,
-                        age = age,
-                        onUpdateClick = onUpdateClick,
-                        onDeleteClick = onDeleteClick,
-                    )
 
-                    1 -> memories?.let { it1 ->
-                        MemoryMainScreen(
-                            onCardClick = onCardClick,
-                            onCardSlide = onCardSlide,
-                            onRefresh = onRefresh,
-                            memories = it1
-                        )
-                    }
-                }
-
-            }
         }
     }
 }
+
 
 @Composable
 fun PersonFeatureScreen(
@@ -145,7 +153,7 @@ fun PersonFeatureScreen(
     person: DomainPerson,
     memories: List<DomainMemory>? = null,
     age: String,
-    onUpdateClick: (DomainPerson) -> Unit,
+    onUpdateClick: () -> Unit,
     onDeleteClick: (DomainPerson) -> Unit,
 ) {
     val contextForToast = LocalContext.current.applicationContext
@@ -197,14 +205,13 @@ fun PersonFeatureScreen(
         ) {
             IndiaryFloatingActionButton(
                 modifier = modifier.padding(16.dp),
-                onClick = { onUpdateClick(person) },
+                onClick = { onUpdateClick() },
                 icon = Icons.Rounded.Edit
             )
             IndiaryFloatingActionButton(
                 modifier = modifier.padding(16.dp),
                 onClick = {
                     openDialog = true
-                    // onDeleteClick(person)
                 },
                 icon = Icons.Rounded.Delete
             )
@@ -277,7 +284,8 @@ fun PersonDetailPrev() {
                     date = "2018-11-11",
                     imageList = arrayListOf("1", "2")
                 )
-            )
+            ),
+            onBackClick = {}
         )
     }
 }

@@ -24,21 +24,14 @@ class PersonMainViewModel @Inject constructor(
     val memories: LiveData<List<DomainMemory>>
         get() = _memories
 
-    fun getMemoriesInPerson() {
-        viewModelScope.launch {
-            _memories.value = memoryUseCase.getMemories()
-        }
-    }
-
-    fun clearPerson() {
-        viewModelScope.launch {
-            _persons.value = emptyList()
-        }
-    }
-
     fun getPersons() {
         viewModelScope.launch {
             _persons.value = personUseCase.getPersons()
+        }
+    }
+    fun getMemories() {
+        viewModelScope.launch {
+            _memories.value = memoryUseCase.getMemories()
         }
     }
 
@@ -54,9 +47,5 @@ class PersonMainViewModel @Inject constructor(
             personUseCase.updatePerson(person)
             getPersons()
         }
-    }
-    init {
-        getPersons()
-        getMemoriesInPerson()
     }
 }

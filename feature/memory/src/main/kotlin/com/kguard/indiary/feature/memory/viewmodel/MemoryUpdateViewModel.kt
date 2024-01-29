@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MemoryEditViewModel @Inject constructor(
+class MemoryUpdateViewModel @Inject constructor(
     private val memoryUseCase: MemoryUseCase,
     private val personUseCase: PersonUseCase
 ) : ViewModel() {
@@ -29,18 +29,6 @@ class MemoryEditViewModel @Inject constructor(
     private val _persons = MutableLiveData<List<DomainPerson>>()
     val persons: LiveData<List<DomainPerson>>
         get() = _persons
-
-    private var _photos = ListLiveData<String>()
-    val photos: ListLiveData<String>
-        get() = _photos
-
-    fun setPhoto(uri: String) {
-        _photos.add(uri)
-    }
-
-    fun removePhotoByPosition(position: Int) {
-        _photos.removeAt(position)
-    }
 
 
     fun getMemory(memoryId: Int) {

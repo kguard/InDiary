@@ -1,4 +1,4 @@
-package com.kguard.indiary.presentation.viewmodel
+package com.kguard.indiary.feature.memory.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,12 +11,16 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailMemoryViewModel @Inject constructor(
-    private val memoryUseCase: MemoryUseCase,
+class MemoryMainViewModel @Inject constructor(
+    private val useCase: MemoryUseCase
 ) : ViewModel() {
     private var _memory = MutableStateFlow<List<DomainMemory>>(emptyList())
     val memory: StateFlow<List<DomainMemory>>
         get() = _memory
+
+    init {
+        getMemories()
+    }
 
     fun clearMemories() {
         viewModelScope.launch {
@@ -24,16 +28,16 @@ class DetailMemoryViewModel @Inject constructor(
         }
     }
 
-    fun getMemory(person_id: Int) {
-        viewModelScope.launch {
-            _memory.value = memoryUseCase.getPersonMemories(person_id)
+    fun getMemories() {
+        viewModelScope.launch() {
+            _memory.value = useCase.getMemories()
         }
     }
 
-    fun deleteMemory(memory: DomainMemory, person_id: Int) {
+    fun deleteMemory(memory: DomainMemory) {
         viewModelScope.launch {
-            memoryUseCase.deleteMemory(memory)
-            getMemory(person_id)
+            useCase.deleteMemory(memory)
+            getMemories()
         }
     }
 }

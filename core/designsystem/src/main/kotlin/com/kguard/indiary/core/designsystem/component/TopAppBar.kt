@@ -1,8 +1,6 @@
 package com.kguard.indiary.core.designsystem.component
 
 import androidx.annotation.StringRes
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -25,17 +23,17 @@ import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun IndiarySubTopAppBar(
-    @StringRes titleRes: Int,
+    modifier: Modifier = Modifier,
+    title: String,
     navigationIcon: Int,
     navigationIconContentDescription: String? = null,
-    modifier: Modifier = Modifier,
     colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
     onNavigationClick: () -> Unit = {},
 ) {
     CenterAlignedTopAppBar(
         title = {
             Text(
-                text = stringResource(id = titleRes),
+                text = title,
                 style = MaterialTheme.typography.titleMedium,
             )
         },
@@ -56,9 +54,9 @@ fun IndiarySubTopAppBar(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun IndiaryMainTopAppBar(
+    modifier: Modifier = Modifier,
     actionIcon: Int,
     actionIconContentDescription: String? = null,
-    modifier: Modifier = Modifier,
     colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
     onNavigationClick: () -> Unit = {},
 ) {
@@ -91,7 +89,7 @@ fun IndiaryMainTopAppBar(
 fun IndiaryTopAppBarPrev() {
     IndiaryTheme {
         IndiarySubTopAppBar(
-            titleRes = R.string.AddPersonPage,
+            title = stringResource(R.string.AddPersonPage),
             navigationIcon = R.drawable.ic_memory_2_line,
             navigationIconContentDescription = "Back Button"
         )

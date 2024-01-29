@@ -16,7 +16,9 @@ import com.kguard.indiary.compose.navigation.TopLevelDestination
 import com.kguard.indiary.compose.navigation.TopLevelDestination.PERSON
 import com.kguard.indiary.compose.navigation.TopLevelDestination.MEMORY
 import com.kguard.indiary.feature.memory.navigation.memoryMainRoute
+import com.kguard.indiary.feature.memory.navigation.navigateToMemoryAdd
 import com.kguard.indiary.feature.memory.navigation.navigateToMemoryMain
+import com.kguard.indiary.feature.person.navigation.navigateToPersonAdd
 import com.kguard.indiary.feature.person.navigation.navigateToPersonMain
 
 
@@ -55,9 +57,13 @@ class IndiaryAppState(
             else -> null
         }
     val shouldShowBottomBar: Boolean
-        get() = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Compact
+        @Composable
+        get() = currentDestination?.route == personMainRoute || currentDestination?.route == memoryMainRoute
 
     val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.entries
+
+    fun navigateToPersonAdd() = navController.navigateToPersonAdd()
+    fun navigateToMemoryAdd() = navController.navigateToMemoryAdd()
 
     /**
      * 앱에서 최상위 목적지로 이동하기 위한 UI 로직. 최상위 목적지에는 백스택의 목적지 복사본이 하나만 있으며, 당신이 그것을 오갈 때마다 상태를 저장하고 복원합니다.

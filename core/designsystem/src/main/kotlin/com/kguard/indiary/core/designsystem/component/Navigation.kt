@@ -2,8 +2,12 @@ package com.kguard.indiary.core.designsystem.component
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.absolutePadding
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -16,6 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.kguard.indiary.core.designsystem.R
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 
@@ -35,7 +40,7 @@ fun RowScope.IndiaryNavigationBarItem(
         selected = selected,
         onClick = onClick,
         icon = if (selected) selectedIcon else icon,
-        modifier = modifier,
+        modifier = modifier.padding(horizontal = 0.dp),
         enabled = enabled,
         label = label,
         alwaysShowLabel = alwaysShowLabel,
@@ -57,8 +62,8 @@ fun IndiaryNavigationBar(
 ) {
     NavigationBar(
         modifier = modifier,
+        containerColor = IndiaryNavigationDefaults.navigationIndicatorColor(),
         contentColor = IndiaryNavigationDefaults.navigationContentColor(),
-        tonalElevation = 0.dp,
         content = content,
     )
 }
@@ -80,21 +85,25 @@ fun IndiaryNavigationBarPreview() {
         IndiaryNavigationBar {
             items.forEachIndexed { index, item ->
                 IndiaryNavigationBarItem(
+
                     icon = {
                         Icon(
+                            modifier = Modifier.width(20.dp).height(25.dp),
                             painter = painterResource(id = icons[index]),
                             contentDescription = item,
                         )
                     },
                     selectedIcon = {
                         Icon(
+                            modifier = Modifier.width(25.dp).height(25.dp),
                             painter = painterResource(id = selectedIcons[index]),
                             contentDescription = item,
                         )
                     },
-                    label = { Text(item, maxLines = 1) },
+                    label = { Text( text = item, fontSize = 10.sp, maxLines = 1) },
                     selected = index == 0,
                     onClick = { },
+                    alwaysShowLabel = false
                 )
             }
         }
@@ -112,5 +121,5 @@ object IndiaryNavigationDefaults {
 
     // 인디케이터 삭제를 위하여 surface 색상과 동일 하게 사용
     @Composable
-    fun navigationIndicatorColor() = MaterialTheme.colorScheme.surface
+    fun navigationIndicatorColor() = MaterialTheme.colorScheme.secondaryContainer
 }
