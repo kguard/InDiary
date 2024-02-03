@@ -17,9 +17,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.outlined.Add
-import androidx.compose.material.icons.sharp.Add
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -139,7 +136,7 @@ fun MemoryWithDialog(
 private fun MemoryWithDialogButtonPrev() {
     var alist = mutableStateListOf(
         DomainPerson(
-            person_id = 0,
+            personId = 0,
             name = "aaa",
             favorite = true,
             gender = 0,
@@ -148,7 +145,7 @@ private fun MemoryWithDialogButtonPrev() {
             memo = "!231"
         ),
         DomainPerson(
-            person_id = 1,
+            personId = 1,
             name = "bbb",
             favorite = true,
             gender = 0,
@@ -157,7 +154,7 @@ private fun MemoryWithDialogButtonPrev() {
             memo = "!231"
         ),
         DomainPerson(
-            person_id = 2,
+            personId = 2,
             name = "ccc",
             favorite = true,
             gender = 0,
@@ -166,7 +163,7 @@ private fun MemoryWithDialogButtonPrev() {
             memo = "!231"
         ),
         DomainPerson(
-            person_id = 0,
+            personId = 0,
             name = "aaa",
             favorite = true,
             gender = 0,
@@ -175,7 +172,7 @@ private fun MemoryWithDialogButtonPrev() {
             memo = "!231"
         ),
         DomainPerson(
-            person_id = 1,
+            personId = 1,
             name = "bbb",
             favorite = true,
             gender = 0,
@@ -184,7 +181,7 @@ private fun MemoryWithDialogButtonPrev() {
             memo = "!231"
         ),
         DomainPerson(
-            person_id = 2,
+            personId = 2,
             name = "ccc",
             favorite = true,
             gender = 0,
@@ -193,7 +190,7 @@ private fun MemoryWithDialogButtonPrev() {
             memo = "!231"
         ),
         DomainPerson(
-            person_id = 0,
+            personId = 0,
             name = "aaa",
             favorite = true,
             gender = 0,
@@ -202,7 +199,7 @@ private fun MemoryWithDialogButtonPrev() {
             memo = "!231"
         ),
         DomainPerson(
-            person_id = 1,
+            personId = 1,
             name = "bbb",
             favorite = true,
             gender = 0,
@@ -211,33 +208,7 @@ private fun MemoryWithDialogButtonPrev() {
             memo = "!231"
         ),
         DomainPerson(
-            person_id = 2,
-            name = "ccc",
-            favorite = true,
-            gender = 0,
-            make = "123",
-            birth = "123",
-            memo = "!231"
-        ), DomainPerson(
-            person_id = 0,
-            name = "aaa",
-            favorite = true,
-            gender = 0,
-            make = "123",
-            birth = "123",
-            memo = "!231"
-        ),
-        DomainPerson(
-            person_id = 1,
-            name = "bbb",
-            favorite = true,
-            gender = 0,
-            make = "123",
-            birth = "123",
-            memo = "!231"
-        ),
-        DomainPerson(
-            person_id = 2,
+            personId = 2,
             name = "ccc",
             favorite = true,
             gender = 0,
@@ -245,7 +216,7 @@ private fun MemoryWithDialogButtonPrev() {
             birth = "123",
             memo = "!231"
         ), DomainPerson(
-            person_id = 0,
+            personId = 0,
             name = "aaa",
             favorite = true,
             gender = 0,
@@ -254,7 +225,7 @@ private fun MemoryWithDialogButtonPrev() {
             memo = "!231"
         ),
         DomainPerson(
-            person_id = 1,
+            personId = 1,
             name = "bbb",
             favorite = true,
             gender = 0,
@@ -263,7 +234,7 @@ private fun MemoryWithDialogButtonPrev() {
             memo = "!231"
         ),
         DomainPerson(
-            person_id = 2,
+            personId = 2,
             name = "ccc",
             favorite = true,
             gender = 0,
@@ -271,7 +242,7 @@ private fun MemoryWithDialogButtonPrev() {
             birth = "123",
             memo = "!231"
         ), DomainPerson(
-            person_id = 0,
+            personId = 0,
             name = "aaa",
             favorite = true,
             gender = 0,
@@ -280,7 +251,7 @@ private fun MemoryWithDialogButtonPrev() {
             memo = "!231"
         ),
         DomainPerson(
-            person_id = 1,
+            personId = 1,
             name = "bbb",
             favorite = true,
             gender = 0,
@@ -289,7 +260,7 @@ private fun MemoryWithDialogButtonPrev() {
             memo = "!231"
         ),
         DomainPerson(
-            person_id = 2,
+            personId = 2,
             name = "ccc",
             favorite = true,
             gender = 0,
@@ -297,7 +268,7 @@ private fun MemoryWithDialogButtonPrev() {
             birth = "123",
             memo = "!231"
         ), DomainPerson(
-            person_id = 0,
+            personId = 0,
             name = "aaa",
             favorite = true,
             gender = 0,
@@ -306,7 +277,7 @@ private fun MemoryWithDialogButtonPrev() {
             memo = "!231"
         ),
         DomainPerson(
-            person_id = 1,
+            personId = 1,
             name = "bbb",
             favorite = true,
             gender = 0,
@@ -315,7 +286,33 @@ private fun MemoryWithDialogButtonPrev() {
             memo = "!231"
         ),
         DomainPerson(
-            person_id = 2,
+            personId = 2,
+            name = "ccc",
+            favorite = true,
+            gender = 0,
+            make = "123",
+            birth = "123",
+            memo = "!231"
+        ), DomainPerson(
+            personId = 0,
+            name = "aaa",
+            favorite = true,
+            gender = 0,
+            make = "123",
+            birth = "123",
+            memo = "!231"
+        ),
+        DomainPerson(
+            personId = 1,
+            name = "bbb",
+            favorite = true,
+            gender = 0,
+            make = "123",
+            birth = "123",
+            memo = "!231"
+        ),
+        DomainPerson(
+            personId = 2,
             name = "ccc",
             favorite = true,
             gender = 0,

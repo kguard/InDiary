@@ -97,6 +97,7 @@ fun IndiaryNavHost(
             onBackClick = navController::popBackStack
         )
         memoryUpdateScreen(
+            navController = navController,
             onCompleteClick = navController::popBackStack
         )
         memoryAddScreen(

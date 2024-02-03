@@ -7,7 +7,8 @@ import com.kguard.indiary.core.model.DomainPerson
 
 @Entity(tableName = "Person")
 data class Person(
-    @PrimaryKey(autoGenerate = true) val person_id: Int = 0,
+    @PrimaryKey(autoGenerate = true)
+    val personId: Int = 0,
     @ColumnInfo(name = "PersonName")
     var name: String,
     @ColumnInfo(name = "PersonBirth")
@@ -23,5 +24,11 @@ data class Person(
 )
 
 fun Person.toDomainPerson(): DomainPerson = DomainPerson(
-    person_id, name, birth, gender, memo, make, favorite
+    personId = personId,
+    name = name,
+    birth = birth,
+    gender = gender,
+    memo = memo,
+    make = make,
+    favorite = favorite
 )

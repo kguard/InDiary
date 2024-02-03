@@ -1,8 +1,5 @@
 package com.kguard.indiary.feature.person.viewmodel
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -63,7 +60,7 @@ class PersonDetailViewModel @Inject constructor(
     fun updatePerson(person: DomainPerson) {
         viewModelScope.launch {
             personUseCase.updatePerson(person)
-            getPerson(person.person_id)
+            getPerson(person.personId)
         }
     }
 

@@ -15,46 +15,46 @@ class MemoryRepositoryImpl @Inject constructor(
         return dao.getMemories().map { it.toDomainMemory() }
     }
 
-    override suspend fun getPersonMemories(person_id: Int): List<DomainMemory> {
-        return dao.getPersonMemories(person_id).map { it.toDomainMemory() }
+    override suspend fun getPersonMemories(personId: Int): List<DomainMemory> {
+        return dao.getPersonMemories(personId).map { it.toDomainMemory() }
     }
 
-    override suspend fun getMemory(memory_id: Int): DomainMemory {
-        return dao.getMemory(memory_id).toDomainMemory()
+    override suspend fun getMemory(memoryId: Int): DomainMemory {
+        return dao.getMemory(memoryId).toDomainMemory()
     }
 
     override suspend fun updateMemory(memory: DomainMemory) {
         val memoryEntity = Memory(
-            memory.memory_id, memory.title, memory.date, memory.content,
-            memory.imageList[0],
-            memory.imageList[1],
-            memory.imageList[2],
-            memory.imageList[3],
-            memory.imageList[4], memory.person_id
+            memory.memoryId,
+            memory.title,
+            memory.date,
+            memory.content,
+            memory.imageList,
+            memory.personId
         )
         dao.updateMemory(memoryEntity)
     }
 
     override suspend fun insertMemory(memory: DomainMemory) {
         val memoryEntity = Memory(
-            memory.memory_id, memory.title, memory.date, memory.content,
-            memory.imageList[0],
-            memory.imageList[1],
-            memory.imageList[2],
-            memory.imageList[3],
-            memory.imageList[4], memory.person_id
+            memory.memoryId,
+            memory.title,
+            memory.date,
+            memory.content,
+            memory.imageList,
+            memory.personId
         )
         dao.insertMemory(memoryEntity)
     }
 
     override suspend fun deleteMemory(memory: DomainMemory) {
         val memoryEntity = Memory(
-            memory.memory_id, memory.title, memory.date, memory.content,
-            memory.imageList[0],
-            memory.imageList[1],
-            memory.imageList[2],
-            memory.imageList[3],
-            memory.imageList[4], memory.person_id
+            memory.memoryId,
+            memory.title,
+            memory.date,
+            memory.content,
+            memory.imageList,
+            memory.personId
         )
         dao.deleteMemory(memoryEntity)
     }

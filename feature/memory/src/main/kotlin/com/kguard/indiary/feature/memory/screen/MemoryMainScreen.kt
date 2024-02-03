@@ -1,6 +1,7 @@
 package com.kguard.indiary.feature.memory.screen
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -46,6 +47,7 @@ internal fun MemoryMainRoute(
 ) {
     memoryMainViewModel.getMemories()
     val memories by memoryMainViewModel.memory.collectAsStateWithLifecycle()
+    Log.e("memories", "MemoryMainRoute: $memories ", )
     MemoryMainScreen(
         memories = memories,
         onCardClick = onCardClick,

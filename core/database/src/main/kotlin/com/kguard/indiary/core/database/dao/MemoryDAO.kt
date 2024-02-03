@@ -10,18 +10,18 @@ interface MemoryDAO {
     suspend fun getMemories(): List<Memory>
 
     @Transaction
-    @Query("SELECT * FROM Memory WHERE memory_id =:memory_id ")
-    suspend fun getMemory(memory_id: Int): Memory
+    @Query("SELECT * FROM Memory WHERE memoryId = :memoryId ")
+    suspend fun getMemory(memoryId: Int): Memory
 
-    @Query("SELECT * FROM Memory WHERE person_id = :person_id")
-    suspend fun getPersonMemories(person_id: Int): List<Memory>
+    @Query("SELECT * FROM Memory WHERE personId = :personId")
+    suspend fun getPersonMemories(personId: Int): List<Memory>
 
     @Update
-    suspend fun updateMemory(vararg Memory: Memory)
+    suspend fun updateMemory(vararg memory: Memory)
 
     @Insert
-    suspend fun insertMemory(vararg Memory: Memory)
+    suspend fun insertMemory(vararg memory: Memory)
 
     @Delete
-    suspend fun deleteMemory(vararg Memory: Memory)
+    suspend fun deleteMemory(vararg memory: Memory)
 }

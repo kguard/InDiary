@@ -20,8 +20,8 @@ class PersonMainViewModel @Inject constructor(
     val persons: StateFlow<List<DomainPerson>>
         get() = _persons
 
-    private val _memories = MutableLiveData<List<DomainMemory>>()
-    val memories: LiveData<List<DomainMemory>>
+    private val _memories = MutableStateFlow<List<DomainMemory>>(emptyList())
+    val memories: StateFlow<List<DomainMemory>>
         get() = _memories
 
     fun getPersons() {

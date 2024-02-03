@@ -22,13 +22,13 @@ class PersonRepositoryImpl @Inject constructor(
         return dao.getPersons().map { it.name }
     }
 
-    override suspend fun getPerson(person_id: Int): DomainPerson {
-        return dao.getPerson(person_id).toDomainPerson()
+    override suspend fun getPerson(personId: Int): DomainPerson {
+        return dao.getPerson(personId).toDomainPerson()
     }
 
     override suspend fun updatePerson(person: DomainPerson) {
         val personEntity = Person(
-            person.person_id,
+            person.personId,
             person.name,
             person.birth,
             person.gender,
@@ -41,7 +41,7 @@ class PersonRepositoryImpl @Inject constructor(
 
     override suspend fun insertPerson(person: DomainPerson) {
         val personEntity = Person(
-            person.person_id,
+            person.personId,
             person.name,
             person.birth,
             person.gender,
@@ -54,7 +54,7 @@ class PersonRepositoryImpl @Inject constructor(
 
     override suspend fun deletePerson(person: DomainPerson) {
         val personEntity = Person(
-            person.person_id,
+            person.personId,
             person.name,
             person.birth,
             person.gender,

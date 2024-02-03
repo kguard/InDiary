@@ -3,6 +3,7 @@ package com.kguard.indiary.core.database.di
 import android.app.Application
 import androidx.room.Room
 import com.kguard.indiary.core.database.database.InDiaryDatabase
+import com.kguard.indiary.core.database.database.InDiaryTypeConverters
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,6 +18,6 @@ object DatabaseModule {
     fun provideInDiaryDatabase(app: Application): InDiaryDatabase {
         return Room.databaseBuilder(
             app, InDiaryDatabase::class.java, "InDiary DB"
-        ).fallbackToDestructiveMigration().build()
+        ).addTypeConverter(InDiaryTypeConverters()).fallbackToDestructiveMigration().build()
     }
 }

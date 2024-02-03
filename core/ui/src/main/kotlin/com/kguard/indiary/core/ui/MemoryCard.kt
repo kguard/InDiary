@@ -19,10 +19,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.net.toUri
 import coil.compose.AsyncImage
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.model.DomainMemory
@@ -36,7 +34,7 @@ fun MemoryCard(
     modifier: Modifier = Modifier,
 ) {
     Card(
-        onClick = {onCardClick(memory.memory_id)},
+        onClick = {onCardClick(memory.memoryId)},
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.onSurface,
             contentColor = Color.White
@@ -70,6 +68,7 @@ fun MemoryCard(
                         .align(Alignment.CenterHorizontally)
                 ) {
                     items(items = memory.imageList) { photo ->
+                      //  Log.e("photo", "MemoryCard: $photo", )
                         if (photo != null) {
                             MemoryPhoto(photo = photo)
                         }
@@ -91,7 +90,7 @@ fun MemoryCard(
 @Composable
 fun MemoryPhoto(photo: String, modifier: Modifier = Modifier) {
     AsyncImage(
-        model = photo.toUri(),
+        model = photo,
         contentDescription = null,
         modifier = modifier
             .padding(end = 8.dp)

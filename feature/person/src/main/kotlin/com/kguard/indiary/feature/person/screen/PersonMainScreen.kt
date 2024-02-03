@@ -18,14 +18,10 @@ import androidx.compose.material3.DismissValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SwipeToDismiss
 import androidx.compose.material3.rememberDismissState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -36,19 +32,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.kguard.indiary.core.designsystem.component.IndiaryMainTopAppBar
 import androidx.compose.material3.*
-import androidx.compose.runtime.SideEffect
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.core.model.DomainPerson
 import com.kguard.indiary.core.ui.PersonCard
-import com.kguard.indiary.feature.person.R
 import com.kguard.indiary.feature.person.viewmodel.PersonMainViewModel
 
-//Todo: lazyColumn, Dialog, SwipeToDismiss 관련 해결
+//Todo: Dialog, SwipeToDismiss 관련 해결
 @Composable
 internal fun PersonMainRoute(
     personMainViewModel: PersonMainViewModel = hiltViewModel(),
@@ -57,7 +49,7 @@ internal fun PersonMainRoute(
     personMainViewModel.getPersons()
     personMainViewModel.getMemories()
     val person by personMainViewModel.persons.collectAsStateWithLifecycle()
-    val memory by personMainViewModel.memories.observeAsState()
+    val memory by personMainViewModel.memories.collectAsStateWithLifecycle()
     PersonMainScreen(
         onCardClick = onCardClick,
         onCardSlide = personMainViewModel::deletePerson,
@@ -92,7 +84,7 @@ internal fun PersonMainScreen(
         {
             if (persons != null) {
                 items(items = persons,
-                    key = { person -> person.person_id }) { person ->
+                    key = { person -> person.personId }) { person ->
                     val dismissState = rememberDismissState(
                         positionalThreshold = { it * 0.5f },
                         confirmValueChange = {
@@ -193,7 +185,7 @@ internal fun PersonMainScreen(
                 onConfirmation = {
                     openDialog = false
                     if (memories != null) {
-                        if (memories.find { it.person_id == deletePerson.person_id } == null)
+                        if (memories.find { it.personId == deletePerson.personId } == null)
                             onCardSlide(deletePerson)
                         else
                             Toast.makeText(contextForToast, "삭제 할 수 없습니다.", Toast.LENGTH_SHORT)
@@ -218,7 +210,7 @@ fun PersonMainScreenPrev() {
         mutableStateOf(
             listOf(
                 DomainPerson(
-                    person_id = 0,
+                    personId = 0,
                     name = "aaa",
                     favorite = true,
                     gender = 0,
@@ -227,7 +219,7 @@ fun PersonMainScreenPrev() {
                     memo = "!231"
                 ),
                 DomainPerson(
-                    person_id = 1,
+                    personId = 1,
                     name = "bbb",
                     favorite = true,
                     gender = 0,
@@ -236,7 +228,7 @@ fun PersonMainScreenPrev() {
                     memo = "!231"
                 ),
                 DomainPerson(
-                    person_id = 2,
+                    personId = 2,
                     name = "ccc",
                     favorite = true,
                     gender = 0,

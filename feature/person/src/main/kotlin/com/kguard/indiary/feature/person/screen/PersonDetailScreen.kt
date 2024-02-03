@@ -18,9 +18,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -32,6 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
@@ -61,8 +60,8 @@ fun PersonDetailRoute(
     personId: Int
 ) {
 //    personDetailViewModel.getPerson(personId)
-    val person by personDetailViewModel.person.collectAsState()
-    val memories by personDetailViewModel.memories.collectAsState()
+    val person by personDetailViewModel.person.collectAsStateWithLifecycle()
+    val memories by personDetailViewModel.memories.collectAsStateWithLifecycle()
     Log.e("person", "PersonDetailRoutePerson: $person", )
     Log.e("memory", "PersonDetailRouteMemory: $memories", )
     PersonDetailScreen(
@@ -223,7 +222,7 @@ fun PersonFeatureScreen(
             onConfirmation = {
                 openDialog = false
                 if (memories != null) {
-                    if (memories.find { it.person_id == person.person_id } == null)
+                    if (memories.find { it.personId == person.personId } == null)
                         onDeleteClick(person)
                     else
                         Toast.makeText(contextForToast, "삭제 할 수 없습니다.", Toast.LENGTH_SHORT)
@@ -244,7 +243,7 @@ fun PersonFeaturePrev() {
     IndiaryTheme {
         PersonFeatureScreen(
             person = DomainPerson(
-                person_id = 0,
+                personId = 0,
                 name = "aaa",
                 favorite = true,
                 gender = 0,
@@ -264,7 +263,7 @@ fun PersonDetailPrev() {
     IndiaryTheme {
         PersonDetailScreen(
             person = DomainPerson(
-                person_id = 0,
+                personId = 0,
                 name = "aaa",
                 favorite = true,
                 gender = 0,

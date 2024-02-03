@@ -35,7 +35,7 @@ fun PersonCard(
     modifier: Modifier = Modifier,
 ) {
     Card(
-        onClick = { onCardClick(person.person_id) },
+        onClick = { onCardClick(person.personId) },
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.onSurface,
             contentColor = Color.White

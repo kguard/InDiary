@@ -22,12 +22,6 @@ class MemoryMainViewModel @Inject constructor(
         getMemories()
     }
 
-    fun clearMemories() {
-        viewModelScope.launch {
-            _memory.value = emptyList()
-        }
-    }
-
     fun getMemories() {
         viewModelScope.launch() {
             _memory.value = useCase.getMemories()

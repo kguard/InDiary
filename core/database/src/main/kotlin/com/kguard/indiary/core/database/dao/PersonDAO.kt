@@ -8,18 +8,18 @@ interface PersonDAO {
     @Query("SELECT * FROM Person")
     suspend fun getPersons(): List<Person>
 
-    @Query("SELECT * FROM Person WHERE person_id =:person_id ")
-    suspend fun getPerson(person_id: Int): Person
+    @Query("SELECT * FROM Person WHERE personId = :personId ")
+    suspend fun getPerson(personId: Int): Person
 
-    @Query("SELECT person_id FROM Person WHERE PersonName LIKE :PersonName ")
-    suspend fun getPersonId(PersonName: String): Int
+    @Query("SELECT personId FROM Person WHERE PersonName LIKE :personName ")
+    suspend fun getPersonId(personName: String): Int
 
     @Update
-    suspend fun updatePerson(vararg Person: Person)
+    suspend fun updatePerson(vararg person: Person)
 
     @Insert
-    suspend fun insertPerson(vararg Person: Person)
+    suspend fun insertPerson(vararg person: Person)
 
     @Delete
-    suspend fun deletePerson(vararg Person: Person)
+    suspend fun deletePerson(vararg person: Person)
 }

@@ -9,6 +9,8 @@ import com.kguard.indiary.core.domain.PersonUseCase
 import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.core.model.DomainPerson
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,27 +19,17 @@ class MemoryAddViewModel @Inject constructor(
     private val memoryUseCase: MemoryUseCase,
     private val personUseCase: PersonUseCase
 ) : ViewModel() {
-    private var _memory = MutableLiveData<DomainMemory>()
-    val memory: LiveData<DomainMemory>
-        get() = _memory
 
-    private var _person = MutableLiveData<DomainPerson>()
-    val person: LiveData<DomainPerson>
-        get() = _person
-
-    private val _persons = MutableLiveData<List<DomainPerson>>()
-    val persons: LiveData<List<DomainPerson>>
+    private val _persons = MutableStateFlow<List<DomainPerson>>(emptyList())
+    val persons: StateFlow<List<DomainPerson>>
         get() = _persons
 
+    init {
+        getPersons()
+    }
     fun insertMemory(memory: DomainMemory) {
         viewModelScope.launch {
             memoryUseCase.insertMemory(memory)
-        }
-    }
-
-    fun getPerson(personId: Int) {
-        viewModelScope.launch {
-            _person.value = personUseCase.getPerson(personId)
         }
     }
 

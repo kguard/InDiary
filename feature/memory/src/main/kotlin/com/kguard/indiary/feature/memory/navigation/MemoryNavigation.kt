@@ -1,5 +1,8 @@
 package com.kguard.indiary.feature.memory.navigation
 
+import android.annotation.SuppressLint
+import androidx.compose.runtime.remember
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -12,11 +15,11 @@ import com.kguard.indiary.feature.memory.screen.MemoryDetailRoute
 import com.kguard.indiary.feature.memory.screen.MemoryUpdateRoute
 import com.kguard.indiary.feature.memory.screen.MemoryMainRoute
 
-const val MEMORY_ID = "memoryID"
+const val MEMORY_ID = "memoryId"
 const val memoryMainRoute = "memory_main_rout"
 const val memoryAddRoute = "memory_add_rout"
 const val memoryDetailRoute = "memory_detail_rout/{$MEMORY_ID}"
-const val memoryUpdateRoute = "memory_update_rout/{$MEMORY_ID}"
+const val memoryUpdateRoute = "memory_update_rout"
 
 fun NavHostController.navigateToMemoryMain(navOptions: NavOptions? = null) {
     this.navigate(memoryMainRoute, navOptions)
@@ -29,8 +32,8 @@ fun NavHostController.navigateToMemoryDetail(memoryId : Int, navOptions: NavOpti
     this.navigate("memory_detail_rout/$memoryId", navOptions)
 }
 
-fun NavHostController.navigateToMemoryUpdate(memoryId: Int,navOptions: NavOptions? = null) {
-    this.navigate("memory_update_rout/$memoryId", navOptions)
+fun NavHostController.navigateToMemoryUpdate(navOptions: NavOptions? = null) {
+    this.navigate("memory_update_rout", navOptions)
 }
 
 fun NavGraphBuilder.memoryMainScreen(onCardClick: (Int) -> Unit) {
@@ -50,7 +53,7 @@ fun NavGraphBuilder.memoryAddScreen(onCompleteClick: () -> Unit) {
 }
 
 
-fun NavGraphBuilder.memoryDetailScreen(onUpdateClick: (Int) -> Unit, onDeleteClick: () -> Unit, onBackClick: () -> Unit) {
+fun NavGraphBuilder.memoryDetailScreen(onUpdateClick: () -> Unit, onDeleteClick: () -> Unit, onBackClick: () -> Unit) {
     composable(
         route = memoryDetailRoute,
         arguments = listOf(navArgument(MEMORY_ID) { type = NavType.IntType })
@@ -65,16 +68,17 @@ fun NavGraphBuilder.memoryDetailScreen(onUpdateClick: (Int) -> Unit, onDeleteCli
     }
 }
 
-fun NavGraphBuilder.memoryUpdateScreen(onCompleteClick: () -> Unit) {
+fun NavGraphBuilder.memoryUpdateScreen(navController: NavController, onCompleteClick: () -> Unit) {
     composable(
         route = memoryUpdateRoute,
-        arguments = listOf(navArgument(MEMORY_ID) { type = NavType.IntType })
     )
     { navBackStackEntry ->
-        val memoryId = navBackStackEntry.arguments?.getInt(MEMORY_ID)
+        val parents = remember(navBackStackEntry) {
+            navController.getBackStackEntry(memoryDetailRoute)
+        }
         MemoryUpdateRoute(
             onCompleteClick = onCompleteClick,
-            memoryId = memoryId!!
+            memoryDetailViewModel = hiltViewModel(parents)
         )
     }
 }

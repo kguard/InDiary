@@ -1,6 +1,7 @@
 package com.kguard.indiary.feature.memory.screen
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -20,7 +21,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -31,6 +31,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kguard.indiary.core.designsystem.R
 import com.kguard.indiary.core.designsystem.component.IndiaryFloatingActionButton
 import com.kguard.indiary.core.designsystem.component.IndiaryMultiTextLine
@@ -46,15 +47,16 @@ import com.kguard.indiary.feature.memory.viewmodel.MemoryDetailViewModel
 @Composable
 fun MemoryDetailRoute(
     memoryDetailViewModel: MemoryDetailViewModel = hiltViewModel(),
-    onUpdateClick: (Int) -> Unit,
+    onUpdateClick: () -> Unit,
     onDeleteClick: () -> Unit,
     onBackClick: () -> Unit,
-    memoryId: Int
+    memoryId : Int
 ) {
-    memoryDetailViewModel.getMemory(memoryId)
-    val memory by memoryDetailViewModel.memory.observeAsState(initial = DomainMemory())
-    memory.person_id?.let { memoryDetailViewModel.getPerson(it) }
-    val person by memoryDetailViewModel.person.observeAsState()
+    val memory by memoryDetailViewModel.memory.collectAsStateWithLifecycle()
+    memory.personId?.let { memoryDetailViewModel.getPerson(it) }
+    val person by memoryDetailViewModel.person.collectAsStateWithLifecycle()
+    Log.e("memory", "MemoryDetailRoute: $memory ", )
+    Log.e("person", "MemoryDetailRoute: $person ", )
     MemoryDetailScreen(
         memory = memory,
         person = person,
@@ -74,7 +76,7 @@ fun MemoryDetailScreen(
     modifier: Modifier = Modifier,
     memory: DomainMemory,
     person: DomainPerson? = null,
-    onUpdateClick: (Int) -> Unit,
+    onUpdateClick: () -> Unit,
     onDeleteClick: (DomainMemory) -> Unit,
     onBackClick: () -> Unit
 ) {
@@ -145,7 +147,7 @@ fun MemoryDetailScreen(
         ) {
             IndiaryFloatingActionButton(
                 modifier = modifier.padding(16.dp),
-                onClick = { onUpdateClick(memory.memory_id) },
+                onClick = { onUpdateClick() },
                 icon = Icons.Rounded.Edit
             )
             IndiaryFloatingActionButton(
@@ -181,9 +183,9 @@ fun MemoryDetailScreenPrev() {
         MemoryDetailScreen(memory = DomainMemory(
             title = "rlarudgh",
             date = "2018-11-11",
-            person_id = 0,
+            personId = 0,
         ), person = DomainPerson(
-            person_id = 0,
+            personId = 0,
             name = "aaa",
             favorite = true,
             gender = 0,

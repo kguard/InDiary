@@ -15,8 +15,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -29,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kguard.indiary.core.designsystem.R
 import com.kguard.indiary.core.designsystem.component.IndiaryMultilineTextField
 import com.kguard.indiary.core.designsystem.component.IndiarySubTopAppBar
@@ -50,8 +49,7 @@ fun MemoryAddRoute(
     memoryAddViewModel: MemoryAddViewModel = hiltViewModel(),
     onCompleteClick: () -> Unit,
 ) {
-    memoryAddViewModel.getPersons()
-    val persons by memoryAddViewModel.persons.observeAsState()
+    val persons by memoryAddViewModel.persons.collectAsStateWithLifecycle()
     MemoryAddScreen(
         persons = persons,
         onAddClick = {
@@ -76,7 +74,7 @@ internal fun MemoryAddScreen(
     var title by remember { mutableStateOf("") }
     var isEmptyTitle by remember { mutableStateOf(false) }
 
-    var with by remember { mutableStateOf(DomainPerson()) }
+    var with by remember { mutableStateOf<DomainPerson?>(null) }
 
     var date by remember { mutableStateOf("") }
     var isEmptyDate by remember { mutableStateOf(false) }
@@ -128,10 +126,7 @@ internal fun MemoryAddScreen(
                     onItemClick = { with = it })
                 Text(
                     modifier = Modifier.padding(horizontal = 16.dp),
-                    text = if (with.name == "")
-                        "함께한 사람을 선택해주세요."
-                    else
-                        with.name,
+                    text = with?.name ?: "함께한 사람을 선택해주세요.",
                     color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
             }
@@ -214,12 +209,12 @@ internal fun MemoryAddScreen(
             onClick = {
                 isEmptyDate = date == ""
                 isEmptyTitle = title == ""
-                if (photos.size < 5) {
-                    repeat(5 - photos.size)
-                    {
-                        photos += null
-                    }
-                }
+//                if (photos.size < 5) {
+//                    repeat(5 - photos.size)
+//                    {
+//                        photos += null
+//                    }
+//                }
                 if (!isEmptyTitle && !isEmptyDate) {
                         onAddClick(
                             DomainMemory(
@@ -227,7 +222,7 @@ internal fun MemoryAddScreen(
                                 date = date,
                                 content = content,
                                 imageList = photos,
-                                person_id = with.person_id
+                                personId = with?.personId
                             )
                         )
                 }

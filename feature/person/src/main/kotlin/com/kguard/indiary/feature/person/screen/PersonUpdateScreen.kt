@@ -1,7 +1,6 @@
 package com.kguard.indiary.feature.person.screen
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,7 +15,6 @@ import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -30,7 +28,7 @@ import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kguard.indiary.core.designsystem.R
 import com.kguard.indiary.core.designsystem.component.IndiaryMultilineTextField
 import com.kguard.indiary.core.designsystem.component.IndiaryNumField
@@ -48,7 +46,7 @@ fun PersonUpdateRoute(
     personDetailViewModel: PersonDetailViewModel,
     onCompleteClick: () -> Unit,
 ) {
-    val persons by personDetailViewModel.person.collectAsState()
+    val persons by personDetailViewModel.person.collectAsStateWithLifecycle()
     PersonUpdateScreen(
         onUpdateClick = {
             personDetailViewModel.updatePerson(it)
@@ -214,7 +212,7 @@ fun PersonUpdateScreen(
 fun PersonUpdateScreenPrev() {
     IndiaryTheme {
         PersonUpdateScreen(onUpdateClick = {}, person = DomainPerson(
-            person_id = 0,
+            personId = 0,
             name = "aaa",
             favorite = true,
             gender = 0,
