@@ -1,6 +1,7 @@
 package com.kguard.indiary.feature.memory.screen
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -50,12 +51,12 @@ fun MemoryUpdateRoute(
     onCompleteClick: () -> Unit,
 ) {
     val memory by memoryDetailViewModel.memory.collectAsStateWithLifecycle()
-    memory.personId?.let { memoryDetailViewModel.getPerson(personId = it) }
-    val person by memoryDetailViewModel.person.collectAsStateWithLifecycle()
+    if (memory.personId != null) memoryDetailViewModel.getPerson(personId = memory.personId!!) else memoryDetailViewModel.clearPerson()
+    val memoryPerson by memoryDetailViewModel.person.collectAsStateWithLifecycle()
     val persons by memoryDetailViewModel.persons.collectAsStateWithLifecycle()
     MemoryUpdateScreen(
         memory = memory,
-        memoryPerson = person,
+        memoryPerson = memoryPerson,
         persons = persons,
         onUpdateClick = {
             memoryDetailViewModel.updateMemory(it)
@@ -71,7 +72,7 @@ fun MemoryUpdateRoute(
 internal fun MemoryUpdateScreen(
     memory: DomainMemory,
     memoryPerson: DomainPerson? = null,
-    persons: List<DomainPerson>? = null,
+    persons: List<DomainPerson>,
     onUpdateClick: (DomainMemory) -> Unit,
     onBackClick: () -> Unit
 ) {
@@ -236,68 +237,5 @@ internal fun MemoryUpdateScreen(
             )
         }
 
-    }
-}
-
-
-@SuppressLint("UnrememberedMutableState")
-@Preview(showSystemUi = true)
-@Composable
-fun MemoryUpdateScreenPrev() {
-    IndiaryTheme {
-        MemoryUpdateScreen(memory = DomainMemory(
-            title = "rlarudgh",
-            date = "2018-11-11",
-            personId = 0,
-            imageList = arrayListOf("1", "2")
-        ),
-            persons = mutableStateListOf(
-                DomainPerson(
-                    personId = 0,
-                    name = "aaa",
-                    favorite = true,
-                    gender = 0,
-                    make = "123",
-                    birth = "123",
-                    memo = "!231"
-                ),
-                DomainPerson(
-                    personId = 1,
-                    name = "bbb",
-                    favorite = true,
-                    gender = 0,
-                    make = "123",
-                    birth = "123",
-                    memo = "!231"
-                ),
-                DomainPerson(
-                    personId = 2,
-                    name = "ccc",
-                    favorite = true,
-                    gender = 0,
-                    make = "123",
-                    birth = "123",
-                    memo = "!231"
-                ),
-                DomainPerson(
-                    personId = 0,
-                    name = "aaa",
-                    favorite = true,
-                    gender = 0,
-                    make = "123",
-                    birth = "123",
-                    memo = "!231"
-                )
-            ),
-            memoryPerson = DomainPerson(
-                personId = 0,
-                name = "aaa",
-                favorite = true,
-                gender = 0,
-                make = "123",
-                birth = "123",
-                memo = "!231"
-            ),
-            onUpdateClick = {}, onBackClick = {})
     }
 }

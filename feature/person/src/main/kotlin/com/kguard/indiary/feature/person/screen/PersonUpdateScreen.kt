@@ -205,20 +205,3 @@ fun PersonUpdateScreen(
         }
     }
 }
-
-
-@Preview(showSystemUi = true)
-@Composable
-fun PersonUpdateScreenPrev() {
-    IndiaryTheme {
-        PersonUpdateScreen(onUpdateClick = {}, person = DomainPerson(
-            personId = 0,
-            name = "aaa",
-            favorite = true,
-            gender = 0,
-            make = "123",
-            birth = "123",
-            memo = "!231"
-        ), onBackClick = {})
-    }
-}

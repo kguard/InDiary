@@ -65,7 +65,7 @@ fun MemoryAddRoute(
 @Composable
 internal fun MemoryAddScreen(
     modifier: Modifier = Modifier,
-    persons: List<DomainPerson>? = null,
+    persons: List<DomainPerson>,
     onAddClick: (DomainMemory) -> Unit,
     onBackClick: () -> Unit
 ) {
@@ -234,12 +234,3 @@ internal fun MemoryAddScreen(
     }
 }
 
-@SuppressLint("UnrememberedMutableState")
-@Preview(showSystemUi = true)
-@Composable
-fun MemoryAddScreenPrev() {
-    IndiaryTheme {
-        MemoryAddScreen(onAddClick = {},
-            onBackClick = {})
-    }
-}

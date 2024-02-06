@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -19,6 +20,7 @@ import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -42,8 +44,8 @@ import com.kguard.indiary.core.model.DomainPerson
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MemoryWithDialog(
-    persons: List<DomainPerson>? = null,
-    onItemClick: (DomainPerson) -> Unit
+    persons: List<DomainPerson>,
+    onItemClick: (DomainPerson?) -> Unit
 ) {
     var openDialog by remember { mutableStateOf(false) }
     OutlinedButton(
@@ -64,7 +66,7 @@ fun MemoryWithDialog(
             tint = MaterialTheme.colorScheme.onPrimaryContainer
         )
         Text(
-            modifier = Modifier.padding(horizontal =4.dp),
+            modifier = Modifier.padding(horizontal = 4.dp),
             text = stringResource(id = R.string.With),
             color = MaterialTheme.colorScheme.onPrimaryContainer,
             style = MaterialTheme.typography.labelLarge
@@ -89,7 +91,7 @@ fun MemoryWithDialog(
                     color = MaterialTheme.colorScheme.onPrimaryContainer,
                     style = MaterialTheme.typography.displayLarge
                 )
-                if (persons != null) {
+                if (persons.isNotEmpty()) {
                     LazyColumn {
                         items(items = persons) { person ->
                             Card(
@@ -110,10 +112,27 @@ fun MemoryWithDialog(
                                     style = MaterialTheme.typography.displaySmall
                                 )
                             }
-
                         }
                     }
-                }else {
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.background
+                        ),
+                        onClick = {
+                            openDialog = false
+                            onItemClick(null)
+                        },
+                    )
+                    {
+                        Text(
+                            modifier = Modifier.padding(horizontal = 16.dp),
+                            text = "선택 안함",
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            style = MaterialTheme.typography.displaySmall
+                        )
+                    }
+                } else {
                     Text(
                         modifier = Modifier
                             .padding(16.dp)

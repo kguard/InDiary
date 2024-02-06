@@ -146,17 +146,12 @@ fun PersonCard2(
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun CardPrev() {
-    IndiaryTheme {
-        Column {
-//            PersonCard(onClick = {}, name = "김경호", date = "2018-22-22", onCheckedChange = {
-//                !it
-//            })
-//            PersonCard2(onClick = {}, name = "김경호", date = "2018-22-22", onCheckedChange = {
-//                !it
-//            })
-        }
-    }
-}
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun CardPrev() {
+//    IndiaryTheme {
+//        Column {
+//            PersonCard(person = , onCardClick = , onCheckedChange = , check = )
+//        }
+//    }
+//}

@@ -132,7 +132,6 @@ internal fun PersonDetailScreen(
                     MemoryMainScreen(
                         onCardClick = onCardClick,
                         onCardSlide = onCardSlide,
-                        onRefresh = onRefresh,
                         memories = it1
                     )
                 }
@@ -230,58 +229,6 @@ fun PersonFeatureScreen(
             onDismissRequest = {
                 openDialog = false
             },
-        )
-    }
-}
-
-@Preview(showSystemUi = true)
-@Composable
-fun PersonFeaturePrev() {
-    IndiaryTheme {
-        PersonFeatureScreen(
-            person = DomainPerson(
-                personId = 0,
-                name = "aaa",
-                favorite = true,
-                gender = 0,
-                make = "123",
-                birth = "19991101",
-//                memo = "fafasdfasdfadsfasdfasdfadsfasdfasasdfadfaadfadsfasdfasdfasdfasdfasdfdfasdfasdfadsfadafsdfasdfaasdfasdfadfasdfasdfasdasdfa2sadasdassdfjasdklfjasdjkfasdjfa;klsdjfak;lsjdf;kajsdkl;fja;lskdfj;asdjkfa;ksd31"
-            ),
-            age = "24",
-            onUpdateClick = {},
-            onDeleteClick = {})
-    }
-}
-
-@Preview(showSystemUi = true)
-@Composable
-fun PersonDetailPrev() {
-    IndiaryTheme {
-        PersonDetailScreen(
-            person = DomainPerson(
-                personId = 0,
-                name = "aaa",
-                favorite = true,
-                gender = 0,
-                make = "123",
-                birth = "19991101",
-                memo = "fafasdfasdfadsfasdfasdfadsfasdfasasdfadfaadfadsfasdfasdfasdfasdfasdfdfasdfasdfadsfadafsdfasdfaasdfasdfadfasdfasdfasdasdfa2sadasdassdfjasdklfjasdjkfasdjfa;klsdjfak;lsjdf;kajsdkl;fja;lskdfj;asdjkfa;ksd31"
-            ),
-            age = "24",
-            onUpdateClick = {},
-            onDeleteClick = {},
-            onCardClick = {},
-            onCardSlide = {},
-            onRefresh = {},
-            memories = listOf(
-                DomainMemory(
-                    title = "rlarudgh",
-                    date = "2018-11-11",
-                    imageList = arrayListOf("1", "2")
-                )
-            ),
-            onBackClick = {}
         )
     }
 }

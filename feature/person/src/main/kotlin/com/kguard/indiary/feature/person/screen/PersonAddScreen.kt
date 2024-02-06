@@ -205,12 +205,3 @@ internal fun PersonAddScreen(
         }
     }
 }
-
-
-@Preview(showSystemUi = true)
-@Composable
-fun PersonAddScreenPrev() {
-    IndiaryTheme {
-        PersonAddScreen(onAddClick = {}, onBackClick = {})
-    }
-}

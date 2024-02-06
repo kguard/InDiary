@@ -1,6 +1,7 @@
 package com.kguard.indiary.feature.memory.screen
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -52,11 +53,11 @@ fun MemoryDetailRoute(
     memoryId : Int
 ) {
     val memory by memoryDetailViewModel.memory.collectAsStateWithLifecycle()
-    memory.personId?.let { memoryDetailViewModel.getPerson(it) }
-    val person by memoryDetailViewModel.person.collectAsStateWithLifecycle()
+    if(memory.personId != null) memoryDetailViewModel.getPerson(memory.personId!!) else memoryDetailViewModel.clearPerson()
+    val memoryPerson by memoryDetailViewModel.person.collectAsStateWithLifecycle()
     MemoryDetailScreen(
         memory = memory,
-        person = person,
+        person = memoryPerson,
         onUpdateClick = onUpdateClick,
         onDeleteClick = {
             memoryDetailViewModel.deleteMemory(it)
@@ -169,27 +170,5 @@ fun MemoryDetailScreen(
                 },
             )
         }
-    }
-}
-
-
-@Preview(showSystemUi = true)
-@Composable
-fun MemoryDetailScreenPrev() {
-    IndiaryTheme {
-        MemoryDetailScreen(memory = DomainMemory(
-            title = "rlarudgh",
-            date = "2018-11-11",
-            personId = 0,
-        ), person = DomainPerson(
-            personId = 0,
-            name = "aaa",
-            favorite = true,
-            gender = 0,
-            make = "123",
-            birth = "19991101",
-            memo = "fafasdfasdfadsfasdfasdfadsfasdfasasdfadfaadfadsfasdfasdfasdfasdfasdfdfasdfasdfadsfadafsdfasdfaasdfasdfadfasdfasdfasdasdfa2sadasdassdfjasdklfjasdjkfasdjfa;klsdjfak;lsjdf;kajsdkl;fja;lskdfj;asdjkfa;ksd31"
-        ), onUpdateClick = {}, onDeleteClick = {}, onBackClick = {}
-        )
     }
 }

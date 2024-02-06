@@ -20,6 +20,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SwipeToDismiss
 import androidx.compose.material3.rememberDismissState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,11 +32,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.kguard.indiary.core.designsystem.component.IndiaryMainTopAppBar
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.core.ui.MemoryCard
-import com.kguard.indiary.core.designsystem.R
 import com.kguard.indiary.feature.memory.viewmodel.MemoryMainViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -49,7 +48,6 @@ internal fun MemoryMainRoute(
     MemoryMainScreen(
         memories = memories,
         onCardClick = onCardClick,
-        onRefresh = { memoryMainViewModel.getMemories() },
         onCardSlide = memoryMainViewModel::deleteMemory,
     )
 }
@@ -60,7 +58,6 @@ internal fun MemoryMainRoute(
 fun MemoryMainScreen(
     onCardClick: (Int) -> Unit,
     onCardSlide: (DomainMemory) -> Unit,
-    onRefresh: () -> Unit,
     memories: List<DomainMemory>,
 ) {
     var openDialog by remember { mutableStateOf(false) }
@@ -84,6 +81,12 @@ fun MemoryMainScreen(
                             false
                     }
                 )
+                if (dismissState.currentValue != DismissValue.Default) {
+                    if (!openDialog)
+                        LaunchedEffect(Unit) {
+                            dismissState.reset()
+                        }
+                }
                 SwipeToDismiss(
                     modifier = Modifier.animateItemPlacement(),
                     state = dismissState,
@@ -116,9 +119,11 @@ fun MemoryMainScreen(
         if (openDialog) {
             MemoryDeleteDialog(
                 memory = deleteMemory,
-                onConfirmation = { onCardSlide(deleteMemory) },
+                onConfirmation = {
+                    openDialog = false
+                    onCardSlide(deleteMemory)
+                },
                 onDismissRequest = {
-                    onRefresh()
                     openDialog = false
                 }
             )
@@ -126,22 +131,3 @@ fun MemoryMainScreen(
     }
 }
 
-@Preview(showSystemUi = true)
-@Composable
-fun MemoryMainScreenPrev() {
-    IndiaryTheme {
-        MemoryMainScreen(
-            onCardClick = {},
-            onCardSlide = {},
-            onRefresh = {},
-//            onAddClick = { /*TODO*/ },
-            memories = listOf(
-                DomainMemory(
-                    title = "rlarudgh",
-                    date = "2018-11-11",
-                    imageList = arrayListOf("1", "2")
-                )
-            )
-        )
-    }
-}

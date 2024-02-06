@@ -119,30 +119,7 @@ fun IndiaryTextLinePrev() {
         Column {
             IndiaryTextLine(
                 title = stringResource(id = R.string.NameTitle),
-                content = "김경호",
-                modifier = Modifier.fillMaxWidth()
-            )
-            IndiaryTextLine(
-                title = stringResource(id = R.string.NameTitle),
-                content = "김경호",
-                modifier = Modifier.fillMaxWidth()
-            )
-            IndiaryTextLine(
-                title = stringResource(id = R.string.NameTitle),
-                content = "김경호",
-                modifier = Modifier.fillMaxWidth()
-            )
-            IndiaryTextLine(
-                title = stringResource(id = R.string.NameTitle),
-                content = "김경호",
-            )
-            IndiaryText(
-                title = stringResource(id = R.string.NameTitle),
-                content = "김경호",
-            )
-            IndiaryMultiTextLine(
-                title = stringResource(id = R.string.NameTitle),
-                content = "",
+                content = "김철수",
                 modifier = Modifier.fillMaxWidth()
             )
         }

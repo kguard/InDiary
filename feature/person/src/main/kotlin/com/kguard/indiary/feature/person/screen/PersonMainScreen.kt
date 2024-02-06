@@ -33,12 +33,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.material3.*
+import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.core.model.DomainPerson
 import com.kguard.indiary.core.ui.PersonCard
 import com.kguard.indiary.feature.person.viewmodel.PersonMainViewModel
+
 
 //Todo: Dialog, SwipeToDismiss 관련 해결
 @Composable
@@ -54,7 +56,6 @@ internal fun PersonMainRoute(
         onCardClick = onCardClick,
         onCardSlide = personMainViewModel::deletePerson,
         onCheckedChange = personMainViewModel::updatePerson,
-        onRefresh = { personMainViewModel.getPersons() },
         persons = person,
         memories = memory
     )
@@ -67,7 +68,6 @@ internal fun PersonMainScreen(
     onCardClick: (Int) -> Unit,
     onCheckedChange: (DomainPerson) -> Unit,
     onCardSlide: (DomainPerson) -> Unit,
-    onRefresh: () -> Unit,
     persons: List<DomainPerson>? = null,
     memories: List<DomainMemory>? = null
 ) {
@@ -96,55 +96,12 @@ internal fun PersonMainScreen(
                                 false
                         }
                     )
-
-//                    if (dismissState.isDismissed(DismissDirection.EndToStart)) {
-//                        ///onCardSlide(person)
-//                        //dismiss 안됨
-//                        //openDialog = true
-//                        // Todo: Dialog 해야함
-//                        if (openDialog) {
-//                            PersonDeleteDialog(
-//                                person = person,
-//                                onConfirmation = {
-//                                    openDialog = false
-//                                    if (memories != null) {
-//                                        if (memories.find { it.person_id == person.person_id } == null)
-//                                            onCardSlide(person)
-//                                        else
-//                                            Toast.makeText(
-//                                                contextForToast,
-//                                                "삭제 할 수 없습니다.",
-//                                                Toast.LENGTH_SHORT
-//                                            ).show()
-//                                    } else
-//                                        onCardSlide(person)
-//                                },
-//                                onDismissRequest = {
-//                                    onRefresh()
-//                                    openDialog = false
-//                                },
-//                            )
-//                        }
-//                    }
-//                if (openDialog) {
-//                    PersonDeleteDialog(
-//                        person = person,
-//                        onConfirmation = {
-//                            openDialog = false
-//                            if (memories != null) {
-//                                if (memories.find { it.person_id == person.person_id } == null)
-//                                    onCardSlide(person)
-//                                else
-//                                    Toast.makeText(contextForToast, "삭제 할 수 없습니다.", Toast.LENGTH_SHORT).show()
-//                            }
-//                            else
-//                                onCardSlide(person)
-//                        },
-//                        onDismissRequest = {
-//                            openDialog = false
-//                        },
-//                    )
-//                }
+                    if (dismissState.currentValue != DismissValue.Default) {
+                        if (!openDialog)
+                            LaunchedEffect(Unit) {
+                                dismissState.reset()
+                            }
+                    }
                     SwipeToDismiss(
                         modifier = Modifier.animateItemPlacement(),
                         state = dismissState,
@@ -194,62 +151,9 @@ internal fun PersonMainScreen(
                         onCardSlide(deletePerson)
                 },
                 onDismissRequest = {
-                    onRefresh()
                     openDialog = false
                 },
             )
         }
-    }
-}
-
-@SuppressLint("UnrememberedMutableState")
-@Preview(showSystemUi =  true)
-@Composable
-fun PersonMainScreenPrev() {
-    var alist by remember {
-        mutableStateOf(
-            listOf(
-                DomainPerson(
-                    personId = 0,
-                    name = "aaa",
-                    favorite = true,
-                    gender = 0,
-                    make = "123",
-                    birth = "123",
-                    memo = "!231"
-                ),
-                DomainPerson(
-                    personId = 1,
-                    name = "bbb",
-                    favorite = true,
-                    gender = 0,
-                    make = "123",
-                    birth = "123",
-                    memo = "!231"
-                ),
-                DomainPerson(
-                    personId = 2,
-                    name = "ccc",
-                    favorite = true,
-                    gender = 0,
-                    make = "123",
-                    birth = "123",
-                    memo = "!231"
-                )
-            )
-        )
-    }
-
-
-    IndiaryTheme {
-        PersonMainScreen(
-            onCardClick = {},
-            persons = alist,
-            onCardSlide = { alist = alist - it },
-            onCheckedChange = {},
-            onRefresh = {
-                //alist = b
-            }
-        )
     }
 }

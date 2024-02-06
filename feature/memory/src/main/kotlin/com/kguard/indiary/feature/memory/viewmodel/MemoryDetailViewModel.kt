@@ -68,4 +68,8 @@ class MemoryDetailViewModel @Inject constructor(
         }
     }
 
+    fun clearPerson(){
+        _person.value = null
+    }
+
 }

@@ -93,12 +93,7 @@ fun MemoryCard(
 fun MemoryCardPrev() {
     IndiaryTheme {
         Column {
-            IndiaryPhoto(photo = "https://cdn.gjdream.com/news/photo/202308/631816_233764_323.jpg")
-            MemoryCard(
-                onCardClick = {},
-                memory = DomainMemory(title = "rlarudgh", date = "2018-11-11", imageList = arrayListOf("1","2"))
-            )
-            MemoryCard(onCardClick = {}, memory = DomainMemory(title = "rlarudgh", date = "2018-11-11", ))
+            MemoryCard(onCardClick = {}, memory = DomainMemory(title = "놀러가기", date = "2018-11-11", ))
         }
     }
 }
