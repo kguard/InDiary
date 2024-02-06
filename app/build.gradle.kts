@@ -43,10 +43,6 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation (libs.androidx.appcompat)
 
-    //compose를 사용하게 되면 사용을 안할 것들
-    implementation (libs.android.material)
-    implementation (libs.androidx.constraintlayout)
-
     testImplementation (libs.junit4)
     androidTestImplementation (libs.androidx.test.ext)
     androidTestImplementation (libs.androidx.test.espresso.core)

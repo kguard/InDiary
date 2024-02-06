@@ -42,7 +42,6 @@ import com.kguard.indiary.core.model.DomainPerson
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MemoryWithDialog(
-    modifier: Modifier = Modifier,
     persons: List<DomainPerson>? = null,
     onItemClick: (DomainPerson) -> Unit
 ) {
@@ -91,8 +90,7 @@ fun MemoryWithDialog(
                     style = MaterialTheme.typography.displayLarge
                 )
                 if (persons != null) {
-                    LazyColumn(
-                    ) {
+                    LazyColumn {
                         items(items = persons) { person ->
                             Card(
                                 modifier = Modifier.fillMaxSize(),
@@ -134,7 +132,7 @@ fun MemoryWithDialog(
 @Preview(showSystemUi = true)
 @Composable
 private fun MemoryWithDialogButtonPrev() {
-    var alist = mutableStateListOf(
+    val alist = mutableStateListOf(
         DomainPerson(
             personId = 0,
             name = "aaa",

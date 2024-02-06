@@ -1,5 +1,6 @@
 package com.kguard.indiary.feature.memory.component
 
+import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
@@ -39,22 +40,35 @@ import com.kguard.indiary.core.designsystem.R
 fun MemoryPhotoPicker(
     onPhotoSelected: (String?) -> Unit,
 ) {
+    val context = LocalContext.current
     val singlePhotoPicker = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
-        onResult = { onPhotoSelected(it.toString()) }
     )
+    { uri ->
+        if (uri != null) {
+            context.contentResolver.takePersistableUriPermission(
+                uri,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+            )
+            onPhotoSelected(uri.toString())
+        }
+
+    }
     IconButton(onClick = {
         singlePhotoPicker.launch(
             PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
         )
     }) {
-        Image(painter = painterResource(id = R.drawable.bg_add_photo2), contentDescription = "add Photo")
+        Image(
+            painter = painterResource(id = R.drawable.bg_add_photo2),
+            contentDescription = "add Photo"
+        )
     }
 }
 
 @Composable
 @Preview(showSystemUi = true)
-internal fun MemoryPhotoPickerPrev(){
+internal fun MemoryPhotoPickerPrev() {
     val contextForToast = LocalContext.current.applicationContext
     IndiaryTheme {
         val photo = remember {
@@ -67,15 +81,21 @@ internal fun MemoryPhotoPickerPrev(){
                 photo.value = a
                 Toast.makeText(contextForToast, it.toString(), Toast.LENGTH_SHORT).show()
             })
-            LazyRow(modifier = Modifier.fillMaxWidth().padding(16.dp))
+            LazyRow(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            )
             {
                 items(items = photo.value) {
-                    AsyncImage(model = it, modifier = Modifier
-                        .height(80.dp)
-                        .width(60.dp)
-                        .clip(
-                            RoundedCornerShape(5.dp)
-                        ),contentDescription = null)
+                    AsyncImage(
+                        model = it, modifier = Modifier
+                            .height(80.dp)
+                            .width(60.dp)
+                            .clip(
+                                RoundedCornerShape(5.dp)
+                            ), contentDescription = null
+                    )
                 }
             }
 

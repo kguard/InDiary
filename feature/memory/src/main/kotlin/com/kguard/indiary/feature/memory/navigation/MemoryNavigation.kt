@@ -1,6 +1,5 @@
 package com.kguard.indiary.feature.memory.navigation
 
-import android.annotation.SuppressLint
 import androidx.compose.runtime.remember
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController

@@ -30,6 +30,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kguard.indiary.core.designsystem.R
 import com.kguard.indiary.core.designsystem.component.IndiaryMultilineTextField
+import com.kguard.indiary.core.designsystem.component.IndiaryPhoto
 import com.kguard.indiary.core.designsystem.component.IndiarySubTopAppBar
 import com.kguard.indiary.core.designsystem.component.IndiaryTextButton
 import com.kguard.indiary.core.designsystem.component.IndiaryTextField
@@ -37,7 +38,6 @@ import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.designsystem.util.addFocusCleaner
 import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.core.model.DomainPerson
-import com.kguard.indiary.core.ui.MemoryPhoto
 import com.kguard.indiary.feature.memory.component.MemoryDateRangePicker
 import com.kguard.indiary.feature.memory.component.MemoryPhotoPicker
 import com.kguard.indiary.feature.memory.component.MemoryWithDialog
@@ -121,7 +121,6 @@ internal fun MemoryAddScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 MemoryWithDialog(
-                    modifier = Modifier,
                     persons = persons,
                     onItemClick = { with = it })
                 Text(
@@ -176,7 +175,7 @@ internal fun MemoryAddScreen(
                     {
                         items(items = photos) { photo ->
                             if (photo != null) {
-                                MemoryPhoto(
+                                IndiaryPhoto(
                                     photo = photo,
                                     modifier = Modifier
                                         .clickable {
@@ -209,12 +208,6 @@ internal fun MemoryAddScreen(
             onClick = {
                 isEmptyDate = date == ""
                 isEmptyTitle = title == ""
-//                if (photos.size < 5) {
-//                    repeat(5 - photos.size)
-//                    {
-//                        photos += null
-//                    }
-//                }
                 if (!isEmptyTitle && !isEmptyDate) {
                         onAddClick(
                             DomainMemory(

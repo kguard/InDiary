@@ -8,7 +8,7 @@ android {
 }
 
 dependencies {
-    implementation (libs.androidx.appcompat)
+    implementation(libs.androidx.appcompat)
     // icon 가져오기 위해서 일시적으로 사용
     api(libs.androidx.compose.foundation)
     api(libs.androidx.compose.foundation.layout)
@@ -18,7 +18,9 @@ dependencies {
     api(libs.androidx.compose.ui.tooling.preview)
     api(libs.androidx.compose.ui.util)
     implementation(libs.androidx.core.ktx)
+    implementation(libs.coil.kt)
     implementation(libs.coil.kt.compose)
+    implementation(libs.coil.kt.svg)
     debugApi(libs.androidx.compose.ui.tooling)
 
 }

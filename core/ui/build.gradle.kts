@@ -26,4 +26,5 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.coil.kt)
     implementation(libs.coil.kt.compose)
+    implementation(libs.coil.kt.svg)
 }

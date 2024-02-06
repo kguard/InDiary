@@ -203,7 +203,7 @@ internal fun PersonMainScreen(
 }
 
 @SuppressLint("UnrememberedMutableState")
-@Preview
+@Preview(showSystemUi =  true)
 @Composable
 fun PersonMainScreenPrev() {
     var alist by remember {

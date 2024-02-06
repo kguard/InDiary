@@ -1,7 +1,6 @@
 package com.kguard.indiary.feature.memory.screen
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -35,12 +34,12 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kguard.indiary.core.designsystem.R
 import com.kguard.indiary.core.designsystem.component.IndiaryFloatingActionButton
 import com.kguard.indiary.core.designsystem.component.IndiaryMultiTextLine
+import com.kguard.indiary.core.designsystem.component.IndiaryPhoto
 import com.kguard.indiary.core.designsystem.component.IndiarySubTopAppBar
 import com.kguard.indiary.core.designsystem.component.IndiaryTextLine
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.core.model.DomainPerson
-import com.kguard.indiary.core.ui.MemoryPhoto
 import com.kguard.indiary.feature.memory.viewmodel.MemoryDetailViewModel
 
 
@@ -55,8 +54,6 @@ fun MemoryDetailRoute(
     val memory by memoryDetailViewModel.memory.collectAsStateWithLifecycle()
     memory.personId?.let { memoryDetailViewModel.getPerson(it) }
     val person by memoryDetailViewModel.person.collectAsStateWithLifecycle()
-    Log.e("memory", "MemoryDetailRoute: $memory ", )
-    Log.e("person", "MemoryDetailRoute: $person ", )
     MemoryDetailScreen(
         memory = memory,
         person = person,
@@ -121,7 +118,7 @@ fun MemoryDetailScreen(
                     ) {
                         items(items = memory.imageList) { photo ->
                             if (photo != null) {
-                                MemoryPhoto(photo = photo)
+                                IndiaryPhoto(photo = photo)
                             }
                         }
                     }

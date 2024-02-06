@@ -1,7 +1,6 @@
 package com.kguard.indiary.feature.person.screen
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -42,7 +41,6 @@ import com.kguard.indiary.core.model.DomainPerson
 import com.kguard.indiary.feature.person.viewmodel.PersonAddViewModel
 import java.time.LocalDate
 import java.util.regex.Pattern
-import kotlin.math.log
 
 @Composable
 internal fun PersonAddRoute(
@@ -52,7 +50,6 @@ internal fun PersonAddRoute(
     PersonAddScreen(
         onAddClick = {
             personAddViewModel.insertPerson(it)
-            Log.e("person", "PersonAddRoute:$it ", )
             onCompleteClick()
         },
         onBackClick = onCompleteClick

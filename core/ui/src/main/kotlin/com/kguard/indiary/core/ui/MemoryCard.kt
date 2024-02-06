@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.kguard.indiary.core.designsystem.component.IndiaryPhoto
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.model.DomainMemory
 
@@ -68,9 +69,8 @@ fun MemoryCard(
                         .align(Alignment.CenterHorizontally)
                 ) {
                     items(items = memory.imageList) { photo ->
-                      //  Log.e("photo", "MemoryCard: $photo", )
                         if (photo != null) {
-                            MemoryPhoto(photo = photo)
+                            IndiaryPhoto(photo = photo)
                         }
                     }
                 }
@@ -87,27 +87,13 @@ fun MemoryCard(
     }
 }
 
-@Composable
-fun MemoryPhoto(photo: String, modifier: Modifier = Modifier) {
-    AsyncImage(
-        model = photo,
-        contentDescription = null,
-        modifier = modifier
-            .padding(end = 8.dp)
-            .height(80.dp)
-            .width(60.dp)
-            .clip(
-                RoundedCornerShape(5.dp)
-            ),
-    )
-}
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun MemoryCardPrev() {
     IndiaryTheme {
         Column {
-            MemoryPhoto(photo = "https://cdn.gjdream.com/news/photo/202308/631816_233764_323.jpg")
+            IndiaryPhoto(photo = "https://cdn.gjdream.com/news/photo/202308/631816_233764_323.jpg")
             MemoryCard(
                 onCardClick = {},
                 memory = DomainMemory(title = "rlarudgh", date = "2018-11-11", imageList = arrayListOf("1","2"))

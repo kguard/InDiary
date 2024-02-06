@@ -1,7 +1,6 @@
 package com.kguard.indiary.feature.memory.screen
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,6 +31,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kguard.indiary.core.designsystem.R
 import com.kguard.indiary.core.designsystem.component.IndiaryMultilineTextField
+import com.kguard.indiary.core.designsystem.component.IndiaryPhoto
 import com.kguard.indiary.core.designsystem.component.IndiarySubTopAppBar
 import com.kguard.indiary.core.designsystem.component.IndiaryTextButton
 import com.kguard.indiary.core.designsystem.component.IndiaryTextField
@@ -39,7 +39,6 @@ import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.designsystem.util.addFocusCleaner
 import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.core.model.DomainPerson
-import com.kguard.indiary.core.ui.MemoryPhoto
 import com.kguard.indiary.feature.memory.component.MemoryDateRangePicker
 import com.kguard.indiary.feature.memory.component.MemoryPhotoPicker
 import com.kguard.indiary.feature.memory.component.MemoryWithDialog
@@ -54,7 +53,6 @@ fun MemoryUpdateRoute(
     memory.personId?.let { memoryDetailViewModel.getPerson(personId = it) }
     val person by memoryDetailViewModel.person.collectAsStateWithLifecycle()
     val persons by memoryDetailViewModel.persons.collectAsStateWithLifecycle()
-    Log.e("person", "MemoryUpdateRoute: ${memory.imageList.size} ", )
     MemoryUpdateScreen(
         memory = memory,
         memoryPerson = person,
@@ -71,7 +69,6 @@ fun MemoryUpdateRoute(
 @SuppressLint("MutableCollectionMutableState", "UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 internal fun MemoryUpdateScreen(
-    modifier: Modifier = Modifier,
     memory: DomainMemory,
     memoryPerson: DomainPerson? = null,
     persons: List<DomainPerson>? = null,
@@ -83,8 +80,7 @@ internal fun MemoryUpdateScreen(
     var title by remember { mutableStateOf(memory.title) }
     var isEmptyTitle by remember { mutableStateOf(false) }
 
-    var with by remember { mutableStateOf(memoryPerson ?: DomainPerson()) }
-    Log.e("wiht", "MemoryUpdateScreenWith: $with", )
+    var with by remember { mutableStateOf(memoryPerson) }
 
     var date by remember { mutableStateOf(memory.date) }
     var isEmptyDate by remember { mutableStateOf(false) }
@@ -131,15 +127,11 @@ internal fun MemoryUpdateScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 MemoryWithDialog(
-                    modifier = Modifier,
                     persons = persons,
                     onItemClick = { with = it })
                 Text(
                     modifier = Modifier.padding(horizontal = 16.dp),
-                    text = if (with.name == "")
-                        "함께한 사람을 선택해주세요."
-                    else
-                        with.name,
+                    text = with?.name ?: "함께한 사람을 선택해주세요.",
                     color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
             }
@@ -189,7 +181,7 @@ internal fun MemoryUpdateScreen(
                     {
                         items(items = photos) { photo ->
                             if (photo != null) {
-                                MemoryPhoto(
+                                IndiaryPhoto(
                                     photo = photo,
                                     modifier = Modifier
                                         .clickable {
@@ -221,12 +213,6 @@ internal fun MemoryUpdateScreen(
             onClick = {
                 isEmptyDate = date == ""
                 isEmptyTitle = title == ""
-                if (photos.size < 5) {
-                    repeat(5 - photos.size)
-                    {
-                        photos += null
-                    }
-                }
                 if (!isEmptyTitle && !isEmptyDate) {
                     onUpdateClick(
                         memory.copy(
@@ -234,7 +220,7 @@ internal fun MemoryUpdateScreen(
                             date = date,
                             content = content,
                             imageList = photos,
-                            personId = with.personId
+                            personId = with?.personId
                         )
                     )
                 }

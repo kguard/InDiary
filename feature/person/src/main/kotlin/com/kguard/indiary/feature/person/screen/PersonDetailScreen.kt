@@ -1,7 +1,6 @@
 package com.kguard.indiary.feature.person.screen
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -62,8 +61,6 @@ fun PersonDetailRoute(
 //    personDetailViewModel.getPerson(personId)
     val person by personDetailViewModel.person.collectAsStateWithLifecycle()
     val memories by personDetailViewModel.memories.collectAsStateWithLifecycle()
-    Log.e("person", "PersonDetailRoutePerson: $person", )
-    Log.e("memory", "PersonDetailRouteMemory: $memories", )
     PersonDetailScreen(
         person = person,
         age = personDetailViewModel.getAge(person.birth.toString()),

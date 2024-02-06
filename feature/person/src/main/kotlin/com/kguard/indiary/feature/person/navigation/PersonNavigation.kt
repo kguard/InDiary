@@ -1,9 +1,5 @@
 package com.kguard.indiary.feature.person.navigation
 
-import android.net.Uri
-import android.util.Log
-import androidx.compose.animation.AnimatedContentTransitionScope
-import androidx.compose.animation.core.tween
 import androidx.compose.runtime.remember
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -12,15 +8,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.google.gson.Gson
-import com.kguard.indiary.core.model.DomainPerson
 import com.kguard.indiary.feature.person.screen.PersonAddRoute
 import com.kguard.indiary.feature.person.screen.PersonDetailRoute
 import com.kguard.indiary.feature.person.screen.PersonMainRoute
 import com.kguard.indiary.feature.person.screen.PersonUpdateRoute
-import kotlin.math.log
 
 const val PERSON_ID = "personId"
 const val personMainRoute = "person_main_rout"
