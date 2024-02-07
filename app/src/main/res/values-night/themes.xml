@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.InDiary" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.InDiary" parent="android:Theme.Material.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/brown_sub</item>
         <item name="colorPrimaryVariant">@color/brown_main</item>
@@ -10,7 +10,10 @@
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="windowNoTitle">true</item>
     </style>
 </resources>

@@ -6,7 +6,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -21,6 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination
@@ -42,10 +46,11 @@ fun IndiaryApp(
 ) {
     var showQuitDialog by rememberSaveable { mutableStateOf(false) }
     Scaffold(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxSize(),
         bottomBar = {
             if (appState.shouldShowBottomBar) {
                 IndiaryBottomBar(
+                    modifier = Modifier.height(100.dp),
                     destinations = appState.topLevelDestinations,
                     onNavigateToDestination = appState::navigateToTopLevelDestination,
                     currentDestination = appState.currentDestination
@@ -68,7 +73,7 @@ fun IndiaryApp(
                     }
                 }
             }
-            IndiaryNavHost(modifier = Modifier.padding(padding), appState = appState)
+            IndiaryNavHost(modifier = Modifier, appState = appState)
         }
 
     }
@@ -82,9 +87,7 @@ private fun IndiaryBottomBar(
     modifier: Modifier = Modifier,
 ) {
     IndiaryNavigationBar(
-        modifier = modifier
-            .imePadding()
-            .height(70.dp)
+        modifier =  Modifier.fillMaxWidth()
     ) {
         destinations.forEach { destination ->
             val selected = currentDestination.isTopLevelDestinationInHierarchy(destination)
@@ -93,18 +96,14 @@ private fun IndiaryBottomBar(
                 onClick = { onNavigateToDestination(destination) },
                 icon = {
                     Icon(
-                        modifier = Modifier
-                            .width(25.dp)
-                            .height(25.dp),
+                        modifier = Modifier.size(28.dp),
                         painter = painterResource(destination.unselectedIcon),
                         contentDescription = null
                     )
                 },
                 selectedIcon = {
                     Icon(
-                        modifier = Modifier
-                            .width(25.dp)
-                            .height(25.dp),
+                        modifier = Modifier.size(28.dp),
                         painter = painterResource(destination.selectedIcon),
                         contentDescription = null
                     )
@@ -112,7 +111,8 @@ private fun IndiaryBottomBar(
                 label = {
                     Text(
                         text = stringResource(destination.iconTextId),
-                        fontSize = 12.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 14.sp,
                         maxLines = 1
                     )
                 },

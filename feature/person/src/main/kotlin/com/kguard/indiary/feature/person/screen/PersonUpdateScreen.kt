@@ -195,7 +195,7 @@ fun PersonUpdateScreen(
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(horizontal = 16.dp, vertical = 32.dp),
             shape = RoundedCornerShape(15.dp)
         ) {
             Text(

@@ -85,17 +85,16 @@ fun IndiaryNavigationBarPreview() {
         IndiaryNavigationBar {
             items.forEachIndexed { index, item ->
                 IndiaryNavigationBarItem(
-
                     icon = {
                         Icon(
-                            modifier = Modifier.width(20.dp).height(25.dp),
+                            modifier = Modifier.width(26.dp).height(26.dp),
                             painter = painterResource(id = icons[index]),
                             contentDescription = item,
                         )
                     },
                     selectedIcon = {
                         Icon(
-                            modifier = Modifier.width(25.dp).height(25.dp),
+                            modifier = Modifier.width(26.dp).height(26.dp),
                             painter = painterResource(id = selectedIcons[index]),
                             contentDescription = item,
                         )

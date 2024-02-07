@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.compose.runtime.Composable
 import androidx.core.animation.doOnEnd
+import androidx.core.view.WindowCompat
 import com.kguard.indiary.compose.ui.IndiaryApp
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,11 +30,12 @@ class MainComposeActivity : ComponentActivity() {
 //            fadeOut.doOnEnd { splashScreenProvider.remove() }
 //            fadeOut.start()
 //        }
-
+//        enableEdgeToEdge()
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
         setContent {
             IndiaryTheme {
-                IndiaryApp(windowSizeClass = calculateWindowSizeClass(this) )
+                IndiaryApp(windowSizeClass = calculateWindowSizeClass(this))
             }
         }
     }

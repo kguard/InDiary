@@ -20,7 +20,7 @@ const val memoryAddRoute = "memory_add_rout"
 const val memoryDetailRoute = "memory_detail_rout/{$MEMORY_ID}"
 const val memoryUpdateRoute = "memory_update_rout"
 
-fun NavHostController.navigateToMemoryMain(navOptions: NavOptions? = null) {
+fun NavHostController.navigateToMemoryMain(navOptions: NavOptions) {
     this.navigate(memoryMainRoute, navOptions)
 }
 fun NavHostController.navigateToMemoryAdd(navOptions: NavOptions? = null) {
