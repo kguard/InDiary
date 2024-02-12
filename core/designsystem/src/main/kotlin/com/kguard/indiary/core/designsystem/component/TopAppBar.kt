@@ -1,6 +1,11 @@
 package com.kguard.indiary.core.designsystem.component
 
+import android.content.Intent
 import androidx.annotation.StringRes
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -13,6 +18,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -51,7 +57,7 @@ fun IndiarySubTopAppBar(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun IndiaryMainTopAppBar(
     modifier: Modifier = Modifier,
@@ -59,10 +65,16 @@ fun IndiaryMainTopAppBar(
     actionIconContentDescription: String? = null,
     colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
     onNavigationClick: () -> Unit = {},
+    onLongClick: () -> Unit = {}
 ) {
     TopAppBar(
         title = {
             Text(
+                modifier = Modifier.pointerInput(Unit) {
+                    detectTapGestures(
+                        onLongPress = { onLongClick() },
+                    )
+                },
                 text = stringResource(R.string.AppNamePage),
                 style = MaterialTheme.typography.titleMedium,
             )

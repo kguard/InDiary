@@ -1,6 +1,7 @@
 package com.kguard.indiary.compose.ui
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,13 +23,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.kguard.indiary.R
 import com.kguard.indiary.compose.navigation.IndiaryNavHost
 import com.kguard.indiary.compose.navigation.TopLevelDestination
@@ -44,9 +48,12 @@ fun IndiaryApp(
     windowSizeClass: WindowSizeClass,
     appState: IndiaryAppState = rememberIndiaryAppState(windowSizeClass = windowSizeClass)
 ) {
+    val context = LocalContext.current
     var showQuitDialog by rememberSaveable { mutableStateOf(false) }
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .navigationBarsPadding(),
         bottomBar = {
             if (appState.shouldShowBottomBar) {
                 IndiaryBottomBar(
@@ -65,8 +72,15 @@ fun IndiaryApp(
                 when (destination) {
                     TopLevelDestination.PERSON -> {
                         IndiaryMainTopAppBar(actionIcon = R.drawable.ic_person_add,
+                            onLongClick = {
+                                Intent(context, OssLicensesMenuActivity::class.java).also {
+                                    OssLicensesMenuActivity.setActivityTitle("오픈소스 라이선스")
+                                    context.startActivity(it)
+                                }
+                            },
                             onNavigationClick = { appState.navigateToPersonAdd() })
                     }
+
                     TopLevelDestination.MEMORY -> {
                         IndiaryMainTopAppBar(actionIcon = R.drawable.ic_memory_add,
                             onNavigationClick = { appState.navigateToMemoryAdd() })
@@ -87,7 +101,7 @@ private fun IndiaryBottomBar(
     modifier: Modifier = Modifier,
 ) {
     IndiaryNavigationBar(
-        modifier =  Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth()
     ) {
         destinations.forEach { destination ->
             val selected = currentDestination.isTopLevelDestinationInHierarchy(destination)

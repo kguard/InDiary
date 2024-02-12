@@ -18,7 +18,7 @@ internal fun Project.configureKotlinAndroid(
         compileSdk = 34
 
         defaultConfig {
-            minSdk = 26
+            minSdk = 29
         }
         compileOptions {
 //            Android 스튜디오에는 앱의 최소 API 수준 없이도 여러 자바 11+ API를 사용할 수 있도록 지원하는 기능이 포함되어 있습니다.
