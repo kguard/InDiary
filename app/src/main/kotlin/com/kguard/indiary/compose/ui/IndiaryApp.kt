@@ -1,17 +1,16 @@
 package com.kguard.indiary.compose.ui
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -29,7 +28,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
@@ -39,6 +37,7 @@ import com.kguard.indiary.compose.navigation.TopLevelDestination
 import com.kguard.indiary.core.designsystem.component.IndiaryMainTopAppBar
 import com.kguard.indiary.core.designsystem.component.IndiaryNavigationBar
 import com.kguard.indiary.core.designsystem.component.IndiaryNavigationBarItem
+import com.kguard.indiary.core.ui.QuitDialog
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,7 +48,9 @@ fun IndiaryApp(
     appState: IndiaryAppState = rememberIndiaryAppState(windowSizeClass = windowSizeClass)
 ) {
     val context = LocalContext.current
-    var showQuitDialog by rememberSaveable { mutableStateOf(false) }
+    if (appState.currentTopLevelDestination != null) {
+        BackPressed(context = context)
+    }
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
@@ -57,7 +58,7 @@ fun IndiaryApp(
         bottomBar = {
             if (appState.shouldShowBottomBar) {
                 IndiaryBottomBar(
-                    modifier = Modifier.height(100.dp),
+                    modifier = Modifier,
                     destinations = appState.topLevelDestinations,
                     onNavigateToDestination = appState::navigateToTopLevelDestination,
                     currentDestination = appState.currentDestination
@@ -65,7 +66,7 @@ fun IndiaryApp(
             }
         }
     )
-    { padding ->
+    { _ ->
         Column(Modifier.fillMaxSize()) {
             val destination = appState.currentTopLevelDestination
             if (destination != null) {
@@ -83,6 +84,12 @@ fun IndiaryApp(
 
                     TopLevelDestination.MEMORY -> {
                         IndiaryMainTopAppBar(actionIcon = R.drawable.ic_memory_add,
+                            onLongClick = {
+                                Intent(context, OssLicensesMenuActivity::class.java).also {
+                                    OssLicensesMenuActivity.setActivityTitle("오픈소스 라이선스")
+                                    context.startActivity(it)
+                                }
+                            },
                             onNavigationClick = { appState.navigateToMemoryAdd() })
                     }
                 }
@@ -101,7 +108,9 @@ private fun IndiaryBottomBar(
     modifier: Modifier = Modifier,
 ) {
     IndiaryNavigationBar(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(78.dp)
     ) {
         destinations.forEach { destination ->
             val selected = currentDestination.isTopLevelDestinationInHierarchy(destination)
@@ -141,3 +150,15 @@ private fun NavDestination?.isTopLevelDestinationInHierarchy(destination: TopLev
     this?.hierarchy?.any {
         it.route?.contains(destination.name, true) ?: false
     } ?: false
+
+@Composable
+private fun BackPressed(context: Context) {
+    var showQuitDialog by rememberSaveable { mutableStateOf(false) }
+    BackHandler {
+        showQuitDialog = true
+    }
+    if (showQuitDialog) {
+        QuitDialog(onConfirmation = { (context as Activity).finish() },
+            onDismissRequest = { showQuitDialog = false })
+    }
+}

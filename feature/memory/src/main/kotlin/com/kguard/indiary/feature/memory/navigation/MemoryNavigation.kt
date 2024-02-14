@@ -47,7 +47,7 @@ fun NavGraphBuilder.memoryAddScreen(onCompleteClick: () -> Unit) {
     composable(
         route = memoryAddRoute
     ) {
-        MemoryAddRoute(onCompleteClick = onCompleteClick,)
+        MemoryAddRoute(onCompleteClick = onCompleteClick)
     }
 }
 

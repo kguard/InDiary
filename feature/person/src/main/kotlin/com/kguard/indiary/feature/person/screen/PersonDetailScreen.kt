@@ -26,7 +26,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -34,7 +33,6 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.kguard.indiary.core.designsystem.component.IndiaryTextLine
-import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.model.DomainPerson
 import com.kguard.indiary.core.designsystem.R
 import com.kguard.indiary.core.designsystem.component.IndiaryFloatingActionButton
@@ -67,7 +65,6 @@ fun PersonDetailRoute(
         memories = memories,
         onCardClick = onCardClick,
         onCardSlide = personDetailViewModel::deleteMemory,
-        onRefresh = { personDetailViewModel.getMemoriesInPerson(personId) },
         onUpdateClick = onUpdateClick,
         onDeleteClick = {
             personDetailViewModel.deletePerson(it)
@@ -88,7 +85,6 @@ internal fun PersonDetailScreen(
     memories: List<DomainMemory>?,
     onCardClick: (Int) -> Unit,
     onCardSlide: (DomainMemory) -> Unit,
-    onRefresh: () -> Unit,
     onUpdateClick: () -> Unit,
     onDeleteClick: (DomainPerson) -> Unit,
     onBackClick: () -> Unit

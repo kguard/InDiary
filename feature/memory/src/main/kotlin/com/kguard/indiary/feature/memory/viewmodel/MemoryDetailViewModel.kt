@@ -19,7 +19,7 @@ class MemoryDetailViewModel @Inject constructor(
     private val personUseCase: PersonUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    private var _memory = MutableStateFlow<DomainMemory>(DomainMemory())
+    private var _memory = MutableStateFlow(DomainMemory())
     val memory: StateFlow<DomainMemory>
         get() = _memory
 

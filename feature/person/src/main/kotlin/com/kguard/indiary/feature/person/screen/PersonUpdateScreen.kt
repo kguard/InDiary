@@ -26,7 +26,6 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kguard.indiary.core.designsystem.R
@@ -35,7 +34,6 @@ import com.kguard.indiary.core.designsystem.component.IndiaryNumField
 import com.kguard.indiary.core.designsystem.component.IndiarySubTopAppBar
 import com.kguard.indiary.core.designsystem.component.IndiaryTextButton
 import com.kguard.indiary.core.designsystem.component.IndiaryTextField
-import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.designsystem.util.addFocusCleaner
 import com.kguard.indiary.core.model.DomainPerson
 import com.kguard.indiary.feature.person.viewmodel.PersonDetailViewModel

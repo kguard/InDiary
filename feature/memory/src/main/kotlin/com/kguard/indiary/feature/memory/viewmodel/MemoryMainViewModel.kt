@@ -23,7 +23,7 @@ class MemoryMainViewModel @Inject constructor(
     }
 
     fun getMemories() {
-        viewModelScope.launch() {
+        viewModelScope.launch {
             _memory.value = useCase.getMemories()
         }
     }

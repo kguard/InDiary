@@ -1,7 +1,6 @@
 package com.kguard.indiary.feature.memory.screen
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,7 +15,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -26,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -36,7 +33,6 @@ import com.kguard.indiary.core.designsystem.component.IndiaryPhoto
 import com.kguard.indiary.core.designsystem.component.IndiarySubTopAppBar
 import com.kguard.indiary.core.designsystem.component.IndiaryTextButton
 import com.kguard.indiary.core.designsystem.component.IndiaryTextField
-import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.designsystem.util.addFocusCleaner
 import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.core.model.DomainPerson

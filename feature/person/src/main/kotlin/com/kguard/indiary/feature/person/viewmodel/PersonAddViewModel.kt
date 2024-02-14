@@ -13,7 +13,7 @@ class PersonAddViewModel @Inject constructor(
     private val personUseCase: PersonUseCase,
 ) : ViewModel() {
     fun insertPerson(person: DomainPerson) {
-        viewModelScope.launch() {
+        viewModelScope.launch {
             personUseCase.insertPerson(person)
         }
     }

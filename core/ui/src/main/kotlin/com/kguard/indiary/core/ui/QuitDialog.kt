@@ -9,7 +9,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.kguard.indiary.core.designsystem.R
 import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
-import com.kguard.indiary.core.model.DomainPerson
 
 @Composable
 fun QuitDialog(

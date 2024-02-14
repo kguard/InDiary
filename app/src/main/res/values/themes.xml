@@ -14,6 +14,7 @@
         <!-- Customize your theme here. -->
         <item name="android:windowLightStatusBar">true</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
     
     <style name="Theme.oss" parent="Theme.AppCompat.Light">
@@ -24,11 +25,5 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
-<!--    <style name="Theme.Indiary.Splash" parent="Theme.SplashScreen">-->
-<!--        <item name="windowSplashScreenBackground">#000A13</item>-->
-<!--        <item name="windowSplashScreenAnimatedIcon">@</item>-->
-<!--        &lt;!&ndash;        <item name="windowSplashScreenAnimationDuration">5000</item>&ndash;&gt;-->
-<!--        <item name="postSplashScreenTheme">@style/Theme.PillTime</item>-->
-<!--    </style>-->
 
 </resources>

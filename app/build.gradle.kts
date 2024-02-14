@@ -61,6 +61,7 @@ dependencies {
 
     //Lottie
     implementation (libs.lottie)
+    implementation(libs.lottie.compose)
 
     //Coroutine
     implementation (libs.kotlinx.coroutines.android )

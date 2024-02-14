@@ -36,7 +36,7 @@ class PersonMainViewModel @Inject constructor(
     }
 
     fun deletePerson(person: DomainPerson) {
-        viewModelScope.launch() {
+        viewModelScope.launch {
             launch { personUseCase.deletePerson(person) }.join()
             getPersons()
         }

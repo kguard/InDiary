@@ -1,51 +1,31 @@
 package com.kguard.indiary.compose.navigation
 
-import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.expandIn
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.scaleIn
-import androidx.compose.animation.scaleOut
-import androidx.compose.animation.shrinkOut
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavBackStackEntry
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
-import com.google.gson.Gson
 import com.kguard.indiary.compose.ui.IndiaryAppState
-import com.kguard.indiary.core.model.DomainPerson
+import com.kguard.indiary.compose.ui.splash
+import com.kguard.indiary.compose.ui.splashScreen
 import com.kguard.indiary.feature.memory.navigation.memoryAddScreen
 import com.kguard.indiary.feature.memory.navigation.memoryDetailScreen
 import com.kguard.indiary.feature.memory.navigation.memoryMainScreen
 import com.kguard.indiary.feature.memory.navigation.memoryUpdateScreen
-import com.kguard.indiary.feature.memory.navigation.navigateToMemoryAdd
 import com.kguard.indiary.feature.memory.navigation.navigateToMemoryDetail
 import com.kguard.indiary.feature.memory.navigation.navigateToMemoryUpdate
-import com.kguard.indiary.feature.person.navigation.navigateToPersonAdd
 import com.kguard.indiary.feature.person.navigation.navigateToPersonDetail
 import com.kguard.indiary.feature.person.navigation.navigateToPersonUpdate
 import com.kguard.indiary.feature.person.navigation.personAddScreen
-import com.kguard.indiary.feature.person.navigation.personDetailRoute
 import com.kguard.indiary.feature.person.navigation.personDetailScreen
-import com.kguard.indiary.feature.person.navigation.personMainRoute
 import com.kguard.indiary.feature.person.navigation.personMainScreen
-import com.kguard.indiary.feature.person.navigation.personUpdateRoute
 import com.kguard.indiary.feature.person.navigation.personUpdateScreen
-import com.kguard.indiary.feature.person.screen.PersonUpdateRoute
 
 @Composable
 fun IndiaryNavHost(
     appState: IndiaryAppState,
     modifier: Modifier = Modifier,
-    startDestination: String = personMainRoute
+    startDestination: String = splash
 ) {
     val navController = appState.navController
     NavHost(
@@ -55,6 +35,7 @@ fun IndiaryNavHost(
         enterTransition = { EnterTransition.None },
         exitTransition = { ExitTransition.None },
     ) {
+        splashScreen(navController)
         personMainScreen(
             onCardClick = navController::navigateToPersonDetail,
         )

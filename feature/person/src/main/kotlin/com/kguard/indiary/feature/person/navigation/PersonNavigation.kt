@@ -20,7 +20,7 @@ const val personAddRoute = "person_add_rout"
 const val personDetailRoute = "person_detail_rout/{$PERSON_ID}"
 const val personUpdateRoute = "person_update_rout"
 
-fun NavHostController.navigateToPersonMain(navOptions: NavOptions) {
+fun NavHostController.navigateToPersonMain(navOptions: NavOptions? = null) {
     this.navigate(personMainRoute, navOptions)
 }
 fun NavHostController.navigateToPersonAdd(navOptions: NavOptions? = null) {

@@ -13,16 +13,8 @@ class PersonUseCase @Inject constructor(
             .sortedWith(compareByDescending<DomainPerson> { (it.favorite) }.thenBy { it.name })
     }
 
-    suspend fun getPersonId(name: String): Int {
-        return repository.getPersonId(name)
-    }
-
-    suspend fun getPersonsName(): List<String> {
-        return repository.getPersonsName()
-    }
-
-    suspend fun getPerson(person_id: Int): DomainPerson {
-        return repository.getPerson(person_id)
+    suspend fun getPerson(personId: Int): DomainPerson {
+        return repository.getPerson(personId)
     }
 
     suspend fun updatePerson(person: DomainPerson) {

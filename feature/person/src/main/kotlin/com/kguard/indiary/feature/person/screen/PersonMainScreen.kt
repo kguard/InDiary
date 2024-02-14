@@ -29,20 +29,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.material3.*
 import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.model.DomainMemory
 import com.kguard.indiary.core.model.DomainPerson
 import com.kguard.indiary.core.ui.PersonCard
 import com.kguard.indiary.feature.person.viewmodel.PersonMainViewModel
 
 
-//Todo: Dialog, SwipeToDismiss 관련 해결
 @Composable
 internal fun PersonMainRoute(
     personMainViewModel: PersonMainViewModel = hiltViewModel(),

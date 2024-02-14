@@ -18,11 +18,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kguard.indiary.core.designsystem.R
 import com.kguard.indiary.core.designsystem.component.IndiaryToggleButton
-import com.kguard.indiary.core.designsystem.theme.IndiaryTheme
 import com.kguard.indiary.core.model.DomainPerson
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -81,66 +79,6 @@ fun PersonCard(
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = modifier.padding(end = 16.dp, bottom = 16.dp)
             )
-
-        }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun PersonCard2(
-    onClick: () -> Unit,
-    onCheckedChange: (Boolean) -> Unit,
-    modifier: Modifier = Modifier,
-    name: String,
-    date: String,
-) {
-    Card(
-        onClick = onClick,
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.onSurface,
-            contentColor = Color.White
-        ),
-        modifier = modifier
-            .padding(8.dp)
-            .border(3.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(20)),
-        shape = RoundedCornerShape(20),
-        elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
-    ) {
-        Row(
-            modifier = modifier.padding(6.dp)
-        ) {
-            Text(
-                text = name,
-                style = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(16.dp)
-            )
-            Column(
-                horizontalAlignment = Alignment.End,
-                modifier = modifier.padding(16.dp),
-            ) {
-
-                IndiaryToggleButton(
-                    modifier = modifier.padding(bottom = 16.dp),
-                    checked = false,
-                    onCheckedChange = onCheckedChange,
-                    icon = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_star_line),
-                            contentDescription = null
-                        )
-                    },
-                    checkedIcon = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_star_fill),
-                            contentDescription = null
-                        )
-                    })
-                Text(text = date, style = MaterialTheme.typography.bodyMedium)
-            }
-
 
         }
     }
