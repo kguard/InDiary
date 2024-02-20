@@ -1,12 +1,16 @@
 package com.kguard.indiary.feature.memory.component
 
 import android.content.Intent
+import android.os.Build
+import android.provider.MediaStore
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -14,7 +18,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.IconButton
+import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,25 +37,39 @@ fun MemoryPhotoPicker(
     onPhotoSelected: (String?) -> Unit,
 ) {
     val context = LocalContext.current
-    val singlePhotoPicker = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.PickVisualMedia(),
-    )
-    { uri ->
-        if (uri != null) {
-            context.contentResolver.takePersistableUriPermission(
-                uri,
-                Intent.FLAG_GRANT_READ_URI_PERMISSION
-            )
-            onPhotoSelected(uri.toString())
+    val singlePhotoPickerSDk29 =
+        rememberLauncherForActivityResult(contract = ActivityResultContracts.StartActivityForResult())
+        {
+            onPhotoSelected(it.data?.data.toString())
         }
-
-    }
-    IconButton(onClick = {
-        singlePhotoPicker.launch(
-            PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
-        )
-    }) {
+    val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+    val singlePhotoPicker =
+        rememberLauncherForActivityResult(contract = ActivityResultContracts.PickVisualMedia())
+        { uri ->
+            if (uri != null) {
+                context.contentResolver.takePersistableUriPermission(
+                    uri,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+                onPhotoSelected(uri.toString())
+            }
+        }
+    Button(
+        modifier = Modifier
+            .width(60.dp)
+            .height(80.dp),
+        shape = RoundedCornerShape(5.dp),
+        contentPadding = PaddingValues(),
+        onClick = {
+            if (Build.VERSION.SDK_INT <= 29)
+                singlePhotoPickerSDk29.launch(intent)
+            else
+                singlePhotoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
+    )
+    {
         Image(
+            modifier = Modifier.fillMaxSize(),
             painter = painterResource(id = R.drawable.bg_add_photo2),
             contentDescription = "add Photo"
         )

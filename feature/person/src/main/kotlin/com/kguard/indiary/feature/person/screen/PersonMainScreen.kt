@@ -13,13 +13,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material3.DismissDirection
-import androidx.compose.material3.DismissValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SwipeToDismiss
-import androidx.compose.material3.rememberDismissState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -82,28 +78,27 @@ internal fun PersonMainScreen(
             if (persons != null) {
                 items(items = persons,
                     key = { person -> person.personId }) { person ->
-                    val dismissState = rememberDismissState(
+                    val dismissState = rememberSwipeToDismissBoxState(
                         positionalThreshold = { it * 0.5f },
                         confirmValueChange = {
-                            if (it == DismissValue.DismissedToStart) {
+                            if (it == SwipeToDismissBoxValue.EndToStart) {
                                 openDialog = true
                                 deletePerson = person
-                                true
-                            } else
-                                false
+                            }
+                            true
                         }
                     )
-                    if (dismissState.currentValue != DismissValue.Default) {
+                    if (dismissState.currentValue != SwipeToDismissBoxValue.Settled) {
                         if (!openDialog)
                             LaunchedEffect(Unit) {
                                 dismissState.reset()
                             }
                     }
-                    SwipeToDismiss(
+                    SwipeToDismissBox(
                         modifier = Modifier.animateItemPlacement(),
                         state = dismissState,
-                        directions = setOf(DismissDirection.EndToStart),
-                        background = {
+                        enableDismissFromStartToEnd = false,
+                        backgroundContent = {
                             Row(
                                 modifier = Modifier
                                     .fillMaxSize()
@@ -121,7 +116,7 @@ internal fun PersonMainScreen(
                                 )
                             }
                         },
-                        dismissContent = {
+                        content = {
                             PersonCard(
                                 person = person,
                                 onCardClick = onCardClick,
@@ -133,24 +128,24 @@ internal fun PersonMainScreen(
                 }
             }
         }
-        if (openDialog) {
-            PersonDeleteDialog(
-                person = deletePerson,
-                onConfirmation = {
-                    openDialog = false
-                    if (memories != null) {
-                        if (memories.find { it.personId == deletePerson.personId } == null)
-                            onCardSlide(deletePerson)
-                        else
-                            Toast.makeText(contextForToast, "삭제 할 수 없습니다.", Toast.LENGTH_SHORT)
-                                .show()
-                    } else
+    }
+    if (openDialog) {
+        PersonDeleteDialog(
+            person = deletePerson,
+            onConfirmation = {
+                if (memories != null) {
+                    if (memories.find { it.personId == deletePerson.personId } == null)
                         onCardSlide(deletePerson)
-                },
-                onDismissRequest = {
-                    openDialog = false
-                },
-            )
-        }
+                    else
+                        Toast.makeText(contextForToast, "삭제 할 수 없습니다.", Toast.LENGTH_SHORT)
+                            .show()
+                } else
+                    onCardSlide(deletePerson)
+                openDialog = false
+            },
+            onDismissRequest = {
+                openDialog = false
+            },
+        )
     }
 }

@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -40,7 +40,7 @@ fun IndiaryTextLine(
                 color = MaterialTheme.colorScheme.onPrimaryContainer
             )
         }
-        Divider(
+        HorizontalDivider(
             modifier = modifier.padding(start = 16.dp, end = 16.dp),
             color = MaterialTheme.colorScheme.primary,
             thickness = 2.dp
@@ -104,7 +104,7 @@ fun IndiaryMultiTextLine(
             }
 
         }
-        Divider(
+        HorizontalDivider(
             modifier = modifier.padding(start = 16.dp, end = 16.dp),
             color = MaterialTheme.colorScheme.primary,
             thickness = 2.dp

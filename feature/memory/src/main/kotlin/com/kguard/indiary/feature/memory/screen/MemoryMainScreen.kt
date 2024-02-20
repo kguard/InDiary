@@ -12,13 +12,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material3.DismissDirection
-import androidx.compose.material3.DismissValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SwipeToDismiss
-import androidx.compose.material3.rememberDismissState
+import androidx.compose.material3.SwipeToDismissBox
+import androidx.compose.material3.SwipeToDismissBoxValue
+import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -68,28 +67,27 @@ fun MemoryMainScreen(
                 .padding(8.dp)
         ) {
             items(items = memories) { memory ->
-                val dismissState = rememberDismissState(
+                val dismissState = rememberSwipeToDismissBoxState(
                     positionalThreshold = { it * 0.5f },
                     confirmValueChange = {
-                        if (it == DismissValue.DismissedToStart) {
+                        if (it == SwipeToDismissBoxValue.EndToStart) {
                             openDialog = true
                             deleteMemory = memory
-                            true
-                        } else
-                            false
+                        }
+                        true
                     }
                 )
-                if (dismissState.currentValue != DismissValue.Default) {
+                if (dismissState.currentValue != SwipeToDismissBoxValue.Settled) {
                     if (!openDialog)
                         LaunchedEffect(Unit) {
                             dismissState.reset()
                         }
                 }
-                SwipeToDismiss(
+                SwipeToDismissBox(
                     modifier = Modifier.animateItemPlacement(),
                     state = dismissState,
-                    directions = setOf(DismissDirection.EndToStart),
-                    background = {
+                    enableDismissFromStartToEnd = false,
+                    backgroundContent = {
                         Row(
                             modifier = Modifier
                                 .fillMaxSize()
@@ -106,7 +104,7 @@ fun MemoryMainScreen(
                                 contentDescription = null
                             )
                         }
-                    }, dismissContent = {
+                    }, content = {
                         MemoryCard(
                             memory = memory,
                             onCardClick = onCardClick,
@@ -114,18 +112,18 @@ fun MemoryMainScreen(
                     })
             }
         }
-        if (openDialog) {
-            MemoryDeleteDialog(
-                memory = deleteMemory,
-                onConfirmation = {
-                    openDialog = false
-                    onCardSlide(deleteMemory)
-                },
-                onDismissRequest = {
-                    openDialog = false
-                }
-            )
-        }
+    }
+    if (openDialog) {
+        MemoryDeleteDialog(
+            memory = deleteMemory,
+            onConfirmation = {
+                openDialog = false
+                onCardSlide(deleteMemory)
+            },
+            onDismissRequest = {
+                openDialog = false
+            }
+        )
     }
 }
 

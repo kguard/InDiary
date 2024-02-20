@@ -2,6 +2,7 @@ package com.kguard.indiary.feature.person.screen
 
 import android.annotation.SuppressLint
 import android.widget.Toast
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -9,11 +10,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Delete
 import androidx.compose.material.icons.rounded.Edit
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,9 +32,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.rememberPagerState
+//import com.google.accompanist.pager.ExperimentalPagerApi
+//import com.google.accompanist.pager.HorizontalPager
+//import com.google.accompanist.pager.rememberPagerState
 import com.kguard.indiary.core.designsystem.component.IndiaryTextLine
 import com.kguard.indiary.core.model.DomainPerson
 import com.kguard.indiary.core.designsystem.R
@@ -75,7 +78,9 @@ fun PersonDetailRoute(
 
 }
 
-@OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class,
+    ExperimentalFoundationApi::class
+)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 internal fun PersonDetailScreen(
@@ -90,7 +95,7 @@ internal fun PersonDetailScreen(
     onBackClick: () -> Unit
 ) {
     val title = listOf("특징", "추억")
-    val pageState = rememberPagerState()
+    val pageState = rememberPagerState(pageCount = { 2 })
     val coroutineScope = rememberCoroutineScope()
     Column(modifier = Modifier.fillMaxSize()) {
         IndiarySubTopAppBar(
@@ -114,7 +119,7 @@ internal fun PersonDetailScreen(
             }
 
         }
-        HorizontalPager(count = title.size, state = pageState) { page ->
+        HorizontalPager(state = pageState) { page ->
             when (page) {
                 0 -> PersonFeatureScreen(
                     person = person,
@@ -168,7 +173,7 @@ fun PersonFeatureScreen(
                 )
                 IndiaryText(title = stringResource(id = R.string.AgeTitle), content = age)
             }
-            Divider(
+            HorizontalDivider(
                 modifier = modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp),
                 color = MaterialTheme.colorScheme.primary,
                 thickness = 2.dp

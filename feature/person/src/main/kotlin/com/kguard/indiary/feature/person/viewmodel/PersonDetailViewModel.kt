@@ -67,6 +67,7 @@ class PersonDetailViewModel @Inject constructor(
     fun deleteMemory(memory: DomainMemory) {
         viewModelScope.launch {
             memoryUseCase.deleteMemory(memory)
+            getMemoriesInPerson(person.value.personId)
         }
     }
 

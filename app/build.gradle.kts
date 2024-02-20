@@ -26,8 +26,9 @@ android {
         buildConfig = true
     }
     buildTypes {
-        release {
-            isMinifyEnabled = false
+        getByName("release") {
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -56,9 +57,6 @@ dependencies {
     implementation(projects.core.ui)
     implementation(projects.core.common)
 
-    //glide
-    implementation (libs.glide.glide)
-
     //Lottie
     implementation (libs.lottie)
     implementation(libs.lottie.compose)
@@ -71,10 +69,6 @@ dependencies {
     implementation (libs.androidx.lifecycle.runtime.ktx )
     implementation (libs.androidx.lifecycle.viewmodel.ktx )
 
-    //TedPremission
-    implementation (libs.tedpermission.normal)
-    implementation (libs.tedpermission.coroutine)
-
     //Navigation Component
     implementation (libs.androidx.navigation.fragment)
     implementation (libs.androidx.navigation.ui)
@@ -83,7 +77,6 @@ dependencies {
 
     implementation (libs.gson)
 
-    implementation (libs.android.image.picker)
     //compose
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.runtime)
@@ -91,6 +84,5 @@ dependencies {
     implementation(libs.androidx.compose.material3.windowSizeClass)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.core.splash.screen)
 
 }

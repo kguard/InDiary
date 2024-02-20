@@ -10,9 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Text
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.CalendarMonth
 import androidx.compose.material3.DatePickerDialog
@@ -20,7 +18,8 @@ import androidx.compose.material3.DateRangePicker
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberDateRangePickerState
 import androidx.compose.runtime.Composable
@@ -53,11 +52,9 @@ fun MemoryDateRangePicker(
     val dateRangePickerState = rememberDateRangePickerState()
     OutlinedButton(
         onClick = { openDialog = true },
+        shape = RoundedCornerShape(20),
         border = BorderStroke(
             1.dp, MaterialTheme.colorScheme.onPrimaryContainer
-        ),
-        colors = ButtonDefaults.outlinedButtonColors(
-            backgroundColor = MaterialTheme.colorScheme.background
         ),
         contentPadding = PaddingValues(start = 6.dp, end = 8.dp)
     )
@@ -185,14 +182,13 @@ fun getFormattedDate(timeInMillis: Long): String {
 @Preview(showSystemUi = true, device = "spec:width=392.7dp,height=850.9dp,dpi=440")
 fun MemoryDateRangePickerPrev() {
     IndiaryTheme {
-        Scaffold(
-            modifier = Modifier.fillMaxSize(),
-            containerColor = MaterialTheme.colorScheme.background
-        ) {
-            Column {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 MemoryDateRangePicker(onConfirm = {
                 })
             }
-        }
     }
 }
