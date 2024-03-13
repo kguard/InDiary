@@ -1,5 +1,9 @@
 # InDiary(**人)**
+### V1.1.0
+- 내부 UI 변경 및 Jetpack Compose 적용, 멀티 모듈 적용으로 인한 내부 구조 변경
 ### V1.0.0
+- 앱 출시
+
 ![image 2](https://github.com/kguard/InDiary/assets/107572964/b153ea8c-e274-41c0-a5c1-8468b372fc39)
 
 ## 🙂 설명
@@ -29,7 +33,12 @@
     - 사람 탭에서는 즐겨찾기 기능으로 우선순위 설정 가능
 
 ## 🛠️ 기술 스펙
-
+### V1.1.0(추가됨)
+- Multi Module
+- Jetpack Compose
+- Build Logic
+- StateFlow
+### V1.0.0
 - Kotlin
 - Clean Architecture
 - Single Activity Architecture
