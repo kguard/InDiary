@@ -1,10 +1,10 @@
+<img src="https://github.com/kguard/InDiary/assets/107572964/795186bb-ccda-4eda-83b7-cd3b0810abaf" width="49"  height="60" align="left" />
+
 # InDiary(**人)**
 ### V1.1.0
 - 내부 UI 변경 및 Jetpack Compose 적용, 멀티 모듈 적용으로 인한 내부 구조 변경
 ### V1.0.0
 - 앱 출시
-
-![image 2](https://github.com/kguard/InDiary/assets/107572964/b153ea8c-e274-41c0-a5c1-8468b372fc39)
 
 ## 🙂 설명
 
@@ -53,8 +53,7 @@
 - Glide
 
 ## 📺 스크린샷 (일부)
-
-![Untitled](https://github.com/kguard/InDiary/assets/107572964/87444af1-787c-40e9-9a4a-bc741613e384)
+![Group 70 (1)](https://github.com/kguard/InDiary/assets/107572964/e591034f-5c1d-4ecb-8c91-ee93e142f331)
 
 ## 🏳️‍🌈 Google Play store
 
