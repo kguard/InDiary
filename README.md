@@ -1,6 +1,8 @@
 <img src="https://github.com/kguard/InDiary/assets/107572964/795186bb-ccda-4eda-83b7-cd3b0810abaf" width="49"  height="60" align="left" />
 
 # InDiary(**人)**
+### V1.1.1
+- 버전 수정으로 인한 오류 수정 및 성능 개선
 ### V1.1.0
 - 내부 UI 변경 및 Jetpack Compose 적용, 멀티 모듈 적용으로 인한 내부 구조 변경
 ### V1.0.0
