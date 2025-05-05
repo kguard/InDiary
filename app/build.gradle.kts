@@ -14,7 +14,7 @@ android {
     namespace = "com.kguard.indiary"
     defaultConfig {
         applicationId = "com.kguard.indiary"
-        versionCode = 3
+        versionCode = 4
         versionName = "1.1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
