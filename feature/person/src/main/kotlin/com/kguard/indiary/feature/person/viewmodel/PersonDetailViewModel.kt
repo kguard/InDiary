@@ -74,7 +74,7 @@ class PersonDetailViewModel @Inject constructor(
     fun getAge(string: String): String {
         var result = "?"
         val pattern = Pattern.matches(
-            "^(19[0-9][0-9]|20\\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])\$",
+            "^(19[0-9][0-9]|20\\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$",
             string
         )
         if (pattern) {

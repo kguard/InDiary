@@ -19,7 +19,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         minSdk = 29
-        targetSdk = 34
+        targetSdk = 35
         signingConfig = signingConfigs.getByName("debug")
     }
     buildFeatures {

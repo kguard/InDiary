@@ -95,7 +95,7 @@ internal fun PersonMainScreen(
                             }
                     }
                     SwipeToDismissBox(
-                        modifier = Modifier.animateItemPlacement(),
+                        modifier = Modifier.animateItem(),
                         state = dismissState,
                         enableDismissFromStartToEnd = false,
                         backgroundContent = {

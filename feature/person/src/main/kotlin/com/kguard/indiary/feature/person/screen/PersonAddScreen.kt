@@ -13,6 +13,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -138,9 +139,9 @@ internal fun PersonAddScreen(
                     readOnly = true,
                     labelId = R.string.Gender,
                     trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpanded) },
-                    modifier = modifier
+                    modifier = Modifier
                         .fillMaxWidth()
-                        .menuAnchor()
+                        .menuAnchor(type = MenuAnchorType.PrimaryNotEditable)
                         .onFocusChanged { isExpanded = it.isFocused }
                 )
                 ExposedDropdownMenu(
@@ -174,7 +175,7 @@ internal fun PersonAddScreen(
         IndiaryTextButton(
             onClick = {
                 val pattern = Pattern.matches(
-                    "^(19[0-9][0-9]|20\\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])\$",
+                    "^(19[0-9][0-9]|20\\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$",
                     birth
                 )
                 isEmptyName = name == ""

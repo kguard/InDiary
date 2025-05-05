@@ -89,7 +89,7 @@ fun MemoryCard(
 fun MemoryCardPrev() {
     IndiaryTheme {
         Column {
-            MemoryCard(onCardClick = {}, memory = DomainMemory(title = "놀러가기", date = "2018-11-11", ))
+            MemoryCard(onCardClick = {}, memory = DomainMemory(title = "놀러가기", date = "2018-11-11" ))
         }
     }
 }
