@@ -18,7 +18,7 @@
         android:roundIcon="@mipmap/ic_indiary_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.InDiary"
-        tools:targetApi="34">
+        tools:targetApi="36">
         <activity
             android:name="com.kguard.indiary.compose.MainComposeActivity"
             android:screenOrientation="fullSensor"

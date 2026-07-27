@@ -14,13 +14,13 @@ android {
     namespace = "com.kguard.indiary"
     defaultConfig {
         applicationId = "com.kguard.indiary"
-        versionCode = 4
-        versionName = "1.1.1"
+        versionCode = 5
+        versionName = "1.1.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         minSdk = 29
-        targetSdk = 35
-        signingConfig = signingConfigs.getByName("debug")
+        targetSdk = 36
+//        signingConfig = signingConfigs.getByName("debug")
     }
     buildFeatures {
         viewBinding = true

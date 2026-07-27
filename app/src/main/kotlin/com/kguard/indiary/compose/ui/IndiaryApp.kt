@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -41,16 +42,19 @@ import com.kguard.indiary.core.ui.QuitDialog
 
 
 @OptIn(ExperimentalMaterial3Api::class)
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun IndiaryApp(
     windowSizeClass: WindowSizeClass,
-    appState: IndiaryAppState = rememberIndiaryAppState(windowSizeClass = windowSizeClass)
+    appState: IndiaryAppState = rememberIndiaryAppState(
+        windowSizeClass = windowSizeClass
+    )
 ) {
     val context = LocalContext.current
+
     if (appState.currentTopLevelDestination != null) {
         BackPressed(context = context)
     }
+
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
@@ -65,38 +69,65 @@ fun IndiaryApp(
                 )
             }
         }
-    )
-    { _ ->
-        Column(Modifier.fillMaxSize()) {
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(
+                    bottom = innerPadding.calculateBottomPadding()
+                )
+        ) {
             val destination = appState.currentTopLevelDestination
+
             if (destination != null) {
                 when (destination) {
                     TopLevelDestination.PERSON -> {
-                        IndiaryMainTopAppBar(actionIcon = R.drawable.ic_person_add,
+                        IndiaryMainTopAppBar(
+                            actionIcon = R.drawable.ic_person_add,
                             onLongClick = {
-                                Intent(context, OssLicensesMenuActivity::class.java).also {
-                                    OssLicensesMenuActivity.setActivityTitle("오픈소스 라이선스")
+                                Intent(
+                                    context,
+                                    OssLicensesMenuActivity::class.java
+                                ).also {
+                                    OssLicensesMenuActivity.setActivityTitle(
+                                        "오픈소스 라이선스"
+                                    )
                                     context.startActivity(it)
                                 }
                             },
-                            onNavigationClick = { appState.navigateToPersonAdd() })
+                            onNavigationClick = {
+                                appState.navigateToPersonAdd()
+                            }
+                        )
                     }
 
                     TopLevelDestination.MEMORY -> {
-                        IndiaryMainTopAppBar(actionIcon = R.drawable.ic_memory_add,
+                        IndiaryMainTopAppBar(
+                            actionIcon = R.drawable.ic_memory_add,
                             onLongClick = {
-                                Intent(context, OssLicensesMenuActivity::class.java).also {
-                                    OssLicensesMenuActivity.setActivityTitle("오픈소스 라이선스")
+                                Intent(
+                                    context,
+                                    OssLicensesMenuActivity::class.java
+                                ).also {
+                                    OssLicensesMenuActivity.setActivityTitle(
+                                        "오픈소스 라이선스"
+                                    )
                                     context.startActivity(it)
                                 }
                             },
-                            onNavigationClick = { appState.navigateToMemoryAdd() })
+                            onNavigationClick = {
+                                appState.navigateToMemoryAdd()
+                            }
+                        )
                     }
                 }
             }
-            IndiaryNavHost(modifier = Modifier, appState = appState)
-        }
 
+            IndiaryNavHost(
+                modifier = Modifier,
+                appState = appState
+            )
+        }
     }
 }
 
